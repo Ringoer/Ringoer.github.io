@@ -119,7 +119,7 @@
 <meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-stop.png">
 <meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-save_diary.png">
 <meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-exit.png">
-<meta property="og:updated_time" content="2019-04-01T01:04:00.815Z">
+<meta property="og:updated_time" content="2019-04-01T01:13:03.444Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="捕获并分析帧和IP报文">
 <meta name="twitter:description" content="计算机网络实验3">
@@ -418,19 +418,19 @@
 
       
         <p>计算机网络实验3<br><a id="more"></a></p>
-<h1 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h1><ol>
+<h1 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h1><ul>
 <li>捕获并分析以太网的帧，获取目标与源网卡的MAC 地址  </li>
 <li>获取本机地址  </li>
 <li>获取远端MAC地址  </li>
-</ol>
+</ul>
 <h1 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h1><ul>
 <li>Windows 10  </li>
 <li>C#  </li>
 <li>Visual Studio 2017  </li>
 </ul>
-<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><p>测试时，设置为超过10000Bps就会报警<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-结果.png" alt="实验结果"></p>
+<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><p>&emsp;测试时，设置为超过10000Bps就会报警<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-结果.png" alt="实验结果"></p>
 <h1 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h1><ol>
-<li>全局初始化<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-using.png" alt="using"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-struct.png" alt="struct"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-全局变量.png" alt="全局变量"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-初始化.png" alt="初始化"></li>
+<li>全局初始化<br>安装WinPcap和SharpPcap<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-using.png" alt="using"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-struct.png" alt="struct"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-全局变量.png" alt="全局变量"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-初始化.png" alt="初始化"></li>
 <li>查看网卡信息<br>通过调用ipconfig.exe实现<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-ipconfig.png" alt="ipconfig"></li>
 <li>适配器<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-载入适配器列表.png" alt="适配器"><ol>
 <li>计时动作<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-time_ing.png" alt="计时动作"></li>
@@ -461,6 +461,7 @@
 <li>BitConverter<br>会反向获取。<br>如，现有byte[] test={0x01,0x10,0x0f,0xff};<br>二进制为00000001 00010000 00001111 11111111<br>十进制为17829887<br>此时进行uint ans=BitConverter.ToUInt32(test,0);<br>会得到ans= 4279177217<br>十六进制为ff0f1001<br>二进制为11111111 00001111 00010000 00000001<br>可见不能得到想要的结果，因为BitConverter会反向转换所给的byte数组<br>所以应该先将要转换的数组反向，再使用BitConverter</li>
 </ol>
 </li>
+<li>参考链接<br><a href="https://www.codeproject.com/Articles/12458/SharpPcap-A-Packet-Capture-Framework-for-NET" target="_blank" rel="noopener">SharpPcap</a></li>
 </ol>
 
       
@@ -496,7 +497,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/uncategorized/cjtxnhr7n0014qcuphbyr3qhu/" rel="next" title="日本語教程索引">
+              <a href="/uncategorized/cjtxnltj6000wgcuphygil9wx/" rel="next" title="日本語教程索引">
                 <i class="fa fa-chevron-left"></i> 日本語教程索引
               </a>
             
