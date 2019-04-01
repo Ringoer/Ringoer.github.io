@@ -84,17 +84,46 @@
 
 
 
-<meta name="description" content="2017也算是过去了，聊表感想。">
+<meta name="description" content="计算机网络实验3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2017へのさよなら">
-<meta property="og:url" content="http://yoursite.com/diary/end-of-2017/index.html">
+<meta property="og:title" content="捕获并分析帧和IP报文">
+<meta property="og:url" content="http://yoursite.com/network-ex3/interception/index.html">
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
-<meta property="og:description" content="2017也算是过去了，聊表感想。">
+<meta property="og:description" content="计算机网络实验3">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-21T13:57:39.119Z">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-结果.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-using.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-struct.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-全局变量.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-初始化.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-ipconfig.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-载入适配器列表.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-time_ing.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-load_devices.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-载入适配器信息.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-start.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-recv.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_1.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_2.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_3.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_4.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_5.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_6.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_7.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-BitConverter.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-monitor_traffic.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-cal_traffic.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-报警.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-pause.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-continue.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-stop.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-save_diary.png">
+<meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-exit.png">
+<meta property="og:updated_time" content="2019-04-01T01:02:08.326Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2017へのさよなら">
-<meta name="twitter:description" content="2017也算是过去了，聊表感想。">
+<meta name="twitter:title" content="捕获并分析帧和IP报文">
+<meta name="twitter:description" content="计算机网络实验3">
+<meta name="twitter:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-结果.png">
 
 
 
@@ -124,13 +153,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/diary/end-of-2017/">
+  <link rel="canonical" href="http://yoursite.com/network-ex3/interception/">
 
 
 
 
 
-  <title>2017へのさよなら | Ringo's Coding Life</title>
+  <title>捕获并分析帧和IP报文 | Ringo's Coding Life</title>
   
 
 
@@ -299,7 +328,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/diary/end-of-2017/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/network-ex3/interception/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ringoer">
@@ -316,7 +345,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2017へのさよなら</h1>
+          <h1 class="post-title" itemprop="name headline">捕获并分析帧和IP报文</h1>
         
 
         <div class="post-meta">
@@ -328,8 +357,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-02T17:07:00+08:00">
-                2018-01-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-01T08:30:04+08:00">
+                2019-04-01
               </time>
             
 
@@ -351,8 +380,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/diary/" itemprop="url" rel="index">
-                    <span itemprop="name">diary</span>
+                  <a href="/categories/network-ex3/" itemprop="url" rel="index">
+                    <span itemprop="name">network-ex3</span>
                   </a>
                 </span>
 
@@ -388,23 +417,51 @@
       
 
       
-        <p>2017也算是过去了，聊表感想。<br><a id="more"></a></p>
-<h1 id="PART1"><a href="#PART1" class="headerlink" title="PART1"></a>PART1</h1><p>不知不觉2017已经过去了。<br>实话实说，2017年，真是对我来说人生中重要的一年。经历了严酷的高三总复习，参加了大大小小的模拟考试（省质检一竟然还漏题了，笑），直到高考，直到来到XMU，直到……<br>也算是命中注定吧，为了冲XMU经院，放着自招20分不用，报了普通本一批，第一志愿经院，第二志愿软院。但是在FJ，经院收到597分，而我才考了596，因而还是来了软院。<br>若是我当时多考一分，现在又如何呢？</p>
-<h1 id="PART2"><a href="#PART2" class="headerlink" title="PART2"></a>PART2</h1><p>除了正式的学业之外，我还参加了一些可做可不做的事。</p>
-<ol>
-<li>云一OI培训</li>
-<li>云一日语部</li>
-<li>N3考试</li>
-<li>等等<br>但是结果？</li>
-<li>NOIP2017无人通过初赛</li>
-<li>集训学员学习热情忽高忽低</li>
-<li>日语部成员竟然因为一个人退部了就热情降到冰点</li>
-<li>N3考试尚无结果<br>又有什么事情成功了呢？只是我的一厢情愿吗？</li>
+        <p>计算机网络实验3<br><a id="more"></a></p>
+<h1 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h1><ol>
+<li>捕获并分析以太网的帧，获取目标与源网卡的MAC 地址  </li>
+<li>获取本机地址  </li>
+<li>获取远端MAC地址  </li>
 </ol>
-<h1 id="PART3"><a href="#PART3" class="headerlink" title="PART3"></a>PART3</h1><p>在XMU软院，似乎借着FJTG2=的基础，大有风生水起之势。但lyh，YJQAQ，hiijar，都能在专业水平方面甩我若干条街。我能做些什么？怕是只有学习。<br>即使是学习，也面临我长期以来的问题：听不下课。<br>小学时期，我发现课不难，上课写作业的话回家可以有更多时间玩。于是一发不可收拾，直到高中毕业我都贯彻落实这一点。这直接造成我现在只有在上课时候才能写作业，也只有写作业才能保证清醒，否则我一旦认真听课，立刻睡着。<br>长期以来的习惯，如今被婊了。<br>我曾经也试过改，然后就睡着了，根深蒂固。<br>但是我能怎么办呢？我就想上课睡觉吗？我就不想改吗？</p>
-<h1 id="PART4"><a href="#PART4" class="headerlink" title="PART4"></a>PART4</h1><p>12.30去了上海，在浦东赶星尘宝宝的演唱会，然后去松江找同学玩。<br>从松江到外滩，真的蛮久的，用时好像在2小时？结果见到了重度污染的东方明珠，还因为地铁要封站而匆匆赶回。次日早上兜兜转转，虽然中午开心地聚餐了，但是飞机险些来不及，唉，虹桥居然提前20分钟截停，还是高崎15分钟截停好。<br>只有照片，留下了一点回忆。</p>
-<h1 id="PART5"><a href="#PART5" class="headerlink" title="PART5"></a>PART5</h1><p>想起一句名言？也许不算名言。<br>“未来永远在手中，手中抓不住的是过去”。<br>似乎没什么事情的2017，已经抓不住了。</p>
-<p>那么，再见。</p>
+<h1 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h1><ul>
+<li>Windows 10  </li>
+<li>C#  </li>
+<li>Visual Studio 2017  </li>
+</ul>
+<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><p>测试时，设置为超过10000Bps就会报警<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-结果.png" alt="实验结果"></p>
+<h1 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h1><ol>
+<li>全局初始化<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-using.png" alt="using"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-struct.png" alt="struct"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-全局变量.png" alt="全局变量"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-初始化.png" alt="初始化"></li>
+<li>查看网卡信息<br>通过调用ipconfig.exe实现<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-ipconfig.png" alt="ipconfig"></li>
+<li>适配器<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-载入适配器列表.png" alt="适配器"><ol>
+<li>计时动作<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-time_ing.png" alt="计时动作"></li>
+<li>载入适配器列表<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-load_devices.png" alt="load_devices"></li>
+<li>载入适配器信息<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-载入适配器信息.png" alt="载入适配器信息"></li>
+</ol>
+</li>
+<li>开始侦听<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-start.png" alt="start"><ol>
+<li>收包动作<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-recv.png" alt="收包"></li>
+<li>成帧<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_1.png" alt="成帧1"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_2.png" alt="成帧2"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_3.png" alt="成帧3"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_4.png" alt="成帧4"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_5.png" alt="成帧5"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_6.png" alt="成帧6"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_7.png" alt="成帧7"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-BitConverter.png" alt="BitConverter"></li>
+<li>成帧时修改流量统计<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-monitor_traffic.png" alt="更新流量统计"></li>
+<li>监视流量<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-cal_traffic.png" alt="计算流量"><br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-报警.png" alt="报警"></li>
+</ol>
+</li>
+<li>暂停侦听<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-pause.png" alt="pause"></li>
+<li>继续侦听<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-continue.png" alt="continue"></li>
+<li>停止侦听<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-stop.png" alt="stop"></li>
+<li>保存日志<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-save_diary.png" alt="save_diary"></li>
+<li>退出程序<br><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-exit.png" alt="exit"></li>
+<li>技术细节<ol>
+<li>计算流量的方法<br>构建新结构体（mac + ip +mode）放进dictionary当key，各key累计收发包大小当value。新建线程，每隔1s遍历各来源的收发流量，超过1MB的，可以认为在这1s内平流量达到1MBps以上，故而给本机警告</li>
+<li>遍历dictionary<br>因为多线程同时在访问dictionary，所以会出现在一个线程遍历dictionary的时候，另一个线程正在新增dictionary的项。此时采用foreach遍历会报错，因为foreach要求正在遍历的对象不能有变化</li>
+<li>有网络但侦听不到包体<br>如果确认程序没错，那么可能是<ol>
+<li>选错网卡，要注意选一个有网络的网卡</li>
+<li>当前的网络收发包类型不是ip and tcp，应该是filter的问题，关掉filter即可</li>
+</ol>
+</li>
+<li>BitConverter<br>会反向获取。<br>如，现有byte[] test={0x01,0x10,0x0f,0xff};<br>二进制为00000001 00010000 00001111 11111111<br>十进制为17829887<br>此时进行uint ans=BitConverter.ToUInt32(test,0);<br>会得到ans= 4279177217<br>十六进制为ff0f1001<br>二进制为11111111 00001111 00010000 00000001<br>可见不能得到想要的结果，因为BitConverter会反向转换所给的byte数组<br>所以应该先将要转换的数组反向，再使用BitConverter</li>
+</ol>
+</li>
+</ol>
 
       
     </div>
@@ -439,8 +496,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/cpp/cpp-11/" rel="next" title="C++语言-11-竞赛相关的其余操作及编程时应有的良好习惯">
-                <i class="fa fa-chevron-left"></i> C++语言-11-竞赛相关的其余操作及编程时应有的良好习惯
+              <a href="/uncategorized/cjtxnfept000tgwupouu7zzkf/" rel="next" title="日本語教程索引">
+                <i class="fa fa-chevron-left"></i> 日本語教程索引
               </a>
             
           </div>
@@ -449,8 +506,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/database-experiment/db-ex1/" rel="prev" title="数据库系统实验报告-实验1 oracle 11g的安装、配置和使用">
-                数据库系统实验报告-实验1 oracle 11g的安装、配置和使用 <i class="fa fa-chevron-right"></i>
+              <a href="/uncategorized/mainpage/" rel="prev" title="Welcome to No. 68 Floating Island">
+                Welcome to No. 68 Floating Island <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -575,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PART1"><span class="nav-number">1.</span> <span class="nav-text">PART1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PART2"><span class="nav-number">2.</span> <span class="nav-text">PART2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PART3"><span class="nav-number">3.</span> <span class="nav-text">PART3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PART4"><span class="nav-number">4.</span> <span class="nav-text">PART4</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PART5"><span class="nav-number">5.</span> <span class="nav-text">PART5</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验目的"><span class="nav-number">1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验环境"><span class="nav-number">2.</span> <span class="nav-text">实验环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验结果"><span class="nav-number">3.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验总结"><span class="nav-number">4.</span> <span class="nav-text">实验总结</span></a></li></ol></div>
             
 
           </div>
