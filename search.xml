@@ -7,15 +7,15 @@
   </entry>
   <entry>
     <title><![CDATA[捕获并分析帧和IP报文]]></title>
-    <url>%2Fnetwork-ex3%2Finterception%2F</url>
+    <url>%2Fnetwork-experiment%2Finterception%2F</url>
     <content type="text"><![CDATA[计算机网络实验3 实验目的 捕获并分析以太网的帧，获取目标与源网卡的MAC 地址 获取本机地址 获取远端MAC地址 实验环境 Windows 10 C# Visual Studio 2017 实验结果测试时，设置为超过10000Bps就会报警 实验总结 全局初始化 查看网卡信息通过调用ipconfig.exe实现 适配器 计时动作 载入适配器列表 载入适配器信息 开始侦听 收包动作 成帧 成帧时修改流量统计 监视流量 暂停侦听 继续侦听 停止侦听 保存日志 退出程序 技术细节 计算流量的方法构建新结构体（mac + ip +mode）放进dictionary当key，各key累计收发包大小当value。新建线程，每隔1s遍历各来源的收发流量，超过1MB的，可以认为在这1s内平流量达到1MBps以上，故而给本机警告 遍历dictionary因为多线程同时在访问dictionary，所以会出现在一个线程遍历dictionary的时候，另一个线程正在新增dictionary的项。此时采用foreach遍历会报错，因为foreach要求正在遍历的对象不能有变化 有网络但侦听不到包体如果确认程序没错，那么可能是 选错网卡，要注意选一个有网络的网卡 当前的网络收发包类型不是ip and tcp，应该是filter的问题，关掉filter即可 BitConverter会反向获取。如，现有byte[] test={0x01,0x10,0x0f,0xff};二进制为00000001 00010000 00001111 11111111十进制为17829887此时进行uint ans=BitConverter.ToUInt32(test,0);会得到ans= 4279177217十六进制为ff0f1001二进制为11111111 00001111 00010000 00000001可见不能得到想要的结果，因为BitConverter会反向转换所给的byte数组所以应该先将要转换的数组反向，再使用BitConverter]]></content>
       <categories>
-        <category>network-ex3</category>
+        <category>network-experiment</category>
       </categories>
   </entry>
   <entry>
     <title><![CDATA[日本語教程索引]]></title>
-    <url>%2Funcategorized%2Fcjtxnfept000tgwupouu7zzkf%2F</url>
+    <url>%2Funcategorized%2Fcjtxnhr7n0014qcuphbyr3qhu%2F</url>
     <content type="text"><![CDATA[只是想写一个日语教程，为了将来方便给云霄一中日语部教学。于是这里就当成目录吧。待更新]]></content>
   </entry>
   <entry>
