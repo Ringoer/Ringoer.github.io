@@ -23,7 +23,7 @@
   </entry>
   <entry>
     <title><![CDATA[日本語教程索引]]></title>
-    <url>%2Funcategorized%2Fcjtz13tj8000s6supm4qi3ckk%2F</url>
+    <url>%2Funcategorized%2Fcjtz29h580015xwup8p8dmv6h%2F</url>
     <content type="text"><![CDATA[只是想写一个日语教程，为了将来方便给云霄一中日语部教学。于是这里就当成目录吧。待更新]]></content>
   </entry>
   <entry>
@@ -40,6 +40,14 @@
     <content type="text"><![CDATA[一棵裸的哈夫曼树，看点可能在于封装（嘛，反正是留档给自己看的123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166#include&lt;iostream&gt;#include&lt;cstring&gt;#include&lt;string&gt;#include&lt;queue&gt;#include&lt;map&gt;#include&lt;vector&gt;using namespace std;typedef char Type;typedef struct NODE&#123; Type data; int weight; NODE* Lchild; NODE* Rchild; NODE* Parent;&#125;NODE,*node;//树的结点 struct cmp&#123; Type data; int weight; node selfroot; friend bool operator &gt;(const cmp&amp; a,const cmp&amp; b) &#123; return a.weight&gt;b.weight; &#125;&#125;;//为了使用优先队列，必须重载大于号，而重载大于号不能针对指针，故有此类型 class HuffmanTree&#123; private: int n; node root; cmp temp[100]; map&lt;string,char&gt;m;//序列对字符的映射 void print(char x,string y) &#123; cout&lt;&lt;x&lt;&lt;" "&lt;&lt;y&lt;&lt;endl; &#125; void cal(node T,string num) &#123; if(n==1) &#123; print(root-&gt;data,"0"); return; &#125; if(T-&gt;data=='#') &#123; cal(T-&gt;Lchild,num+"0"); cal(T-&gt;Rchild,num+"1"); return; &#125; print(T-&gt;data,num); m[num]=T-&gt;data; &#125; void destroy(node T) &#123; if(T-&gt;Lchild!=NULL) destroy(T-&gt;Lchild); if(T-&gt;Rchild!=NULL) destroy(T-&gt;Rchild); delete T; &#125; public: HuffmanTree() &#123; root=NULL; &#125; void init() &#123; cout&lt;&lt;"请输入字符个数n（n&lt;100）。接下来n行，每行输入一个字符及其权重。（输入的字符不可以是#）\n"; cin&gt;&gt;n; for(int i=0;i&lt;n;i++) &#123; cin&gt;&gt;temp[i].data&gt;&gt;temp[i].weight; temp[i].selfroot=new NODE; node p=temp[i].selfroot; p-&gt;data=temp[i].data; p-&gt;weight=temp[i].weight; p-&gt;Lchild=p-&gt;Rchild=p-&gt;Parent=NULL; &#125; &#125; void build() &#123; priority_queue&lt;cmp,vector&lt;cmp&gt;,greater&lt;cmp&gt; &gt;q; for(int i=0;i&lt;n;i++) q.push(temp[i]); while(!q.empty()) &#123; cmp p1=q.top(); q.pop(); if(q.empty()) &#123; root=p1.selfroot; break; &#125; cmp p2=q.top(); q.pop(); cmp tmp; tmp.data='#'; tmp.weight=p1.weight+p2.weight; tmp.selfroot=new NODE; node kp=tmp.selfroot; kp-&gt;data=tmp.data; kp-&gt;weight=tmp.weight; kp-&gt;Parent=NULL; p1.selfroot-&gt;Parent=p2.selfroot-&gt;Parent=kp; if(p1.weight&lt;p2.weight) &#123; kp-&gt;Lchild=p1.selfroot; kp-&gt;Rchild=p2.selfroot; &#125; else &#123; kp-&gt;Rchild=p2.selfroot; kp-&gt;Lchild=p1.selfroot; &#125; q.push(tmp); &#125; &#125; void show() &#123; cout&lt;&lt;"所求出的对应编码表如下（不按顺序）：\n"; cal(root,""); cout&lt;&lt;endl; &#125; void solve() &#123; string str,ans=""; cout&lt;&lt;"请输入待解码的合法01序列\n"; cin&gt;&gt;str; int len=str.length(); for(int i=0;i&lt;len;i++) &#123; int cnt=1; string tmp=str.substr(i,1); map&lt;string,char&gt;::iterator it=m.find(tmp); while(it==m.end()) &#123; cnt++; if(i+cnt&gt;len) &#123; cout&lt;&lt;"输入序列不合法！\n"; return; &#125; tmp=str.substr(i,cnt); it=m.find(tmp); &#125; ans+=m[tmp]; i+=cnt-1; &#125; cout&lt;&lt;"解码后的序列为："&lt;&lt;ans&lt;&lt;endl&lt;&lt;endl; &#125; void del() &#123; destroy(root); cout&lt;&lt;"该哈夫曼树已经成功销毁！\n"; &#125;&#125;;int main()&#123; HuffmanTree ht; ht.init(); ht.build(); ht.show(); ht.solve(); ht.del(); return 0;&#125;]]></content>
       <categories>
         <category>HuffmanTree</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[职业测试结果-UX课程要求]]></title>
+    <url>%2Fothers%2Fux%2F</url>
+    <content type="text"><![CDATA[物流师ISTJISTJ人格类型被认为是数量最多的，大约占人口总数的13%。他们明显的正直，实际，奉献的优点使他们成为很多家庭以及拥护传统，规则，标准的组织的重要一员，比如律所，监管部门和军队。ISTJ类型的人愿意为自己的行为负责，为努力完成目标所做的事感到骄傲。ISTJ会毫不吝啬时间和精力来准确和耐心地完成每个任务。ISTJ不喜欢做假设，而是分析周围环境，根据事实来找到最实际的做法。ISTJ从不废话，当他们做了决定时，会把取得目标需要的所有信息传播给别人，期待他人立刻掌握情况马上行动。ISTJ不能容忍犹豫不决，在自己的决定受到不切实际，尤其是忽略事实的理论的挑战时会很快失去耐心。如果这些挑战变成了浪费时间的辩论，截止日期越近他们就会变得越发气愤。如果你尊重你的名誉，就结交那些优秀的人ISTJ说做就做，不惜一切完成任务，那些不同样说话算话的人使他们感到困惑。如果再加上懒惰和虚伪就最为ISTJ所不齿。因为这样，ISTJ通常更喜欢独自工作，或至少要建立明确的等级制度，使他们可以计划并完成目标而不用为别人的不可靠所扰。ISTJ有敏锐的建立在事实上的思维，与依靠别人相比更愿意自给自足。对别人的依赖在他们看来是弱点，他们对责任的热情，可靠，和正直的人格不允许他们落入这样的陷阱。正直的人格对ISTJ很重要，他们不论代价遵守已经建立的规则和准则，时刻报告自己的错误，实话实说，即使这样做有灾难性的后果。对ISTJ来说，诚信比感性思考重要得多，他们直截了当的方式可能让别人误解他们冷漠，机械化。这种类型的人很难对外表达自己的情绪和好感，但是说他们没感情甚至没人性会让他们很受伤。与不合适的人在一起还不如独自一人ISTJ的尽心尽力是很好的品质，使得他们能成就许多，但同时也是能被一些不严谨的人利用的弱点。ISTJ寻求安全和稳定，把平缓的运营看作自己的责任，他们可能发现同事和爱人把他们的责任转移给自己，因为自己总会接受。ISTJ趋向于保留自己的看法用事实说话，但要等观察得到的证据解释一切可能需要很长时间。ISTJ需要记得照顾自己，他们对稳定和高效顽固的尽心尽力可能使一些长期目标变得困难，因为别人会更加依赖他们，使ISTJ产生一些可能很多年都不会表现出来的情绪压力，在表现出来时通常为时已晚。如果他们能找到真正感激和赞扬他们的品质，享受他们的聪慧清晰和可靠的同事或配偶，ISTJ会发现他们使事情稳定的角色是很有满足感的，因为自己是一个完美运行的系统的一部分。]]></content>
+      <categories>
+        <category>others</category>
       </categories>
   </entry>
   <entry>
@@ -83,11 +91,59 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[ノーゲームノーライフ ゼロ 观影体验]]></title>
+    <url>%2Fothers%2F20180311%2F</url>
+    <content type="text"><![CDATA[「向遗志起誓」 啊啊，怎么说呢，算是从寒假开始就想看了吧。但是拖到这周周二才把动画本编补完，小说也堪堪起步。本来昨天就打算腾出2小时的时间来看的，但是林林总总事情不少（详见上一篇文章），于是便拖到了今天。再加上我妹这两天体调不佳，于是便与她一起，下午用2小时（她没看过本编要我慢慢解释）的时间看完了该剧场版。唉，最后和她抱在一起痛哭，真是看得难过啊，导致我花了很大精神才安顿好她，自己回来后也心情不佳。那么，以下有剧透，未看过的各位请慎重往下看。这是未看过小说，仅看过动画本编的人，的视角。 故事开始便是男主利库（人类）被毁了家乡，然后与女主休比（机凯种）远距离相看见。这该是最初的相遇了，也与后面女主自称是毁了男主家乡的罪魁祸首相呼应。之后开始解释本片视角，原来是唯一神特图在向兽人种的伊纲陈述这个故事，这个发生在6000年前，悠久大战终结之时的故事。叙述的开篇，利库等3人遇到了地精种的特殊设备，在记录过程中却有危险来临，不得不命令一人去死。回据点后，该死去的人是一个萝莉的父亲，利库遭到了萝莉的怨恨发言，回屋后自己也是很难过，在为自己的无能而发怒。之后，利库在探险过程中偶然来到森精种旧都（就是被吉普莉尔一个天击毁掉的地方），在这里发生了男女主第一次正式相遇。结果刚一相遇就爆发了重大糟糕台词啊2333，有兴趣的请自行观看，太糟糕了不便透露。然后休比申请对局（结果当然输了），于是被利库带回人类据点。然后又是一堆污的事情……不对，是休比向利库陈述了自己的目的——了解「心」。接下来有一起洗澡，呸，是利库给休比擦澡。期间利库的姐姐进了房间，发现了一根休比遗留的头发，扯不断。此时姐姐应该已经发现休比是机凯种了。三个字，瞬间一年后。利库和休比一同前往相遇的地方，在那里却遭遇了森精种研发的「虚空第零加护」，休比被打中，之后却复制了该招式接近10%的威力打破了关上的门成功和利库一起逃出。然后就是卿卿我我的狗粮，期间利库也渐渐打开内心。回据点之后利库开始和休比研究地图，企图搞点大新闻。好景不长，在地精种对龙精种的攻击中，人类受到了波及。结果利库还趁机套路了一把他姐姐，真是这种时候还有这种闲心啊2333利库把首领大位交给姐姐后，开始和其他人谋划「幽灵」行动，引导上位种族休战，并引导其在指定地点开战，计划利用32个『典开』「通行规制」把能量引导到贯穿星球，然后利库取得「星杯」来结束这场悠久之战。宣布完此事，本片开始最后一段不虐的狗粮——利库向休比求婚了！求婚了！！！然后利库向兽人种透露了地精种拥有「水爆」的事情，又去森精种那里下棋，故意输掉讨取情报。但为了不被森精种发现自己是人类，用了很多「黑灰」来掩盖自己的精灵回廊气息，让森精种的克莱布误以为自己是上位种族，不敢贸然动武。顺利讨取情报后，利库却因黑灰在身上过久而被侵染严重，不得不截肢了。在临时营地里利库过于劳累晕倒了，醒来后休比依旧劝他休息，一来二去利库就睡了。这是利库和休比的永别。高虐开始。休比为了节约时间，一个人去设置『典开』「通行规制」，结果只设置了一个（目前共24个）就被吉普莉尔发现了，打了起来，休比不敌，开始申请和连接体同步数据，却一直被驳回，隔了好一会才被接受了。于是休比开大，立志坚持251秒到同步结束。最终还是被吉普莉尔打爆了，在最后关头同步完成，休比被「天击」秒了。这段别看我简单描述过去了，其实是因为太虐了！！！简直就是吉普莉尔掉粉时间啊！！！高虐！！！因为休比挂了，利库也十分难受，要自杀的时候，机凯种中连接体的一员来到利库面前，声明剩余8个不可能设置完成，请求修正策略。利库做出了决定。机凯种在僵持之处模仿天翼种使用「天击」诱发各方全弹发射，并成功引导能量偏移。机凯种使用第十一连接体全员4807体承接了这股能量，并将其同步给利库所在的『真典』「弑星者」，成功贯穿星球，使得星杯显现，利库的身体却因消耗过度了，被星杯周围的黑灰所侵蚀，不能靠近。绝望之下利库只得祈祷，人生第一次，也是最后的祈祷，祈祷游戏之神能现身取得星杯。最终的最终，游戏之神因为利库的信仰而成形，取得星杯，成为唯一神，重塑世界。这段也是巨虐啊！啊，到此为止了，真是让我和我妹都哭惨了。向全体机凯种致以最高的敬意。 以下是部分个人感想吧。利库和休比，怎么看都是空白的前世啊。（虽然作者说不是不过不瞎都能看出来吧）想看动画第二季啊，也想补小说，但是作业还没写完，还是省省吧2333好，到此为止吧。 「向盟约起誓」]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[20180310 随录]]></title>
+    <url>%2Fothers%2F20180310%2F</url>
+    <content type="text"><![CDATA[今日早上8点起床了。哎呀，前一天是真的累，结果还折腾到快1点，所以早上不得不睡到8点再起来了。然后日常，吃完饭后就去公寓305准备面试了。结果到场才不到8点40分，只有lyh在场，又等了很久才等到游神等。9点就开始面试了。我还是第一个啊2333被问了基础、时间安排，甚至还有梦想之类的xs然后9点5分就出来了，发生了一点小意外——居然碰到了自主招生的时候同组的同学，不仅面试同组体测也同组的xsj同学。他现在在信科。机缘巧合之下居然在之前就加好了qq。他还高呼“原来cgp就是你啊”。缘分啊缘分。之后回寝室，居然忘记充电了，结果60多的电到中午2点多点就没电了哭哭。10点多和wise相约一起去前一天和同年几位约好的芙蓉湖小广场，结果发现哇游客真的多，周六周日恐怖如斯。之后等几位，陈总没空来，一盆基本上踩点，之后是琛，再是弘哥。然后说人太多了，于是先去吃饭。出了西村校门，来到富万邦，然后决定吃杨国福。但是好像没什么东西能吃啊，还不如云霄的，随便点点21块就完了。然后去未开放的南校门（不同于大南校门），但是没地方摆手机，于是又前往化院校门，进去一看是上弦场的一边（另一边靠白城）。真是打开了新世界的大门。然后在上弦场的中轴线录像，录了一会，聊了会天，wise就去做家教了。剩下的我们就去经院咖啡厅休息，我还点了卡布奇诺，15块啊。不过总算明白经院咖啡厅怎么识别同学和游客了——只能校园卡支付，不支持其它方式。啊，3点多就各自散了，4点刚过的时候到了寝室，然后休息，一不小心就5点半多了，去二期吃晚饭，紫菜汤好料啊，还有辣包菜。晚上就休闲了，也没什么大事，摸了。]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[HDU P1253 胜利大逃亡 题解]]></title>
     <url>%2Fbfs%2Fhdu-p1253%2F</url>
     <content type="text"><![CDATA[HDU P1253 胜利大逃亡 题解卡常数神题 Problem DescriptionIgnatius被魔王抓走了,有一天魔王出差去了,这可是Ignatius逃亡的好机会.魔王住在一个城堡里,城堡是一个A*B*C的立方体,可以被表示成A个B*C的矩阵,刚开始Ignatius被关在(0,0,0)的位置,离开城堡的门在(A-1,B-1,C-1)的位置,现在知道魔王将在T分钟后回到城堡,Ignatius每分钟能从一个坐标走到相邻的六个坐标中的其中一个.现在给你城堡的地图,请你计算出Ignatius能否在魔王回来前离开城堡(只要走到出口就算离开城堡,如果走到出口的时候魔王刚好回来也算逃亡成功),如果可以请输出需要多少分钟才能离开,如果不能则输出-1. Input输入数据的第一行是一个正整数K,表明测试数据的数量.每组测试数据的第一行是四个正整数A,B,C和T(1&lt;=A,B,C&lt;=50,1&lt;=T&lt;=1000),它们分别代表城堡的大小和魔王回来的时间.然后是A块输入数据(先是第0块,然后是第1块,第2块……),每块输入数据有B行,每行有C个正整数,代表迷宫的布局,其中0代表路,1代表墙.(如果对输入描述不清楚,可以参考Sample Input中的迷宫描述,它表示的就是上图中的迷宫)特别注意:本题的测试数据非常大,请使用scanf输入,我不能保证使用cin能不超时.在本OJ上请使用Visual C++提交. Output对于每组测试数据,如果Ignatius能够在魔王回来前离开城堡,那么请输出他最少需要多少分钟,否则输出-1. Sample Input123456789101113 3 4 200 1 1 10 0 1 10 1 1 11 1 1 11 0 0 10 1 1 10 0 0 00 1 1 00 1 1 0 Sample Output111 从50*50*50的范围来看，显然dfs是不现实的，故采用bfs。那既然都用bfs了，当然是祭出spfa大法。本题最大坑点在于，要么高度耦合，要么要内联，总之就是常数要优化到极致，不然就T，果断T。说明已附在code里。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;queue&gt;using namespace std;queue&lt;int&gt;qa,qb,qc;bool d[60][60][60],v[60][60][60];int ans[60][60][60],k,a,b,c,t;//50*50*50，故开60*60*60 inline void add(int aa,int bb,int cc)&#123; qa.push(aa); qb.push(bb); qc.push(cc);//入队 v[aa][bb][cc]=true;//标记已用 &#125;inline void cut(int aa,int bb,int cc)&#123; qa.pop(); qb.pop(); qc.pop();//出队 v[aa][bb][cc]=false;//取消标记 &#125;inline bool check(int aa,int bb,int cc,int sum)&#123; if(!aa&amp;&amp;!bb&amp;&amp;!cc) return false;//1、不是起点 if(aa&lt;0||bb&lt;0||cc&lt;0) return false;//2、不能向下越界 if(aa&gt;=a||bb&gt;=b||cc&gt;=c) return false;//3、不能向上越界 if(v[aa][bb][cc]) return false;//4、不能是已经使用过的点 if(d[aa][bb][cc]) return false;//5、不能是墙 int tmp=ans[aa][bb][cc]; if(tmp&amp;&amp;sum&gt;=tmp) return false;//6、目前计算所得值必须比已有最优解更优，否则走人 return true;//都通过了，合格了 &#125;inline void direct(int aa,int bb,int cc,int sum)&#123; if(!check(aa,bb,cc,sum)) return;//如果不可行，不再计算 ans[aa][bb][cc]=sum;//更新值 if(!(aa==a-1&amp;&amp;bb==b-1&amp;&amp;cc==c-1)) add(aa,bb,cc);//如果被更新点不是终点，入队 &#125;void spfa()&#123; while(!qa.empty())//当队列非空 &#123; int ta=qa.front(),tb=qb.front(),tc=qc.front();//取值 cut(ta,tb,tc);//出队 int sum=ans[ta][tb][tc]+1;//计算当前最优解 direct(ta-1,tb,tc,sum); direct(ta+1,tb,tc,sum); direct(ta,tb-1,tc,sum); direct(ta,tb+1,tc,sum); direct(ta,tb,tc-1,sum); direct(ta,tb,tc+1,sum);//判断6个方向 &#125;&#125;int main()&#123; freopen("in.txt","r",stdin);//文件读入，节省调试时输入的时间 scanf("%d",&amp;k);//输入数据组数 while(k--)//循环k次 &#123; memset(v,0,sizeof(v));//初始化标记数组 memset(d,0,sizeof(d));//初始化地图 memset(ans,0,sizeof(ans));//初始化答案数组 scanf("%d %d %d %d",&amp;a,&amp;b,&amp;c,&amp;t);//输入 for(int i=0;i&lt;a;i++) for(int j=0;j&lt;b;j++) for(int z=0;z&lt;c;z++) scanf("%d",&amp;d[i][j][z]);//输入 add(0,0,0);//将起点入队 spfa();//搜索 int answer=ans[a-1][b-1][c-1];//取终点答案，直接访问三维数组耗时太长，故新建一个变量用于保存 if(!answer||answer&gt;t) printf("-1\n");//如果答案还是初始值，或答案大于规定时间，则无法 else printf("%d\n",answer);//输出可行答案 &#125; return 0;&#125;]]></content>
       <categories>
         <category>bfs</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[20180304 随录]]></title>
+    <url>%2Fothers%2F20180304%2F</url>
+    <content type="text"><![CDATA[啊，又是回校的日子了。周末做了什么？似乎也没做什么，无非是打打隔膜，氪氪金，不得已时候写写作业，睡个好觉，如是而已。下周就acm面试了，不能回家。还好妹妹也开学了，也算有个照应（虽然远了点）。该做什么呢？写个爬七天的爬虫，写个爬本网站、提供更新信息的爬虫，好好准备六级，好好学习数学。该是这样了吧。]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[20180303 随录]]></title>
+    <url>%2Fothers%2F20180303%2F</url>
+    <content type="text"><![CDATA[啊，好想学习啊。其实还是想打4y。不过总是要认真学习吧？2333]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[狗年元宵随录]]></title>
+    <url>%2Fothers%2F20180302%2F</url>
+    <content type="text"><![CDATA[啊，这是狗年的第一次发文吧。也是，我天天摸鱼，哪来的时间刷题写题解之类的啊2333开学的第一周要过去了，今天周五，也是元宵节，正好应该回去过节了。差点买不到票啊……不过还好用转车之法多花点钱还能回去，不然就独在异乡为异客了2333 周五，没发生什么大事。最大的感受，可能就是设计心理学真好玩，软件竞赛渣渣，略略略。上学期的排名昨天也出了，顺位92%，绝了啊，不过卓越毕竟还是看专业和数学，问题不大（艾尔基本也都99了，活动也打完了，我也该休息一下，留给妹妹玩吧。啊啊，好像也没什么说的了。诸君，学习吧。我也去写大物和微积分了。]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[20180211 随录]]></title>
+    <url>%2Fothers%2F20180211%2F</url>
+    <content type="text"><![CDATA[cbs 超越 5/5 5/2098 约一半dw 超越 5/5 0/2097 约一半交织together 约50s伟明家走了一圈kf家走了一圈]]></content>
+      <categories>
+        <category>others</category>
       </categories>
   </entry>
   <entry>
