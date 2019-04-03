@@ -94,9 +94,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>SegmentTree</tag>
         <tag>HDU</tag>
+        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
@@ -143,8 +143,87 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>MST</tag>
         <tag>Luogu</tag>
+        <tag>MST</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年4月月赛 Day2 Violet 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201804-0203%2F</url>
+    <content type="text"><![CDATA[2018年4月月赛 Day2 Violet 题解 题目背景少佐在哪！！别拦着我！！我要去找少佐！！ 自从那天的别离之后，Violet和少佐已经分别许久。就在Violet从昏迷中恢复意识的那一刻起，Violet一直在计划着去寻找少佐。现在，时机成熟了。 题目描述Violet只能确定少佐在n个城市中的某一个，却不知道具体在哪一个，而从疗养院所在地s去到任意一个城市，都需要经过若干城市之间的若干有向道路。这些道路错综复杂，Violet想尽快赶到。请你帮她算算到各个城市的最短时间吧。 输入输出格式输入格式第一行包含三个整数N、M、S，分别表示点的个数、有向边的个数、出发点的编号。接下来M行每行包含三个整数Fi、Gi、Wi，分别表示第i条有向边的出发点、目标点和长度。 输出格式一行，包含N个用空格分隔的整数，其中第i个整数表示从点S出发到点i的最短路径长度（若S=i则最短路径长度为0，若从点S无法到达点i，则最短路径长度为2147483647） 输入输出样例输入样例#1：4 6 11 2 22 3 22 4 11 3 53 4 31 4 4 输出样例#1：0 2 4 3 说明1&lt;=N&lt;=10000，1&lt;=M&lt;=500000 邻接表板子题……可类比Luogu P3371代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;vector&gt;#include&lt;queue&gt;using namespace std;struct edge&#123;int next,dis;&#125;; vector&lt;edge&gt; e[10010];int ans[10010];bool v[10010]=&#123;false&#125;;queue&lt;int&gt;q;inline void addedge(int f,int g,int w)&#123; edge x; x.next=g; x.dis=w; e[f].push_back(x);&#125;void spfa()&#123; while(!q.empty()) &#123; int t=q.front(); q.pop(); v[t]=false; for(vector&lt;edge&gt;::iterator i=e[t].begin();i!=e[t].end();i++) &#123; int tmp=ans[t]+i-&gt;dis,ttt=i-&gt;next; if(tmp&lt;ans[ttt]) &#123; ans[ttt]=tmp; if(!v[ttt]) &#123; q.push(ttt); v[ttt]=true; &#125; &#125; &#125; &#125;&#125;int main()&#123; int n,m,s; cin&gt;&gt;n&gt;&gt;m&gt;&gt;s; for(int i=1;i&lt;=n;i++) ans[i]=2147483647; ans[s]=0; for(int i=0;i&lt;m;i++) &#123; int f,g,w; scanf("%d %d %d",&amp;f,&amp;g,&amp;w); addedge(f,g,w); &#125; q.push(s); v[s]=true; spfa(); for(int i=1;i&lt;=n;i++) printf("%d ",ans[i]); return 0;&#125;]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
+        <tag>yxyzcontest</tag>
+        <tag>SPFA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年4月月赛 Day2 工作分配问题 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201804-0202%2F</url>
+    <content type="text"><![CDATA[2018年4月月赛 Day2 工作分配问题 题解 题目描述设有 n 件工作分配给 n 个人。将工作 i 分配给第 j 个人所需的费用为c[i][j] 。试设计一个算法，为每一个人都分配 1 件不同的工作，并使总费用达到最小。 输入输出格式输入格式第一行有 1 个正整数 n 。接下来的 n 行，每行 n 个正整数，表示工作费用。 输出格式一行，包含一个正整数，为计算出的最小总费用。 输入输出样例输入样例#1：310 2 32 3 43 4 5 输出样例#1：9 说明对于100%的数据，1&lt;=n&lt;=20，1&lt;=c[i][j]&lt;=100。 1月月赛的原题。本题除了一月月赛中已经给出的dfs解，还可以有mcmf解。代码：dfs解：1234567891011121314151617181920212223242526272829303132333435363738394041#include&lt;cstdio&gt;#include&lt;iostream&gt;using namespace std;bool v[30]=&#123;false&#125;;long long ans=0;int c[30][30],n;void dfs(int x,int sum)&#123; if(x&gt;n) &#123; if(sum&lt;ans) ans=sum; return; &#125; if(ans&gt;sum) &#123; for(int i=1;i&lt;=n;i++) &#123; if(!v[i]) &#123; v[i]=true; dfs(x+1,sum+c[x][i]); v[i]=false; &#125; &#125; &#125;&#125;int main()&#123; cin&gt;&gt;n; for(int i=1;i&lt;=n;i++) &#123; for(int j=1;j&lt;=n;j++) &#123; cin&gt;&gt;c[i][j]; ans+=c[i][j]; &#125; &#125; dfs(1,0); cout&lt;&lt;ans; return 0;&#125; 感谢cyy dalao支援的MCMF解。MCMF解：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091#include &lt;bits/stdc++.h&gt;using std::queue;using std::min;const int maxe = 2510;const int maxn = 55;const int inf = 0x3f3f3f3f;struct Edge&#123; int u,v,f,c; int next;&#125;e[maxe];int head[maxn];int ecnt;void _AddEdge(int u,int v,int f,int c) &#123; e[ecnt].u = u; e[ecnt].v = v; e[ecnt].f = f; e[ecnt].c = c; e[ecnt].next = head[u]; head[u] = ecnt; ecnt ++;&#125;void AddEdge(int u,int v,int f,int c) &#123; _AddEdge(u,v,f,c); _AddEdge(v,u,0,-c);&#125;bool inq[maxn];int dis[maxn];int pre[maxn];bool spfa(int s,int t) &#123; queue &lt;int&gt; q; memset(dis,0x3f,sizeof(dis)); memset(inq,false,sizeof(inq)); memset(pre,-1,sizeof(pre)); dis[s] = 0; inq[s] = true; q.push(s); while (!q.empty()) &#123; int cur = q.front(); q.pop(); inq[cur] = false; for (int i=head[cur];~i;i=e[i].next) &#123; if (e[i].f &gt; 0 &amp;&amp; dis[cur] + e[i].c &lt; dis[e[i].v]) &#123; dis[e[i].v] = dis[cur] + e[i].c; pre[e[i].v] = i; if (!inq[e[i].v]) &#123; q.push(e[i].v); inq[e[i].v] = true; &#125; &#125; &#125; &#125; return dis[t] != inf;&#125;void MCMF(int s,int t,int &amp;flow,int &amp;cost) &#123; flow = 0; cost = 0; while (spfa(s,t)) &#123; int curFlow = inf; for (int i=pre[t];~i;i=pre[e[i].u]) curFlow = min(curFlow,e[i].f); for (int i=pre[t];~i;i=pre[e[i].u]) &#123; e[ i ].f -= curFlow; e[i^1].f += curFlow; &#125; cost += curFlow * dis[t]; &#125;&#125;/*编号规则：源点：0汇点：1人：2*n任务：2*n+1*/int main() &#123; memset(head,-1,sizeof(head)); int n; scanf("%d",&amp;n); for (int i=1;i&lt;=n;i++) &#123; AddEdge( 0 ,2*i,1,0); AddEdge(2*i+1, 1 ,1,0); for (int j=1;j&lt;=n;j++) &#123; int t; scanf("%d",&amp;t); AddEdge(2*i,2*j+1,1,t); &#125; &#125; int f,c; MCMF(0,1,f,c); printf("%d\n",c); return 0;&#125;]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
+        <tag>yxyzcontest</tag>
+        <tag>dfs</tag>
+        <tag>MCMF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年4月月赛 Day2 携带 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201804-0201%2F</url>
+    <content type="text"><![CDATA[2018年4月月赛 Day2 携带 题解 题目描述一般的九键手机的键盘是这样的： &nbsp; &nbsp; &nbsp; 1 2 abc 3 def 4 ghi 5 jkl 6 mno 7 pqrs 8 tuv 9 wxyz * 0 # 要按出英文字母就必须要按数字键多下。例如要按出x就得按9三下，第一下会出9，第二下会出w，而第三下会把w变成x。0键按两下会出一个空格。你的任务是读取一个句子，求出要在手机上打出这个句子至少需要按多少下键盘。 输入输出格式输入格式一行一个句子，只包含英文小写字母、数字、空格、星号(*)和井号(#)，且不超过200个字符。 输出格式一行一个整数，表示按键盘的总次数。 输入输出样例输入样例#1：i have a dream 输出样例#1：37 大模拟。可类比Luogu P1765代码：12345678910111213141516171819202122232425#include&lt;iostream&gt;#include&lt;map&gt;#include&lt;cstring&gt;using namespace std;map&lt;char,int&gt;m;void set()&#123; m['*']=m['#']=1; for(char i='0';i&lt;='9';i++) m[i]=1; m['a']=m['d']=m['g']=m['j']=m['m']=m['p']=m['t']=m['w']=2; m['b']=m['e']=m['h']=m['k']=m['n']=m['q']=m['u']=m['x']=3; m['c']=m['f']=m['i']=m['l']=m['o']=m['r']=m['v']=m['y']=4; m['s']=m['z']=5; m[' ']=2;&#125;int main()&#123; set(); string s; getline(cin,s); int ans=0,len=s.length(); for(int i=0;i&lt;len;i++) ans+=m[s[i]]; cout&lt;&lt;ans; return 0;&#125;]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
+        <tag>yxyzcontest</tag>
+        <tag>simulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年4月月赛 Day1 游艇 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201804-0103%2F</url>
+    <content type="text"><![CDATA[2018年4月月赛 Day1 游艇 题解 题目描述长江游艇俱乐部在长江上设置了n 个游艇出租站1，2，…，n。游客可在这些游艇出租站租用游艇，并在下游的任何一个游艇出租站归还游艇。游艇出租站i 到游艇出租站j 之间的租金为r(i,j),1&lt;=i&lt;=j&lt;=n。试设计一个算法，计算出从任意游艇出租站i到任意游艇出租站j所需的最少租金。保证i严格小于j。对于给定的游艇出租站i 到游艇出租站j 之间的租金为r(i,j),1&lt;=i&lt;j&lt;=n。保证计算过程中任何时刻数值都不超过10^6 输入输出格式输入格式第1 行中有1 个正整数n，表示有n个游艇出租站。 接下来的n-1 行,第i行第j个元素表示从i号游艇出租站到j号游艇出租站(1&lt;=i&lt;j&lt;=n)的租金价格r。 输出格式共n-1行，第i行输出i-1个数，每行第j个数表示从i号游艇出租站出发到达第j号游艇出租站的最少租金。 输入输出样例输入样例#1：35 157 输出样例#1：5 127 说明1&lt;=n&lt;=200 Floyd板子题……代码：12345678910111213141516171819202122232425#include&lt;iostream&gt;#include&lt;cstdio&gt;using namespace std;int n,d[210][210];void floyd()&#123; for(int k=1;k&lt;=n;k++) for(int i=1;i&lt;=k;i++) for(int j=k+1;j&lt;=n;j++) if(d[i][j]&gt;d[i][k]+d[k][j]) d[i][j]=d[i][k]+d[k][j];&#125;int main()&#123; cin&gt;&gt;n; for(int i=1;i&lt;n;i++) for(int j=i+1;j&lt;=n;j++) scanf("%d",&amp;d[i][j]); floyd(); for(int i=1;i&lt;n;i++) &#123; for(int j=i+1;j&lt;=n;j++) cout&lt;&lt;d[i][j]&lt;&lt;" "; cout&lt;&lt;endl; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
+        <tag>yxyzcontest</tag>
+        <tag>Floyd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年4月月赛 Day1 亲属关系 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201804-0102%2F</url>
+    <content type="text"><![CDATA[2018年4月月赛 Day1 亲属关系 题解 题目描述若某个家族人员过于庞大，要判断两个是否是亲属，确实还很不容易，现在给出某个亲属关系图，求任意给出的两个人是否具有亲属关系。 规定：x和y是亲属，y和z是亲属，那么x和z也是亲属。如果x,y是亲属，那么x的亲属都是y的亲属，y的亲属也都是x的亲属。 输入输出格式输入格式第一行：三个整数n,m,p，分别表示有n个人，m个亲属关系，询问p对亲属关系。以下m行：每行两个数Mi，Mj，1&lt;=Mi，Mj&lt;=N，表示Mi和Mj具有亲属关系。接下来p行：每行两个数Pi，Pj，询问Pi和Pj是否具有亲属关系。 输出格式P行，每行一个’Yes’或’No’。表示第i个询问的答案为“具有”或“不具有”亲属关系。 输入输出样例输入样例#1：6 5 31 21 53 45 21 31 42 35 6 输出样例#1：YesYesNo 说明1&lt;=n,m,p&lt;=5000。 并查集板子题……可类比Luogu P3367代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;using namespace std;int p,n,m,q,d[10100];int find(int x)&#123; int r=x; while(d[r]!=r) r=d[r]; int i=x,j; while(i!=r) &#123; j=d[i]; d[i]=r; i=j; &#125; return r;&#125;int join(int x,int y)&#123; int fx=find(x),fy=find(y); if(fx!=fy) d[fx]=fy; return 0;&#125;int main()&#123; for(int i=1;i&lt;10100;i++) d[i]=i; scanf("%d%d%d",&amp;n,&amp;m,&amp;p); while(m--) &#123; int x,y; scanf("%d%d",&amp;x,&amp;y); join(x,y); &#125; for(int i=1;i&lt;=n;i++) find(i); while(p--) &#123; int x,y; scanf("%d%d",&amp;x,&amp;y); if(d[x]==d[y]) printf("Yes\n"); else printf("No\n"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
+        <tag>UnionCheckingSet</tag>
+        <tag>yxyzcontest</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年4月月赛 Day1 哥德巴赫猜想 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201804-0101%2F</url>
+    <content type="text"><![CDATA[2018年4月月赛 Day1 哥德巴赫猜想 题解 题目背景要想证明哥德巴赫猜想，首先需要知道足够大的素数。求一下试试吧！ 题目描述如题，给定一个范围N，你需要处理M个某数字是否为质数的询问（每个数字均在范围[1,N]内） 输入输出格式输入格式第一行包含两个正整数N、M，分别表示查询的范围和查询的个数。接下来M行每行包含一个不小于1且不大于N的整数，即询问该数是否为质数。 输出格式输出包含M行，每行为Yes或No，即依次为每一个询问的结果。 输入输出样例输入样例#1：100 52349197 输出样例#1：YesYesNoNoYes 说明1&lt;=N&lt;=10000000，1&lt;=M&lt;=100000样例说明：N=100，说明接下来的询问数均属于[1,100]。所以2、3、97为质数，4、91非质数。故依次输出Yes、Yes、No、No、Yes。 筛法求素数的板子题，没什么说的。可类比Luogu P3383代码：12345678910111213141516171819202122232425262728293031#include&lt;iostream&gt;#include&lt;cstdio&gt;using namespace std;bool ans[10000010]=&#123;false&#125;;int n,m,x,t;void set()&#123; cin&gt;&gt;n&gt;&gt;m; t=n&gt;&gt;1; ans[1]=true; for(int i=2;i&lt;=t;i++) &#123; if(ans[i]) continue; for(int j=i&lt;&lt;1;j&lt;=n;j+=i) ans[j]=true; &#125;&#125;void solve()&#123; while(m--) &#123; cin&gt;&gt;x; if(ans[x]) cout&lt;&lt;"No\n"; else cout&lt;&lt;"Yes\n"; &#125;&#125;int main()&#123; set(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
+        <tag>mathematics</tag>
+        <tag>yxyzcontest</tag>
       </tags>
   </entry>
   <entry>
@@ -179,9 +258,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>SegmentTree</tag>
         <tag>题解</tag>
         <tag>Luogu</tag>
-        <tag>SegmentTree</tag>
       </tags>
   </entry>
   <entry>
@@ -192,9 +271,9 @@
         <category>SegmentTree</category>
       </categories>
       <tags>
+        <tag>SegmentTree</tag>
         <tag>题解</tag>
         <tag>Luogu</tag>
-        <tag>SegmentTree</tag>
       </tags>
   </entry>
   <entry>
@@ -205,8 +284,8 @@
         <category>knapsack-dp</category>
       </categories>
       <tags>
-        <tag>knapsack-dp</tag>
         <tag>dp</tag>
+        <tag>knapsack-dp</tag>
       </tags>
   </entry>
   <entry>
@@ -278,8 +357,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>HDU</tag>
+        <tag>题解</tag>
         <tag>bfs</tag>
       </tags>
   </entry>
@@ -325,6 +404,58 @@
       </categories>
       <tags>
         <tag>diary</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年1月月赛 工作分配问题 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201801-04%2F</url>
+    <content type="text"><![CDATA[2018年1月月赛 工作分配问题 题解 题目描述设有 n 件工作分配给 n 个人。将工作 i 分配给第 j 个人所需的费用为c[i][j] 。试设计一个算法，为每一个人都分配 1 件不同的工作，并使总费用达到最小。 输入输出格式输入格式第一行有 1 个正整数 n 。接下来的 n 行，每行 n 个正整数，表示工作费用。 输出格式一行，包含一个正整数，为计算出的最小总费用。 输入输出样例输入样例#1：310 2 32 3 43 4 5 输出样例#1：9 说明对于100%的数据，1&lt;=n&lt;=20，1&lt;=c[i][j]&lt;=100。 分析数据，发现最大数据为所有c[i][j]的和。而格子数最大只有n*n=400，每个c[i][j]最大只有100，故最大数据不大于40000，可以采用int类型。本题也有网络流解法，但网络流解法思维难度过大，不予讨论。采用dfs解决本问题。 代码：1234567891011121314151617181920212223242526272829303132333435363738394041#include&lt;cstdio&gt;#include&lt;iostream&gt;using namespace std;bool v[30]=&#123;false&#125;;long long ans=0;int c[30][30],n;void dfs(int x,int sum)&#123; if(x&gt;n) &#123; if(sum&lt;ans) ans=sum; return; &#125; if(ans&gt;sum) &#123; for(int i=1;i&lt;=n;i++) &#123; if(!v[i]) &#123; v[i]=true; dfs(x+1,sum+c[x][i]); v[i]=false; &#125; &#125; &#125;&#125;int main()&#123; cin&gt;&gt;n; for(int i=1;i&lt;=n;i++) &#123; for(int j=1;j&lt;=n;j++) &#123; cin&gt;&gt;c[i][j]; ans+=c[i][j]; &#125; &#125; dfs(1,0); cout&lt;&lt;ans; return 0;&#125; 采用ans先存储所有c[i][j]的和，这里也可以将ans初始化为一个远大于40000的值。用v数组保存工作分配情况，v[i]=true表示第i件工作已经被分配，v[i]=false表示第i件工作未被分配。用dfs函数来执行深搜。dfs函数带有两个参量，其中x表示现在正在被分配工作的人的编号，sum表示目前总花费。当x&gt;n时表示人已经被枚举完了，此时判断sum是否小于已有答案ans，若是，则表示产生了更优解，更新ans的值。如果数据简单的话，到这里就可以过了。但本题数据较为复杂，需要剪枝。不论当前枚举到第几个人，只要当前sum&gt;=ans，就表示最终的sum不会比ans小，不会产生更优的解答。所以当且仅当ans&gt;sum的时候继续递归。]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
+        <tag>yxyzcontest</tag>
+        <tag>dfs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年1月月赛 子数整数 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201801-03%2F</url>
+    <content type="text"><![CDATA[2018年1月月赛 子数整数 题解 题目背景zc趁着大家都在hanoi，偷偷跑来研究五位数了！ 题目描述对于一个五位数a1a2a3a4a5，可将其拆分为三个子数：sub1=a1a2a3sub2=a2a3a4sub3=a3a4a5例如，五位数20207可以拆分成sub1=202sub2=020（=20）sub3=207现在给定一个正整数K，要求你编程求出10000到30000之间所有满足下述条件的五位数，条件是这些五位数的三个子数sub1，sub2，sub3都可被K整除。 输入输出格式输入格式一行，包含一个正整数K。 输出格式输出的每一行为一个满足条件的五位数，要求从小到大输出。不得重复输出或遗漏。如果无解，则输出”No”。 输入输出样例输入样例#1：15 输出样例#1：22555255552855530000 说明对于100%的数据，1&lt;=k&lt;=1000。 枚举10000~30000之间的所有整数，并将其拆分成三块，逐块判断即可。 代码：12345678910111213141516171819202122232425262728#include&lt;cstdio&gt;#include&lt;iostream&gt;using namespace std;int main()&#123; bool p=true; int k; cin&gt;&gt;k; for(int i=10000;i&lt;=30000;i++) &#123; int s1=i/100,s2=i/10%1000,s3=i%1000; if(s1%k) &#123; i+=99; continue; &#125; if(s2%k) &#123; i+=9; continue; &#125; if(s3%k) continue; cout&lt;&lt;i&lt;&lt;endl; p=false; &#125; if(p) cout&lt;&lt;"No"; return 0;&#125;]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
+        <tag>yxyzcontest</tag>
+        <tag>simulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年1月月赛 复仇的汉诺塔 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201801-02%2F</url>
+    <content type="text"><![CDATA[2018年1月月赛 复仇的汉诺塔 题解 题目背景汉诺塔觉得自己不被mh和cl尊重，决定发动复仇！它把mh和cl困在了古印度圣庙中，并告诉wy，如果不能输出最少搬动的方案，那mh和cl就再也出不来了！ 题目描述题目的要求是输出最少搬动方案。 输入输出格式输入格式一行，包含一个整数n，即为盘子数n，n为正整数，且最大值为10 输出格式若干行。每一行格式如下：Step i:X -&gt; Y其中，i为第i步，从1开始计算。X，Y为A、B、C中某一个值。 输入输出样例输入样例#1：1 输出样例#1：Step 1:A -&gt; C 说明对于100%的数据，1&lt;=n&lt;=20。 裸的递归，没什么好说的。 代码：12345678910111213141516171819202122#include&lt;cstdio&gt;#include&lt;iostream&gt;using namespace std;int sum=1;void move(char x,char y)&#123;printf("Step %d:%c -&gt; %c\n",sum++,x,y);&#125;void hanoi(int n,char from,char temp,char destination)&#123; if(n==1) move(from,destination); else &#123; hanoi(n-1,from,destination,temp); move(from,destination); hanoi(n-1,temp,from,destination); &#125;&#125;int main()&#123; int n; cin&gt;&gt;n; hanoi(n,'A','B','C'); return 0;&#125; 在上述代码中，我们在hanoi函数里定义了剩余盘子数量n，起始盘子位置from，中转盘子位置temp，目标盘子位置destination。在每一步移动中，都可以分成两部分，一部分是最下面的那个盘子，一部分是剩下的盘子。每一步都可以看成先将剩下的盘子全部移动到其中转位置，再将最下面的盘子移动到其目标位置。每当发生最下面的盘子被移动到其目标位置时就输出。递归操作即可。]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
+        <tag>yxyzcontest</tag>
+        <tag>simulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年1月月赛 打卡的汉诺塔 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201801-01%2F</url>
+    <content type="text"><![CDATA[2018年1月月赛 打卡的汉诺塔 题解 题目背景比赛总是需要打卡题~~ 题目描述mh和cl最近玩起了汉诺塔。相传在古印度圣庙中，有一种被称为汉诺塔(Hanoi)的游戏。该游戏是在一块铜板装置上，有三根杆(编号A、B、C)，在A杆自下而上、由大到小按顺序放置64个金盘。游戏的目标：把A杆上的金盘全部移到C杆上，并仍保持原有顺序叠好。操作规则：每次只能移动一个盘子，并且在移动过程中三根杆上都始终保持大盘在下，小盘在上，操作过程中盘子可以置于A、B、C任一杆上。现有n个盘子，有A、B、C三个柱子。mh认为汉诺塔有最优解，而cl认为没有，这可怎么办呢？请你帮忙算算吧。 输入输出格式输入格式一行，包含一个正整数n，表示A柱子上有的盘子数量。 输出格式一行，包含一个整数，表示最少需要的步数。 输入输出样例输入样例#1：2 输出样例#1：3 说明对于60%的数据，1&lt;=n&lt;=32。对于100%的数据，1&lt;=n&lt;=64。样例说明：按A-&gt;B，A-&gt;C，B-&gt;C的方式即可三步完成。 通过手推n=1,2,3,4的情况，可以发现ans=pow(2,n)-1，故答案最大为2^64-1。观察数据范围，发现n&lt;=64。因为int范围-2^31~2^31-1long long范围-2^63~2^63-1unsigned long long范围0~2^64-1所以选用unsigned long long。但又因为pow函数返回值为double类型，浮点数类型在数字很大时会发生浮点误差，因此用pow只能80分。故采用循环。 代码：123456789101112#include&lt;iostream&gt;#include&lt;cstdio&gt;using namespace std;int main()&#123; unsigned long long ans=1,n; cin&gt;&gt;n; for(int i=1;i&lt;=n;i++) ans*=2; ans--; cout&lt;&lt;ans; return 0;&#125; 在上述代码中，我们发现，极端情况时ans=2^64，超过unsigned long long的0~2^64-1的范围，发生向上溢出（上溢），此时变为(2^64)-1-(2^64-1)=0。之后又发生ans–，ans本该变为-1，但因为超过unsigned long long的0~2^64-1的范围，发生向下溢出（下溢），此时变为(-1)+1+(2^64-1)=2^64-1，即是答案。]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
+        <tag>mathematics</tag>
+        <tag>yxyzcontest</tag>
       </tags>
   </entry>
   <entry>
