@@ -73,7 +73,7 @@
 
 
 
-  <meta name="keywords" content="cpp,">
+  <meta name="keywords" content="日语教程,">
 
 
 
@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="本章学习函数相关知识。">
-<meta name="keywords" content="cpp">
+<meta name="description" content="五十音图详解">
+<meta name="keywords" content="日语教程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++语言-7-函数的自定义与函数的类型">
-<meta property="og:url" content="http://yoursite.com/cpp/cpp-7/index.html">
+<meta property="og:title" content="五十音图">
+<meta property="og:url" content="http://yoursite.com/Japanese/FiftyTone/index.html">
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
-<meta property="og:description" content="本章学习函数相关知识。">
+<meta property="og:description" content="五十音图详解">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-02T01:24:50.401Z">
+<meta property="og:updated_time" content="2019-04-04T11:56:19.049Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++语言-7-函数的自定义与函数的类型">
-<meta name="twitter:description" content="本章学习函数相关知识。">
+<meta name="twitter:title" content="五十音图">
+<meta name="twitter:description" content="五十音图详解">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/cpp/cpp-7/">
+  <link rel="canonical" href="http://yoursite.com/Japanese/FiftyTone/">
 
 
 
 
 
-  <title>C++语言-7-函数的自定义与函数的类型 | Ringo's Coding Life</title>
+  <title>五十音图 | Ringo's Coding Life</title>
   
 
 
@@ -300,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/cpp/cpp-7/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Japanese/FiftyTone/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ringoer">
@@ -317,7 +317,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C++语言-7-函数的自定义与函数的类型</h1>
+          <h1 class="post-title" itemprop="name headline">五十音图</h1>
         
 
         <div class="post-meta">
@@ -329,8 +329,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T17:35:20+08:00">
-                2017-08-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-04T19:13:00+08:00">
+                2019-04-04
               </time>
             
 
@@ -352,8 +352,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/cpp/" itemprop="url" rel="index">
-                    <span itemprop="name">cpp</span>
+                  <a href="/categories/Japanese/" itemprop="url" rel="index">
+                    <span itemprop="name">Japanese</span>
                   </a>
                 </span>
 
@@ -389,40 +389,577 @@
       
 
       
-        <p>本章学习函数相关知识。<br><a id="more"></a><br>采用以下程序段进行说明：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">double</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=x;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> a;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;f(a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>样例输入1：1.1<br>样例输出1：1<br>样例输入2：0.9<br>样例输出2：0</p>
-<p>可以看出，我们在公共域（又称全局）里定义了两个函数，一个是int类型的f（自带一个参数，是double类型的x），另一个就是main。<br>main就不多说了，毕竟int main()是强制要求，不能改动。但是这个f就很有意思了。<br>首先，我们学到过在公共域直接int f的话表示定义一个int类型的名为f的变量，但现在为什么是个函数呢？那就是因为f后面的小括号了。那么就有以下定义及使用规范四点。  </p>
+        <p>五十音图详解<br><a id="more"></a></p>
+<h1 id="五十音图基本图样"><a href="#五十音图基本图样" class="headerlink" title="五十音图基本图样"></a>五十音图基本图样</h1><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">平假名</th>
+<th style="text-align:center">片假名</th>
+<th style="text-align:center">罗马音</th>
+<th style="text-align:center">平假名</th>
+<th style="text-align:center">片假名</th>
+<th style="text-align:center">罗马音</th>
+<th style="text-align:center">平假名</th>
+<th style="text-align:center">片假名</th>
+<th style="text-align:center">罗马音</th>
+<th style="text-align:center">平假名</th>
+<th style="text-align:center">片假名</th>
+<th style="text-align:center">罗马音</th>
+<th style="text-align:center">平假名</th>
+<th style="text-align:center">片假名</th>
+<th style="text-align:center">罗马音</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">あ行</td>
+<td style="text-align:center">あ</td>
+<td style="text-align:center">ア</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">い</td>
+<td style="text-align:center">イ</td>
+<td style="text-align:center">i</td>
+<td style="text-align:center">う</td>
+<td style="text-align:center">ウ</td>
+<td style="text-align:center">u</td>
+<td style="text-align:center">え</td>
+<td style="text-align:center">エ</td>
+<td style="text-align:center">e</td>
+<td style="text-align:center">お</td>
+<td style="text-align:center">オ</td>
+<td style="text-align:center">o</td>
+</tr>
+<tr>
+<td style="text-align:center">か行</td>
+<td style="text-align:center">か</td>
+<td style="text-align:center">カ</td>
+<td style="text-align:center">ka</td>
+<td style="text-align:center">き</td>
+<td style="text-align:center">キ</td>
+<td style="text-align:center">ki</td>
+<td style="text-align:center">く</td>
+<td style="text-align:center">ク</td>
+<td style="text-align:center">ku</td>
+<td style="text-align:center">け</td>
+<td style="text-align:center">ケ</td>
+<td style="text-align:center">ke</td>
+<td style="text-align:center">こ</td>
+<td style="text-align:center">コ</td>
+<td style="text-align:center">ko</td>
+</tr>
+<tr>
+<td style="text-align:center">た行</td>
+<td style="text-align:center">た</td>
+<td style="text-align:center">タ</td>
+<td style="text-align:center">ta</td>
+<td style="text-align:center">ち</td>
+<td style="text-align:center">チ</td>
+<td style="text-align:center">chi</td>
+<td style="text-align:center">つ</td>
+<td style="text-align:center">ツ</td>
+<td style="text-align:center">tsu</td>
+<td style="text-align:center">て</td>
+<td style="text-align:center">テ</td>
+<td style="text-align:center">te</td>
+<td style="text-align:center">と</td>
+<td style="text-align:center">ト</td>
+<td style="text-align:center">to</td>
+</tr>
+<tr>
+<td style="text-align:center">さ行</td>
+<td style="text-align:center">さ</td>
+<td style="text-align:center">サ</td>
+<td style="text-align:center">sa</td>
+<td style="text-align:center">し</td>
+<td style="text-align:center">シ</td>
+<td style="text-align:center">shi/si</td>
+<td style="text-align:center">す</td>
+<td style="text-align:center">ス</td>
+<td style="text-align:center">su</td>
+<td style="text-align:center">せ</td>
+<td style="text-align:center">セ</td>
+<td style="text-align:center">se</td>
+<td style="text-align:center">そ</td>
+<td style="text-align:center">ソ</td>
+<td style="text-align:center">so</td>
+</tr>
+<tr>
+<td style="text-align:center">は行</td>
+<td style="text-align:center">は</td>
+<td style="text-align:center">ハ</td>
+<td style="text-align:center">ha</td>
+<td style="text-align:center">ひ</td>
+<td style="text-align:center">ヒ</td>
+<td style="text-align:center">hi</td>
+<td style="text-align:center">ふ</td>
+<td style="text-align:center">フ</td>
+<td style="text-align:center">fu/hu</td>
+<td style="text-align:center">へ</td>
+<td style="text-align:center">ヘ</td>
+<td style="text-align:center">he</td>
+<td style="text-align:center">ほ</td>
+<td style="text-align:center">ホ</td>
+<td style="text-align:center">ho</td>
+</tr>
+<tr>
+<td style="text-align:center">な行</td>
+<td style="text-align:center">な</td>
+<td style="text-align:center">ナ</td>
+<td style="text-align:center">na</td>
+<td style="text-align:center">に</td>
+<td style="text-align:center">ニ</td>
+<td style="text-align:center">ni</td>
+<td style="text-align:center">ぬ</td>
+<td style="text-align:center">ヌ</td>
+<td style="text-align:center">nu</td>
+<td style="text-align:center">ね</td>
+<td style="text-align:center">ネ</td>
+<td style="text-align:center">ne</td>
+<td style="text-align:center">の</td>
+<td style="text-align:center">ノ</td>
+<td style="text-align:center">no</td>
+</tr>
+<tr>
+<td style="text-align:center">ま行</td>
+<td style="text-align:center">ま</td>
+<td style="text-align:center">マ</td>
+<td style="text-align:center">ma</td>
+<td style="text-align:center">み</td>
+<td style="text-align:center">ミ</td>
+<td style="text-align:center">mi</td>
+<td style="text-align:center">む</td>
+<td style="text-align:center">ム</td>
+<td style="text-align:center">mu</td>
+<td style="text-align:center">め</td>
+<td style="text-align:center">メ</td>
+<td style="text-align:center">me</td>
+<td style="text-align:center">も</td>
+<td style="text-align:center">モ</td>
+<td style="text-align:center">mo</td>
+</tr>
+<tr>
+<td style="text-align:center">ら行</td>
+<td style="text-align:center">ら</td>
+<td style="text-align:center">ラ</td>
+<td style="text-align:center">ra</td>
+<td style="text-align:center">り</td>
+<td style="text-align:center">リ</td>
+<td style="text-align:center">ri</td>
+<td style="text-align:center">る</td>
+<td style="text-align:center">ル</td>
+<td style="text-align:center">ru</td>
+<td style="text-align:center">れ</td>
+<td style="text-align:center">レ</td>
+<td style="text-align:center">re</td>
+<td style="text-align:center">ろ</td>
+<td style="text-align:center">ロ</td>
+<td style="text-align:center">ro</td>
+</tr>
+<tr>
+<td style="text-align:center">や行</td>
+<td style="text-align:center">や</td>
+<td style="text-align:center">ヤ</td>
+<td style="text-align:center">ya</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">ゆ</td>
+<td style="text-align:center">ユ</td>
+<td style="text-align:center">yu</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">よ</td>
+<td style="text-align:center">ヨ</td>
+<td style="text-align:center">yo</td>
+</tr>
+<tr>
+<td style="text-align:center">わ行</td>
+<td style="text-align:center">わ</td>
+<td style="text-align:center">ワ</td>
+<td style="text-align:center">wa</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">を</td>
+<td style="text-align:center">ヲ</td>
+<td style="text-align:center">wo</td>
+</tr>
+<tr>
+<td style="text-align:center">ん行</td>
+<td style="text-align:center">ん</td>
+<td style="text-align:center">ン</td>
+<td style="text-align:center">n</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">が行</td>
+<td style="text-align:center">が</td>
+<td style="text-align:center">ガ</td>
+<td style="text-align:center">ga</td>
+<td style="text-align:center">ぎ</td>
+<td style="text-align:center">ギ</td>
+<td style="text-align:center">gi</td>
+<td style="text-align:center">ぐ</td>
+<td style="text-align:center">グ</td>
+<td style="text-align:center">gu</td>
+<td style="text-align:center">げ</td>
+<td style="text-align:center">ゲ</td>
+<td style="text-align:center">ge</td>
+<td style="text-align:center">ご</td>
+<td style="text-align:center">ゴ</td>
+<td style="text-align:center">go</td>
+</tr>
+<tr>
+<td style="text-align:center">だ行</td>
+<td style="text-align:center">だ</td>
+<td style="text-align:center">ダ</td>
+<td style="text-align:center">da</td>
+<td style="text-align:center">ぢ</td>
+<td style="text-align:center">ヂ</td>
+<td style="text-align:center">di</td>
+<td style="text-align:center">づ</td>
+<td style="text-align:center">ヅ</td>
+<td style="text-align:center">du</td>
+<td style="text-align:center">で</td>
+<td style="text-align:center">デ</td>
+<td style="text-align:center">de</td>
+<td style="text-align:center">ど</td>
+<td style="text-align:center">ド</td>
+<td style="text-align:center">do</td>
+</tr>
+<tr>
+<td style="text-align:center">ざ行</td>
+<td style="text-align:center">ざ</td>
+<td style="text-align:center">ザ</td>
+<td style="text-align:center">za</td>
+<td style="text-align:center">じ</td>
+<td style="text-align:center">ジ</td>
+<td style="text-align:center">ji/zi</td>
+<td style="text-align:center">ず</td>
+<td style="text-align:center">ズ</td>
+<td style="text-align:center">zu</td>
+<td style="text-align:center">ぜ</td>
+<td style="text-align:center">ゼ</td>
+<td style="text-align:center">ze</td>
+<td style="text-align:center">ぞ</td>
+<td style="text-align:center">ゾ</td>
+<td style="text-align:center">zo</td>
+</tr>
+<tr>
+<td style="text-align:center">ば行</td>
+<td style="text-align:center">ば</td>
+<td style="text-align:center">バ</td>
+<td style="text-align:center">ba</td>
+<td style="text-align:center">び</td>
+<td style="text-align:center">ビ</td>
+<td style="text-align:center">bi</td>
+<td style="text-align:center">ぶ</td>
+<td style="text-align:center">ブ</td>
+<td style="text-align:center">bu</td>
+<td style="text-align:center">べ</td>
+<td style="text-align:center">ベ</td>
+<td style="text-align:center">be</td>
+<td style="text-align:center">ぼ</td>
+<td style="text-align:center">ボ</td>
+<td style="text-align:center">bo</td>
+</tr>
+<tr>
+<td style="text-align:center">ぱ行</td>
+<td style="text-align:center">ぱ</td>
+<td style="text-align:center">パ</td>
+<td style="text-align:center">pa</td>
+<td style="text-align:center">ぴ</td>
+<td style="text-align:center">ピ</td>
+<td style="text-align:center">pi</td>
+<td style="text-align:center">ぷ</td>
+<td style="text-align:center">プ</td>
+<td style="text-align:center">pu</td>
+<td style="text-align:center">ぺ</td>
+<td style="text-align:center">ペ</td>
+<td style="text-align:center">pe</td>
+<td style="text-align:center">ぽ</td>
+<td style="text-align:center">ポ</td>
+<td style="text-align:center">po</td>
+</tr>
+</tbody>
+</table>
+<h1 id="五十音图附加部分（拗音）"><a href="#五十音图附加部分（拗音）" class="headerlink" title="五十音图附加部分（拗音）"></a>五十音图附加部分（拗音）</h1><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">平假名</th>
+<th style="text-align:center">片假名</th>
+<th style="text-align:center">罗马音</th>
+<th style="text-align:center">平假名</th>
+<th style="text-align:center">片假名</th>
+<th style="text-align:center">罗马音</th>
+<th style="text-align:center">平假名</th>
+<th style="text-align:center">片假名</th>
+<th style="text-align:center">罗马音</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">か行</td>
+<td style="text-align:center">きゃ</td>
+<td style="text-align:center">キャ</td>
+<td style="text-align:center">kya</td>
+<td style="text-align:center">きゅ</td>
+<td style="text-align:center">キュ</td>
+<td style="text-align:center">kyu</td>
+<td style="text-align:center">きょ</td>
+<td style="text-align:center">キョ</td>
+<td style="text-align:center">kyo</td>
+</tr>
+<tr>
+<td style="text-align:center">が行</td>
+<td style="text-align:center">ぎゃ</td>
+<td style="text-align:center">ギャ</td>
+<td style="text-align:center">gya</td>
+<td style="text-align:center">ぎゅ</td>
+<td style="text-align:center">ギュ</td>
+<td style="text-align:center">gyu</td>
+<td style="text-align:center">ぎょ</td>
+<td style="text-align:center">ギョ</td>
+<td style="text-align:center">gyo</td>
+</tr>
+<tr>
+<td style="text-align:center">た行</td>
+<td style="text-align:center">ちゃ</td>
+<td style="text-align:center">チャ</td>
+<td style="text-align:center">cha</td>
+<td style="text-align:center">ちゅ</td>
+<td style="text-align:center">チュ</td>
+<td style="text-align:center">chu</td>
+<td style="text-align:center">ちょ</td>
+<td style="text-align:center">チョ</td>
+<td style="text-align:center">cho</td>
+</tr>
+<tr>
+<td style="text-align:center">だ行</td>
+<td style="text-align:center">でゃ</td>
+<td style="text-align:center">デャ</td>
+<td style="text-align:center">dha</td>
+<td style="text-align:center">でゅ</td>
+<td style="text-align:center">デュ</td>
+<td style="text-align:center">dhu</td>
+<td style="text-align:center">でょ</td>
+<td style="text-align:center">デョ</td>
+<td style="text-align:center">dho</td>
+</tr>
+<tr>
+<td style="text-align:center">さ行</td>
+<td style="text-align:center">しゃ</td>
+<td style="text-align:center">シャ</td>
+<td style="text-align:center">sha</td>
+<td style="text-align:center">しゅ</td>
+<td style="text-align:center">シュ</td>
+<td style="text-align:center">shu</td>
+<td style="text-align:center">しょ</td>
+<td style="text-align:center">ショ</td>
+<td style="text-align:center">sho</td>
+</tr>
+<tr>
+<td style="text-align:center">ざ行</td>
+<td style="text-align:center">じゃ</td>
+<td style="text-align:center">ジャ</td>
+<td style="text-align:center">ja</td>
+<td style="text-align:center">じゅ</td>
+<td style="text-align:center">ジュ</td>
+<td style="text-align:center">ju</td>
+<td style="text-align:center">じょ</td>
+<td style="text-align:center">ジョ</td>
+<td style="text-align:center">jo</td>
+</tr>
+<tr>
+<td style="text-align:center">は行</td>
+<td style="text-align:center">ひゃ</td>
+<td style="text-align:center">ヒャ</td>
+<td style="text-align:center">hya</td>
+<td style="text-align:center">ひゅ</td>
+<td style="text-align:center">ヒュ</td>
+<td style="text-align:center">hyu</td>
+<td style="text-align:center">ひょ</td>
+<td style="text-align:center">ヒョ</td>
+<td style="text-align:center">hyo</td>
+</tr>
+<tr>
+<td style="text-align:center">ば行</td>
+<td style="text-align:center">びゃ</td>
+<td style="text-align:center">ビャ</td>
+<td style="text-align:center">bya</td>
+<td style="text-align:center">びゅ</td>
+<td style="text-align:center">ビュ</td>
+<td style="text-align:center">byu</td>
+<td style="text-align:center">びょ</td>
+<td style="text-align:center">ビョ</td>
+<td style="text-align:center">byo</td>
+</tr>
+<tr>
+<td style="text-align:center">ぱ行</td>
+<td style="text-align:center">ぴゃ</td>
+<td style="text-align:center">ピャ</td>
+<td style="text-align:center">pya</td>
+<td style="text-align:center">ぴゅ</td>
+<td style="text-align:center">ピュ</td>
+<td style="text-align:center">pyu</td>
+<td style="text-align:center">ぴょ</td>
+<td style="text-align:center">ピョ</td>
+<td style="text-align:center">pyo</td>
+</tr>
+<tr>
+<td style="text-align:center">な行</td>
+<td style="text-align:center">にゃ</td>
+<td style="text-align:center">ニャ</td>
+<td style="text-align:center">nya</td>
+<td style="text-align:center">にゅ</td>
+<td style="text-align:center">ニュ</td>
+<td style="text-align:center">nyu</td>
+<td style="text-align:center">にょ</td>
+<td style="text-align:center">ニョ</td>
+<td style="text-align:center">nyo</td>
+</tr>
+<tr>
+<td style="text-align:center">ま行</td>
+<td style="text-align:center">みゃ</td>
+<td style="text-align:center">ミャ</td>
+<td style="text-align:center">mya</td>
+<td style="text-align:center">みゅ</td>
+<td style="text-align:center">ミュ</td>
+<td style="text-align:center">myu</td>
+<td style="text-align:center">みょ</td>
+<td style="text-align:center">ミョ</td>
+<td style="text-align:center">myo</td>
+</tr>
+<tr>
+<td style="text-align:center">ら行</td>
+<td style="text-align:center">りゃ</td>
+<td style="text-align:center">リャ</td>
+<td style="text-align:center">rya</td>
+<td style="text-align:center">りゅ</td>
+<td style="text-align:center">リュ</td>
+<td style="text-align:center">ryu</td>
+<td style="text-align:center">りょ</td>
+<td style="text-align:center">リョ</td>
+<td style="text-align:center">ryo</td>
+</tr>
+</tbody>
+</table>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><h2 id="读音"><a href="#读音" class="headerlink" title="读音"></a>读音</h2><ol>
+<li>按谐音方法（全都读第一声）：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">罗马音</th>
+<th style="text-align:center">对应谐音</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">a</td>
+<td style="text-align:center">啊</td>
+</tr>
+<tr>
+<td style="text-align:center">i</td>
+<td style="text-align:center">衣</td>
+</tr>
+<tr>
+<td style="text-align:center">u</td>
+<td style="text-align:center">呜</td>
+</tr>
+<tr>
+<td style="text-align:center">e</td>
+<td style="text-align:center">诶</td>
+</tr>
+<tr>
+<td style="text-align:center">o</td>
+<td style="text-align:center">哦</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>表格中标注的罗马音，若有斜杠分割的，说明这两个音都可以</li>
+</ol>
+<h2 id="书写"><a href="#书写" class="headerlink" title="书写"></a>书写</h2><p>请注意区分以下几个假名：</p>
 <ol>
-<li>满足形如【数据类型 名称(参数列表)】的程序段，就是函数。</li>
-<li>自定义函数的函数体只能写在公共域或自定义类型内。其中，当自定义函数的函数体写在公共域内时：<ol>
-<li>若自定义函数的函数体写在main函数之前，则可以不在main函数里写其定义语句，因为其函数体那边就已经定义了。</li>
-<li>若自定义函数的函数体写在main函数之后，则必须在main函数里写其定义语句。总之就是必须满足先定义再使用。</li>
-<li>只要是函数，就必须使用大括号来告诉程序哪些语句属于这个函数。</li>
-<li>小括号里可以放空，也可以不放空，定义若干个参数。 </li>
+<li>片假名tsu（ツ）和片假名shi（シ）<br>ツ是从上向下的一撇，シ是从下往上</li>
+<li>片假名so（ソ）和片假名n（ン）<br>ソ是从上向下的一撇，ン是从下往上</li>
+<li>平假名he（へ）和片假名he（ヘ）<br>平假名的へ在书写时，向下的一划与水平方向夹角较小，片假名的较大</li>
+<li>片假名ra（ラ）和片假名（ヲ）</li>
 </ol>
-</li>
-</ol>
-<p>前3点都是很好懂的，主要是这个第4点了。<br>在文章开头的程序段中，我在f后面的空格里定义了一个double类型的x作为f的自带参数（当然也可以定义多个，中间用逗号隔开就行了），在main里定义了一个double类型的a，在f里int了一个a（根据变量的作用域，这个a属于不同的域，是不算重复的）。并且，在输入a之后，我让程序输出了f(a)的值。过程如下：</p>
-<ol>
-<li>cout检查到要输出f(a)。</li>
-<li>按照填写的先后顺序访问填入f后面的括号中的变量所对应的值，并填入对应的位置（这个过程叫传递参数）。在本例中是访问main中a的值，填入f的括号中，使f的double类型的x等于main的double类型的a，并执行f。</li>
-<li>进入f，定义一个属于f的int类型的a，使这个a等于x。</li>
-<li>使f(x)返回a的值，并且此值重置为int类型。</li>
-<li>返回main，输出f(a)此时的值。  </li>
-</ol>
-<p>关于第2点，举个例子。比如int f(int x,int y,int z)，那么main里如果定义了a，b，c三个变量的话，cout&lt;&lt;f(a,b,c);就是输出当f中的x等于main的a，f中的y等于main的b，f中的z等于main中的c时，f(x,y,z)返回的值。<br>在上述过程中，第二步所提到的那些值里，在main中填入f函数括号内的，称为“实际参数”；而在传递到f函数，开始执行f函数时，f函数中的x称为“形式参数”。</p>
-<p>回到本文的例子，在返回f(x)的值之前，程序中经历了以下3次的数据类型转换：</p>
-<ol>
-<li>获得double类型的待传递参数的值，转换为被传递参数的double类型，并填入被传递参数。</li>
-<li>获得double类型的f里的x的值，转换为int类型的值，并赋值给f里的a。</li>
-<li>因为函数f返回f里a的值，所以获得int类型的f里的a的值，转换为int类型的值，并赋值给整个函数f，然后结束f。<br>（如果你这时return 0的话，函数f一定就返回0，那输出也就是0了）</li>
-</ol>
-<p>简而言之，在return某个值之前，每个自定义函数都和main一样，可以执行程序语句，不过main以外的其它自定义函数需要被某个正在执行的函数调用就是了。而一旦return某个值，函数就相当于变量，产生一个确定的值，但这个值是一次性的，下次函数再被调用时，依然要重新经过一遍语句的执行来得出一个新的结果。</p>
-<p>以上就是函数的自定义了。那么，函数的类型又是什么呢？<br>有的时候，你自定义一个函数，是为了让它执行一段语句，并不是为了让它返回一个值。这时，函数的类型可以都使用int，结尾都写return 0；也可以令函数的类型为void（英文翻译：虚空，此处用作“空类型”之意），结尾不写return 0;<br>需要注意的是，void类型只能用于自定义函数，不可用于main函数，更不可用于一般变量/数组等等。且void类型的函数也可以强制退出，即，使用return;语句。此时return后不能写值，应该直接写分号，当void类型函数在执行中遇到return;时即结束。<br>但是，更多的时候，你是为了让这个自定义函数返回一个值。这时候，函数的类型必须要与你要得到的值相同。如果你想让函数返回一个double类型的值，就必须定义函数为double类型，不可以是float类型，更别说int了。<br>不过，函数后面的括号里的自带参量的类型，就没有特别要求，依你的需要而定。</p>
-<p>那么，又是什么时候要使用自定义函数呢？这就涉及到编程时的一个重要思想：高内聚，低耦合。<br>高内聚，就是相同或相似功能的语句块尽可能集中在一起。<br>低耦合，就是功能差异较大的语句块尽可能不要集中在一起。<br>那么，我们就需要用自定义函数，来表示一个功能。这个把功能实现为自定义函数的过程，叫做“封装”。<br>这大概可以理解为，你手里有一件事情，这件事可以分解为几个不同的步骤，不同的步骤可以起到不同的效果（功能）。然后你把这几件事分配给另外的人（自定义函数），让他们替你去做。再结合上文的话，你要告诉他具体步骤怎么做，这就是他的函数体；还要告诉他应该用什么东西来做，这就是他的参数。大概就是这样了。</p>
-<p>接下来，如何使用自定义函数呢？<br>在之前的学习中，我们已经使用过诸如pow等数学函数。自定义函数也可以如同数学函数一般调用。如同本文开头的程序段，我们在主函数中输出语句处调用了自定义函数f。自然的，我们也可以在主函数其它区域调用自定义函数。这些地方都属于主函数的函数体。<br>那么我们可以给出总结：可以在任意函数体内的任意合理位置调用任意函数（主函数除外）。<br>比如，我们可以在自定义函数中输出helloworld，如下文代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pr</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"helloworld"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    pr();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在上述代码段中，我们定义了一个自定义函数pr。因为它不需要返回值，所以可以使用void类型；又因为它只是用来输出一个字符串常量，所以不需要参数，因此参数列表为空。<br>如上，即是自定义函数的使用方法。</p>
-<p>第七章到此结束。</p>
+<h2 id="变音"><a href="#变音" class="headerlink" title="变音"></a>变音</h2><p>在作助词时，以下平假名会发生变音：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">假名</th>
+<th style="text-align:center">原罗马音</th>
+<th style="text-align:center">变音后罗马音</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">は</td>
+<td style="text-align:center">ha</td>
+<td style="text-align:center">wa</td>
+</tr>
+<tr>
+<td style="text-align:center">へ</td>
+<td style="text-align:center">he</td>
+<td style="text-align:center">e</td>
+</tr>
+<tr>
+<td style="text-align:center">を</td>
+<td style="text-align:center">wo</td>
+<td style="text-align:center">o</td>
+</tr>
+</tbody>
+</table>
+<h2 id="打字要点"><a href="#打字要点" class="headerlink" title="打字要点"></a>打字要点</h2><p>希望打出以下罗马音所对应的假名时，需要注意打字的方法</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">罗马音</th>
+<th style="text-align:center">对应平假名</th>
+<th style="text-align:center">对应片假名</th>
+<th style="text-align:center">打字变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">n</td>
+<td style="text-align:center">ん</td>
+<td style="text-align:center">ン</td>
+<td style="text-align:center">nn</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">ぁ</td>
+<td style="text-align:center">ァ</td>
+<td style="text-align:center">la/xa</td>
+</tr>
+</tbody>
+</table>
+<p>变小的假名只要在原读音前面加上l或x就行，建议用x</p>
 
       
     </div>
@@ -450,7 +987,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/cpp/" rel="tag"># cpp</a>
+            <a href="/tags/日语教程/" rel="tag"># 日语教程</a>
           
         </div>
       
@@ -463,8 +1000,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/cpp/cpp-6/" rel="next" title="C++语言-6-变量和语句的作用域">
-                <i class="fa fa-chevron-left"></i> C++语言-6-变量和语句的作用域
+              <a href="/network-experiment/interception/" rel="next" title="捕获并分析帧和IP报文">
+                <i class="fa fa-chevron-left"></i> 捕获并分析帧和IP报文
               </a>
             
           </div>
@@ -473,8 +1010,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/cpp/cpp-8/" rel="prev" title="C++语言-8-递归与递推">
-                C++语言-8-递归与递推 <i class="fa fa-chevron-right"></i>
+              <a href="/uncategorized/mainpage/" rel="prev" title="Welcome to No. 68 Floating Island">
+                Welcome to No. 68 Floating Island <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -527,8 +1064,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -589,6 +1135,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#五十音图基本图样"><span class="nav-number">1.</span> <span class="nav-text">五十音图基本图样</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五十音图附加部分（拗音）"><span class="nav-number">2.</span> <span class="nav-text">五十音图附加部分（拗音）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">3.</span> <span class="nav-text">说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#读音"><span class="nav-number">3.1.</span> <span class="nav-text">读音</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#书写"><span class="nav-number">3.2.</span> <span class="nav-text">书写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变音"><span class="nav-number">3.3.</span> <span class="nav-text">变音</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打字要点"><span class="nav-number">3.4.</span> <span class="nav-text">打字要点</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
