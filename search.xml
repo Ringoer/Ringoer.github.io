@@ -94,9 +94,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>题解</tag>
         <tag>SegmentTree</tag>
         <tag>HDU</tag>
-        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
@@ -155,8 +155,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>yxyzcontest</tag>
+        <tag>题解</tag>
         <tag>SPFA</tag>
       </tags>
   </entry>
@@ -168,9 +168,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
-        <tag>yxyzcontest</tag>
         <tag>dfs</tag>
+        <tag>yxyzcontest</tag>
+        <tag>题解</tag>
         <tag>MCMF</tag>
       </tags>
   </entry>
@@ -182,8 +182,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>yxyzcontest</tag>
+        <tag>题解</tag>
         <tag>simulation</tag>
       </tags>
   </entry>
@@ -195,8 +195,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>yxyzcontest</tag>
+        <tag>题解</tag>
         <tag>Floyd</tag>
       </tags>
   </entry>
@@ -208,9 +208,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>yxyzcontest</tag>
         <tag>题解</tag>
         <tag>UnionCheckingSet</tag>
-        <tag>yxyzcontest</tag>
       </tags>
   </entry>
   <entry>
@@ -221,9 +221,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>yxyzcontest</tag>
         <tag>题解</tag>
         <tag>mathematics</tag>
-        <tag>yxyzcontest</tag>
       </tags>
   </entry>
   <entry>
@@ -235,8 +235,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>Luogu</tag>
         <tag>UnionCheckingSet</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
@@ -258,9 +258,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>SegmentTree</tag>
         <tag>题解</tag>
         <tag>Luogu</tag>
+        <tag>SegmentTree</tag>
       </tags>
   </entry>
   <entry>
@@ -271,9 +271,88 @@
         <category>SegmentTree</category>
       </categories>
       <tags>
-        <tag>SegmentTree</tag>
         <tag>题解</tag>
         <tag>Luogu</tag>
+        <tag>SegmentTree</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年2/3月月赛 Day2 愤怒的瓦里安 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201802-0203%2F</url>
+    <content type="text"><![CDATA[2018年2/3月月赛 Day2 愤怒的瓦里安 题解 题目描述传奇国王，暴风城主瓦里安·乌瑞恩的儿子安度因又跑到酒馆里和人打牌，还用的是十分肮脏的套牌（脏牧去死啦）。瓦里安听了十分愤怒，掰了筷子就杀了过去。安度因十分慌张，连忙找一起打牌的萨尔帮忙。充满绿色能量的萨尔答应帮安度因破坏一条道路来帮他开溜。但是智商为0的安度因并不知道到底能拖延多长时间。好吧，你写个程序帮他算算咯。（已知萨尔的智商很高，破坏的道路能最大程度上拖延瓦里安的到来） 输入输出格式输入格式第一行有两个用空格隔开的数n和m，分别表示道路节点的数量以及道路的数量。道路节点用数字1至n标识，瓦里安的出发地暴风城在节点1，安度因打牌的酒馆在节点n。接下来的m行中每行包含三个用空格隔开的数u，v和w。这些数字表示在节点u和节点v中间有一条道路，并且花费w的时间通过。 输出格式输出瓦里安到达酒馆所需要的最短时间。 输入输出样例输入样例#1：10 141 2 71 9 107 9 17 3 132 3 22 4 152 8 65 9 74 8 38 5 16 8 35 6 206 10 55 10 60 输出样例#1：74 说明对于100%的数据，1&lt;=n&lt;=1000，1&lt;=m&lt;=n*(n-1)/2，1&lt;=u,v&lt;=n，1&lt;=w&lt;=1000。对于本样例，原本走1-&gt;2-&gt;8-&gt;6-&gt;10为最短路，时间为21。但萨尔破坏了6-&gt;10的路径，使得最短路变为了1-&gt;2-&gt;8-&gt;5-&gt;10，时间变为74。可以证明破坏其它道路时所得到的最短路径长度均小于本方案。 通过题意可初步分析为最短路问题的变种，且有明确的起点和终点，又数据较大，故必然使用广搜。分析题意后可知，可以枚举所有边，逐一删除，再寻找最短路。但边数巨大，逐一枚举必然超时，故采用优化方法：先计算不删边的最短路，并记录该路径，之后枚举该路径上每条边，进行逐一删除，计算，恢复的过程，取最短路最大值即可。此处不证明该算法的正确性。代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;#include&lt;queue&gt;using namespace std;int e[1010][1010]=&#123;0&#125;,ans[1010]=&#123;0&#125;,v[1010]=&#123;0&#125;,f[1010]=&#123;0&#125;,maxn=0,n,m;queue&lt;int&gt;q;void bfs()&#123; while(!q.empty()) q.pop(); memset(v,0,sizeof(v)); memset(ans,0,sizeof(ans)); v[1]=1; q.push(1); while(!q.empty()) &#123; int st=q.front(); q.pop(); v[st]=0; for(int i=2;i&lt;=n;i++) &#123; int p=0; if(e[st][i]&amp;&amp;(!ans[i]||ans[i]&gt;ans[st]+e[st][i])) ans[i]=ans[st]+e[st][i],p=1; if(p&amp;&amp;!v[i]) q.push(i),v[i]=1; &#125; &#125;&#125;int main()&#123; cin&gt;&gt;n&gt;&gt;m; for(int i=0;i&lt;m;i++) &#123; int a,b; scanf("%d%d",&amp;a,&amp;b); scanf("%d",&amp;e[a][b]); e[b][a]=e[a][b]; &#125; v[1]=1; q.push(1); while(!q.empty()) &#123; int st=q.front(); q.pop(); v[st]=0; for(int i=2;i&lt;=n;i++) &#123; int p=0; if(e[st][i]&amp;&amp;(!ans[i]||ans[i]&gt;ans[st]+e[st][i])) ans[i]=ans[st]+e[st][i],p=1,f[i]=st; if(p&amp;&amp;!v[i]) q.push(i),v[i]=1; &#125; &#125; int t=n,tmp,temp; while(t!=1) &#123; tmp=f[t]; temp=e[t][tmp]; e[t][tmp]=e[tmp][t]=0; bfs(); e[t][tmp]=e[tmp][t]=temp; if(ans[n]&gt;maxn) maxn=ans[n]; t=f[t]; &#125; cout&lt;&lt;maxn; return 0;&#125;]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>yxyzcontest</tag>
+        <tag>题解</tag>
+        <tag>SPFA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年2/3月月赛 Day2 石化 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201802-0202%2F</url>
+    <content type="text"><![CDATA[2018年2/3月月赛 Day2 石化 题解 题目背景漫长战斗终于分出胜负了。“喂，我可没听说非拼成这样才赢得了。”七道亡国级禁咒，十一把开刃到自毁程度的帕西瓦尔系列，甚至青年本身没资格动用的勇者剑技最终奥义都已经强行祭出。假如这样还不能将其灭绝，也无计可施了。「真是惊天动地啊。身为无力的凡人之躯，却能独自使出此等力量吗？实在可怕。不过，看来要发挥那样的力量，实在不可能毫无代价。」“啪”的一声，青年脚踝前面的部分已经变成粗糙的石块了。又是好几声脆响重叠在一起，灰色面积开始沿着他的身体往上蔓延扩散，到了膝盖，到了腿，到了腰，还在继续往上。 题目描述威廉即将在t个单位时间内完全石化，现在他对往事无限怀念，希望尽可能多的想起重要的人。威廉有n个重要的人，而每个单位时间里他同时只能想一个人。在此时此刻，回想第i个重要的人有关的事情都要消耗p[i]的时间，且只有时间p[i]完全经过才算确实回想起这个人。威廉该按什么顺序回想，才能尽可能多的回顾和重要的人经历的事情呢？ 输入输出格式输入格式第一行，包含两个正整数t,n。接下来n行，每行包含一个字符串和一个正整数p[i]。其中字符串表示第i个重要的人的姓名。 输出格式输出按最佳回想顺序能想起的人数。 输入输出样例输入样例#1：5 3Ri-ria 3Naiguranto 5Arumaria 2 输出样例#1：2 输入样例#2：10 5Chtholly 2Nephren 5Ithea 3Rhantolk 6Lakhesh 4 输出样例#2：3 说明每个字符串均不超过50个字符。对于100%的数据，1&lt;=t&lt;=10000000,1&lt;=n&lt;=500000,1&lt;=p[i]&lt;=1000。 通过题目中描述，可知姓名是无用参数，不需保存处理；且仅有时间一种属性，可定性为dp的特例：贪心。当然用dp做也可以得出正解。贪心做法：sort之后从小到大开始算。dp做法：同背包问题。代码：123456789101112131415161718192021222324#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;char s[50];int a[500000],sum=0;int main()&#123; int t,n,i,j; scanf("%d%d",&amp;t,&amp;n); for(i=0;i&lt;n;i++) scanf("%s %d",s,&amp;a[i]); sort(a,a+n); for(i=0;i&lt;n;i++) &#123; t-=a[i]; if(t&lt;0) &#123; if(!i) printf("0"); break; &#125; sum++; &#125; if(i) printf("%d",sum); return 0;&#125;]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>yxyzcontest</tag>
+        <tag>题解</tag>
+        <tag>knapsack-dp</tag>
+        <tag>greedy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年2/3月月赛 Day2 被7整除 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201802-0201%2F</url>
+    <content type="text"><![CDATA[2018年2/3月月赛 Day2 被7整除 题解 题目描述输出从1~n有多少个整数满足2^n-n^2能被7整除。 输入输出格式输入格式一行，包含一个整数n。 输出格式一行，包含一个整数x，表示从1~n有x个整数满足2^n-n^2能被7整除。 输入输出样例输入样例#1：2 输出样例#1：1 输入样例#2：4 输出样例#2：2 说明对于100%的数据，1&lt;=n&lt;=1000000。 定性为数论题。通过打表可发现有周期为21的规律。只能打表自行找规律，没有别种办法。找不出规律也可暴力，不过会超时。代码：12345678910111213#include&lt;iostream&gt;#include&lt;cstdio&gt;using namespace std;#define ll long longint main()&#123; int num[30]=&#123;0,0,1,1,2,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,6,6&#125;; int n; cin&gt;&gt;n; int k=n/21,q=n%21; cout&lt;&lt;k*6+num[q]; return 0;&#125;]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>yxyzcontest</tag>
+        <tag>题解</tag>
+        <tag>mathematics</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年2/3月月赛 Day1 胜利大逃亡 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201802-0103%2F</url>
+    <content type="text"><![CDATA[原题，不再赘述。详见本链接]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>yxyzcontest</tag>
+        <tag>题解</tag>
+        <tag>SPFA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年2/3月月赛 Day1 疯狂的机器人 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201802-0102%2F</url>
+    <content type="text"><![CDATA[2018年2/3月月赛 Day1 疯狂的机器人 题解 题目描述MH：“前几个月给一个机器人写了段代码，发现它只能往两个方向走，不能回退，而且还是随机的，真是无语…”CL：“我看你也够随机的，最后那家伙竟然疯了一样，在上下左右四个方向乱走了，可真是吓死我了”MH：“是啊是啊。我记下了它当时的所在的地图，希望能找到它最远可能从哪里来的”还是机智的你，知道这个机器人最远可能从哪里来的吗？ 输入输出格式输入格式第一行两个正整数n,m，表示机器人所在地图的规模。第2行到第n+1行，每行m个数字，分别是0,1,-1三种之一。其中，0表示可以行走的路，1表示墙壁，-1表示机器人所在的坐标。 输出格式一行，包含一个数字。若能有最远可到达的地方，输出该距离，否则输出0。 输入输出样例输入样例#1：4 51 0 0 0 10 1 0 1 01 1 0 1 00 -1 0 0 0 输出样例#1：5 输入样例#2：4 51 0 0 0 10 1 0 1 01 1 0 1 00 0 1 -1 0 输出样例#2：3 说明对于100%的数据，1&lt;=n,m&lt;=50。 定性为搜索题，搜索所有点中到起点走最短路仍最远的地方，也就是求起点到所有点的最短距离的最大值。此处采用dfs。使用bfs的话需要有明确的终点，而本题没有固定终点，因此不适合bfs。代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445#include&lt;iostream&gt;#include&lt;cstdio&gt;using namespace std;int n,m,final=0,d[60][60],ans[60][60]=&#123;0&#125;,stx,sty;void dfs(int x,int y)&#123; for(int i=x-1;i&lt;=x+1;i++) &#123; if(i&lt;0||i&gt;=n) continue; for(int j=y-1;j&lt;=y+1;j++) &#123; if(j&lt;0||j&gt;=m) continue; if(i==stx&amp;&amp;j==sty) continue; if(i==x&amp;&amp;y==j) continue; if(i!=x&amp;&amp;y!=j) continue; if(d[i][j]) continue; int &amp;t=ans[i][j]; if(!t||(t&amp;&amp;t&gt;ans[x][y]+1)) &#123; t=ans[x][y]+1; dfs(i,j); &#125; &#125; &#125;&#125;int main()&#123; cin&gt;&gt;n&gt;&gt;m; for(int i=0;i&lt;n;i++) &#123; for(int j=0;j&lt;m;j++) &#123; cin&gt;&gt;d[i][j]; if(d[i][j]==-1) &#123; stx=i; sty=j; &#125; &#125; &#125; dfs(stx,sty); for(int i=0;i&lt;n;i++) for(int j=0;j&lt;m;j++) if(final&lt;ans[i][j]) final=ans[i][j]; cout&lt;&lt;final; return 0;&#125;]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>dfs</tag>
+        <tag>yxyzcontest</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年2/3月月赛 Day1 行军（改） 题解]]></title>
+    <url>%2FAnswer%2Fyxyz201802-0101%2F</url>
+    <content type="text"><![CDATA[2018年2/3月月赛 Day1 行军（改） 题解 题目背景再过十几天，人类远征军就要出发去讨伐星神(visitor)了。正规勇者莉莉娅·阿斯普雷伊及一众准勇者们正在为行军问题而焦头烂额。“这么多的粮草，还有那么远的路，这该怎么办啊？”莉莉娅抱怨道。你能帮帮莉莉娅吗？ 题目描述从皇都到达星神居住地，这之间有无数座城市和无数条道路，将会消耗很多时间。而为了保证军士们的生活，需要带上足够的粮草。皇都共有n堆粮草可供选择，每堆粮草有重量p，体积q和价值w，而为了便于行军，莉莉娅只能选择不超过u重量且不超过v体积的粮草带走。 输入输出格式输入格式第一行，包含三个正整数，分别为粮草数量n,最大载重量u,最大体积v。接下来n行，每行包含三个正整数p[i]、q[i]和w[i]。第i+1行的p[i]表示第i堆粮草的重量，q[i]表示第i堆粮草的体积，w[i]表示第i堆粮草的价值。 输出格式一行，输出能载的粮草的最大价值。 输入输出样例输入样例#1：6 10 101 1 12 3 13 2 12 5 15 2 14 3 1 输出样例#1：4 输入样例#2：10 16 242 9 45 6 53 7 36 2 97 6 57 5 63 3 81 4 19 5 99 7 6 输出样例#2：26 说明1&lt;=n&lt;=1000,1&lt;=u&lt;=1000,1&lt;=v&lt;=1000所有数据不大于maxint 非常简单的一个二维约束的背包问题。解题方法详见这里数据较大，最好scanf输入。代码：123456789101112131415161718192021222324#include&lt;iostream&gt;#include&lt;cstdio&gt;using namespace std;int n,u,v;int p[1010],q[1010],w[1010],f[1010][1010]=&#123;0&#125;;int main()&#123; int i,j,k; cin&gt;&gt;n&gt;&gt;u&gt;&gt;v; for(i=1;i&lt;=n;i++) scanf("%d%d%d",&amp;p[i],&amp;q[i],&amp;w[i]); for(i=1;i&lt;=n;i++) &#123; for(j=u;j&gt;=p[i];j--) &#123; for(k=v;k&gt;=q[i];k--) &#123; int temp=f[j-p[i]][k-q[i]]+w[i]; if(f[j][k]&lt;temp) f[j][k]=temp; &#125; &#125; &#125; cout&lt;&lt;f[u][v]; return 0;&#125;]]></content>
+      <categories>
+        <category>Answer</category>
+      </categories>
+      <tags>
+        <tag>yxyzcontest</tag>
+        <tag>题解</tag>
+        <tag>knapsack-dp</tag>
       </tags>
   </entry>
   <entry>
@@ -345,8 +424,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>Luogu</tag>
         <tag>mathematics</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
@@ -357,9 +436,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>HDU</tag>
         <tag>题解</tag>
-        <tag>bfs</tag>
+        <tag>SPFA</tag>
+        <tag>HDU</tag>
       </tags>
   </entry>
   <entry>
@@ -414,9 +493,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
-        <tag>yxyzcontest</tag>
         <tag>dfs</tag>
+        <tag>yxyzcontest</tag>
+        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
@@ -427,8 +506,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>yxyzcontest</tag>
+        <tag>题解</tag>
         <tag>simulation</tag>
       </tags>
   </entry>
@@ -440,8 +519,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>yxyzcontest</tag>
+        <tag>题解</tag>
         <tag>simulation</tag>
       </tags>
   </entry>
@@ -453,9 +532,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>yxyzcontest</tag>
         <tag>题解</tag>
         <tag>mathematics</tag>
-        <tag>yxyzcontest</tag>
       </tags>
   </entry>
   <entry>
