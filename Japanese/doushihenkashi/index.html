@@ -73,7 +73,7 @@
 
 
 
-  <meta name="keywords" content="模拟,云霄一中月赛,题解,">
+  <meta name="keywords" content="日语教程,">
 
 
 
@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="2018年1月月赛 复仇的汉诺塔 题解">
-<meta name="keywords" content="模拟,云霄一中月赛,题解">
+<meta name="description" content="本文为动词变形备查表格。">
+<meta name="keywords" content="日语教程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2018年1月月赛 复仇的汉诺塔 题解">
-<meta property="og:url" content="http://yoursite.com/Answer/yxyz201801-02/index.html">
+<meta property="og:title" content="日本語動詞変化式">
+<meta property="og:url" content="http://yoursite.com/Japanese/doushihenkashi/index.html">
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
-<meta property="og:description" content="2018年1月月赛 复仇的汉诺塔 题解">
+<meta property="og:description" content="本文为动词变形备查表格。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-04T01:40:48.348Z">
+<meta property="og:updated_time" content="2019-04-10T14:57:16.197Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2018年1月月赛 复仇的汉诺塔 题解">
-<meta name="twitter:description" content="2018年1月月赛 复仇的汉诺塔 题解">
+<meta name="twitter:title" content="日本語動詞変化式">
+<meta name="twitter:description" content="本文为动词变形备查表格。">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/Answer/yxyz201801-02/">
+  <link rel="canonical" href="http://yoursite.com/Japanese/doushihenkashi/">
 
 
 
 
 
-  <title>2018年1月月赛 复仇的汉诺塔 题解 | Ringo's Coding Life</title>
+  <title>日本語動詞変化式 | Ringo's Coding Life</title>
   
 
 
@@ -300,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Answer/yxyz201801-02/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Japanese/doushihenkashi/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ringoer">
@@ -317,7 +317,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2018年1月月赛 复仇的汉诺塔 题解</h1>
+          <h1 class="post-title" itemprop="name headline">日本語動詞変化式</h1>
         
 
         <div class="post-meta">
@@ -329,8 +329,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-15T22:38:02+08:00">
-                2018-01-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T21:28:00+08:00">
+                2019-04-10
               </time>
             
 
@@ -352,8 +352,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Answer/" itemprop="url" rel="index">
-                    <span itemprop="name">Answer</span>
+                  <a href="/categories/Japanese/" itemprop="url" rel="index">
+                    <span itemprop="name">Japanese</span>
                   </a>
                 </span>
 
@@ -389,17 +389,290 @@
       
 
       
-        <p>2018年1月月赛 复仇的汉诺塔 题解<br><a id="more"></a></p>
-<h1 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h1><p>汉诺塔觉得自己不被mh和cl尊重，决定发动复仇！<br>它把mh和cl困在了古印度圣庙中，并告诉wy，如果不能输出最少搬动的方案，那mh和cl就再也出不来了！</p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>题目的要求是输出最少搬动方案。</p>
-<h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>一行，包含一个整数n，即为盘子数n，n为正整数，且最大值为10</p>
-<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>若干行。每一行格式如下：<br>Step i:X -&gt; Y<br>其中，i为第i步，从1开始计算。<br>X，Y为A、B、C中某一个值。</p>
-<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><p>输入样例#1：<br>1</p>
-<p>输出样例#1：<br>Step 1:A -&gt; C</p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>对于100%的数据，1&lt;=n&lt;=20。</p>
-<p>裸的递归，没什么好说的。</p>
-<p>代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> sum=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">char</span> x,<span class="keyword">char</span> y)</span></span>&#123;<span class="built_in">printf</span>(<span class="string">"Step %d:%c -&gt; %c\n"</span>,sum++,x,y);&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">hanoi</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">char</span> from,<span class="keyword">char</span> temp,<span class="keyword">char</span> destination)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>) move(from,destination);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        hanoi(n<span class="number">-1</span>,from,destination,temp);</span><br><span class="line">        move(from,destination);</span><br><span class="line">        hanoi(n<span class="number">-1</span>,temp,from,destination);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    hanoi(n,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在上述代码中，我们在hanoi函数里定义了剩余盘子数量n，起始盘子位置from，中转盘子位置temp，目标盘子位置destination。<br>在每一步移动中，都可以分成两部分，一部分是最下面的那个盘子，一部分是剩下的盘子。每一步都可以看成先将剩下的盘子全部移动到其中转位置，再将最下面的盘子移动到其目标位置。每当发生最下面的盘子被移动到其目标位置时就输出。递归操作即可。</p>
+        <p>本文为动词变形备查表格。<br><a id="more"></a></p>
+<p>在本文，以及本博客的整个日语教程中，都有以下全局设定：  </p>
+<ol>
+<li>五段活用动词的动词原形是去掉ます的部分<br>示例：思（おも）います中，认为 思い 是动词原形</li>
+<li>一段活用动词的动词原形是去掉ます的部分<br>示例：食（た）べます中，认为 食べ 是动词原形</li>
+<li>サ変動詞的动词原形是去掉します的部分<br>示例：散歩（さんぽ）します中，认为 散步 是动词原形</li>
+<li>对于カ変動詞，因为 来 这个汉字有不同发音，故另做处理</li>
+</ol>
+<h1 id="五段活用动词"><a href="#五段活用动词" class="headerlink" title="五段活用动词"></a>五段活用动词</h1><p>对于あ行来说，对应あ段的变形，本来应该变为あ，但其实不是，应该变为わ。<br>以下用到的单词：<br>買（か）います，购买<br>書（か）きます，写<br>脱（ぬ）ぎます，脱<br>立（た）ちます，站立<br>話（はな）します，说话<br>呼（よ）びます，称为、呼喊<br>死（し）にます，死亡<br>読（よ）みます，读<br>売（う）ります，卖</p>
+<h2 id="变形方式"><a href="#变形方式" class="headerlink" title="变形方式"></a>变形方式</h2><ol>
+<li>敬体形<br>就是ます形。</li>
+<li>简体形<br>将动词原形结尾的假名，变更为其对应う段。<br>示例：死にます，原形部分结尾的假名是に，对应う段是ぬ，所以死にます的简体形是死ぬ。</li>
+<li>可能形<br>将动词原形结尾的假名，变更为其对应え段，再加ます/る。<br>示例：死にます，原形部分结尾的假名是に，对应え段是ね，所以死にます的可能形是死ねます/死ねる。</li>
+<li>使役态<br>将动词原形结尾的假名，变更为其对应あ段，再加せ，再加ます/る。<br>示例：死にます，原形部分结尾的假名是に，对应あ段是な，所以死にます的使役态是死なせます/死なせる。</li>
+<li>被动态<br>将动词原形结尾的假名，变更为其对应あ段，再加れ，再加ます/る。<br>示例：死にます，原形部分结尾的假名是に，对应あ段是な，所以死にます的使役态是死なれます/死なれる。</li>
+<li>使役被动态<br>将动词原形结尾的假名，变更为其对应あ段，再加され，再加ます/る。<br>示例：死にます，原形部分结尾的假名是に，对应あ段是な，所以死にます的使役态是死なされます/死なされる。</li>
+<li>假定形<br>将动词原形结尾的假名，变更为其对应え段，再加ば。<br>示例：死にます，原形部分结尾的假名是に，对应え段是ね，所以死にます的假定形是死ねば。</li>
+<li>命令形<br>将动词原形结尾的假名，变更为其对应え段。<br>示例：死にます，原形部分结尾的假名是に，对应え段是ね，所以死にます的假定形是死ね。</li>
+<li>意志形<br>将动词原形结尾的假名，变更为其对应お段，再加う。<br>示例：死にます，原形部分结尾的假名是に，对应お段是の，所以死にます的假定形是死のう。</li>
+<li>动词て形<br>根据动词原形结尾假名不同，分为以下5种情况：  <ol>
+<li>き结尾，将き变为いて</li>
+<li>ぎ结尾，将ぎ变为いで</li>
+<li>ち、り、い结尾，结尾假名变为って</li>
+<li>び、み、に结尾，结尾假名变为んで</li>
+<li>し结尾，结尾假名变为して</li>
+</ol>
+</li>
+</ol>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>除第一列为敬体形参照，假定形、命令形、意志形、て形均采用其原样，其它列均采用简体形表示。<br>*五段活用动词在变为可能形、使役态、被动态、使役被动态时，可适用一段活用动词的敬体形、简体形变形方式。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">敬体形</th>
+<th style="text-align:center">简体形</th>
+<th style="text-align:center">可能形</th>
+<th style="text-align:center">使役态</th>
+<th style="text-align:center">被动态</th>
+<th style="text-align:center">使役被动态</th>
+<th style="text-align:center">假定形</th>
+<th style="text-align:center">命令形</th>
+<th style="text-align:center">意志形</th>
+<th>て形</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">書きます</td>
+<td style="text-align:center">書く</td>
+<td style="text-align:center">書ける</td>
+<td style="text-align:center">書かせる</td>
+<td style="text-align:center">書かれる</td>
+<td style="text-align:center">書かされる</td>
+<td style="text-align:center">書けば</td>
+<td style="text-align:center">書け</td>
+<td style="text-align:center">書こう</td>
+<td>書いて</td>
+</tr>
+<tr>
+<td style="text-align:center">脱ぎます</td>
+<td style="text-align:center">脱ぐ</td>
+<td style="text-align:center">脱げる</td>
+<td style="text-align:center">脱がせる</td>
+<td style="text-align:center">脱がれる</td>
+<td style="text-align:center">脱がされる</td>
+<td style="text-align:center">脱げば</td>
+<td style="text-align:center">脱げ</td>
+<td style="text-align:center">脱ごう</td>
+<td>脱いで</td>
+</tr>
+<tr>
+<td style="text-align:center">立ちます</td>
+<td style="text-align:center">立つ</td>
+<td style="text-align:center">立てる</td>
+<td style="text-align:center">立たせる</td>
+<td style="text-align:center">立たれる</td>
+<td style="text-align:center">立たされる</td>
+<td style="text-align:center">立てば</td>
+<td style="text-align:center">立て</td>
+<td style="text-align:center">立とう</td>
+<td>立って</td>
+</tr>
+<tr>
+<td style="text-align:center">売ります</td>
+<td style="text-align:center">売る</td>
+<td style="text-align:center">売れる</td>
+<td style="text-align:center">売らせる</td>
+<td style="text-align:center">売られる</td>
+<td style="text-align:center">売らされる</td>
+<td style="text-align:center">売れば</td>
+<td style="text-align:center">売れ</td>
+<td style="text-align:center">売ろう</td>
+<td>売って</td>
+</tr>
+<tr>
+<td style="text-align:center">買います</td>
+<td style="text-align:center">買う</td>
+<td style="text-align:center">買える</td>
+<td style="text-align:center">買わせる</td>
+<td style="text-align:center">買われる</td>
+<td style="text-align:center">買わされる</td>
+<td style="text-align:center">買えば</td>
+<td style="text-align:center">買え</td>
+<td style="text-align:center">買おう</td>
+<td>買って</td>
+</tr>
+<tr>
+<td style="text-align:center">呼びます</td>
+<td style="text-align:center">呼ぶ</td>
+<td style="text-align:center">呼べる</td>
+<td style="text-align:center">呼ばせる</td>
+<td style="text-align:center">呼ばれる</td>
+<td style="text-align:center">呼ばされる</td>
+<td style="text-align:center">呼べば</td>
+<td style="text-align:center">呼べ</td>
+<td style="text-align:center">呼ぼう</td>
+<td>呼んで</td>
+</tr>
+<tr>
+<td style="text-align:center">読みます</td>
+<td style="text-align:center">読む</td>
+<td style="text-align:center">読める</td>
+<td style="text-align:center">読ませる</td>
+<td style="text-align:center">読まれる</td>
+<td style="text-align:center">読まされる</td>
+<td style="text-align:center">読めば</td>
+<td style="text-align:center">読め</td>
+<td style="text-align:center">読もう</td>
+<td>読んで</td>
+</tr>
+<tr>
+<td style="text-align:center">死にます</td>
+<td style="text-align:center">死ぬ</td>
+<td style="text-align:center">死ねる</td>
+<td style="text-align:center">死なせる</td>
+<td style="text-align:center">死なれる</td>
+<td style="text-align:center">死なされる</td>
+<td style="text-align:center">死ねば</td>
+<td style="text-align:center">死ね</td>
+<td style="text-align:center">死のう</td>
+<td>死んで</td>
+</tr>
+<tr>
+<td style="text-align:center">話します</td>
+<td style="text-align:center">話す</td>
+<td style="text-align:center">話せる</td>
+<td style="text-align:center">話させる</td>
+<td style="text-align:center">話される</td>
+<td style="text-align:center">話さされる</td>
+<td style="text-align:center">話せば</td>
+<td style="text-align:center">話せ</td>
+<td style="text-align:center">話そう</td>
+<td>話して</td>
+</tr>
+</tbody>
+</table>
+<h1 id="一段活用动词"><a href="#一段活用动词" class="headerlink" title="一段活用动词"></a>一段活用动词</h1><p>以下用到的单词：<br>食（た）べます，吃</p>
+<h2 id="变形方式-1"><a href="#变形方式-1" class="headerlink" title="变形方式"></a>变形方式</h2><ol>
+<li>敬体形<br>就是ます形。</li>
+<li>简体形<br>动词原形+る。</li>
+<li>可能形<br>动词原形+られ，再加ます/る。</li>
+<li>使役态<br>动词原形+させ，再加ます/る。</li>
+<li>被动态<br>动词原形+られ，再加ます/る。</li>
+<li>使役被动态<br>动词原形+させられ，再加ます/る。</li>
+<li>假定形<br>动词原形+れば。</li>
+<li>命令形<br>动词原形+ろ。</li>
+<li>意志形<br>动词原形+よう。</li>
+<li>动词て形<br>动词原形+て。<h2 id="表格-1"><a href="#表格-1" class="headerlink" title="表格"></a>表格</h2></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">敬体形</th>
+<th style="text-align:center">简体形</th>
+<th style="text-align:center">可能形</th>
+<th style="text-align:center">使役态</th>
+<th style="text-align:center">被动态</th>
+<th style="text-align:center">使役被动态</th>
+<th style="text-align:center">假定形</th>
+<th style="text-align:center">命令形</th>
+<th style="text-align:center">意志形</th>
+<th>て形</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">食べます</td>
+<td style="text-align:center">食べる</td>
+<td style="text-align:center">食べられる</td>
+<td style="text-align:center">食べさせる</td>
+<td style="text-align:center">食べられる</td>
+<td style="text-align:center">食べさせられる</td>
+<td style="text-align:center">食べれば</td>
+<td style="text-align:center">食べろ</td>
+<td style="text-align:center">食べよう</td>
+<td>食べて</td>
+</tr>
+</tbody>
+</table>
+<h1 id="サ変動詞"><a href="#サ変動詞" class="headerlink" title="サ変動詞"></a>サ変動詞</h1><p>以下用到的单词：<br>散歩（さんぽ）します，散步</p>
+<h2 id="变形方式-2"><a href="#变形方式-2" class="headerlink" title="变形方式"></a>变形方式</h2><ol>
+<li>敬体形<br>就是ます形。</li>
+<li>简体形<br>动词原形+する。</li>
+<li>可能形<br>动词原形+でき，再加ます/る。</li>
+<li>使役态<br>动词原形+させ，再加ます/る。</li>
+<li>被动态<br>动词原形+され，再加ます/る。</li>
+<li>使役被动态<br>动词原形+させられ，再加ます/る。</li>
+<li>假定形<br>动词原形+すれば。</li>
+<li>命令形<br>动词原形+しろ。</li>
+<li>意志形<br>动词原形+しよう。</li>
+<li>动词て形<br>动词原形+して。<h2 id="表格-2"><a href="#表格-2" class="headerlink" title="表格"></a>表格</h2></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">敬体形</th>
+<th style="text-align:center">简体形</th>
+<th style="text-align:center">可能形</th>
+<th style="text-align:center">使役态</th>
+<th style="text-align:center">被动态</th>
+<th style="text-align:center">使役被动态</th>
+<th style="text-align:center">假定形</th>
+<th style="text-align:center">命令形</th>
+<th style="text-align:center">意志形</th>
+<th>て形</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">散歩します</td>
+<td style="text-align:center">散歩する</td>
+<td style="text-align:center">散歩できる</td>
+<td style="text-align:center">散歩させる</td>
+<td style="text-align:center">散歩される</td>
+<td style="text-align:center">散歩させられる</td>
+<td style="text-align:center">散歩すれば</td>
+<td style="text-align:center">散歩しろ</td>
+<td style="text-align:center">散歩しよう</td>
+<td>散歩して</td>
+</tr>
+</tbody>
+</table>
+<h1 id="カ変動詞"><a href="#カ変動詞" class="headerlink" title="カ変動詞"></a>カ変動詞</h1><p>カ変動詞只有一个，就是：<br>来（き）ます，来<br>且几乎每种变形都有一个读音，需要牢记。</p>
+<h2 id="变形方式-3"><a href="#变形方式-3" class="headerlink" title="变形方式"></a>变形方式</h2><ol>
+<li>敬体形<br>来（き）ます</li>
+<li>简体形<br>来（く）る</li>
+<li>可能形<br>来（こ）られる</li>
+<li>使役态<br>来（こ）させる</li>
+<li>被动态<br>来（こ）られる</li>
+<li>使役被动态<br>来（こ）させられる</li>
+<li>假定形<br>来（く）れば</li>
+<li>命令形<br>来（こ）い</li>
+<li>意志形<br>来（こ）よう</li>
+<li>动词て形<br>来（き）て<h2 id="表格-3"><a href="#表格-3" class="headerlink" title="表格"></a>表格</h2></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">敬体形</th>
+<th style="text-align:center">简体形</th>
+<th style="text-align:center">可能形</th>
+<th style="text-align:center">使役态</th>
+<th style="text-align:center">被动态</th>
+<th style="text-align:center">使役被动态</th>
+<th style="text-align:center">假定形</th>
+<th style="text-align:center">命令形</th>
+<th style="text-align:center">意志形</th>
+<th>て形</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">きます</td>
+<td style="text-align:center">くる</td>
+<td style="text-align:center">こられる</td>
+<td style="text-align:center">こさせる</td>
+<td style="text-align:center">こられる</td>
+<td style="text-align:center">こさせられる</td>
+<td style="text-align:center">くれば</td>
+<td style="text-align:center">こい</td>
+<td style="text-align:center">こよう</td>
+<td>きて</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -427,11 +700,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/模拟/" rel="tag"># 模拟</a>
-          
-            <a href="/tags/云霄一中月赛/" rel="tag"># 云霄一中月赛</a>
-          
-            <a href="/tags/题解/" rel="tag"># 题解</a>
+            <a href="/tags/日语教程/" rel="tag"># 日语教程</a>
           
         </div>
       
@@ -444,8 +713,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Answer/yxyz201801-01/" rel="next" title="2018年1月月赛 打卡的汉诺塔 题解">
-                <i class="fa fa-chevron-left"></i> 2018年1月月赛 打卡的汉诺塔 题解
+              <a href="/encoding/HammingCode/" rel="next" title="汉明码">
+                <i class="fa fa-chevron-left"></i> 汉明码
               </a>
             
           </div>
@@ -454,8 +723,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Answer/yxyz201801-03/" rel="prev" title="2018年1月月赛 子数整数 题解">
-                2018年1月月赛 子数整数 题解 <i class="fa fa-chevron-right"></i>
+              <a href="/uncategorized/mainpage/" rel="prev" title="Welcome to No. 68 Floating Island">
+                Welcome to No. 68 Floating Island <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -589,7 +858,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目背景"><span class="nav-number">1.</span> <span class="nav-text">题目背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">2.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入输出格式"><span class="nav-number">3.</span> <span class="nav-text">输入输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">3.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">3.2.</span> <span class="nav-text">输出格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入输出样例"><span class="nav-number">4.</span> <span class="nav-text">输入输出样例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">5.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#五段活用动词"><span class="nav-number">1.</span> <span class="nav-text">五段活用动词</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变形方式"><span class="nav-number">1.1.</span> <span class="nav-text">变形方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表格"><span class="nav-number">1.2.</span> <span class="nav-text">表格</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一段活用动词"><span class="nav-number">2.</span> <span class="nav-text">一段活用动词</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变形方式-1"><span class="nav-number">2.1.</span> <span class="nav-text">变形方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表格-1"><span class="nav-number">2.2.</span> <span class="nav-text">表格</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#サ変動詞"><span class="nav-number">3.</span> <span class="nav-text">サ変動詞</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变形方式-2"><span class="nav-number">3.1.</span> <span class="nav-text">变形方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表格-2"><span class="nav-number">3.2.</span> <span class="nav-text">表格</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#カ変動詞"><span class="nav-number">4.</span> <span class="nav-text">カ変動詞</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变形方式-3"><span class="nav-number">4.1.</span> <span class="nav-text">变形方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表格-3"><span class="nav-number">4.2.</span> <span class="nav-text">表格</span></a></li></ol></li></ol></div>
             
 
           </div>
