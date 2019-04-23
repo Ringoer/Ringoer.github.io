@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-1.png">
 <meta property="og:image" content="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-2.png">
 <meta property="og:image" content="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-3.png">
-<meta property="og:updated_time" content="2019-04-23T15:10:09.187Z">
+<meta property="og:updated_time" content="2019-04-23T15:14:29.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用 WinPCAP 监听并解析 FTP 口令">
 <meta name="twitter:description" content="计算机网络实验4">
@@ -431,10 +431,10 @@
 </ol>
 <h1 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h1><p>大部分与实验三相同。以下解释不同的部分。</p>
 <ol>
-<li><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-1.png" alt="1"><br>用FTPmode来表示现在处于解析ftp口令的哪个阶段。取值范围为{“”,”NOW”,”END”}<br>用MyDiary数组来保存一整次解析中，生成日志所需的数据。<br>用MyXML来保存一整次解析中，生成XML文档所需的数据</li>
+<li>全局变量<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-1.png" alt="1"><br>用FTPmode来表示现在处于解析ftp口令的哪个阶段。取值范围为{“”,”NOW”,”END”}<br>用MyDiary数组来保存一整次解析中，生成日志所需的数据。<br>用MyXML来保存一整次解析中，生成XML文档所需的数据</li>
 <li>收包动作<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-2.png" alt="2"><br>当一整次FTP口令解析完成时，生成日志和XML</li>
 <li>在get_frame函数中<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-3.png" alt="3"><br>录入生成日志所需的信息，然后读取用户信息</li>
-<li><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-4.png" alt="4"><br>按照COMMAND获取口令</li>
+<li>按照COMMAND获取口令<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-4.png" alt="4"></li>
 <li>保存<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-1.png" alt="5-1"><br>停止侦听时询问保存<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-2.png" alt="5-2"><br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-3.png" alt="5-3"></li>
 </ol>
 

@@ -8,7 +8,7 @@
   <entry>
     <title><![CDATA[用 WinPCAP 监听并解析 FTP 口令]]></title>
     <url>%2Fnetwork-experiment%2FWinPCAP-FTP%2F</url>
-    <content type="text"><![CDATA[计算机网络实验4 实验目的用 WinPCAP 监听并分析 FTP 协议并记录 IP、用户名、密码和登陆是否成功。 实验环境Windows10C# 实验结果 wireshark部分 连接 本机向ftp服务器申请连接，flag=SYN ftp服务器回复本机，flag=SYN，ACK 本机收到，向ftp服务器答复，flag=ACK ftp服务器收到，向本机发送数据，flag=PSH，ACK 断开 本机向ftp服务器申请断开，flag=FIN，ACK ftp服务器收到申请，向本机返信，flag=ACK ftp服务器已经断开与本机的连接，向本机发信，flag=FIN，ACK 本机收到，断开与ftp服务器连接，向ftp服务器返信，flag=ACK 监听部分 实验总结大部分与实验三相同。以下解释不同的部分。 用FTPmode来表示现在处于解析ftp口令的哪个阶段。取值范围为{“”,”NOW”,”END”}用MyDiary数组来保存一整次解析中，生成日志所需的数据。用MyXML来保存一整次解析中，生成XML文档所需的数据 收包动作当一整次FTP口令解析完成时，生成日志和XML 在get_frame函数中录入生成日志所需的信息，然后读取用户信息 按照COMMAND获取口令 保存停止侦听时询问保存]]></content>
+    <content type="text"><![CDATA[计算机网络实验4 实验目的用 WinPCAP 监听并分析 FTP 协议并记录 IP、用户名、密码和登陆是否成功。 实验环境Windows10C# 实验结果 wireshark部分 连接 本机向ftp服务器申请连接，flag=SYN ftp服务器回复本机，flag=SYN，ACK 本机收到，向ftp服务器答复，flag=ACK ftp服务器收到，向本机发送数据，flag=PSH，ACK 断开 本机向ftp服务器申请断开，flag=FIN，ACK ftp服务器收到申请，向本机返信，flag=ACK ftp服务器已经断开与本机的连接，向本机发信，flag=FIN，ACK 本机收到，断开与ftp服务器连接，向ftp服务器返信，flag=ACK 监听部分 实验总结大部分与实验三相同。以下解释不同的部分。 全局变量用FTPmode来表示现在处于解析ftp口令的哪个阶段。取值范围为{“”,”NOW”,”END”}用MyDiary数组来保存一整次解析中，生成日志所需的数据。用MyXML来保存一整次解析中，生成XML文档所需的数据 收包动作当一整次FTP口令解析完成时，生成日志和XML 在get_frame函数中录入生成日志所需的信息，然后读取用户信息 按照COMMAND获取口令 保存停止侦听时询问保存]]></content>
       <categories>
         <category>network-experiment</category>
       </categories>
@@ -146,8 +146,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>HDU</tag>
         <tag>线段树</tag>
+        <tag>HDU</tag>
       </tags>
   </entry>
   <entry>
@@ -310,8 +310,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>Luogu</tag>
         <tag>线段树</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
@@ -323,8 +323,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>Luogu</tag>
         <tag>线段树</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
