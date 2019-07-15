@@ -73,7 +73,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="python,">
 
 
 
@@ -84,19 +84,18 @@
 
 
 
-<meta name="description" content="Are You Going To Scarborough Fair ?">
+<meta name="description" content="学习随录系列">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Welcome to No. 68 Floating Island">
-<meta property="og:url" content="http://yoursite.com/uncategorized/mainpage/index.html">
+<meta property="og:title" content="20190715 Python学习随录">
+<meta property="og:url" content="http://yoursite.com/python/python-20190715/index.html">
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
-<meta property="og:description" content="Are You Going To Scarborough Fair ?">
+<meta property="og:description" content="学习随录系列">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pic.ringoer.com/id63819688.png">
-<meta property="og:updated_time" content="2019-03-11T07:02:42.028Z">
+<meta property="og:updated_time" content="2019-07-15T06:50:33.671Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Welcome to No. 68 Floating Island">
-<meta name="twitter:description" content="Are You Going To Scarborough Fair ?">
-<meta name="twitter:image" content="http://pic.ringoer.com/id63819688.png">
+<meta name="twitter:title" content="20190715 Python学习随录">
+<meta name="twitter:description" content="学习随录系列">
 
 
 
@@ -126,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/uncategorized/mainpage/">
+  <link rel="canonical" href="http://yoursite.com/python/python-20190715/">
 
 
 
 
 
-  <title>Welcome to No. 68 Floating Island | Ringo's Coding Life</title>
+  <title>20190715 Python学习随录 | Ringo's Coding Life</title>
   
 
 
@@ -301,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/uncategorized/mainpage/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/python/python-20190715/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ringoer">
@@ -318,7 +317,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Welcome to No. 68 Floating Island</h1>
+          <h1 class="post-title" itemprop="name headline">20190715 Python学习随录</h1>
         
 
         <div class="post-meta">
@@ -330,8 +329,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2333-01-01T00:00:00+08:00">
-                2333-01-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-15T14:32:00+08:00">
+                2019-07-15
               </time>
             
 
@@ -340,6 +339,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -368,7 +389,15 @@
       
 
       
-        <p></p><p align="center"><b><font size="6">Are You Going To Scarborough Fair ?</font></b></p><br><img src="http://pic.ringoer.com/id63819688.png" alt="id=63819688" title="id=63819688"><p></p>
+        <p>学习随录系列<br><a id="more"></a><br>功能：实现对一个由若干行组成、每行均为[0.xxx, 0.xxx, …]格式的json文件的裁剪</p>
+<p>README</p>
+<ol>
+<li>在同一目录下新建一个input.txt，其中存放需要转换的文件名。<br>！仅文件名，无后缀名，无路径</li>
+<li>在该目录下放置同名的json文件</li>
+<li>在该目录启动cmd，运行该py文件</li>
+<li>本代码只注重效率，未考虑文件读取失败的问题，故请确保有合法输入文件</li>
+</ol>
+<p>代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"></span><br><span class="line">numbers = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>] <span class="comment">#只保留numbers[i]的整数倍行</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'input.txt'</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> input_file: <span class="comment">#读取文件名</span></span><br><span class="line">	files = input_file.read().decode(<span class="string">'utf-8'</span>).split(<span class="string">'\r'</span>) <span class="comment">#读取.解码.分割</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> filename <span class="keyword">in</span> files: <span class="comment">#遍历</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> filename == <span class="string">'\n'</span> <span class="keyword">or</span> filename == <span class="string">'\r'</span>:</span><br><span class="line">			<span class="keyword">break</span> <span class="comment">#防止空行异常跳出</span></span><br><span class="line">		<span class="keyword">if</span> filename[<span class="number">0</span>] == <span class="string">'\n'</span>:</span><br><span class="line">			filename = filename[<span class="number">1</span>:] <span class="comment">#防止前导换行符</span></span><br><span class="line">		<span class="keyword">if</span> filename[len(filename)<span class="number">-1</span>] == <span class="string">'\n'</span>:</span><br><span class="line">			filename = filename[:len(filename)<span class="number">-1</span>] <span class="comment">#防止后置换行符</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> n <span class="keyword">in</span> numbers: <span class="comment">#遍历切割依据</span></span><br><span class="line">			infile = filename + <span class="string">'.'</span> + <span class="string">'json'</span> <span class="comment">#构造输入文件名</span></span><br><span class="line">			outfile = filename + <span class="string">'-'</span> + str(n) + <span class="string">'.'</span> + <span class="string">'json'</span> <span class="comment">#构造输出文件名</span></span><br><span class="line">			</span><br><span class="line">			<span class="keyword">with</span> open(infile, <span class="string">'rb'</span>) <span class="keyword">as</span> fr: <span class="comment">#打开输入文件</span></span><br><span class="line">				file_str = fr.read().decode(<span class="string">'utf-8'</span>).split(<span class="string">'[0'</span>) <span class="comment">#读取.解码.分割</span></span><br><span class="line">				</span><br><span class="line">				<span class="keyword">with</span> open(outfile, <span class="string">'wb'</span>) <span class="keyword">as</span> fw: <span class="comment">#打开输出文件</span></span><br><span class="line">					ans = file_str[<span class="number">0</span>] <span class="comment">#预置</span></span><br><span class="line">					i = n <span class="comment">#取数</span></span><br><span class="line">					</span><br><span class="line">					<span class="keyword">while</span> i &lt; len(file_str): <span class="comment">#取所需行</span></span><br><span class="line">						ans += <span class="string">'[0'</span> + file_str[i] <span class="comment">#构造输出文件</span></span><br><span class="line">						i += n</span><br><span class="line">					</span><br><span class="line">					<span class="keyword">if</span> ans[len(ans)<span class="number">-1</span>] != <span class="string">'&#125;'</span>: <span class="comment">#防止异常结束</span></span><br><span class="line">						ans = ans[:len(ans)<span class="number">-2</span>] + <span class="string">']&#125;'</span></span><br><span class="line">					</span><br><span class="line">					fw.write(ans.encode(<span class="string">'utf-8'</span>)) <span class="comment">#写文件</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -394,6 +423,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
 
       
       
@@ -403,8 +438,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/python/python-20190715/" rel="next" title="20190715 Python学习随录">
-                <i class="fa fa-chevron-left"></i> 20190715 Python学习随录
+              <a href="/vtuber/chisuzumei/" rel="next" title="千鈴めい视频合集">
+                <i class="fa fa-chevron-left"></i> 千鈴めい视频合集
               </a>
             
           </div>
@@ -412,6 +447,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/uncategorized/mainpage/" rel="prev" title="Welcome to No. 68 Floating Island">
+                Welcome to No. 68 Floating Island <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
