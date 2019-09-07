@@ -6,6 +6,17 @@
     <content type="text"><![CDATA[Are You Going To Scarborough Fair ?]]></content>
   </entry>
   <entry>
+    <title><![CDATA[20190907 TensorFlow试用]]></title>
+    <url>%2FTensorFlow%2F20190907%2F</url>
+    <content type="text"><![CDATA[第一次入门TensorFlow。装环境：1pip install tensorflow 没有合适版本的话，检查一下自己的pip是不是最新版的，python是32位还是64位。 入门代码：线性回归1234567891011121314151617181920212223242526272829303132333435363738import kerasfrom keras.models import Sequentialfrom keras.layers import Denseimport numpy as np#生成训练集#trX和trY表示训练用的1000个点二维坐标的x和y，类型是nparray#trX中，有1000组数据，每组数据只有1个元素，所以下文中Dense的input_dim=1trX = np.linspace(-100, 100, 1001) #生成1000个在-100~100之间的随机数，返回一个nparraytrY = 5 * trX + 6 + np.random.randn(*trX.shape) * 0.2 #期望y=5x+6，并加入一点点随机波动#实例化model为层次模型model = Sequential()#为模型添加layer#本示例是RNN，所以使用Dense作为layer#前一个Dense的output_dim必须和后一个的input_dim相同#第一个Dense的input_dim必须和最后一个的output_dim相同，且等于训练集的每组元素数model.add(Dense(input_dim=1, output_dim=200, init='uniform', activation='linear'))model.add(Dense(input_dim=200, output_dim=1, init='uniform', activation='linear'))#编译模型，准备训练#optimizer是优化器，一般选adam#loss是损失函数，一般使用mse（均方误差）即可#loss越小，说明训练效果越好，但要小心过拟合model.compile(optimizer='adam', loss='mse')#训练#nb_epoch是迭代次数，verbose=1表示在控制台输出每次epoch的信息model.fit(trX, trY, nb_epoch=200, verbose=1)#np.array()要求传入一个list，返回一个nparray#arr.tolist()要求arr是一个nparray，返回一个list#model.predict要求传入一个nparrayl = np.array([3,1,-5,-23,-42,52]) #测试集res = model.predict(l) #结果print(l)print(res)]]></content>
+      <categories>
+        <category>TensorFlow</category>
+      </categories>
+      <tags>
+        <tag>TensorFlow</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[20190715 Python学习随录]]></title>
     <url>%2Fpython%2Fpython-20190715%2F</url>
     <content type="text"><![CDATA[学习随录系列功能：实现对一个由若干行组成、每行均为[0.xxx, 0.xxx, …]格式的json文件的裁剪 README 在同一目录下新建一个input.txt，其中存放需要转换的文件名。！仅文件名，无后缀名，无路径 在该目录下放置同名的json文件 在该目录启动cmd，运行该py文件 本代码只注重效率，未考虑文件读取失败的问题，故请确保有合法输入文件 代码：1234567891011121314151617181920212223242526272829303132333435363738394041import sysimport ionumbers = [2,3,5] #只保留numbers[i]的整数倍行with open('input.txt', 'rb') as input_file: #读取文件名 files = input_file.read().decode('utf-8').split('\r') #读取.解码.分割 for filename in files: #遍历 if filename == '\n' or filename == '\r': break #防止空行异常跳出 if filename[0] == '\n': filename = filename[1:] #防止前导换行符 if filename[len(filename)-1] == '\n': filename = filename[:len(filename)-1] #防止后置换行符 infile = filename + '.' + 'json' #构造输入文件名 for n in numbers: #遍历切割依据 outfile = filename + '-' + str(n) + '.' + 'json' #构造输出文件名 with open(infile, 'rb') as fr: #打开输入文件 file_str = fr.read().decode('utf-8').split('[') #读取.解码.分割 with open(outfile, 'wb') as fw: #打开输出文件 ans = file_str[0] + '[' #预置 i = n + 1 #取数 while i &lt; len(file_str): #取所需行 ans += '[' + file_str[i] #构造输出文件 i += n if ans[len(ans)-1] != '&#125;': #防止异常结束 i = len(ans) - 1 while ans[i] != ',': i -= 1 ans = ans[:i] + ']&#125;' fw.write(ans.encode('utf-8')) #写文件]]></content>
@@ -180,8 +191,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>线段树</tag>
         <tag>HDU</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
@@ -344,8 +355,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>线段树</tag>
         <tag>Luogu</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
@@ -357,8 +368,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>线段树</tag>
         <tag>Luogu</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
