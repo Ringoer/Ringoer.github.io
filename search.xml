@@ -8,7 +8,7 @@
   <entry>
     <title><![CDATA[课程表存档]]></title>
     <url>%2Fschedule%2Fschedule-of-classes%2F</url>
-    <content type="text"><![CDATA[2019-2020-schedule-12018-2019-schedule-32018-2019-schedule-22018-2019-schedule-12017-2018-schedule-32017-2018-schedule-22017-2018-schedule-1]]></content>
+    <content type="text"><![CDATA[用来给自己的课程表存档。目前仅大学课程表。2019-2020-schedule-12018-2019-schedule-32018-2019-schedule-22018-2019-schedule-12017-2018-schedule-32017-2018-schedule-22017-2018-schedule-1]]></content>
       <categories>
         <category>schedule</category>
       </categories>
@@ -248,8 +248,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>dp</tag>
         <tag>Luogu</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -286,9 +286,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>dfs</tag>
         <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>dfs</tag>
         <tag>MCMF</tag>
       </tags>
   </entry>
@@ -300,9 +300,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>模拟</tag>
         <tag>云霄一中月赛</tag>
         <tag>题解</tag>
-        <tag>模拟</tag>
       </tags>
   </entry>
   <entry>
@@ -455,9 +455,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>dfs</tag>
         <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>dfs</tag>
       </tags>
   </entry>
   <entry>
@@ -529,8 +529,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>dp</tag>
         <tag>Luogu</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -611,9 +611,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>dfs</tag>
         <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>dfs</tag>
       </tags>
   </entry>
   <entry>
@@ -624,9 +624,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>模拟</tag>
         <tag>云霄一中月赛</tag>
         <tag>题解</tag>
-        <tag>模拟</tag>
       </tags>
   </entry>
   <entry>
@@ -637,9 +637,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>模拟</tag>
         <tag>云霄一中月赛</tag>
         <tag>题解</tag>
-        <tag>模拟</tag>
       </tags>
   </entry>
   <entry>
@@ -663,8 +663,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>题解</tag>
+        <tag>python</tag>
         <tag>Luogu</tag>
       </tags>
   </entry>
@@ -699,8 +699,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>dp</tag>
         <tag>Luogu</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
