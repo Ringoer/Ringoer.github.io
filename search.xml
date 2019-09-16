@@ -6,6 +6,17 @@
     <content type="text"><![CDATA[Are You Going To Scarborough Fair ?]]></content>
   </entry>
   <entry>
+    <title><![CDATA[课程表存档]]></title>
+    <url>%2Fschedule%2Fschedule-of-classes%2F</url>
+    <content type="text"><![CDATA[2019-2020-schedule-12018-2019-schedule-32018-2019-schedule-22018-2019-schedule-12017-2018-schedule-32017-2018-schedule-22017-2018-schedule-1]]></content>
+      <categories>
+        <category>schedule</category>
+      </categories>
+      <tags>
+        <tag>schedule</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[20190908 Keras试用]]></title>
     <url>%2FKeras%2F20190908%2F</url>
     <content type="text"><![CDATA[尝试了二元线性回归。只有代码和注释。12345678910111213141516171819202122232425262728import kerasfrom keras.models import Sequentialfrom keras.layers import Denseimport numpy as np#期望平面z=-6x+y+8trX = np.random.uniform(-100, 100, size=1001)trY = np.random.uniform(-100, 100, size=1001)trZ = 8 - 6 * trX + trY + np.random.randn(*trX.shape) * 0.2trXY = np.array(list(zip(trX,trY)))model = Sequential()#模型实现输入[x,y]，输出对应的z，属于2个输入决定一个输出，所以#第一层Dense的input_dim=2#最后一层Dense的output_dim=1model.add(Dense(input_dim=2, output_dim=200, init='uniform', activation='linear'))model.add(Dense(input_dim=200, output_dim=1, init='uniform', activation='linear'))model.compile(optimizer='adam', loss='mse')model.fit(trXY, trZ, nb_epoch=200, verbose=1)testX = [3,4,0]testY = [1,0,4]testXY = np.array(list(zip(testX,testY)))res = model.predict(testXY)print(testXY)print(res) 关于zip()方法设有123&gt;&gt;&gt; a=[1,4,7]&gt;&gt;&gt; b=[2,5,8]&gt;&gt;&gt; c=[3,6,9] 则有以下结果：12345678&gt;&gt;&gt; d=zip(a,b,c)&gt;&gt;&gt; d&lt;zip object at 0x0000019C55381848&gt;&gt;&gt;&gt; list(d)[(1, 2, 3), (4, 5, 6), (7, 8, 9)]&gt;&gt;&gt; d=[list(i) for i in zip(a,b,c)]&gt;&gt;&gt; d[[1, 2, 3], [4, 5, 6], [7, 8, 9]] 可见zip()方法的参数列表是可变参数列表，可以传入n个参数]]></content>
@@ -202,8 +213,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>HDU</tag>
         <tag>线段树</tag>
+        <tag>HDU</tag>
       </tags>
   </entry>
   <entry>
@@ -652,8 +663,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>python</tag>
+        <tag>题解</tag>
         <tag>Luogu</tag>
       </tags>
   </entry>
