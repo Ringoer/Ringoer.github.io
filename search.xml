@@ -6,6 +6,17 @@
     <content type="text"><![CDATA[Are You Going To Scarborough Fair ?]]></content>
   </entry>
   <entry>
+    <title><![CDATA[20190926 随录]]></title>
+    <url>%2Fdiary%2F20190926%2F</url>
+    <content type="text"><![CDATA[记一次由一句注释引发的三小时惨案……今天想着玩玩spring boot，遂搭了个hello spring的demo然后想试试dao和thymeleaf，于是什么都玩玩然后发现了这篇文章：https://www.jianshu.com/p/efdd7c92640c其中有段代码：123456789@Controllerpublic class UserController &#123; @Autowired private UserService userService; @RequestMapping("/index") public String index(ModelMap modelMap) &#123; modelMap.addAttribute("host","www.baidu.com"); return "index"; &#125; 照抄之后，我暂时没有UserService类，所以先把1private UserService userService; 给注释掉了然后惨案就发生了……在build的时候，IDEA不停报错，说Consider defining a bean of type &#39;org.springframework.ui.ModelMap&#39; in your configuration.为了de这个bug，不停地来往于baidu和google，发现根本没有人遇到和我一样的情况。这是什么意思？？？于是一口闷气在我胸口淤积……甚至对照了以前的项目也没发现什么问题，External Libraries甚至都是一模一样的……差点血都吐出来了，心情差得很经过3个小时的思考与辨析，终于发现——————————我因为注释掉了那句定义，导致@Autowired影响到了下面的方法！！！！因为@Autowired的影响，所以IDEA才会一直问我要Model的bean的definition！！！删掉@Autowired和注释后终于正常build了，然后发现返回的是字符串index……思考了一下，@RestController是不能返回页面的，想返回页面只能是@Controller，修改之后正常了……然而我今天也无心搞下去了，明天再说吧……]]></content>
+      <categories>
+        <category>diary</category>
+      </categories>
+      <tags>
+        <tag>diary</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[课程表存档]]></title>
     <url>%2Fschedule%2Fschedule-of-classes%2F</url>
     <content type="text"><![CDATA[用来给自己的课程表存档。目前仅大学课程表。2019-2020-schedule-12018-2019-schedule-32018-2019-schedule-22018-2019-schedule-12017-2018-schedule-32017-2018-schedule-22017-2018-schedule-1]]></content>
@@ -663,8 +674,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>python</tag>
+        <tag>题解</tag>
         <tag>Luogu</tag>
       </tags>
   </entry>
