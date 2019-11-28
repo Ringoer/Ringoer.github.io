@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="20191128读邱明老师代码后的解读">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-28T13:36:47.770Z">
+<meta property="og:updated_time" content="2019-11-28T13:59:45.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="20191128 oomall提交订单部分代码解读">
 <meta name="twitter:description" content="20191128读邱明老师代码后的解读">
@@ -471,6 +471,15 @@
 <li>String name，表示当前优惠券所处状态</li>
 <li>Integer value，表示该状态的状态码</li>
 </ol>
+<p>同时，有方法：</p>
+<ol>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cacuCouponPrice</span><span class="params">(Order order)</span></span></span><br></pre></td></tr></table></figure>
+<p>借助<a href="#domain-coupon-CouponRule">CouponRule</a>来计算CouponPrice</p>
+</li>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isReadyToUse</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>  判断该优惠券当前是否可用</p>
 <h3 id="CouponRulePo"><a href="#CouponRulePo" class="headerlink" title="CouponRulePo"></a><span id="domain-coupon-CouponRulePo">CouponRulePo</span></h3><p>描述了作为一个优惠券所需的全部静态信息</p>
 <p>但由于优惠券适用的方法较多，所以方法拆开到另一个类中实现</p>
 <h3 id="CouponRule"><a href="#CouponRule" class="headerlink" title="CouponRule"></a><span id="domain-coupon-CouponRule">CouponRule</span></h3><p>在类中声明一个realObj来与CouponRulePo建立联系</p>
@@ -495,7 +504,7 @@
 <p>传入商品id列表，更新当前CouponRule所适用的商品id列表</p>
 </li>
 <li><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cacuCouponPrice</span><span class="params">(Order order, String couponSn)</span></span></span><br></pre></td></tr></table></figure>
-<p>传入订单和使用的优惠券序号，更新订单Items为适用了优惠券策略后的订单Items</p>
+<p>传入订单和使用的优惠券序号，借助<a href="#domain-coupon-CashOffStrategy">CashOffStrategy</a>，更新订单Items为适用了优惠券策略后的订单Items</p>
 </li>
 </ol>
 <h2 id="goods"><a href="#goods" class="headerlink" title="goods"></a>goods</h2><h3 id="AbstractPaymentStrategy"><a href="#AbstractPaymentStrategy" class="headerlink" title="AbstractPaymentStrategy"></a><span id="domain-goods-AbstractPaymentStrategy">AbstractPaymentStrategy</span></h3><p>仅定义了 活动付款策略 的接口</p>
@@ -528,7 +537,7 @@
 <ol>
 <li><p>先执行</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cacuDealPrice</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
-<p>算出使用的优惠券情况</p>
+<p>借助<a href="#domain-coupon-Coupon">Coupon</a>算出使用的优惠券情况</p>
 </li>
 <li><p>再执行</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">cacuTotal</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
@@ -539,7 +548,7 @@
 <li><p>反向绑定。</p>
 <p>在OrderItem中绑定Order的id</p>
 </li>
-<li><p>计算付款方式</p>
+<li><p>借助<a href="#domain-Payment">Payment</a>计算付款方式</p>
 </li>
 </ol>
 <h3 id="OrderItem"><a href="#OrderItem" class="headerlink" title="OrderItem"></a><span id="domain-order-OrderItem">OrderItem</span></h3><p>继承自Cloneable类，这意味着该类实例可以被克隆</p>
@@ -639,6 +648,8 @@
 <li>传入空订单和cartItems</li>
 <li>组装订单</li>
 <li>借助<a href="#service-CartItemServiceImpl">CartItemServiceImpl</a>，清除原购物车中在该订单内选中的商品</li>
+<li>使用<a href="#domain-order-Order">Order</a>的cacuDealPrice方法计算优惠价</li>
+<li>使用<a href="#domain-order-Order">Order</a>的cacuPayment方法计算订单总价</li>
 <li>返回组装完成的订单</li>
 </ol>
 </li>
@@ -683,14 +694,10 @@
 </li>
 <li><p>获得生成一个订单的各种主要信息，包括：</p>
 <ol>
-<li><p>user</p>
-</li>
-<li><p>address</p>
-</li>
-<li><p>coupon</p>
-</li>
-<li><p>cartitems</p>
-</li>
+<li>user</li>
+<li>address</li>
+<li>coupon</li>
+<li>cartitems</li>
 </ol>
 <p>其中coupon需要判空，cartItems则因为前端只传回了cartItems的id，所以需要<a href="#service-CartItemServiceImpl">CartItemServiceImpl</a>来获得每个cartitem的具体信息</p>
 </li>
