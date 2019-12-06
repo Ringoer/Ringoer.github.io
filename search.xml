@@ -6,6 +6,17 @@
     <content type="text"><![CDATA[Are You Going To Scarborough Fair ?]]></content>
   </entry>
   <entry>
+    <title><![CDATA[Zuul IDEA配置]]></title>
+    <url>%2Fothers%2Fck3tw2dq10000wwu3optje2mc%2F</url>
+    <content type="text"><![CDATA[关于注解@EnableZuulProxy的坑需要以下依赖：1234567891011121314151617&lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;artifactId&gt;spring-cloud-starter-zuul&lt;/artifactId&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt; &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;artifactId&gt;spring-cloud-starter-config&lt;/artifactId&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;&lt;/dependency&gt; 其中1&lt;version&gt;2.0.1.RELEASE&lt;/version&gt; 是重要的一环，因为查看spring官网及spring中央仓库可以发现，spring boot2.1.x及以后对应的cloud版本已经不推荐使用上述jar包，所以需要手动指明版本号]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>J2EE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[20191128 oomall提交订单部分代码解读]]></title>
     <url>%2Fothers%2F20191128oomall%2F</url>
     <content type="text"><![CDATA[20191128读邱明老师代码后的解读 前言本文章的代码基础：点我下载 本文章按照自底向上的顺序描述提交订单部分的代码逻辑 util工具类 Common 1public static String getRandomNum(int length) 传入想要的数字长度，生成唯一随机数 Config 1public Integer getMaxPayTime() 获得最长付款时间 实际上就是对于订单付款期限的全局设定 JacksonUtil 传入json字符串和file，在json字符串中，用field作为key，返回value 传入json字符串，返回json对象 传入json字符串，返回map 传入对象，返回json字符串 ResponseUtil描述了对于一个操作的响应 每个响应都是一个Map&lt;String, Object&gt;，包括3个字段： errno : 错误码 errmsg : 错误消息 data : 响应数据 该工具类存在的主要原因，是为了统一返回格式 domain负责描述所有类 所有实体类都包含通用的1-5，以下在每个实体类内均只描述其特性 包含表示一个类的若干字段 有非功能方法toString() 有重载方法equals，用于判定两个对象是否是同一对象 有重载方法hashCode，返回对该对象的id的哈希结果 各字段均包含public权限的get和set方法 cartCartItem此处与商品的关系表现在，一个CartItem内保存的是Product的id couponAbstractCouponStrategy一个抽象类，描述了计算一个订单优惠后的价格计算方法 只具体写了cacuDiscount方法,用于计算适用折扣后的OrderItem列表： 传入OrderItems和couponSn（优惠券序号） 判断优惠门槛 若满足门槛，计算优惠后的价格 将优惠减免金额平均分配到各商品 若理论总价与实际总价不符 寻找数量为1的Item，将差价补偿在该Item上 无数量为1的Item 将第一个Item拆开，变成两个Item，其中一个数量为n-1，另一个为1 将差价补偿在数量为1的Item上 返回该列表 要求子类实现： boolean isEnough方法，判断是否已经满足优惠门槛 BigDecimal getDealPrice方法，计算折扣后价格 BigDecimal getError方法，获得理论总价与实际总价的误差 CashOffStrategy策略为满X减Y 继承了AbstractCouponStrategy类，实现了其中要求的方法，成为实体类，负责计算优惠后的OrderItem列表 PercentageStrategy策略为满X减Y% 继承了AbstractCouponStrategy类，实现了其中要求的方法，成为实体类，负责计算优惠后的OrderItem列表 Coupon包含类内enum类型子类Status。该子类包含2个参数 String name，表示当前优惠券所处状态 Integer value，表示该状态的状态码 同时，有方法： 1public void cacuCouponPrice(Order order) 借助CouponRule来计算CouponPrice 1public boolean isReadyToUse() 判断该优惠券当前是否可用 CouponRulePo描述了作为一个优惠券所需的全部静态信息 但由于优惠券适用的方法较多，所以方法拆开到另一个类中实现 CouponRule在类中声明一个realObj来与CouponRulePo建立联系 实现了能用于优惠券的各种方法: 1private List&lt;OrderItem&gt; getValidItems(List&lt;OrderItem&gt; items) 传入订单的子订单列表，返回可以适用所选当前CouponRule的子订单列表 1public AbstractCouponStrategy getStrategy() 获得当前CouponRule所属的折扣策略 1public void setStrategy(AbstractCouponStrategy strategy) 传入新的折扣策略方案，将当前CouponRule所属折扣测了更新 1public boolean isUsedOnGoods(Integer goodsId) 传入商品id，判断该商品是否能够使用当前CouponRule 1public List&lt;Integer&gt; getGoodsIds() 获得当前CouponRule所适用的商品id列表 1public void setGoodsIds(List&lt;Integer&gt; goodsIds) 传入商品id列表，更新当前CouponRule所适用的商品id列表 1public void cacuCouponPrice(Order order, String couponSn) 传入订单和使用的优惠券序号，借助CashOffStrategy，更新订单Items为适用了优惠券策略后的订单Items goodsAbstractPaymentStrategy仅定义了 活动付款策略 的接口 Goods含有字段products，以此与Product建立联系 Product无特性 PromotionPo描述一个商品的优惠活动策略 无方法 Promotion实现了PromotionPo需要的方法 对于PromotionPo和Promotion，看代码完成度，认为应该是未实现 参考Coupon内的策略写法，应该还有 填充完整的抽象付款策略类 未给出的策略类，继承了抽象付款策略类 orderOrder包含类内enum类型子类Status。该子类包含2个参数 String name，表示当前订单所处状态 Integer value，表示该状态的状态码 含有4种方法： 构造函数 有2种方案 不传参数 传入user和address 计算价格 先执行 1public void cacuDealPrice() 借助Coupon算出使用的优惠券情况 再执行 1private void cacuTotal() 算出订单总价 反向绑定。 在OrderItem中绑定Order的id 借助Payment计算付款方式 OrderItem继承自Cloneable类，这意味着该类实例可以被克隆 冗余存储productName 含有2种方法： 构造函数 不传参数 传入cartItem 重载的clone方法，指示了如何克隆该类的实例 userAddress无特性 User无特性 GrouponOnRule无特性 GrouponOnStrategy无特性（该模块代码未完成） Payment包含类内enum类型子类Status。该子类包含2个参数 String name，表示当前payment所处状态 Integer value，表示该状态的状态码 含有一个不传参数的构造函数 mapper负责直接和数据库交互 以下各个Mapper均由java文件和xml文件构成，其中： java文件定义为接口，提供若干方法 xml文件用xml语言描述了java文件中的方法的sql实现 每个类都要加上 @Mapper 注解 CartItemMapper提供了2个方法 传入购物车对象id，以id获得购物车明细 传入购物车对象列表，删除购物车中指定的项目 CouponMapper提供了2个方法 传入优惠券对象id，以id获得一张优惠券的明细 传入优惠券对象id，以id获得该优惠券所属规则的明细 GoodsMapper提供了2个方法 传入product对象id，以id获得product明细 传入商品对象id，以id获得商品明细 OrderMapper提供了3个方法 传入订单id，以id获得订单明细 传入订单对象，新增一个订单 传入子订单列表，新增订单中的所有明细 dao负责数据的交流 对service层表现为数据来源，对mapper层表现为数据调用者 每个类都要加上 @Repository 注解 以下均只描述提供的方法 CartItemDao借助CartItemMapper读取数据 用id返回购物车明细 CouponDao借助CouponMapper读取数据 用id返回优惠券明细 GoodsDao借助GoodsMapper读取数据 用id返回product明细 OrderDao借助OrderMapper读取数据 用id返回order明细 service负责业务的具体实现，需要数据的时候均访问dao层 每个Service都是先提供一个接口，然后写具体的实现（impl） 每个类都要加上 @Service 注解 以下省略对接口的描述，直接描述实现 CartItemServiceImpl 1public CartItem findCartItemById(Integer id) 根据cartItem id，借助CartItemDao，返回该cartItem的明细 1public void clearCartItem(List&lt;CartItem&gt; cartItems) 根据传入的cartItem列表，借助CartItemMapper，清除原购物车中的cartItems CouponServiceImpl 1public Coupon findCouponById(Integer id) 根据coupon id，借助CouponDao，返回该coupon明细 GoodsServiceImpl 1public Product findProductById(Integer id) 根据product id，借助GoodsDao，返回该product明细 OrderServiceImpl 1public Order submit(Order order, List&lt;CartItem&gt; cartItems) 传入空订单和cartItems 组装订单 借助CartItemServiceImpl，清除原购物车中在该订单内选中的商品 使用Order的cacuDealPrice方法计算优惠价 使用Order的cacuPayment方法计算订单总价 返回组装完成的订单 controller负责描述用例 OrderSubmitVO 该VO类内有4个字段 cartItems，是Integer类型的List，保存订单内所选中的商品的id address，是Address类型，保存订单内选中的地址id couponId，是Integer类型，保存订单内选中的优惠券id 这也意味着一个订单只能使用一张优惠券 message，是String类型，保存别的消息信息，起到一个备用的作用 同时，有一个非功能方法：toString() 4个字段各自有public权限的get和set方法，用于给Controller使用 该VO只用于承接前端提交的订单信息，无其它功能 OrderController 声明Controller为RestController，设置RMap 定义需要使用的服务类的实体，自动装配（Controller内公用） OrderService CartService CouponService 进入具体行为（Post）及实现方法submit submit方法在此处定义为Object类型，表示要返回一个对象。可以看到在该方法结尾有一个return ResponseUtil.ok(retOrder)语句，说明返回到前端的对象就是ResponseUtil.ok(retOrder)的返回值 ResponseUtil类 回到submit方法，参数列表有1个参数，带有@RequestBody注解，表明参数来自前端传值；同时参数声明为OrderSubmitVo类型，表明前端传值到达后端后先拼装为一个OrderSubmitVo的实例 进入方法，可以看到在方法刚开始和即将结束之处都有logger.debug语句，生成调试日志。此处与主要功能无关 获得生成一个订单的各种主要信息，包括： user address coupon cartitems 其中coupon需要判空，cartItems则因为前端只传回了cartItems的id，所以需要CartItemServiceImpl来获得每个cartitem的具体信息 新建一个空订单，保存除了商品之外的信息（第58行） 新建一个用商品装填好的订单。此处使用OrderServiceImpl的submit方法装填，传入参数为空订单和cartitem列表 构造返回对象，返回到前端，订单提交结束 Controller完毕]]></content>
@@ -236,8 +247,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>线段树</tag>
         <tag>HDU</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
@@ -400,8 +411,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>线段树</tag>
         <tag>Luogu</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
@@ -413,8 +424,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>线段树</tag>
         <tag>Luogu</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
@@ -686,8 +697,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>题解</tag>
+        <tag>python</tag>
         <tag>Luogu</tag>
       </tags>
   </entry>
