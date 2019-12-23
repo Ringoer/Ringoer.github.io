@@ -7,19 +7,19 @@
   </entry>
   <entry>
     <title><![CDATA[Litemall 商城系统 完工总结]]></title>
-    <url>%2Fjava%2Fck4ih88tw00bbbgu3peyb2xa1%2F</url>
+    <url>%2Fjava%2Flitemall%2F</url>
     <content type="text"><![CDATA[2019-2020学年第一学期 Litemall 后端开发项目总结 项目简介全局设计用户需求分析领域模型分析对象模型分析Controller层API设计系统模块划分代码实现相关技术Vue.jsJSONXMLJAVAIDEA代码规范阿里巴巴 JAVA 开发规约 Spring BootMavenMaven中多项目管理方法Servlet并发机制缓存和消息队列SQLMySQLMybatisRedis微服务部署Docker容器Linux部署语句负载均衡Zuul网关Eureka注册中心RibbonNginx服务器详细设计商品服务订单服务用户服务运费服务分享服务个人感想]]></content>
       <categories>
         <category>java</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>backEnd</tag>
+        <tag>J2EE</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[Zuul IDEA配置]]></title>
-    <url>%2Fothers%2Fck4ih6zk5006fbgu3956fei7s%2F</url>
+    <url>%2Fothers%2Fzuul%2F</url>
     <content type="text"><![CDATA[关于注解@EnableZuulProxy的坑需要以下依赖：1234567891011121314151617&lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;artifactId&gt;spring-cloud-starter-zuul&lt;/artifactId&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt; &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;artifactId&gt;spring-cloud-starter-config&lt;/artifactId&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;&lt;/dependency&gt; 其中1&lt;version&gt;2.0.1.RELEASE&lt;/version&gt; 是重要的一环，因为查看spring官网及spring中央仓库可以发现，spring boot2.1.x及以后对应的cloud版本已经不推荐使用上述jar包，所以需要手动指明版本号]]></content>
       <categories>
         <category>others</category>
@@ -259,8 +259,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>HDU</tag>
         <tag>线段树</tag>
+        <tag>HDU</tag>
       </tags>
   </entry>
   <entry>
@@ -423,8 +423,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>Luogu</tag>
         <tag>线段树</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
@@ -436,8 +436,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>Luogu</tag>
         <tag>线段树</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
@@ -709,8 +709,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>python</tag>
+        <tag>题解</tag>
         <tag>Luogu</tag>
       </tags>
   </entry>
