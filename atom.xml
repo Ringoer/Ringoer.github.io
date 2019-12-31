@@ -39,11 +39,60 @@
   </entry>
   
   <entry>
+    <title>Spring Swagger 配置</title>
+    <link href="http://yoursite.com/J2EE/spring-swagger/"/>
+    <id>http://yoursite.com/J2EE/spring-swagger/</id>
+    <published>2019-12-31T13:05:00.000Z</published>
+    <updated>2019-12-31T13:42:02.582Z</updated>
+    
+    <content type="html"><![CDATA[<p>Swagger好文明！！</p><p>我再也不拿什么破python破postman调试了！！</p><a id="more"></a><p>第一步，引入依赖</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure><p>当前版本2.9.2，以后看到这篇文章的同学记得更新版本</p><p>第二步，配置SwaggerConfig类</p><ol><li>新建一个package，叫config，便于管理</li><li>新建一个Java Class，叫SwaggerConfig</li><li>配置如下代码</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> xmu.oomall.user.config;<span class="comment">//包名，可以修改</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.ApiInfoBuilder;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.PathSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.RequestHandlerSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.service.ApiInfo;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spi.DocumentationType;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spring.web.plugins.Docket;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.swagger2.annotations.EnableSwagger2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Parameter;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Ringoer</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@notice</span> 下面两个注解一定不要漏了</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableSwagger</span>2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SwaggerConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这个方法不可以修改</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Docket <span class="title">createRestApi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">                .apiInfo(apiInfo())</span><br><span class="line">                .select()</span><br><span class="line">                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))</span><br><span class="line">                .paths(PathSelectors.any())</span><br><span class="line">                .build()</span><br><span class="line">                .apiInfo(apiInfo());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//这个方法中所有的字符串都可以修改</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ApiInfo <span class="title">apiInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ApiInfoBuilder()</span><br><span class="line">                .title(<span class="string">"UserInfoService RESTful API"</span>)</span><br><span class="line">                .description(<span class="string">"3-1 oomall UserInfoService"</span>)</span><br><span class="line">                .termsOfServiceUrl(<span class="string">""</span>)</span><br><span class="line">                .version(<span class="string">"1.0"</span>)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>第三步，在主启动类上加入注解</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> xmu.oomall.user;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.client.discovery.EnableDiscoveryClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.netflix.eureka.EnableEurekaClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.openfeign.EnableFeignClients;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.swagger2.annotations.EnableSwagger2;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Ringoer</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableSwagger</span>2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">SpringApplication.run(UserApplication.class, args);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>好了，直接运行，访问 <code>http://{ip}:{port}/swagger-ui.html</code> 即可看到好文明</p><p>可能出现的bug：</p><ol><li><p>无法启动，报</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compatible version of org.springframework.plugin.core.PluginRegistry</span><br></pre></td></tr></table></figure><p>如果出现这种情况，那就是因为依赖冲突，看看有没有下面这个依赖，有的话删掉即可</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-rest<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure><p>要不然，可以建个空项目，慢慢调节找哪个依赖冲突也可以</p><p>但反正绝对不是spring版本偏高，因为我现在运行的是2.2.2.RELEASE，也可以正常swagger</p></li><li><p>无法启动，报</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NoSuchMethodError</span><br></pre></td></tr></table></figure><p>如果出现这种情况，那就是因为guava版本不对，需要手动指定guava版本</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.google.guava<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>guava<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>20.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li><li><p>可以启动，报一个弹窗：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Unable to infer base url. This is common when using dynamic servlet registration or when the API is behind an API Gateway. The base url is the root of where all the swagger resources are served. For e.g. if the api is available at http://example.org/api/v2/api-docs then the base url is http://example.org/api/. Please enter the location manually:</span><br></pre></td></tr></table></figure><p>如果出现这种情况，那就是因为配了spring security或者用的不是 <code>@EnableSwagger2</code> 注解</p><p>前者的话去掉security相关依赖，或者手动配置security config都可以</p><p>后者的话请回到文章开头重新配置</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Swagger好文明！！&lt;/p&gt;
+&lt;p&gt;我再也不拿什么破python破postman调试了！！&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="J2EE" scheme="http://yoursite.com/categories/J2EE/"/>
+    
+    
+      <category term="J2EE" scheme="http://yoursite.com/tags/J2EE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>20191230中间件相关</title>
+    <link href="http://yoursite.com/middleware/middleware-20191230/"/>
+    <id>http://yoursite.com/middleware/middleware-20191230/</id>
+    <published>2019-12-30T10:09:00.000Z</published>
+    <updated>2019-12-31T13:42:21.020Z</updated>
+    
+    <content type="html"><![CDATA[<p>以下暂时还是一些链接<br><a id="more"></a></p><p><a href="https://www.jianshu.com/p/eb571e4065ec" target="_blank" rel="noopener">MQ消息最终一致性解决方案</a><br><a href="https://www.baidu.com/s?ie=UTF-8&amp;wd=mq%20%E4%B8%80%E8%87%B4%E6%80%A7" target="_blank" rel="noopener">mq 一致性</a><br><a href="https://www.baidu.com/s?ie=UTF-8&amp;wd=%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%20%E4%B8%AD%E9%97%B4%E4%BB%B6" target="_blank" rel="noopener">消息队列 中间件</a><br><a href="https://www.cnblogs.com/wuzm/p/11105176.html" target="_blank" rel="noopener">常见的消息队列中间件介绍</a>  </p><p><a href="https://www.baidu.com/s?ie=UTF-8&amp;wd=%E7%BA%BF%E7%A8%8B%E6%B1%A0%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97" target="_blank" rel="noopener">线程池 消息队列</a><br><a href="https://blog.csdn.net/Ares_xb/article/details/89946466" target="_blank" rel="noopener">线程池和消息队列的一些理解</a></p><p><a href="https://www.jianshu.com/p/2accc2840a1b" target="_blank" rel="noopener">如何给老婆解释什么是RPC</a><br><a href="https://www.jianshu.com/p/9cca72f9e93c" target="_blank" rel="noopener">BFF——服务于前端的后端</a></p><p><a href="https://www.cnblogs.com/liujinyu/p/11612728.html" target="_blank" rel="noopener">基于NodeJS进行前后端分离</a><br><a href="https://www.jb51.net/article/150697.htm" target="_blank" rel="noopener">详解从NodeJS搭建中间层再谈前后端分离</a><br><a href="https://www.zhihu.com/question/279322623/answer/406073443" target="_blank" rel="noopener">纯前端开发眼里nodejs到底是什么？</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;以下暂时还是一些链接&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="middleware" scheme="http://yoursite.com/categories/middleware/"/>
+    
+    
+      <category term="J2EE" scheme="http://yoursite.com/tags/J2EE/"/>
+    
+      <category term="middleware" scheme="http://yoursite.com/tags/middleware/"/>
+    
+  </entry>
+  
+  <entry>
     <title>oomall 商城系统 完工总结</title>
-    <link href="http://yoursite.com/java/oomall/"/>
-    <id>http://yoursite.com/java/oomall/</id>
+    <link href="http://yoursite.com/J2EE/oomall/"/>
+    <id>http://yoursite.com/J2EE/oomall/</id>
     <published>2019-12-23T13:29:00.000Z</published>
-    <updated>2019-12-23T13:58:39.383Z</updated>
+    <updated>2019-12-31T13:39:51.020Z</updated>
     
     <content type="html"><![CDATA[<p>2019-2020学年第一学期 oomall后端开发项目总结</p><a id="more"></a><h1 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h1><h1 id="全局设计"><a href="#全局设计" class="headerlink" title="全局设计"></a>全局设计</h1><h2 id="用户需求分析"><a href="#用户需求分析" class="headerlink" title="用户需求分析"></a>用户需求分析</h2><h2 id="领域模型分析"><a href="#领域模型分析" class="headerlink" title="领域模型分析"></a>领域模型分析</h2><h2 id="对象模型分析"><a href="#对象模型分析" class="headerlink" title="对象模型分析"></a>对象模型分析</h2><h2 id="Controller层API设计"><a href="#Controller层API设计" class="headerlink" title="Controller层API设计"></a>Controller层API设计</h2><h2 id="系统模块划分"><a href="#系统模块划分" class="headerlink" title="系统模块划分"></a>系统模块划分</h2><h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><h2 id="相关技术"><a href="#相关技术" class="headerlink" title="相关技术"></a>相关技术</h2><h3 id="Vue-js"><a href="#Vue-js" class="headerlink" title="Vue.js"></a>Vue.js</h3><h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><h3 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h3><h3 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h3><h4 id="IDEA"><a href="#IDEA" class="headerlink" title="IDEA"></a>IDEA</h4><h4 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h4><p>阿里巴巴 JAVA 开发规约</p><h4 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h4><h4 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h4><h4 id="Maven中多项目管理方法"><a href="#Maven中多项目管理方法" class="headerlink" title="Maven中多项目管理方法"></a>Maven中多项目管理方法</h4><h4 id="Servlet并发机制"><a href="#Servlet并发机制" class="headerlink" title="Servlet并发机制"></a>Servlet并发机制</h4><h4 id="缓存和消息队列"><a href="#缓存和消息队列" class="headerlink" title="缓存和消息队列"></a>缓存和消息队列</h4><h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><h4 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h4><h4 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h4><h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><h3 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h3><h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><h4 id="Docker容器"><a href="#Docker容器" class="headerlink" title="Docker容器"></a>Docker容器</h4><h4 id="Linux部署语句"><a href="#Linux部署语句" class="headerlink" title="Linux部署语句"></a>Linux部署语句</h4><h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><h4 id="Zuul网关"><a href="#Zuul网关" class="headerlink" title="Zuul网关"></a>Zuul网关</h4><h4 id="Eureka注册中心"><a href="#Eureka注册中心" class="headerlink" title="Eureka注册中心"></a>Eureka注册中心</h4><h4 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h4><h4 id="Nginx服务器"><a href="#Nginx服务器" class="headerlink" title="Nginx服务器"></a>Nginx服务器</h4><h1 id="详细设计"><a href="#详细设计" class="headerlink" title="详细设计"></a>详细设计</h1><h2 id="商品服务"><a href="#商品服务" class="headerlink" title="商品服务"></a>商品服务</h2><h2 id="订单服务"><a href="#订单服务" class="headerlink" title="订单服务"></a>订单服务</h2><h2 id="用户服务"><a href="#用户服务" class="headerlink" title="用户服务"></a>用户服务</h2><h2 id="运费服务"><a href="#运费服务" class="headerlink" title="运费服务"></a>运费服务</h2><h2 id="分享服务"><a href="#分享服务" class="headerlink" title="分享服务"></a>分享服务</h2><h1 id="个人感想"><a href="#个人感想" class="headerlink" title="个人感想"></a>个人感想</h1>]]></content>
     
@@ -54,7 +103,7 @@
     </summary>
     
     
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+      <category term="J2EE" scheme="http://yoursite.com/categories/J2EE/"/>
     
     
       <category term="J2EE" scheme="http://yoursite.com/tags/J2EE/"/>
@@ -424,52 +473,6 @@
     <summary type="html">
     
       &lt;p&gt;计算机网络实验2&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="network-experiment" scheme="http://yoursite.com/categories/network-experiment/"/>
-    
-    
-      <category term="计算机网络实验" scheme="http://yoursite.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>日本語教程索引</title>
-    <link href="http://yoursite.com/Japanese/JapaneseMenu/"/>
-    <id>http://yoursite.com/Japanese/JapaneseMenu/</id>
-    <published>2019-03-04T12:13:26.000Z</published>
-    <updated>2019-04-04T13:27:10.458Z</updated>
-    
-    <content type="html"><![CDATA[<p>只是想写一个日语教程，为了将来方便给云霄一中日语部教学。<br>于是这里就当成目录吧。<br><a id="more"></a><br><a href="http://ringoer.com/Japanese/FiftyTone/" target="_blank" rel="noopener">五十音图</a><br><a href="http://ringoer.com/Japanese/kihontango/" target="_blank" rel="noopener">日语入门向基本单词</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;只是想写一个日语教程，为了将来方便给云霄一中日语部教学。&lt;br&gt;于是这里就当成目录吧。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="Japanese" scheme="http://yoursite.com/categories/Japanese/"/>
-    
-    
-      <category term="日语教程" scheme="http://yoursite.com/tags/%E6%97%A5%E8%AF%AD%E6%95%99%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>制作网线</title>
-    <link href="http://yoursite.com/network-experiment/makereticle/"/>
-    <id>http://yoursite.com/network-experiment/makereticle/</id>
-    <published>2019-03-03T14:00:00.000Z</published>
-    <updated>2019-04-04T01:41:31.678Z</updated>
-    
-    <content type="html"><![CDATA[<p>计算机网络实验1<br><a id="more"></a></p><video id="video" controls preload="none"><br>  <source id="mp4" src="http://video.ringoer.com/优酷网-网线水晶头接法.mp4" type="video/mp4"><br></video><p>制作网线时应注意将线插到水晶头底部</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;计算机网络实验1&lt;br&gt;
     
     </summary>
     
