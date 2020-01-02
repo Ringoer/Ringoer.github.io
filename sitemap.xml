@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/J2EE/mapper/</loc>
+    
+    <lastmod>2020-01-02T13:06:22.196Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/J2EE/oomall/</loc>
+    
+    <lastmod>2020-01-02T12:09:33.300Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/middleware/middleware-20191230/</loc>
     
     <lastmod>2019-12-31T13:42:21.020Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>http://yoursite.com/J2EE/spring-swagger/</loc>
     
     <lastmod>2019-12-31T13:42:02.582Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/J2EE/oomall/</loc>
-    
-    <lastmod>2019-12-31T13:39:51.020Z</lastmod>
     
   </url>
   

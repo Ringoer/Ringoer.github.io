@@ -6,6 +6,17 @@
     <content type="text"><![CDATA[Are You Going To Scarborough Fair ?]]></content>
   </entry>
   <entry>
+    <title><![CDATA[mapper层配置]]></title>
+    <url>%2FJ2EE%2Fmapper%2F</url>
+    <content type="text"><![CDATA[和数据库直接联系的，重要的mapper层的配置。 依赖123456789101112131415161718192021222324&lt;!--sql--&gt;&lt;dependency&gt; &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt; &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt; &lt;version&gt;2.1.1&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;com.alibaba&lt;/groupId&gt; &lt;artifactId&gt;druid&lt;/artifactId&gt; &lt;version&gt;1.1.21&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-data-jdbc&lt;/artifactId&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;scope&gt;runtime&lt;/scope&gt;&lt;/dependency&gt; application.yaml12345678910111213141516171819202122spring: application: name: USER-SERVICE profiles: # 为了便于管理，将具体的 datasource 配置放在另一个文件中 # 下方 active 属性名，设为dev，则spring会自动寻找和 application.yaml同一目录下的 application-dev.yaml # 也就是说，设为x，则会自动寻找application-x.yaml # 效果等同于将目标文件内的 datasource 配置直接写在当前文件中 active: devmybatis: # domain对象的包 type-aliases-package: xmu.oomall.user.domain # mapper.xml所在的位置 # 本项目的mapper放在 /resource/xmu.oomall.mapper 目录下 # 如果配置时索引不到mapper，可能是前置名称有问题 # 如该项目，mapper.xml所在的文件夹可以试试 /xmu.oomall.mapper 或者 /xmu/oomall/mapper mapper-locations: classpath:xmu.oomall.mapper/*.xml configuration: # 自动将SQL中查出来的带下划线的字段，转换为驼峰标志，再去匹配类中的属性 mapUnderscoreToCamelCase: true map-underscore-to-camel-case: true application-dev.yaml1234567891011121314151617181920212223242526spring: datasource: driver-class-name: com.mysql.cj.jdbc.Driver # 目标数据库地址 # jdbc开头，接数据库类型，接ip地址，接数据库名 url: jdbc:mysql://106.14.83.157:3306/oomall # 登录数据库 username: ooadUser password: ooad type: com.alibaba.druid.pool.DruidDataSource druid: # 初始化时建立物理连接的个数 initial-size: 3 # 最小连接池数量 min-idle: 3 # 最大连接池数量 max-active: 10 # 获取连接时最大等待时间 max-wait: 60000 filter: stat: # 是否开启慢sql查询监控 log-slow-sql: true # 慢SQL执行时间 slow-sql-millis: 100 validation-query: select 1 到这里，配置基本完成了，接下来开始写mapper UserMapper.java123456789101112131415161718192021222324252627282930313233343536373839404142434445464748package xmu.oomall.user.mapper;import org.apache.ibatis.annotations.Mapper;import xmu.oomall.user.domain.User;import java.util.List;/** * @author Ringoer * 必须是接口类型 * 必须有 @Mapper 注解 */@Mapperpublic interface UserMapper &#123; /** * 根据id返回用户信息 * @param id 用户id * @return 用户对象 */ User findUserById(Integer id); /** * 根据id返回用户信息 * @param name 用户名 * @return 用户对象 */ User findUserByName(String name); /** * 注册一个用户 * @param user 用户信息 * @return 行数 */ int addUser(User user); /** * 修改一个用户 * @param user 用户对象 * @return 修改影响的行数 */ int editUser(User user); /** * 返回用户列表 * @return 用户列表 */ List&lt;User&gt; findUsers();&#125; UserMapper.xml123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;&lt;!--namespace中填写对应的mapper接口位置及名称--&gt;&lt;mapper namespace="xmu.oomall.user.mapper.UserMapper"&gt; &lt;!--sql语句之select--&gt; &lt;!-- id 填写在接口中对应的方法名 --&gt; &lt;!-- parameterType 填写传入参数的类型，类型名称与java类型相同 --&gt; &lt;!-- resultType 填写返回参数的名称，类型名称与java类型相同，返回时会自动组装 --&gt; &lt;!-- 对于数据库保留字段，如 name ，不能直接查询，要使用 `` 包裹住才行（不是单引号） --&gt; &lt;!-- 对于传入参数，使用 #&#123;变量名&#125; 方式来取值，其中变量名与java中相同 --&gt; &lt;select id="findUserById" parameterType="Integer" resultType="User"&gt; select id, password, `name`, gender, birthday, mobile, nickname, rebate, avatar, role_id, last_login_time, last_login_ip, user_level, wx_open_id, session_key, gmt_create, gmt_modified, is_deleted as beDeleted from `oomall_user` where id = #&#123;id&#125;; &lt;/select&gt; &lt;!--sql语句之select--&gt; &lt;!-- resultType 填写返回参数的名称，类型名称与java类型相同，返回时会自动组装 --&gt; &lt;!-- 对于返回类型是List的情况，resultType中只需要填List中的单体的类型即可 --&gt; &lt;!-- 如该方法返回值是 List&lt;User&gt; ，但 resultType 只需要填写 User --&gt; &lt;select id="findUsers" resultType="User"&gt; select id, password, `name`, gender, birthday, mobile, nickname, rebate, avatar, role_id, last_login_time, last_login_ip, user_level, wx_open_id, session_key, gmt_create, gmt_modified, is_deleted as beDeleted from `oomall_user`; &lt;/select&gt; &lt;!--sql语句之select--&gt; &lt;select id="findUserByName" parameterType="String" resultType="User"&gt; select id, password, `name`, gender, birthday, mobile, nickname, rebate, avatar, role_id, last_login_time, last_login_ip, user_level, wx_open_id, session_key, gmt_create, gmt_modified, is_deleted as beDeleted from `oomall_user` where `name` = #&#123;name&#125;; &lt;/select&gt; &lt;!--sql语句之insert--&gt; &lt;!-- id 填写在接口中对应的方法名 --&gt; &lt;!-- parameterType 填写传入参数的类型，类型名称与java类型相同 --&gt; &lt;!-- useGeneratedKeys 表示在数据库中插入时是否使用自增主键。需要与 keyProperty 配合使用 --&gt; &lt;!-- 无 resultType ，因为sql中insert方法一定返回此次更新影响的行数，即resultType一定是Integer --&gt; &lt;!-- keyProperty 表示在数据库中的主键是哪个字段，字段名称与java中的相同。需要与 useGeneratedKeys 配合使用 --&gt; &lt;!-- 如果使用了 useGeneratedKeys 和 keyProperty ，则插入成功后jdbc会自动将生成的主键装配进传入的变量中，可以在java中直接获取 --&gt; &lt;!-- 对于传入参数，使用 #&#123;变量名&#125; 方式来取值，其中变量名与java中相同 --&gt; &lt;!-- 如果传入参数类型是一个包含多个字段的类，则依然使用 #&#123;变量名&#125; 方式来取值，此时变量名直接与类中字段名相同，不需要再次声明类名 --&gt; &lt;insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="id"&gt; insert into `oomall_user`( password, `name`, gender, birthday, mobile, nickname, rebate, avatar, role_id, last_login_time, last_login_ip, user_level, wx_open_id, session_key, gmt_create, gmt_modified, is_deleted) values ( #&#123;password&#125;, #&#123;name&#125;, #&#123;gender&#125;, #&#123;birthday&#125;, #&#123;mobile&#125;, #&#123;nickname&#125;, #&#123;rebate&#125;, #&#123;avatar&#125;, #&#123;roleId&#125;, #&#123;lastLoginTime&#125;, #&#123;lastLoginIp&#125;, #&#123;userLevel&#125;, #&#123;wxOpenId&#125;, #&#123;sessionKey&#125;, #&#123;gmtCreate&#125;, #&#123;gmtModified&#125;, #&#123;beDeleted&#125;); &lt;/insert&gt; &lt;!--sql语句之update--&gt; &lt;!-- id 填写在接口中对应的方法名 --&gt; &lt;!-- parameterType 填写传入参数的类型，类型名称与java类型相同 --&gt; &lt;!-- 无 resultType ，因为sql中update方法一定返回此次更新影响的行数，即resultType一定是Integer --&gt; &lt;!-- 本文章未提及delete操作，实际上delete操作的返回值也是行数 --&gt; &lt;update id="editUser" parameterType="User" &gt; update `oomall_user` set password=#&#123;password&#125;, `name`=#&#123;name&#125;, gender=#&#123;gender&#125;, birthday=#&#123;birthday&#125;, mobile=#&#123;mobile&#125;, nickname=#&#123;nickname&#125;, rebate=#&#123;rebate&#125;, avatar=#&#123;avatar&#125;, role_id=#&#123;roleId&#125;, last_login_time=#&#123;lastLoginTime&#125;, last_login_ip=#&#123;lastLoginIp&#125;, user_level=#&#123;userLevel&#125;, wx_open_id=#&#123;wxOpenId&#125;, session_key=#&#123;sessionKey&#125;, gmt_create=#&#123;gmtCreate&#125;, gmt_modified=#&#123;gmtModified&#125;, is_deleted=#&#123;beDeleted&#125; where id=#&#123;id&#125;; &lt;/update&gt;&lt;/mapper&gt; 使用mapper到这里，mapper的声明工作已经全部完成了，接下来需要在dao层调用mapper。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253package xmu.oomall.user.dao;import org.springframework.beans.factory.annotation.Autowired;import org.springframework.stereotype.Repository;import xmu.oomall.user.domain.User;import xmu.oomall.user.mapper.UserMapper;import java.util.List;/** * @author Ringoer */@Repositorypublic class UserDao &#123; @Autowired private UserMapper userMapper; /** * 根据id返回用户信息 * @param id 用户id * @return 用户对象 */ public User findUserById(Integer id)&#123;return userMapper.findUserById(id);&#125; /** * 根据id返回用户信息 * @param name 用户名 * @return 用户对象 */ public User findUserByName(String name)&#123;return userMapper.findUserByName(name);&#125; /** * 注册一个用户 * @param user 用户信息 * @return 行数 */ public int addUser(User user)&#123;return userMapper.addUser(user);&#125; /** * 修改一个用户 * @param user 用户对象 * @return 行数 */ public int editUser(User user)&#123;return userMapper.editUser(user);&#125; /** * 返回用户列表 * @return 用户列表 */ public List&lt;User&gt; findUsers() &#123; return userMapper.findUsers(); &#125;&#125; 调用代码如上。 实际上只需要两行代码，就可以无缝使用mapper： 12@Autowiredprivate UserMapper userMapper; 以上即为通过jdbc的java与数据库连接方式。]]></content>
+      <categories>
+        <category>J2EE</category>
+      </categories>
+      <tags>
+        <tag>J2EE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Spring Swagger 配置]]></title>
     <url>%2FJ2EE%2Fspring-swagger%2F</url>
     <content type="text"><![CDATA[Swagger好文明！！ 我再也不拿什么破python破postman调试了！！ 第一步，引入依赖 12345678910&lt;dependency&gt; &lt;groupId&gt;io.springfox&lt;/groupId&gt; &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt; &lt;version&gt;2.9.2&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;io.springfox&lt;/groupId&gt; &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt; &lt;version&gt;2.9.2&lt;/version&gt;&lt;/dependency&gt; 当前版本2.9.2，以后看到这篇文章的同学记得更新版本 第二步，配置SwaggerConfig类 新建一个package，叫config，便于管理 新建一个Java Class，叫SwaggerConfig 配置如下代码 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647package xmu.oomall.user.config;//包名，可以修改import org.springframework.context.annotation.Bean;import org.springframework.context.annotation.Configuration;import org.springframework.web.bind.annotation.RestController;import springfox.documentation.builders.ApiInfoBuilder;import springfox.documentation.builders.PathSelectors;import springfox.documentation.builders.RequestHandlerSelectors;import springfox.documentation.service.ApiInfo;import springfox.documentation.spi.DocumentationType;import springfox.documentation.spring.web.plugins.Docket;import springfox.documentation.swagger2.annotations.EnableSwagger2;import java.lang.reflect.Parameter;import java.util.ArrayList;import java.util.List;/** * @author Ringoer * @notice 下面两个注解一定不要漏了 */@Configuration@EnableSwagger2public class SwaggerConfig &#123; //这个方法不可以修改 @Bean public Docket createRestApi() &#123; return new Docket(DocumentationType.SWAGGER_2) .apiInfo(apiInfo()) .select() .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)) .paths(PathSelectors.any()) .build() .apiInfo(apiInfo()); &#125; //这个方法中所有的字符串都可以修改 private ApiInfo apiInfo() &#123; return new ApiInfoBuilder() .title("UserInfoService RESTful API") .description("3-1 oomall UserInfoService") .termsOfServiceUrl("") .version("1.0") .build(); &#125;&#125; 第三步，在主启动类上加入注解 123456789101112131415161718192021package xmu.oomall.user;import org.springframework.boot.SpringApplication;import org.springframework.boot.autoconfigure.SpringBootApplication;import org.springframework.cloud.client.discovery.EnableDiscoveryClient;import org.springframework.cloud.netflix.eureka.EnableEurekaClient;import org.springframework.cloud.openfeign.EnableFeignClients;import springfox.documentation.swagger2.annotations.EnableSwagger2;/** * @author Ringoer */@SpringBootApplication@EnableSwagger2public class UserApplication &#123; public static void main(String[] args) &#123; SpringApplication.run(UserApplication.class, args); &#125;&#125; 好了，直接运行，访问 http://{ip}:{port}/swagger-ui.html 即可看到好文明 可能出现的bug： 无法启动，报 1compatible version of org.springframework.plugin.core.PluginRegistry 如果出现这种情况，那就是因为依赖冲突，看看有没有下面这个依赖，有的话删掉即可 1234&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-data-rest&lt;/artifactId&gt;&lt;/dependency&gt; 要不然，可以建个空项目，慢慢调节找哪个依赖冲突也可以 但反正绝对不是spring版本偏高，因为我现在运行的是2.2.2.RELEASE，也可以正常swagger 无法启动，报 1NoSuchMethodError 如果出现这种情况，那就是因为guava版本不对，需要手动指定guava版本 123456&lt;dependency&gt; &lt;groupId&gt;com.google.guava&lt;/groupId&gt; &lt;artifactId&gt;guava&lt;/artifactId&gt; &lt;version&gt;20.0&lt;/version&gt; &lt;scope&gt;compile&lt;/scope&gt;&lt;/dependency&gt; 可以启动，报一个弹窗： 1Unable to infer base url. This is common when using dynamic servlet registration or when the API is behind an API Gateway. The base url is the root of where all the swagger resources are served. For e.g. if the api is available at http://example.org/api/v2/api-docs then the base url is http://example.org/api/. Please enter the location manually: 如果出现这种情况，那就是因为配了spring security或者用的不是 @EnableSwagger2 注解 前者的话去掉security相关依赖，或者手动配置security config都可以 后者的话请回到文章开头重新配置]]></content>
@@ -31,7 +42,7 @@
   <entry>
     <title><![CDATA[oomall 商城系统 完工总结]]></title>
     <url>%2FJ2EE%2Foomall%2F</url>
-    <content type="text"><![CDATA[2019-2020学年第一学期 oomall后端开发项目总结 项目简介全局设计用户需求分析领域模型分析对象模型分析Controller层API设计系统模块划分代码实现相关技术Vue.jsJSONXMLJAVAIDEA代码规范阿里巴巴 JAVA 开发规约 Spring BootMavenMaven中多项目管理方法Servlet并发机制缓存和消息队列SQLMySQLMybatisRedis微服务部署Docker容器Linux部署语句负载均衡Zuul网关Eureka注册中心RibbonNginx服务器详细设计商品服务订单服务用户服务运费服务分享服务个人感想]]></content>
+    <content type="text"><![CDATA[2019-2020学年第一学期 oomall后端开发项目总结 项目简介全局设计用户需求分析领域模型分析对象模型分析Controller层API设计系统模块划分代码实现相关技术Vue.jsJSONXMLJAVAIDEA代码规范阿里巴巴 JAVA 开发规约 Spring BootMavenMaven中多项目管理方法Servlet并发机制缓存和消息队列SQLMySQLMybatisRedis微服务部署Docker容器Linux部署语句负载均衡Zuul网关Eureka注册中心RibbonNginx服务器详细设计商品服务订单服务用户服务运费服务分享服务个人感想项目源代码下载user 项目依赖123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;parent&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt; &lt;version&gt;2.2.1.RELEASE&lt;/version&gt; &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt; &lt;/parent&gt; &lt;groupId&gt;xmu.oomall&lt;/groupId&gt; &lt;artifactId&gt;user&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;name&gt;user&lt;/name&gt; &lt;description&gt;3-1 oomall user Service&lt;/description&gt; &lt;properties&gt; &lt;java.version&gt;11&lt;/java.version&gt; &lt;/properties&gt; &lt;dependencies&gt; &lt;!--normal--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt; &lt;scope&gt;runtime&lt;/scope&gt; &lt;optional&gt;true&lt;/optional&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web-services&lt;/artifactId&gt; &lt;/dependency&gt; &lt;!--sql--&gt; &lt;dependency&gt; &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt; &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt; &lt;version&gt;2.1.1&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;com.alibaba&lt;/groupId&gt; &lt;artifactId&gt;druid&lt;/artifactId&gt; &lt;version&gt;1.1.21&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-data-jdbc&lt;/artifactId&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;scope&gt;runtime&lt;/scope&gt; &lt;/dependency&gt; &lt;!--redis--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-data-redis-reactive&lt;/artifactId&gt; &lt;/dependency&gt; &lt;!--json--&gt; &lt;dependency&gt; &lt;groupId&gt;com.alibaba&lt;/groupId&gt; &lt;artifactId&gt;fastjson&lt;/artifactId&gt; &lt;version&gt;1.2.47&lt;/version&gt; &lt;/dependency&gt; &lt;!--configuration--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt; &lt;optional&gt;true&lt;/optional&gt; &lt;/dependency&gt; &lt;!--junit--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;exclusions&gt; &lt;exclusion&gt; &lt;groupId&gt;org.junit.vintage&lt;/groupId&gt; &lt;artifactId&gt;junit-vintage-engine&lt;/artifactId&gt; &lt;/exclusion&gt; &lt;/exclusions&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;junit&lt;/groupId&gt; &lt;artifactId&gt;junit&lt;/artifactId&gt; &lt;version&gt;4.12&lt;/version&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;/dependency&gt; &lt;!--eureka-client--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt; &lt;version&gt;2.0.0.RELEASE&lt;/version&gt; &lt;/dependency&gt; &lt;!--feign--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt; &lt;/dependency&gt; &lt;!--logger--&gt; &lt;dependency&gt; &lt;groupId&gt;org.slf4j&lt;/groupId&gt; &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt; &lt;version&gt;1.7.25&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.slf4j&lt;/groupId&gt; &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt; &lt;version&gt;1.7.5&lt;/version&gt; &lt;/dependency&gt; &lt;!--swagger--&gt; &lt;dependency&gt; &lt;groupId&gt;io.springfox&lt;/groupId&gt; &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt; &lt;version&gt;2.9.2&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;io.springfox&lt;/groupId&gt; &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt; &lt;version&gt;2.9.2&lt;/version&gt; &lt;/dependency&gt; &lt;/dependencies&gt; &lt;dependencyManagement&gt; &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt; &lt;version&gt;Finchley.RELEASE&lt;/version&gt; &lt;type&gt;pom&lt;/type&gt; &lt;scope&gt;import&lt;/scope&gt; &lt;/dependency&gt; &lt;/dependencies&gt; &lt;/dependencyManagement&gt; &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt; &lt;artifactId&gt;mybatis-generator-maven-plugin&lt;/artifactId&gt; &lt;version&gt;1.3.7&lt;/version&gt; &lt;configuration&gt; &lt;configurationFile&gt;mybatis-generator/generatorConfig.xml&lt;/configurationFile&gt; &lt;overwrite&gt;true&lt;/overwrite&gt; &lt;verbose&gt;true&lt;/verbose&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt;&lt;/project&gt;]]></content>
       <categories>
         <category>J2EE</category>
       </categories>
@@ -342,9 +353,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>SPFA</tag>
         <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>SPFA</tag>
       </tags>
   </entry>
   <entry>
@@ -408,9 +419,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>数论</tag>
         <tag>云霄一中月赛</tag>
         <tag>题解</tag>
-        <tag>数论</tag>
       </tags>
   </entry>
   <entry>
@@ -446,8 +457,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>Luogu</tag>
         <tag>线段树</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
@@ -459,8 +470,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>Luogu</tag>
         <tag>线段树</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
@@ -471,9 +482,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>SPFA</tag>
         <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>SPFA</tag>
       </tags>
   </entry>
   <entry>
@@ -498,9 +509,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>数论</tag>
         <tag>云霄一中月赛</tag>
         <tag>题解</tag>
-        <tag>数论</tag>
       </tags>
   </entry>
   <entry>
@@ -511,9 +522,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>SPFA</tag>
         <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>SPFA</tag>
       </tags>
   </entry>
   <entry>
@@ -623,8 +634,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>SPFA</tag>
         <tag>题解</tag>
+        <tag>SPFA</tag>
         <tag>HDU</tag>
       </tags>
   </entry>
@@ -719,9 +730,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>数论</tag>
         <tag>云霄一中月赛</tag>
         <tag>题解</tag>
-        <tag>数论</tag>
       </tags>
   </entry>
   <entry>
@@ -732,8 +743,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>题解</tag>
+        <tag>python</tag>
         <tag>Luogu</tag>
       </tags>
   </entry>
