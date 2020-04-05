@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/python/django/</loc>
+    
+    <lastmod>2020-04-05T02:45:05.468Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/J2EE/mapper/</loc>
     
     <lastmod>2020-01-02T13:17:26.159Z</lastmod>

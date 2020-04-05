@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,django,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在使用 python 做爬虫或机器学习的时候，有时候需要浏览所得到的阶段性成果，这时候就需要一个前端。">
+<meta name="keywords" content="python,django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django建站初探">
+<meta property="og:url" content="http://yoursite.com/python/django/index.html">
+<meta property="og:site_name" content="Ringo&#39;s Coding Life">
+<meta property="og:description" content="在使用 python 做爬虫或机器学习的时候，有时候需要浏览所得到的阶段性成果，这时候就需要一个前端。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pic.ringoer.com/django-1-查看django版本号.png">
+<meta property="og:image" content="http://pic.ringoer.com/django-2-创建新项目.png">
+<meta property="og:image" content="http://pic.ringoer.com/django-3-测试页面.png">
+<meta property="og:image" content="http://pic.ringoer.com/django-4-django目录结构.png">
+<meta property="og:image" content="http://pic.ringoer.com/django-5-创建hello子组件.png">
+<meta property="og:image" content="http://pic.ringoer.com/django-6-hello子组件的目录结构.png">
+<meta property="og:image" content="http://pic.ringoer.com/django-7-创建迁移文件.png">
+<meta property="og:image" content="http://pic.ringoer.com/django-8-完成迁移文件的导入.png">
+<meta property="og:image" content="http://pic.ringoer.com/django-9-完成数据导入.png">
+<meta property="og:image" content="http://pic.ringoer.com/django-10-验收成果.png">
+<meta property="og:updated_time" content="2020-04-05T02:45:05.468Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django建站初探">
+<meta name="twitter:description" content="在使用 python 做爬虫或机器学习的时候，有时候需要浏览所得到的阶段性成果，这时候就需要一个前端。">
+<meta name="twitter:image" content="http://pic.ringoer.com/django-1-查看django版本号.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/python/django/">
+
+
+
+
+
+  <title>Django建站初探 | Ringo's Coding Life</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ringo's Coding Life</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI to ACM</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            元初之地
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-blog">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-text-o"></i> <br>
+            
+            文章相关
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            自己绍介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-contact">
+          <a href="/contact/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-envelope-o"></i> <br>
+            
+            联系方式
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br>
+            
+            友情链接
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            站内搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/python/django/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ringoer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ringo's Coding Life">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Django建站初探</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-04T21:43:00+08:00">
+                2020-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在使用 python 做爬虫或机器学习的时候，有时候需要浏览所得到的阶段性成果，这时候就需要一个前端。</p>
+<a id="more"></a>
+<p>本文所使用的示例代码：<a href="http://download.ringoer.com/django-sample.rar" target="_blank" rel="noopener">点我下载</a></p>
+<p>环境：</p>
+<ul>
+<li>Windows10</li>
+<li>VSCODE</li>
+<li>python 3.7</li>
+</ul>
+<p>-为什么选择 django ？</p>
+<p>-没有为什么，我高兴</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="安装-django"><a href="#安装-django" class="headerlink" title="安装 django"></a>安装 django</h2><p>在命令行中使用以下语句安装 django</p>
+<p><code>pip install django</code></p>
+<p>或使用国内镜像</p>
+<p><code>pip install -i https://pypi.douban.com/simple django</code></p>
+<p>安装后可以在命令行中启动 python 以查看 django 是否安装成功</p>
+<p><img src="http://pic.ringoer.com/django-1-查看django版本号.png" alt="1-查看django版本号"></p>
+<h2 id="创建一个-django-新项目"><a href="#创建一个-django-新项目" class="headerlink" title="创建一个 django 新项目"></a>创建一个 django 新项目</h2><ol>
+<li><p>启动命令行，进入你想放置该项目的目录</p>
+</li>
+<li><p>使用以下语句创建工程</p>
+<p><code>django-admin startproject [projectname]</code></p>
+<p>其中 <code>[projectname]</code> 可以按需要修改为自己的项目名</p>
+<p><img src="http://pic.ringoer.com/django-2-创建新项目.png" alt="2-创建新项目"></p>
+</li>
+<li><p>创建完成后，在命令行中进入该项目，输入以下语句启动测试页面</p>
+<p><code>python manage.py runserver</code></p>
+<p>如果启动成功，则可以访问以下网址查看测试页面</p>
+<p><a href="http://localhost:8000" target="_blank" rel="noopener">http://localhost:8000</a></p>
+<p>测试页面如图</p>
+<p><img src="http://pic.ringoer.com/django-3-测试页面.png" alt="3-测试页面"></p>
+</li>
+<li><p>django 目录结构</p>
+<p><img src="http://pic.ringoer.com/django-4-django目录结构.png" alt="4-django目录结构"></p>
+<p>如上图，一个默认的 django 项目包含如下文件树：</p>
+<p>——sample</p>
+<p>————sample（项目控制组件，用于控制项目的公有配置）</p>
+<p>——————<strong>pycache</strong>（提供默认配置文件，不需要更改）</p>
+<p>————————<strong>init</strong>.cpython-37.pyc</p>
+<p>————————settings.cpython-37.pyc</p>
+<p>————————urls.cpython-37.pyc</p>
+<p>————————wsgi.cpython-37.pyc</p>
+<p>——————<strong>init</strong>.py（提供默认配置文件，不需要更改）</p>
+<p>——————asgi.py（提供默认配置文件，不需要更改）</p>
+<p>——————settings.py（项目主配置文件）</p>
+<p>——————urls.py（项目访问路径配置文件）</p>
+<p>——————wsgi.py（提供默认配置文件，不需要更改）</p>
+<p>————db.sqlite3（项目自带简易数据库，不需要更改，在第一次启动项目后才会生成）</p>
+<p>————manage.py（项目主启动类，不需要更改）</p>
+</li>
+</ol>
+<p>   可见，我们只有3种办法修改我们的项目：</p>
+<ol>
+<li>修改settings.py</li>
+<li>修改urls.py</li>
+<li><p>添加新的目录</p>
+<p>让我们先来认识一下项目控制组件下的2个配置文件</p>
+</li>
+</ol>
+<h3 id="settings-py"><a href="#settings-py" class="headerlink" title="settings.py"></a>settings.py</h3><p>项目主配置文件，提供一些基本配置。</p>
+<p>常用配置如下：</p>
+<ol>
+<li><p>BASE_DIR</p>
+<p>指示项目的绝对位置</p>
+<p>是项目所在的位置，不是项目控制组件所在的位置</p>
+<p>会自动识别，不需修改</p>
+</li>
+<li><p>INSTALLED_APPS</p>
+<p>创建了新的组件后，要在此处注册</p>
+</li>
+<li><p>ROOT_URLCONF</p>
+<p>指示项目访问路径配置文件的位置</p>
+<p>一般不需修改</p>
+</li>
+<li><p>TEMPLATES -&gt; DIRS</p>
+<p>指示项目中引用的所有模板文件的绝对位置</p>
+<p><span style="color:red">请在项目中适用如下配置</span></p>
+<p>通常为了方便使用，都会在项目目录下新建文件夹 template，并对 TEMPLATES  属性作如下修改</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">TEMPLATES = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">'BACKEND'</span>: <span class="string">'django.template.backends.django.DjangoTemplates'</span>,</span><br><span class="line">        <span class="string">'DIRS'</span>: [os.path.join(BASE_DIR, <span class="string">'templates'</span>).replace(<span class="string">'\\'</span>, <span class="string">'/'</span>)], <span class="comment"># 唯一修改的语句</span></span><br><span class="line">        <span class="string">'APP_DIRS'</span>: <span class="keyword">True</span>,</span><br><span class="line">        <span class="string">'OPTIONS'</span>: &#123;</span><br><span class="line">            <span class="string">'context_processors'</span>: [</span><br><span class="line">                <span class="string">'django.template.context_processors.debug'</span>,</span><br><span class="line">                <span class="string">'django.template.context_processors.request'</span>,</span><br><span class="line">                <span class="string">'django.contrib.auth.context_processors.auth'</span>,</span><br><span class="line">                <span class="string">'django.contrib.messages.context_processors.messages'</span>,</span><br><span class="line">            ],</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="5">
+<li><p>STATIC_URL</p>
+<p>指示项目中引用的所有静态文件的相对路径名</p>
+<p>该属性可以含有如下子属性</p>
+<ol>
+<li><p>STATIC_ROOT</p>
+<p>指示项目中引用的所有静态文件的绝对位置</p>
+</li>
+<li><p>STATICFILES_DIRS</p>
+<p>指示静态文件目录下的其它目录的绝对位置</p>
+</li>
+</ol>
+<p><span style="color:red">请在项目中适用如下配置</span></p>
+<p>通常为了方便使用，都会在项目目录下新建文件夹 static，且 static 文件夹包含3个子文件夹，分别为 css、images、js</p>
+<p>并对 STATIC_URL 属性作如下修改</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">STATIC_URL = <span class="string">'/static/'</span></span><br><span class="line">STATIC_ROOT = os.path.join(BASE_DIR, <span class="string">'static'</span>).replace(<span class="string">'\\'</span>, <span class="string">'/'</span>)</span><br><span class="line">STATICFILES_DIRS = (</span><br><span class="line">    (<span class="string">'css'</span>, os.path.join(STATIC_ROOT, <span class="string">'css'</span>).replace(<span class="string">'\\'</span>, <span class="string">'/'</span>)),</span><br><span class="line">    (<span class="string">'images'</span>, os.path.join(STATIC_ROOT, <span class="string">'images'</span>).replace(<span class="string">'\\'</span>, <span class="string">'/'</span>)),</span><br><span class="line">    (<span class="string">'js'</span>, os.path.join(STATIC_ROOT, <span class="string">'js'</span>).replace(<span class="string">'\\'</span>, <span class="string">'/'</span>)),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="urls-py"><a href="#urls-py" class="headerlink" title="urls.py"></a>urls.py</h3><p>项目访问路径配置文件，用于控制访问路径。</p>
+<p>一般只需修改 urlpatterns 属性。默认含有一条语句</p>
+<p><code>path(&#39;admin/&#39;, admin.site.urls),</code></p>
+<p>例如当添加一个名为 mytest 的新组件，且希望路径 /test 指向它时，可以向 urlpatterns 属性下添加如下语句</p>
+<p><code>url(&#39;test/&#39;, include(&#39;mytest.urls&#39;)),</code></p>
+<h1 id="创建子组件"><a href="#创建子组件" class="headerlink" title="创建子组件"></a>创建子组件</h1><p>在命令行中进入项目目录，执行以下语句</p>
+<p><code>python manage.py startapp [appname]</code></p>
+<p>其中 appname 即为你想新建的组件名</p>
+<p>组件名不可以重名</p>
+<p><img src="http://pic.ringoer.com/django-5-创建hello子组件.png" alt="5-创建hello子组件"></p>
+<p>子组件 hello 的目录结构如下</p>
+<p><img src="http://pic.ringoer.com/django-6-hello子组件的目录结构.png" alt="6-hello子组件的目录结构"></p>
+<p>其中两个 <strong>init</strong>.py 文件是默认的配置文件，无需修改</p>
+<h2 id="apps-py"><a href="#apps-py" class="headerlink" title="apps.py"></a>apps.py</h2><p>指示本组件的名称，保持默认即可</p>
+<h2 id="tests-py"><a href="#tests-py" class="headerlink" title="tests.py"></a>tests.py</h2><p>为本组件创建测试</p>
+<p>本教程不对此深入讨论</p>
+<h2 id="models-py"><a href="#models-py" class="headerlink" title="models.py"></a>models.py</h2><p>在本文件中，程序员应该描述本组件包含的实体类的声明</p>
+<p>横向对比来说，类似于 java 开发中的 domain 层</p>
+<p>此处我们创建一个保存我们自己数据的 myData 类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your models here.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myData</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">  username = models.TextField()</span><br><span class="line">  description = models.TextField()</span><br><span class="line">  age = models.IntegerField()</span><br></pre></td></tr></table></figure>
+<h2 id="admin-py"><a href="#admin-py" class="headerlink" title="admin.py"></a>admin.py</h2><p>默认情况下包含如下代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"><span class="comment"># Register your models here.</span></span><br></pre></td></tr></table></figure>
+<p>需要根据子组件的 models 来添加代码</p>
+<p>比如，我们在上文中，在 hello 子组件中创建了 myData 类，那就需要修改本文件代码为如下模样</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> hello.models <span class="keyword">import</span> myData</span><br><span class="line"></span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line"></span><br><span class="line">admin.site.register(myData)</span><br></pre></td></tr></table></figure>
+<h2 id="views-py"><a href="#views-py" class="headerlink" title="views.py"></a>views.py</h2><p>用于组织本组件视图的文件，程序员应在其中写入对模板渲染时所需数据的预处理操作</p>
+<p>本例中，我们将定义一个名为 helloworld 的方法来进行预处理</p>
+<h2 id="应添加在子组件中的非默认文件"><a href="#应添加在子组件中的非默认文件" class="headerlink" title="应添加在子组件中的非默认文件"></a>应添加在子组件中的非默认文件</h2><h3 id="data-csv"><a href="#data-csv" class="headerlink" title="data.csv"></a>data.csv</h3><p>用于保存本组件所需数据的原始数据表。可以没有本项目</p>
+<h3 id="dataimport-py"><a href="#dataimport-py" class="headerlink" title="dataimport.py"></a>dataimport.py</h3><p>用于指示如何向项目主目录下的 db.sqlite3 数据库中注入 data.csv</p>
+<p>当不存在 data.csv 时，也不需有本文件</p>
+<p>现在，为了方便示例，让我们创建 data.csv，并向其中插入如下数据</p>
+<table>
+<thead>
+<tr>
+<th>username</th>
+<th>description</th>
+<th>age</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ringoer</td>
+<td>从忘恩之地吹来的风</td>
+<td>21</td>
+</tr>
+<tr>
+<td>myname</td>
+<td>测试用说说</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<p>并创建 dataimport.py，输入如下代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在自己脚本中使用django model</span></span><br><span class="line"><span class="keyword">import</span> sys,os</span><br><span class="line"></span><br><span class="line">sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))</span><br><span class="line">os.environ[<span class="string">'DJANGO_SETTINGS_MODULE'</span>] = <span class="string">'sample.settings'</span>  <span class="comment"># 配置系统变量</span></span><br><span class="line"><span class="keyword">import</span> django</span><br><span class="line">django.setup()</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> hello.models <span class="keyword">import</span> myData <span class="comment"># 引入数据类型，与本组件的models中声明的类型相同</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从csv读取数据并存入models创建的表里</span></span><br><span class="line"><span class="comment"># 此处路径是相对于项目主目录的</span></span><br><span class="line">data_path = <span class="string">'hello/data.csv'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(data_path, encoding = <span class="string">'UTF-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">   reader = csv.reader(f)</span><br><span class="line">   <span class="keyword">for</span> i, row <span class="keyword">in</span> enumerate(reader):</span><br><span class="line">      mydata = myData()</span><br><span class="line">      <span class="keyword">if</span> i&gt;<span class="number">0</span>:</span><br><span class="line">        mydata.username = row[<span class="number">0</span>]</span><br><span class="line">        mydata.description = row[<span class="number">1</span>]</span><br><span class="line">        mydata.age = int(row[<span class="number">2</span>])</span><br><span class="line">        mydata.save()</span><br></pre></td></tr></table></figure>
+<p>为了正常指向该组件，需要配置</p>
+<ol>
+<li>该组件的 urls.py </li>
+<li>项目控制组件中的 urls.py</li>
+<li>项目控制组件中的 settings.py</li>
+</ol>
+<h3 id="hello-urls-py"><a href="#hello-urls-py" class="headerlink" title="hello/urls.py"></a>hello/urls.py</h3><p>用于指示本组件中的路由</p>
+<p>但默认的代码使用的是 path 方法来指示路由，并不能正常工作，故本例中使用 url 方法来指示路由</p>
+<p>本例中可以在该文件中写入如下代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url, include</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.contrib.staticfiles.urls <span class="keyword">import</span> staticfiles_urlpatterns</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^hello/'</span>, include(<span class="string">'hello.urls'</span>)),</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</span><br><span class="line">]</span><br><span class="line">urlpatterns += staticfiles_urlpatterns()</span><br></pre></td></tr></table></figure>
+<h3 id="sample-urls-py"><a href="#sample-urls-py" class="headerlink" title="sample/urls.py"></a>sample/urls.py</h3><p>如果我们希望通过 hello 路径来访问 hello 组件，可以向该文件中插入如下语句</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hello</span><br><span class="line">path(<span class="string">'hello/'</span>, hello.urls),</span><br></pre></td></tr></table></figure>
+<p>则该文件变为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> hello</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'hello/'</span>, hello.urls),</span><br><span class="line">    path(<span class="string">'admin/'</span>, admin.site.urls),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>然后在项目控制组件的 settings.py 的 INSTALLED_APPS 属性中注册该组件，就可以正常路由了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">    <span class="string">'hello'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h1 id="创建页面文件并渲染"><a href="#创建页面文件并渲染" class="headerlink" title="创建页面文件并渲染"></a>创建页面文件并渲染</h1><p>只有路由没有页面，一样什么都显示不了，所以我们需要对组件内的 views.py 进行修改，使得其能渲染页面，并另外提供一个用于渲染的 html 模板</p>
+<h2 id="views-py-1"><a href="#views-py-1" class="headerlink" title="views.py"></a>views.py</h2><p>默认情况下有如下代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your views here.</span></span><br></pre></td></tr></table></figure>
+<p>本文中提供如下代码作为例子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="keyword">from</span> hello.models <span class="keyword">import</span> myData</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your views here.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">helloworld</span><span class="params">(request)</span>:</span></span><br><span class="line">  myData_list = myData.objects.all()</span><br><span class="line"></span><br><span class="line">  <span class="comment"># 分页算法</span></span><br><span class="line">  perpage = <span class="number">10</span></span><br><span class="line">  maxPage = int((len(myData_list) - <span class="number">1</span>) / perpage + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">  page = request.GET.get(<span class="string">'page'</span>)</span><br><span class="line">  <span class="keyword">try</span>:</span><br><span class="line">    page = int(page)</span><br><span class="line">  <span class="keyword">except</span>:</span><br><span class="line">    page = <span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span> page &gt; maxPage:</span><br><span class="line">    page = maxPage</span><br><span class="line">  <span class="keyword">elif</span> page &lt;= <span class="number">0</span>:</span><br><span class="line">    page = <span class="number">1</span></span><br><span class="line">  </span><br><span class="line">  minIndex = (page - <span class="number">1</span>) * perpage</span><br><span class="line">  maxIndex = page * perpage</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> maxIndex &gt; len(myData_list):</span><br><span class="line">    maxIndex = len(myData_list)</span><br><span class="line"></span><br><span class="line">  myData_list = myData_list[minIndex : maxIndex]</span><br><span class="line"></span><br><span class="line">  <span class="comment"># 提供给前端的内容</span></span><br><span class="line">  context = &#123;</span><br><span class="line">    <span class="string">'myData_list'</span>: myData_list, <span class="comment"># 渲染表格用的列表</span></span><br><span class="line">    <span class="string">'page'</span>: page, <span class="comment"># 页号</span></span><br><span class="line">    <span class="string">'message'</span>: <span class="string">'helloworld!'</span>, <span class="comment"># 传给前端的消息</span></span><br><span class="line">	&#125;</span><br><span class="line">  <span class="keyword">return</span> render(request, <span class="string">'hello.html'</span>, context) <span class="comment"># 第二参数是目标html文件名称，该html须在templates文件夹下</span></span><br></pre></td></tr></table></figure>
+<h2 id="hello-html"><a href="#hello-html" class="headerlink" title="hello.html"></a>hello.html</h2><p>需要注意的模板语法有两条</p>
+<ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; 变量名 &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>可以实现对变量取值</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% for %&#125;</span><br><span class="line"></span><br><span class="line">（此处填写html语句）</span><br><span class="line"></span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
+<p>可以实现循环渲染</p>
+</li>
+</ol>
+<p>本例中的 html 代码如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">language</span>=<span class="string">"zh-cn"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"/static/css/style.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123; message &#125;&#125;&amp;emsp;第&#123;&#123; page &#125;&#125;页<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span>username<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span>description<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span>age<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        &#123;% for i in myData_list %&#125; </span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; i.username &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; i.description &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; i.age &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        &#123;% endfor %&#125;</span><br><span class="line">      <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="迁移数据"><a href="#迁移数据" class="headerlink" title="迁移数据"></a>迁移数据</h1><p>到这里，试图 runserver 的时候，却发现应用跑不起来了。这是为什么呢？</p>
+<p>因为之前给 hello 组件准备的数据还没导入！</p>
+<p>让我们导入数据吧</p>
+<ol>
+<li><p>执行语句 <code>python manage.py makemigrations</code> 创建迁移文件</p>
+<p><img src="http://pic.ringoer.com/django-7-创建迁移文件.png" alt="7-创建迁移文件"></p>
+</li>
+<li><p>执行语句 <code>python manage.py migrate</code> 完成迁移文件的导入</p>
+<p><img src="http://pic.ringoer.com/django-8-完成迁移文件的导入.png" alt="8-完成迁移文件的导入"></p>
+</li>
+<li><p>执行语句 <code>python hello/dataimport.py</code> 完成数据导入</p>
+<p><img src="http://pic.ringoer.com/django-9-完成数据导入.png" alt="9-完成数据导入"></p>
+<p>需要注意的是，当数据量很大时，由于 python 语言性质，会导致导入速度非常慢，请耐心等待</p>
+</li>
+</ol>
+<h1 id="验收成果"><a href="#验收成果" class="headerlink" title="验收成果"></a>验收成果</h1><p>经过这么长的教程，终于可以验收成果了！</p>
+<p><img src="http://pic.ringoer.com/django-10-验收成果.png" alt="10-验收成果"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>django 建站的步骤大致如下：</p>
+<ol>
+<li>初始化项目，配置静态资源</li>
+<li>构建若干子组件</li>
+<li>为子组件构建实体类、数据、页面与页面渲染、路由</li>
+<li>在配置文件中注册组件</li>
+<li>迁移数据，导入数据</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--It's the end.<i class="fa fa-life-ring"></i>Thanks for your read.--</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/django/" rel="tag"># django</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/J2EE/mapper/" rel="next" title="mapper层配置">
+                <i class="fa fa-chevron-left"></i> mapper层配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/uncategorized/mainpage/" rel="prev" title="Welcome to No. 68 Floating Island">
+                Welcome to No. 68 Floating Island <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg" alt="Ringoer">
+            
+              <p class="site-author-name" itemprop="name">Ringoer</p>
+              <p class="site-description motion-element" itemprop="description">随处可见的一般社畜</p>
+          </div>
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-django"><span class="nav-number">1.1.</span> <span class="nav-text">安装 django</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个-django-新项目"><span class="nav-number">1.2.</span> <span class="nav-text">创建一个 django 新项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#settings-py"><span class="nav-number">1.2.1.</span> <span class="nav-text">settings.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#urls-py"><span class="nav-number">1.2.2.</span> <span class="nav-text">urls.py</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建子组件"><span class="nav-number">2.</span> <span class="nav-text">创建子组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#apps-py"><span class="nav-number">2.1.</span> <span class="nav-text">apps.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tests-py"><span class="nav-number">2.2.</span> <span class="nav-text">tests.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#models-py"><span class="nav-number">2.3.</span> <span class="nav-text">models.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#admin-py"><span class="nav-number">2.4.</span> <span class="nav-text">admin.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#views-py"><span class="nav-number">2.5.</span> <span class="nav-text">views.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应添加在子组件中的非默认文件"><span class="nav-number">2.6.</span> <span class="nav-text">应添加在子组件中的非默认文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#data-csv"><span class="nav-number">2.6.1.</span> <span class="nav-text">data.csv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dataimport-py"><span class="nav-number">2.6.2.</span> <span class="nav-text">dataimport.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hello-urls-py"><span class="nav-number">2.6.3.</span> <span class="nav-text">hello/urls.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sample-urls-py"><span class="nav-number">2.6.4.</span> <span class="nav-text">sample/urls.py</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建页面文件并渲染"><span class="nav-number">3.</span> <span class="nav-text">创建页面文件并渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#views-py-1"><span class="nav-number">3.1.</span> <span class="nav-text">views.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hello-html"><span class="nav-number">3.2.</span> <span class="nav-text">hello.html</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#迁移数据"><span class="nav-number">4.</span> <span class="nav-text">迁移数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#验收成果"><span class="nav-number">5.</span> <span class="nav-text">验收成果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ringoer</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
