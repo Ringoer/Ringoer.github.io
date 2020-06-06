@@ -6,6 +6,21 @@
     <content type="text"><![CDATA[Are You Going To Scarborough Fair ?]]></content>
   </entry>
   <entry>
+    <title><![CDATA[Ubuntu下使用Docker部署的办法]]></title>
+    <url>%2Fdocker%2Fdocker%2F</url>
+    <content type="text"><![CDATA[这年头不是全栈工程师，连中间件实验都做不了了 基本知识 docker 名词 java 名词 镜像 类 容器 对象 由镜像构建容器 new 一个某类的实例 docker build 设计一个class docker run new 列出镜像列表 查看所有类 列出所有容器 查看所有已经实例化的对象 停止容器 使得这个对象停止功能 删除容器 使得这个对象被释放（delete） ubuntu 安装 docker参考链接：https://www.runoob.com/docker/ubuntu-docker-install.html 预备先通过docker version查看本机上是否已经安装 docker，若是，则执行下述命令，卸载旧版本 docker sudo apt-get remove docker docker-engine docker.io containerd runc 安装首次安装时，需要设置仓库 指令 用途 sudo apt-get update 更新 apt 包索引 sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common 安装 apt 依赖包，用于通过 HTTPS 来获取仓库 curl -fsSL https://download.docker.com/linux/ubuntu/gpg &#124; sudo apt-key add - 添加 Docker 的官方 GPG 密钥 sudo add-apt-repository “deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable” 设置稳定版仓库 安装 Docker Engine-Community 指令 用途 sudo apt-get update 更新 apt 包索引 sudo apt-get install docker-ce docker-ce-cli containerd.io 安装最新版本的 Docker Engine-Community 和 containerd docker version 检查 docker 版本，验证是否安装成功 ubuntu 使用 docker 部署jar参考链接：https://blog.csdn.net/weixin_42054155/article/details/90815393 构建 docker 镜像 构造文件Dockerfile，这是一个无后缀文件 该文件内容如下 12345FROM java:8MAINTAINER RingoerADD demo-0.0.1-SNAPSHOT.jar demo.jarEXPOSE 8080ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;demo.jar&quot;] FROM 表示拉取一个 java 版本为 1.8 的 docker image（docker镜像） MAINTAINER 表示作者声明，后接作者名字 ADD 向镜像中加入文件，第一个参数是要加入的文件名，第二个参数是文件的重命名，表示它在 docker 镜像中的名字 EXPOSE 表示该镜像对外暴露的端口号（与 java 项目的端口号要相同） ENTRYPOINT 表示运行该镜像时执行的命令行参数，示例中给出的配置等效于执行命令java -jar demo.jar 向服务器上传 jar 包和 Dockerfile 文件，这两个文件要在同一个目录下 连接服务器终端，cd 进入该目录 执行命令 docker build -t demo . 构建镜像，其中 demo 是镜像名称。记得别漏了最后的一个点 操作镜像 运行容器 docker run -d --name demo1 -p 8080:8080 demo docker run 部分是不可变的 -d 指示了 docker 容器后台运行 –name 部分指示了新运行的容器实例的名称 -p 部分指示了两个端口号，用冒号隔开。其中前一个端口号表示暴露在公网的 ip，后一个表示容器暴露的 ip 最后一个参数是镜像名称，此处表示使用名为 demo 的镜像构建容器，容器名为 demo1 其余命令 命令 功能 docker pull [name] 根据名称获取镜像 docker images 查看所有镜像 docker rmi [name] 根据名称删除某个镜像 docker rmi $(docker images -q) 删除所有镜像 docker ps -a 查看所有容器 docker ps -aq 列出所有容器ID docker stop [name] 根据名称停止某个容器 docker stop $(docker ps -aq) 停止所有容器 docker rm [name] 根据名称删除某个容器 docker rm $(docker ps -aq) 删除所有容器 docker 借助 nginx 部署 vue参考链接： http://dockone.io/article/8834 https://www.cnblogs.com/littleorange7/p/12838101.html 在服务器上使用命令 docker pull nginx 下载 nginx 在服务器上为 vue 项目新建一个文件夹（假设命名为 vue） 在本地使用命令 npm run build 打包 vue 项目，打包完成后会在项目目录下产生一个 dist 文件夹。将该文件夹上传到服务器 在本地编写 Dockerfile 文件 文件内容如下，照抄即可 123FROM nginxCOPY dist/ /usr/share/nginx/html/COPY nginx/default.conf /etc/nginx/conf.d/default.conf 编写完毕后上传到服务器的 vue 文件夹 新建一个名为 nginx 的文件夹，在这个文件夹里新建一个名为 default.conf 的文件 文件内容如下 123456789101112131415161718192021222324252627server &#123;listen 2222;server_name ali.ringoer.com;#charset koi8-r;access_log /var/log/nginx/host.access.log main;error_log /var/log/nginx/error.log error;location / &#123; root /usr/share/nginx/html; index index.html index.htm;&#125;location /api/ &#123; proxy_pass http://ali.ringoer.com:9527/; proxy_redirect off;&#125;#error_page 404 /404.html;# redirect server error pages to the static page /50x.html#error_page 500 502 503 504 /50x.html;location = /50x.html &#123; root /usr/share/nginx/html;&#125;&#125; 需要注意的字段如下 字段名 用途 listen 配置 nginx 的监听端口，要求与 vue 配置的端口号一致 server_name 前端访问的主机名，要求填写公网地址（域名或 ip） location /api/ {} 配置跨域请求，这里的 /api/ 与 vue 项目内部配置的 proxyTable 里所填前缀一致 proxy_pass 转发地址，与 vue 项目内部配置的 proxyTable 下的 target 所填内容一致。必须完整填写（包含 http 和斜杠），不然会报错 proxy_redirect 是否重定向，off 就行了 别的东西 都可以照抄 将 nginx 文件夹上传到服务器 vue 文件夹 现在服务器 vue 文件夹中有2个文件夹和1个文件 文件名 描述 dist vue 项目静态资源文件夹 nginx nginx 配置文件夹 Dockerfile docker 配置文件（不是文件夹） 其中 nginx 文件夹中还包含 default.conf 文件 接下来过程与部署 jar 包一致 部署命令顺序 通过 cd 命令进入服务器上 vue 文件夹后，按顺序执行下述命令 docker build -t [name] .，其中 [name] 是你所希望的镜像名称 末尾的一个点别漏了 docker run -d --name [name1] -p [port1]:[port2] [name2]，其中 字段名 描述 [name1] 你所希望的容器名称 [port1] 容器暴露在公网的端口号 [port2] nginx 监听的端口号，也是 vue 项目配置的端口号 [name2] 1中命令设置的镜像名称 现在，通过浏览器访问 [server_name]:[port1] 即可看到你的 vue 项目]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>ubuntu</tag>
+        <tag>linux</tag>
+        <tag>docker</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Ubuntu服务器上的部署办法]]></title>
     <url>%2FJ2EE%2Fdeploy-on-ubuntu%2F</url>
     <content type="text"><![CDATA[今天紧急学习了一下部署jar包的方法，特此存档 部署的流程主要分为2步。 向服务器上传jar包 使用服务器终端启动jar包 以下基于Windows10环境 向服务器上传jar包 下载安装WinSCP 点我下载 打开WinSCP，连接到服务器 连接设置如下图，默认SFTP协议和22端口即可 主机名填写服务器的ip地址 登录之后，如同在本机上一般，直接拖动本机jar包到服务器目录即可 注意，最好给每个jar包单独一个存放目录 使用服务器终端启动jar包 随意找个位置，通过右键菜单启动Git Bash Here 输入命令ssh root@ip 其中ssh是命令名，root是服务器用户名，ip是服务器地址 如ip为127.0.0.1，用户名为root，则连接命令为ssh root@127.0.0.1 输入用户名对应的密码，成功进入服务器终端 首先使用ls查看当前所在目录下的所有文件名，找到自己存放jar包的目录的父目录 然后不断cd进入下级目录，直到进入自己存放jar包的目录 输入命令nohup java -jar filename.jar &amp;即可启动jar包 其中filename更改为你的jar包名称 注意点 服务器所使用的java版本（一般是1.8）要与打包jar包时使用的版本一致 应时刻注意服务器资源使用情况，避免服务器宕机 使用free命令可以查看内存使用情况 使用df -hl命令可以查看磁盘使用情况]]></content>
@@ -317,8 +332,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>线段树</tag>
         <tag>HDU</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
@@ -767,8 +782,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>python</tag>
+        <tag>题解</tag>
         <tag>Luogu</tag>
       </tags>
   </entry>
