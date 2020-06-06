@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="这年头不是全栈工程师，连中间件实验都做不了了">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-06T13:39:12.170Z">
+<meta property="og:updated_time" content="2020-06-06T14:05:03.559Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu下使用Docker部署的办法">
 <meta name="twitter:description" content="这年头不是全栈工程师，连中间件实验都做不了了">
@@ -584,10 +584,10 @@
 </li>
 <li><p>新建一个名为 nginx 的文件夹，在这个文件夹里新建一个名为 default.conf 的文件</p>
 <p>文件内容如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">listen       2222;</span><br><span class="line">server_name  ali.ringoer.com;</span><br><span class="line"></span><br><span class="line">#charset koi8-r;</span><br><span class="line">access_log  /var/log/nginx/host.access.log  main;</span><br><span class="line">error_log  /var/log/nginx/error.log  error;</span><br><span class="line"></span><br><span class="line">location / &#123;</span><br><span class="line">    root   /usr/share/nginx/html;</span><br><span class="line">    index  index.html index.htm;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /api/ &#123;</span><br><span class="line">    proxy_pass   http://ali.ringoer.com:9527/;</span><br><span class="line">    proxy_redirect  off;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line"># redirect server error pages to the static page /50x.html</span><br><span class="line">#</span><br><span class="line">error_page   500 502 503 504  /50x.html;</span><br><span class="line">location = /50x.html &#123;</span><br><span class="line">    root   /usr/share/nginx/html;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需要注意的字段如下</p>
 </li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       2222;</span><br><span class="line">    server_name  ali.ringoer.com;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line">    access_log  /var/log/nginx/host.access.log  main;</span><br><span class="line">    error_log  /var/log/nginx/error.log  error;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">        #index  index.html index.htm;</span><br><span class="line">        try_files   $uri  $uri/  /index.html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /api/ &#123;</span><br><span class="line">        proxy_pass   http://ali.ringoer.com:9527/;</span><br><span class="line">        proxy_redirect  off;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    #</span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要注意的字段如下</p>
 <table>
 <thead>
 <tr>
@@ -603,6 +603,14 @@
 <tr>
 <td>server_name</td>
 <td>前端访问的主机名，要求填写公网地址（域名或 ip）</td>
+</tr>
+<tr>
+<td>index</td>
+<td>指示项目主页。此处注释掉是作为对比，原因见下一条</td>
+</tr>
+<tr>
+<td>try_files</td>
+<td>使用 index 进行配置时，会导致在非项目主入口刷新时，报 404 错误。所以使用 try_files 进行配置，使得刷新可以触发设定好的拦截，跳转至登录界面。照抄即可，注意是 uri，不是 url</td>
 </tr>
 <tr>
 <td>location /api/ {}</td>
