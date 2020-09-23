@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/JavaScript/nodejs/</loc>
+    
+    <lastmod>2020-09-23T03:20:27.665Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/schedule/schedule-of-classes/</loc>
     
     <lastmod>2020-09-13T03:47:09.927Z</lastmod>
