@@ -73,7 +73,7 @@
 
 
 
-  <meta name="keywords" content="ubuntu,mysql,server,">
+  <meta name="keywords" content="mysql,server,ubuntu,">
 
 
 
@@ -85,7 +85,7 @@
 
 
 <meta name="description" content="不小心还原云主机又忘记备份sql，只好亲自重配一遍了">
-<meta name="keywords" content="ubuntu,mysql,server">
+<meta name="keywords" content="mysql,server,ubuntu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu下配置Mysql的办法">
 <meta property="og:url" content="http://yoursite.com/mysql/mysql/index.html">
@@ -419,7 +419,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql_secure_installation</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>一大堆配置，如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">1</span></span><br><span class="line">VALIDATE PASSWORD PLUGIN can be used to test passwords...</span><br><span class="line">Press y|Y for Yes, any other key for No: N</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">2</span></span><br><span class="line">Please set the password for root here...</span><br><span class="line">New password: (输入密码)</span><br><span class="line">Re-enter new password: (重复输入)</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">3</span></span><br><span class="line">By default, a MySQL installation has an anonymous user,</span><br><span class="line">allowing anyone to log into MySQL without having to have</span><br><span class="line">a user account created for them...</span><br><span class="line">Remove anonymous users? (Press y|Y for Yes, any other key for No) : N</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">4</span></span><br><span class="line">Normally, root should only be allowed to connect from</span><br><span class="line">'localhost'. This ensures that someone cannot guess at</span><br><span class="line">the root password from the network...</span><br><span class="line">Disallow root login remotely? (Press y|Y for Yes, any other key for No) : Y </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">5</span></span><br><span class="line">By default, MySQL comes with a database named 'test' that</span><br><span class="line">anyone can access...</span><br><span class="line">Remove test database and access to it? (Press y|Y for Yes, any other key for No) : N </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">6</span></span><br><span class="line">Reloading the privilege tables will ensure that all changes</span><br><span class="line">made so far will take effect immediately.</span><br><span class="line">Reload privilege tables now? (Press y|Y for Yes, any other key for No) : Y</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>1</span><br><span class="line">VALIDATE PASSWORD PLUGIN can be used to test passwords...</span><br><span class="line">Press y|Y for Yes, any other key for No: N</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>2</span><br><span class="line">Please set the password for root here...</span><br><span class="line">New password: (输入密码)</span><br><span class="line">Re-enter new password: (重复输入)</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>3</span><br><span class="line">By default, a MySQL installation has an anonymous user,</span><br><span class="line">allowing anyone to log into MySQL without having to have</span><br><span class="line">a user account created for them...</span><br><span class="line">Remove anonymous users? (Press y|Y for Yes, any other key for No) : N</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>4</span><br><span class="line">Normally, root should only be allowed to connect from</span><br><span class="line">'localhost'. This ensures that someone cannot guess at</span><br><span class="line">the root password from the network...</span><br><span class="line">Disallow root login remotely? (Press y|Y for Yes, any other key for No) : Y </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>5</span><br><span class="line">By default, MySQL comes with a database named 'test' that</span><br><span class="line">anyone can access...</span><br><span class="line">Remove test database and access to it? (Press y|Y for Yes, any other key for No) : N </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>6</span><br><span class="line">Reloading the privilege tables will ensure that all changes</span><br><span class="line">made so far will take effect immediately.</span><br><span class="line">Reload privilege tables now? (Press y|Y for Yes, any other key for No) : Y</span><br></pre></td></tr></table></figure>
 <p>建议选择 N+密码+NYNY</p>
 </li>
 <li><p>检查服务状态</p>
@@ -501,11 +501,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
-          
             <a href="/tags/mysql/" rel="tag"># mysql</a>
           
             <a href="/tags/server/" rel="tag"># server</a>
+          
+            <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
           
         </div>
       
@@ -528,8 +528,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/uncategorized/mainpage/" rel="prev" title="Welcome to No. 68 Floating Island">
-                Welcome to No. 68 Floating Island <i class="fa fa-chevron-right"></i>
+              <a href="/https/https/" rel="prev" title="配置HTTPS方案">
+                配置HTTPS方案 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -608,7 +608,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -619,7 +619,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -630,7 +630,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
