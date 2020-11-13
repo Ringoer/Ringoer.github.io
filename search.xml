@@ -925,9 +925,9 @@
       
         <tags>
             
-            <tag> ShortestPath </tag>
-            
             <tag> algorithm </tag>
+            
+            <tag> ShortestPath </tag>
             
         </tags>
       
@@ -1275,9 +1275,9 @@
             
             <tag> Luogu </tag>
             
-            <tag> algorithm </tag>
-            
             <tag> SegmentTree </tag>
+            
+            <tag> algorithm </tag>
             
         </tags>
       
@@ -1509,9 +1509,9 @@
             
             <tag> 题解 </tag>
             
-            <tag> bfs </tag>
-            
             <tag> Luogu </tag>
+            
+            <tag> bfs </tag>
             
         </tags>
       
