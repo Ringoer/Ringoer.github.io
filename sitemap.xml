@@ -2,6 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/nodejs/nodejs/</loc>
+    
+    <lastmod>2020-11-13T05:32:14.141Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/algorithm/HuffmanTree/</loc>
+    
+    <lastmod>2020-11-13T05:30:49.447Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/algorithm/HammingCode/</loc>
+    
+    <lastmod>2020-11-13T05:30:39.699Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/others/schedule-of-classes/</loc>
+    
+    <lastmod>2020-11-13T05:30:27.569Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/algorithm/sort/</loc>
+    
+    <lastmod>2020-11-13T05:29:55.507Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/experiment/makereticle/</loc>
+    
+    <lastmod>2020-11-13T05:29:25.105Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/experiment/interception/</loc>
+    
+    <lastmod>2020-11-13T05:29:04.877Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/experiment/RS-232/</loc>
     
     <lastmod>2020-11-12T12:39:15.641Z</lastmod>
@@ -75,20 +124,6 @@
     <loc>http://yoursite.com/mysql/mysql/</loc>
     
     <lastmod>2020-10-07T08:26:38.515Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/JavaScript/nodejs/</loc>
-    
-    <lastmod>2020-09-23T03:20:27.665Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/schedule/schedule-of-classes/</loc>
-    
-    <lastmod>2020-09-13T03:47:09.927Z</lastmod>
     
   </url>
   
@@ -219,13 +254,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/encoding/HammingCode/</loc>
-    
-    <lastmod>2019-04-09T01:04:43.765Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/Japanese/FiftyTone/</loc>
     
     <lastmod>2019-04-08T13:22:42.794Z</lastmod>
@@ -250,27 +278,6 @@
     <loc>http://yoursite.com/Answer/hdu-p1166/</loc>
     
     <lastmod>2019-04-04T01:43:21.199Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/sort/sort/</loc>
-    
-    <lastmod>2019-04-04T01:41:54.638Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/network-experiment/makereticle/</loc>
-    
-    <lastmod>2019-04-04T01:41:31.678Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/network-experiment/interception/</loc>
-    
-    <lastmod>2019-04-04T01:41:29.457Z</lastmod>
     
   </url>
   
@@ -453,13 +460,6 @@
     <loc>http://yoursite.com/others/ux/</loc>
     
     <lastmod>2019-04-02T01:29:51.928Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/HuffmanTree/HuffmanTree/</loc>
-    
-    <lastmod>2019-04-02T01:28:59.791Z</lastmod>
     
   </url>
   
