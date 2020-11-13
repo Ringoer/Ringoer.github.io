@@ -925,9 +925,9 @@
       
         <tags>
             
-            <tag> algorithm </tag>
-            
             <tag> ShortestPath </tag>
+            
+            <tag> algorithm </tag>
             
         </tags>
       
@@ -1275,9 +1275,9 @@
             
             <tag> Luogu </tag>
             
-            <tag> SegmentTree </tag>
-            
             <tag> algorithm </tag>
+            
+            <tag> SegmentTree </tag>
             
         </tags>
       
