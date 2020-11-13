@@ -84,11 +84,11 @@
       <category term="mysql" scheme="http://yoursite.com/categories/mysql/"/>
     
     
+      <category term="ubuntu" scheme="http://yoursite.com/tags/ubuntu/"/>
+    
       <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
     
       <category term="server" scheme="http://yoursite.com/tags/server/"/>
-    
-      <category term="ubuntu" scheme="http://yoursite.com/tags/ubuntu/"/>
     
   </entry>
   
@@ -138,9 +138,9 @@
       <category term="docker" scheme="http://yoursite.com/categories/docker/"/>
     
     
-      <category term="ubuntu" scheme="http://yoursite.com/tags/ubuntu/"/>
-    
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="ubuntu" scheme="http://yoursite.com/tags/ubuntu/"/>
     
       <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
@@ -169,9 +169,9 @@
       <category term="J2EE" scheme="http://yoursite.com/categories/J2EE/"/>
     
     
-      <category term="ubuntu" scheme="http://yoursite.com/tags/ubuntu/"/>
-    
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="ubuntu" scheme="http://yoursite.com/tags/ubuntu/"/>
     
   </entry>
   

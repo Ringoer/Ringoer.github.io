@@ -26,9 +26,9 @@
         <category>mysql</category>
       </categories>
       <tags>
+        <tag>ubuntu</tag>
         <tag>mysql</tag>
         <tag>server</tag>
-        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -52,8 +52,8 @@
         <category>docker</category>
       </categories>
       <tags>
-        <tag>ubuntu</tag>
         <tag>java</tag>
+        <tag>ubuntu</tag>
         <tag>linux</tag>
         <tag>docker</tag>
         <tag>vue</tag>
@@ -67,8 +67,8 @@
         <category>J2EE</category>
       </categories>
       <tags>
-        <tag>ubuntu</tag>
         <tag>java</tag>
+        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -372,9 +372,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
-        <tag>HDU</tag>
         <tag>线段树</tag>
+        <tag>HDU</tag>
+        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
@@ -435,9 +435,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>云霄一中月赛</tag>
         <tag>题解</tag>
         <tag>SPFA</tag>
+        <tag>云霄一中月赛</tag>
       </tags>
   </entry>
   <entry>
@@ -448,8 +448,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>云霄一中月赛</tag>
         <tag>dfs</tag>
         <tag>MCMF</tag>
       </tags>
@@ -462,9 +462,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>题解</tag>
         <tag>模拟</tag>
         <tag>云霄一中月赛</tag>
-        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
@@ -475,8 +475,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>云霄一中月赛</tag>
         <tag>Floyd</tag>
       </tags>
   </entry>
@@ -488,9 +488,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>云霄一中月赛</tag>
         <tag>题解</tag>
         <tag>并查集</tag>
+        <tag>云霄一中月赛</tag>
       </tags>
   </entry>
   <entry>
@@ -501,8 +501,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>云霄一中月赛</tag>
         <tag>数论</tag>
       </tags>
   </entry>
@@ -515,8 +515,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>并查集</tag>
         <tag>Luogu</tag>
+        <tag>并查集</tag>
       </tags>
   </entry>
   <entry>
@@ -538,8 +538,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>线段树</tag>
+        <tag>题解</tag>
         <tag>Luogu</tag>
       </tags>
   </entry>
@@ -551,8 +551,8 @@
         <category>algorithm</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>线段树</tag>
+        <tag>题解</tag>
         <tag>Luogu</tag>
         <tag>algorithm</tag>
         <tag>SegmentTree</tag>
@@ -566,9 +566,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>云霄一中月赛</tag>
         <tag>题解</tag>
         <tag>SPFA</tag>
+        <tag>云霄一中月赛</tag>
       </tags>
   </entry>
   <entry>
@@ -579,8 +579,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>云霄一中月赛</tag>
         <tag>背包dp</tag>
         <tag>贪心</tag>
       </tags>
@@ -593,8 +593,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>云霄一中月赛</tag>
         <tag>数论</tag>
       </tags>
   </entry>
@@ -606,9 +606,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>云霄一中月赛</tag>
         <tag>题解</tag>
         <tag>SPFA</tag>
+        <tag>云霄一中月赛</tag>
       </tags>
   </entry>
   <entry>
@@ -619,8 +619,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>云霄一中月赛</tag>
         <tag>dfs</tag>
       </tags>
   </entry>
@@ -632,8 +632,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>云霄一中月赛</tag>
         <tag>背包dp</tag>
       </tags>
   </entry>
@@ -719,9 +719,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>HDU</tag>
         <tag>题解</tag>
         <tag>SPFA</tag>
-        <tag>HDU</tag>
       </tags>
   </entry>
   <entry>
@@ -776,8 +776,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>云霄一中月赛</tag>
         <tag>dfs</tag>
       </tags>
   </entry>
@@ -789,9 +789,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>题解</tag>
         <tag>模拟</tag>
         <tag>云霄一中月赛</tag>
-        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
@@ -802,9 +802,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>题解</tag>
         <tag>模拟</tag>
         <tag>云霄一中月赛</tag>
-        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
@@ -815,8 +815,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>云霄一中月赛</tag>
         <tag>题解</tag>
+        <tag>云霄一中月赛</tag>
         <tag>数论</tag>
       </tags>
   </entry>
