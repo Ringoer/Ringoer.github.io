@@ -62,6 +62,31 @@
   </entry>
   
   <entry>
+    <title>Git远程操作</title>
+    <link href="http://yoursite.com/programing/remoteGit/"/>
+    <id>http://yoursite.com/programing/remoteGit/</id>
+    <published>2020-11-16T07:54:00.000Z</published>
+    <updated>2020-11-16T13:43:27.446Z</updated>
+    
+    <content type="html"><![CDATA[<p>有了本地操作，肯定还得保存到云端</p><a id="more"></a><h1 id="配置连接"><a href="#配置连接" class="headerlink" title="配置连接"></a>配置连接</h1><p>默认 <a href="https://ringoer.com/programing/localGit/" target="_blank" rel="noopener">本地操作</a> 中的配置已经完成了</p><p>以下命令全部都在 bash 中执行</p><h2 id="生成-ssh-密钥"><a href="#生成-ssh-密钥" class="headerlink" title="生成 ssh 密钥"></a>生成 ssh 密钥</h2><p>执行命令 <code>ssh-keygen -t rsa -C ringoer@qq.com</code></p><p>此时会生成ssh密钥。命令中邮件地址替换为自己的</p><h2 id="查看密钥"><a href="#查看密钥" class="headerlink" title="查看密钥"></a>查看密钥</h2><p>执行命令 <code>cat ~/.ssh/id_rsa.pub</code></p><p>此时会在控制台显示一串密钥，复制下来</p><h2 id="设置密钥"><a href="#设置密钥" class="headerlink" title="设置密钥"></a>设置密钥</h2><p>打开 github，打开 settings，选择 SSH and GPG keys，选择 New SSH key</p><p>title 随便写，key 的文本则填写刚才复制出来的密钥，然后 add key</p><p>一台电脑只需要一个密钥</p><h2 id="测试配对"><a href="#测试配对" class="headerlink" title="测试配对"></a>测试配对</h2><p>执行命令 <code>ssh -T git@github.com</code></p><p>如遇询问 yes or no，请输入 yes 并继续</p><h2 id="设置目标仓库"><a href="#设置目标仓库" class="headerlink" title="设置目标仓库"></a>设置目标仓库</h2><p>在 github 上新建一个 repository，然后复制其 ssh 地址，形如 <a href="mailto:`git@github.com" target="_blank" rel="noopener">`git@github.com</a>:Ringoer/xxx.git`</p><p>注意不要复制到 HTTPS 地址</p><p>然后在本地执行命令 <code>git remote add origin git@github.com:Ringoer/xxx.git</code></p><p>执行后会在本地仓库创建一个名为 origin 的仓库，指向目标远程仓库</p><p>理论上可以随意命名这个仓库，不叫 origin 也可以，但是业界潜规则就是第一个仓库要叫 origin。如果以后新建了其它仓库，可以自己尝试叫别的名字</p><p>如果忘记自己配置了哪些远程仓库，可以通过命令 <code>git remote -v</code> 来查看在当前本地仓库配置的所有远程仓库及其别名</p><p>创建完成后，就可以直接通过 origin 操作远程仓库了</p><p>然后就又是我们熟悉的 CRUD 了</p><p>但是在 Git 远程操作中，略有些变化，大致如下表</p><table><thead><tr><th>动作</th><th>描述</th><th>特点</th></tr></thead><tbody><tr><td>push</td><td>推送本地仓库代码到远程仓库</td><td>会在远程仓库强制创建分支</td></tr><tr><td>pull</td><td>从远程仓库拉取指定分支的代码到本地</td><td>要求本地已有对应分支</td></tr><tr><td>clone</td><td>从远程仓库克隆指定分支的代码到本地</td><td>最好在空目录下克隆，否则会覆盖已有内容</td></tr></tbody></table><h1 id="push"><a href="#push" class="headerlink" title="push"></a>push</h1><p>通过命令 <code>git push</code> 可以上传本地仓库的代码到远程仓库</p><p>该命令有如下变体</p><table><thead><tr><th>命令</th><th>描述</th></tr></thead><tbody><tr><td>git push -u origin master</td><td>推送本地仓库的 master 分支到远程仓库的 master 分支，并将该远程仓库设置为上传流（upstream）</td></tr><tr><td>git push</td><td>推送本地仓库所有修改到被设置为 upstream 的远程仓库</td></tr><tr><td>git push origin master</td><td>推送本地仓库的 master 分支到远程仓库的 master 分支</td></tr><tr><td>git push origin master:child</td><td>推送本地仓库的 master 分支到远程仓库的 child 分支，格式是 本地:远程</td></tr></tbody></table><h1 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h1><p>通过命令 <code>git clone</code> 可以拉取远程仓库代码到本地仓库</p><p>该命令有如下变体</p><table><thead><tr><th>命令</th><th>描述</th></tr></thead><tbody><tr><td>git clone [git]</td><td>拉取指定 git 地址对应的仓库的所有分支代码，到新目录中，新目录与远程 repository 的名字相同</td></tr><tr><td>git clone [git] .</td><td>拉取指定 git 地址对应的仓库的所有分支代码，到当前目录中</td></tr><tr><td>git clone [git] [folderName]</td><td>拉取指定 git 地址对应的仓库的所有分支代码，到指定名字目录中，若该目录不存在会被新建，否则已有内容会被覆盖</td></tr></tbody></table><p>注意，执行 clone 之后不会自动进入新文件夹，需要手动进入</p><h1 id="pull"><a href="#pull" class="headerlink" title="pull"></a>pull</h1><p>通过命令 <code>git pull</code> 可以拉取远程仓库代码到本地仓库已有分支</p><p>该命令可能会产生冲突</p><p>该命令有如下变体</p><table><thead><tr><th>命令</th><th>描述</th></tr></thead><tbody><tr><td>git pull</td><td>拉取 upstream 仓库的，与当前所在分支相同的分支的所有内容到本地</td></tr><tr><td>git pull origin master:child</td><td>拉取 origin 仓库的，master 分支的代码到本地 child 分支</td></tr></tbody></table><p>在该命令中如果想回避冲突，可以使用 <code>git stash</code> 和 <code>git stash pop</code> 组合命令</p><h1 id="stash"><a href="#stash" class="headerlink" title="stash"></a>stash</h1><h2 id="压栈"><a href="#压栈" class="headerlink" title="压栈"></a>压栈</h2><p>通过命令 <code>git stash</code> 可以将本地仓库已经标记但还未 commit 的文件隐藏进缓存栈中</p><p>此时执行 <code>git pull</code> 不会与缓存栈中文件作对比</p><p>可以多次执行命令 <code>git stash</code> 来不断压栈</p><h2 id="弹出"><a href="#弹出" class="headerlink" title="弹出"></a>弹出</h2><p>当 pull 完成后可以通过命令 <code>git stash pop</code> 来弹出栈顶内容</p><p>可以根据需要来弹出，但因为栈的特性，必然是只能按顺序弹出</p><p>该操作可能会引起冲突</p><h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><p>可以通过命令 <code>git stash list</code> 来查看当前缓存栈中保存的内容</p><h2 id="清空"><a href="#清空" class="headerlink" title="清空"></a>清空</h2><p>可以通过命令 <code>git stash clear</code> 来清空缓存栈中所需内容</p><p>注意，该操作不可复原</p><h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a><span id="other">其它</span></h1><h2 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h2><p>可以通过 <code>code ~/.bashrc</code> 命令，通过 vscode 打开 bash 配置文件</p><p>然后通过 alias 指令，指定缩写</p><p>如 <code>alias ga=&quot;git add&quot;</code> 来令缩写命令 ga 等效于 git add 命令</p><p>不止 git 命令，其它 bash 命令也可以通过这种方法设置缩写</p><h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><p>可以通过 <code>git rebase</code> 命令来为 git log 指定排版</p><p>假设现在有三个版本，版本号如图</p><table><thead><tr><th>版本</th><th>版本号</th></tr></thead><tbody><tr><td>1</td><td>bikh345</td></tr><tr><td>2</td><td>12jop3i</td></tr><tr><td>3（最新）</td><td>u09dsf3</td></tr></tbody></table><p>现在想合并已有版本1和2，使得日志缩短，可以通过命令 <code>git rebase -i u09dsf3</code> 来告诉 git，我想对 u09dsf3 之前的版本进行修改</p><p>此时 git 会弹出默认编辑器，向你请求修改，同时会给出帮助，按帮助修改即可</p><p>修改完毕后，保存，关闭这个文件，git 就会开始处理你的修改</p><p>在处理完成之前，如果你反悔了，可以通过命令 <code>git rebase --abort</code> 来取消这次 rebase</p><p>如果又反悔了（什么人啊这是），可以通过命令 <code>git rebase --continue</code> 来继续这次 rebase</p><p>rebase 也有可能出错，看看日志解决即可</p><p>大概就这些</p><p>感谢饥人谷对 <a href="#other">其它</a> 部分的帮助</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有了本地操作，肯定还得保存到云端&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="programing" scheme="http://yoursite.com/categories/programing/"/>
+    
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+      <category term="programing" scheme="http://yoursite.com/tags/programing/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Git本地操作</title>
     <link href="http://yoursite.com/programing/localGit/"/>
     <id>http://yoursite.com/programing/localGit/</id>
@@ -474,31 +499,6 @@
     <summary type="html">
     
       &lt;p&gt;尝试了二元线性回归。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="machineLearning" scheme="http://yoursite.com/categories/machineLearning/"/>
-    
-    
-      <category term="Keras" scheme="http://yoursite.com/tags/Keras/"/>
-    
-      <category term="machineLearning" scheme="http://yoursite.com/tags/machineLearning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>20190907 Keras试用</title>
-    <link href="http://yoursite.com/machineLearning/20190907/"/>
-    <id>http://yoursite.com/machineLearning/20190907/</id>
-    <published>2019-09-07T15:09:00.000Z</published>
-    <updated>2020-11-12T12:29:47.221Z</updated>
-    
-    <content type="html"><![CDATA[<p>第一次入门TensorFlow，然后先搞搞Keras。<br><a id="more"></a><br>装环境：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorflow</span><br></pre></td></tr></table></figure></p><p>没有合适版本的话，检查一下自己的pip是不是最新版的，python是32位还是64位。  </p><p>入门代码：线性回归<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成训练集</span></span><br><span class="line"><span class="comment">#trX和trY表示训练用的1000个点二维坐标的x和y，类型是nparray</span></span><br><span class="line"><span class="comment">#trX中，有1000组数据，每组数据只有1个元素，所以下文中Dense的input_dim=1</span></span><br><span class="line">trX = np.random.uniform(<span class="number">-100</span>, <span class="number">100</span>, size=<span class="number">1000</span>) <span class="comment">#生成1000个在-100~100之间的随机数，返回一个nparray</span></span><br><span class="line">trY = <span class="number">5</span> * trX + <span class="number">6</span> + np.random.randn(*trX.shape) * <span class="number">0.2</span> <span class="comment">#期望y=5x+6，并加入一点点随机波动</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#实例化model为层次模型</span></span><br><span class="line">model = Sequential()</span><br><span class="line"></span><br><span class="line"><span class="comment">#为模型添加layer</span></span><br><span class="line"><span class="comment">#本示例是RNN，所以使用Dense作为layer</span></span><br><span class="line"><span class="comment">#前一个Dense的output_dim必须和后一个的input_dim相同</span></span><br><span class="line"><span class="comment">#第一个Dense的input_dim必须等于训练集输入的每组元素数</span></span><br><span class="line"><span class="comment">#最后一个的output_dim必须等于训练集输出输出的每组元素数</span></span><br><span class="line">model.add(Dense(input_dim=<span class="number">1</span>, output_dim=<span class="number">200</span>, init=<span class="string">'uniform'</span>, activation=<span class="string">'linear'</span>))</span><br><span class="line">model.add(Dense(input_dim=<span class="number">200</span>, output_dim=<span class="number">1</span>, init=<span class="string">'uniform'</span>, activation=<span class="string">'linear'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#编译模型，准备训练</span></span><br><span class="line"><span class="comment">#optimizer是优化器，一般选adam</span></span><br><span class="line"><span class="comment">#loss是损失函数，一般使用mse（均方误差）即可</span></span><br><span class="line"><span class="comment">#loss越小，说明训练效果越好，但要小心过拟合</span></span><br><span class="line">model.compile(optimizer=<span class="string">'adam'</span>, loss=<span class="string">'mse'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#训练</span></span><br><span class="line"><span class="comment">#trX处填写训练集输入，trY处填写训练集输出</span></span><br><span class="line"><span class="comment">#nb_epoch是迭代次数，verbose=1表示在控制台输出每次epoch的信息</span></span><br><span class="line">model.fit(trX, trY, nb_epoch=<span class="number">200</span>, verbose=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#np.array()要求传入一个list，返回一个nparray</span></span><br><span class="line"><span class="comment">#arr.tolist()要求arr是一个nparray，返回一个list</span></span><br><span class="line"><span class="comment">#model.predict要求传入一个nparray</span></span><br><span class="line">l = np.array([<span class="number">3</span>,<span class="number">1</span>,<span class="number">-5</span>,<span class="number">-23</span>,<span class="number">-42</span>,<span class="number">52</span>]) <span class="comment">#测试集</span></span><br><span class="line">res = model.predict(l) <span class="comment">#结果</span></span><br><span class="line">print(l)</span><br><span class="line">print(res)</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;第一次入门TensorFlow，然后先搞搞Keras。&lt;br&gt;
     
     </summary>
     

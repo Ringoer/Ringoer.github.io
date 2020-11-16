@@ -17,6 +17,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Git远程操作]]></title>
+    <url>%2Fprograming%2FremoteGit%2F</url>
+    <content type="text"><![CDATA[有了本地操作，肯定还得保存到云端 配置连接默认 本地操作 中的配置已经完成了 以下命令全部都在 bash 中执行 生成 ssh 密钥执行命令 ssh-keygen -t rsa -C ringoer@qq.com 此时会生成ssh密钥。命令中邮件地址替换为自己的 查看密钥执行命令 cat ~/.ssh/id_rsa.pub 此时会在控制台显示一串密钥，复制下来 设置密钥打开 github，打开 settings，选择 SSH and GPG keys，选择 New SSH key title 随便写，key 的文本则填写刚才复制出来的密钥，然后 add key 一台电脑只需要一个密钥 测试配对执行命令 ssh -T git@github.com 如遇询问 yes or no，请输入 yes 并继续 设置目标仓库在 github 上新建一个 repository，然后复制其 ssh 地址，形如 `git@github.com:Ringoer/xxx.git` 注意不要复制到 HTTPS 地址 然后在本地执行命令 git remote add origin git@github.com:Ringoer/xxx.git 执行后会在本地仓库创建一个名为 origin 的仓库，指向目标远程仓库 理论上可以随意命名这个仓库，不叫 origin 也可以，但是业界潜规则就是第一个仓库要叫 origin。如果以后新建了其它仓库，可以自己尝试叫别的名字 如果忘记自己配置了哪些远程仓库，可以通过命令 git remote -v 来查看在当前本地仓库配置的所有远程仓库及其别名 创建完成后，就可以直接通过 origin 操作远程仓库了 然后就又是我们熟悉的 CRUD 了 但是在 Git 远程操作中，略有些变化，大致如下表 动作 描述 特点 push 推送本地仓库代码到远程仓库 会在远程仓库强制创建分支 pull 从远程仓库拉取指定分支的代码到本地 要求本地已有对应分支 clone 从远程仓库克隆指定分支的代码到本地 最好在空目录下克隆，否则会覆盖已有内容 push通过命令 git push 可以上传本地仓库的代码到远程仓库 该命令有如下变体 命令 描述 git push -u origin master 推送本地仓库的 master 分支到远程仓库的 master 分支，并将该远程仓库设置为上传流（upstream） git push 推送本地仓库所有修改到被设置为 upstream 的远程仓库 git push origin master 推送本地仓库的 master 分支到远程仓库的 master 分支 git push origin master:child 推送本地仓库的 master 分支到远程仓库的 child 分支，格式是 本地:远程 clone通过命令 git clone 可以拉取远程仓库代码到本地仓库 该命令有如下变体 命令 描述 git clone [git] 拉取指定 git 地址对应的仓库的所有分支代码，到新目录中，新目录与远程 repository 的名字相同 git clone [git] . 拉取指定 git 地址对应的仓库的所有分支代码，到当前目录中 git clone [git] [folderName] 拉取指定 git 地址对应的仓库的所有分支代码，到指定名字目录中，若该目录不存在会被新建，否则已有内容会被覆盖 注意，执行 clone 之后不会自动进入新文件夹，需要手动进入 pull通过命令 git pull 可以拉取远程仓库代码到本地仓库已有分支 该命令可能会产生冲突 该命令有如下变体 命令 描述 git pull 拉取 upstream 仓库的，与当前所在分支相同的分支的所有内容到本地 git pull origin master:child 拉取 origin 仓库的，master 分支的代码到本地 child 分支 在该命令中如果想回避冲突，可以使用 git stash 和 git stash pop 组合命令 stash压栈通过命令 git stash 可以将本地仓库已经标记但还未 commit 的文件隐藏进缓存栈中 此时执行 git pull 不会与缓存栈中文件作对比 可以多次执行命令 git stash 来不断压栈 弹出当 pull 完成后可以通过命令 git stash pop 来弹出栈顶内容 可以根据需要来弹出，但因为栈的特性，必然是只能按顺序弹出 该操作可能会引起冲突 查看可以通过命令 git stash list 来查看当前缓存栈中保存的内容 清空可以通过命令 git stash clear 来清空缓存栈中所需内容 注意，该操作不可复原 其它缩写可以通过 code ~/.bashrc 命令，通过 vscode 打开 bash 配置文件 然后通过 alias 指令，指定缩写 如 alias ga=&quot;git add&quot; 来令缩写命令 ga 等效于 git add 命令 不止 git 命令，其它 bash 命令也可以通过这种方法设置缩写 格式可以通过 git rebase 命令来为 git log 指定排版 假设现在有三个版本，版本号如图 版本 版本号 1 bikh345 2 12jop3i 3（最新） u09dsf3 现在想合并已有版本1和2，使得日志缩短，可以通过命令 git rebase -i u09dsf3 来告诉 git，我想对 u09dsf3 之前的版本进行修改 此时 git 会弹出默认编辑器，向你请求修改，同时会给出帮助，按帮助修改即可 修改完毕后，保存，关闭这个文件，git 就会开始处理你的修改 在处理完成之前，如果你反悔了，可以通过命令 git rebase --abort 来取消这次 rebase 如果又反悔了（什么人啊这是），可以通过命令 git rebase --continue 来继续这次 rebase rebase 也有可能出错，看看日志解决即可 大概就这些 感谢饥人谷对 其它 部分的帮助]]></content>
+      <categories>
+        <category>programing</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>programing</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Git本地操作]]></title>
     <url>%2Fprograming%2FlocalGit%2F</url>
     <content type="text"><![CDATA[关于提交到 github 之前，在本地仓库的操作 在使用 Git 之前，要先配置一下本地的 Git Bash 配置一般来说，有如下6行配置，是建议运行的 123456git config --global user.name [yourName]git config --global user.email [yourEmail]git config --global push.default simplegit config --global core.quotepath falsegit config --global core.editor "code --wait"git config --global core.autocrlf input user这两行是必须执行的，用于告诉 Git 你的个人信息 例如 12git config --global user.name Ringoergit config --global user.email ringoer@qq.com push.default这个参数有两个可取的值，具体如下 参数值 版本 行为 matching 1.x 版本默认 上传本地所有分支 simple 2.x 版本默认 上传本地当前分支 建议手动执行一下该命令，以免出现意外的上传 core.quotepath用于配置是否开启路径转义，默认值是 true，表示中文路径名或文件名要自动转义为形如 \xx\xx 的类似 unicode 的形式 core.editor用于指定当 Git 希望打开一个文本编辑器时，执行的命令行。默认值是 vi，表示启动 vim core.autocrlf首先了解一下 CRLF、CR、LF 分别是什么 参数值 对应转义字符 CRLF \r\n CR \r LF \n core.autocrlf 用于指定行结束符 LF 和 CRLF 之间的转换，具体如下 参数值 提交（commit）行为 签出（checkout）行为 true（默认） CRLF 转换为 LF LF 转换为 CRLF input CRLF 转换为 LF 不转换 false 不转换 不转换 鉴于 Windows 下的行结束符通常是 CRLF，Mac 和 Linux 下通常是 LF，所以最好是选择 input 参数值，以免产生跨平台协作问题 说到 Git 本地操作，那必然也是对某目标的 CRUD。是什么目标呢？是分支 分支（Branch）首先要了解什么是分支 每当我们想保存代码的时候，往往有很多文件，组成一个项目。这个项目此时此刻的所有状态，合称为一个版本，而这个项目的所有版本，都处于同一个分支之中 Create一般有两种新增 初始化本地仓库时，新增默认的分支 已有分支的情况下，新增新的分支 初始化首先通过 cd 命令进入项目所在目录，然后使用 git init 来完成本地仓库的初始化 初始化完成之后，会在该目录中产生一个 .git 文件夹，这个就是本地仓库 默认分支是 master，但由于 zzzq 等原因，现在默认分支改名叫 main 初始化完成后，.git 目录下会有一个名为 .gitignore 的文本文档，里面用类正则表达式写法，指明了在提交操作中应该忽略哪些文件 新增现在我们已经有一个 master 分支了，想要新增一个分支 可以使用 git branch [branchName] 命令来新增分支 假设新分支名为 child，那么命令就是 git branch child，此时就新建了一个名为 child 的新分支 注意该操作仅创建了分支，不会自动移动到新分支 Retrieve查看所有分支情况可以使用 git branch 查看本地仓库中的所有分支名称 查看当前分支情况状态可以通过 git status 命令查看当前分支的状态 通常会显示以下种内容 还未执行 标记 的文件列表 已经执行 标记 ，还未执行 提交 的文件列表 存在 冲突 的文件列表 可以通过 -sb 选项简化显示的内容（只显示文件列表） 日志日志有两种，log 和 reflog，关于其差别请阅读 重置 部分内容 每条日志都记录了一次提交，包括这次提交的版本号、理由等 可以通过 git log 命令查看当前分支的局部日志（不包括重置操作） 可以通过 git reflog 命令查看当前分支的所有日志（包括重置操作） Update要让增删有意义，那么自然是要进行符合我心意的修改了 此处的修改分支，是指修改本地仓库内保存的分支内容 提交初始化的分支，或是新建的分支，里面都是没有内容的。如何让它充实呢？ 可以通过 git commit 命令让它充实。 但是仅仅是 git commit 来上传新版本的话，以后无法查询版本更新信息，所以我们需要 -m 和 -v 参数 -mgit commit -m [string] 表示将 -m 选项后的字符串作为本次提交的理由（备注），使得后续可以查看该版本提交时的相关信息 但是 -m 因为是在命令行中直接给出，人在潜意识影响下会倾向于写短理由，不利于以后查询，所以有了 -v 选项 -vgit commit -v 可以打开 Git 默认的文本编辑器（默认是 vim）来等待用户写入提交理由，直到用户在新打开的文件中写完理由并保存后才会继续提交 因为是在新文件中书写理由，视野比较开阔，会更容易写出更易阅读的理由，所以推荐手动上传时，使用 -v 选项，自动上传时才选择 -m 选项 但是 Git 怎么知道你要上传哪些内容呢？万一你只修改了部分文件，只想上传这一部分，怎么办呢 标记可以通过 git add [filename] 命令来标记要提交的文件 可以用 git add . 来标记目录下的所有文件（注意点号） 此处的标记，指的是“将要同步到本地仓库当前分支的更新”，一般有三种情况 文件状态 释义 commit 后的行为 New 新建 向本地仓库当前分支中 添加 该文件 Modified 更新 修改 本地仓库当前分支中的对应文件 Deleted 删除 从本地仓库当前分支中 删除 该文件 可见，虽然命令中采用的是 add 短语，但实际上表达的意思是“添加标记”，而不是单纯的“新增” 只有当文件被标记后，才可以在下一次 commit 操作中被提交到本地仓库 怎么办，代码写着写着，发现以前的某个版本更优秀，我想回去———— 重置可以通过 git reset --hard [version] 来切换版本 版本号可以打完整，也可以打前缀，一般选择7位前缀 查看版本号，可以通过 git log 或 git reflog 来查看，或前往 github 网站，通过可视化界面查看 假设现在是版本4，想切换到版本2，那么切换后，log 里只会保留如下内容（简单说法） commit 版本1 commit 版本2 而 reflog 里会保留所有内容 commit 版本1 commit 版本2 commit 版本3 commit 版本4 reset 版本2 注意一旦切换版本，将会丢失当前所有修改，请确保备份 如果不想重置所有修改，也可以选择回滚部分事务 回滚可以通过 git revert [version] 来回滚当前分支上的某次提交事务 可能产生 冲突 Delete可以通过 git branch -d [branchName] 来删除指定分支 注意删除后该分支所以内容都会从本地消失，请确保已经备份 有很多操作会产生冲突，怎么办呢？ 冲突当发生冲突的时候，首先要找到冲突 前述的 git status 命令，就可以找到现在有冲突的文件 然后我们需要手动解决冲突 假设有文件 1.txt，里面的原内容是 今天是2020年11月16日，新内容是 今天是1970年1月1日 当要将新内容同步到 1.txt 时，就会发生冲突 此时 1.txt 内容变更为类似如下模样 12345&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD(当前更改)今天是2020年11月16日=======今天是1970年1月1日&gt;&gt;&gt;&gt;&gt;&gt;&gt; child(传入的更改) 可见冲突的格式是以 &lt;&lt;&lt;&lt;&lt;&lt;&lt; 开头，以 &gt;&gt;&gt;&gt;&gt;&gt;&gt; 结尾，以 ======= 分隔 所以当我们打开一个可能有冲突的文件时，可以搜索 ======= 来快速定位冲突在文件中的位置 此时我们怎么处理这个冲突呢？ 可以选择性保留我们想要的字段，假设保留新内容，那么可以对 1.txt 作出如下操作 12345&lt;&lt;&lt;&lt;&lt;&lt;&lt; master(当前更改) 【删除该行】今天是2020年11月16日 【删除该行】======= 【删除该行】今天是1970年1月1日&gt;&gt;&gt;&gt;&gt;&gt;&gt; child(传入的更改)【删除该行】 只保留我们需要的部分，其余部分删除 那刚才创建的新分支又有什么用呢？ 多分支检出可以通过 git checkout [branchName] 命令来改变 Git 当前所在的分支 该操作称之为 检出 当执行该命令时，会将指定分支的最后一次提交的内容同步到当前目录下 该操作可能会产生冲突 若同步前的文件内容与将要同步下来的内容无冲突，则保留同步前的文件；若冲突，则需要先解决冲突，解决冲突后不需要再次检出 合并可以通过 git merge [branchName] 命令来将目标分支的内容合并到当前分支下 该操作在完成后，会自动向本地仓库中提交合并的结果，且理由自动设定为 Merge branch [branchName]，表示此次提交是因为合并而产生的 该操作可能会产生冲突 当产生冲突时，需要按顺序完成以下步骤以完成合并流程 解决冲突 git add [冲突的文件] git commit（不需要填写理由） 如上，即是 Git 本地操作中最常用的部分内容 谢谢阅读]]></content>
@@ -431,8 +443,8 @@
         <category>algorithm</category>
       </categories>
       <tags>
-        <tag>ShortestPath</tag>
         <tag>algorithm</tag>
+        <tag>ShortestPath</tag>
       </tags>
   </entry>
   <entry>
@@ -693,8 +705,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>Luogu</tag>
         <tag>bfs</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
