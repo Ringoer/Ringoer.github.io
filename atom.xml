@@ -39,6 +39,29 @@
   </entry>
   
   <entry>
+    <title>图解非对称加密</title>
+    <link href="http://yoursite.com/algorithm/rsa/"/>
+    <id>http://yoursite.com/algorithm/rsa/</id>
+    <published>2020-11-16T09:09:00.000Z</published>
+    <updated>2020-11-16T11:24:29.268Z</updated>
+    
+    <content type="html"><![CDATA[<p>学习 HTTPS 必备的 RSA 算法的基础</p><a id="more"></a><h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>所谓非对称加密，就是服务器和客户端，在不直接互通私钥的情况下，通过公钥和互相发送的密文，推出本次连接使用的密钥</p><p>非对称加密涉及的数学原理非常多，想了解的可以看 <a href="https://blog.csdn.net/wjiabin/article/details/85228078" target="_blank" rel="noopener">非对称加密算法–RSA加密原理</a></p><p>本文不解释数学原理，只讲解加密的具体流程</p><h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p>首先看下图，下图对流程作出了简单描述</p><p><img src="https://pic.ringoer.com/RSA%E5%9B%BE%E8%A7%A3.png" alt="RSA图解"></p><p>接下来开始具体描述</p><ol><li>设服务器有一组公钥 [k1,k2] 和一个取余公式 <code>p=&gt;k1**p%k2</code>，其中 k1、k2、p 均要求是质数</li><li>服务器收到了客户端的连接请求，将公钥发给客户端</li><li>服务器产生一个<strong>随机质数</strong> p，代入公钥求得密文 m1，发送给客户端</li><li>客户端也产生一个<strong>随机质数</strong> q，代入公钥求得密文 m2，发送给服务器</li><li>服务器和客户端各自使用自己收到的密文，取代公钥中的 k1，求得结果就是共同的密钥</li><li>往后的通信中，双方均使用该密钥，进行对称加密通信</li></ol><p>显然 k2 要尽可能大，才能尽可能减小碰撞</p><p>现在代入值计算一下是否正确</p><ol><li>设 k1=13，k2=31，p=23，q=19</li><li><code>m1 = 13**23%31 =24</code>，<code>m2 = 13**19%31 = 21</code></li><li><code>21**23%31 = 17</code>，<code>24**19%31 = 17</code></li><li>验证完毕</li></ol><p>感兴趣的朋友可以自行验证一下，面试的时候能答出上述流程就行了</p><p>至于数学原理，我不知道你能不能看懂，反正我看不懂，2333</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;学习 HTTPS 必备的 RSA 算法的基础&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="algorithm" scheme="http://yoursite.com/categories/algorithm/"/>
+    
+    
+      <category term="algorithm" scheme="http://yoursite.com/tags/algorithm/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Git本地操作</title>
     <link href="http://yoursite.com/programing/localGit/"/>
     <id>http://yoursite.com/programing/localGit/</id>
@@ -486,29 +509,6 @@
       <category term="Keras" scheme="http://yoursite.com/tags/Keras/"/>
     
       <category term="machineLearning" scheme="http://yoursite.com/tags/machineLearning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>20190715 Python学习随录</title>
-    <link href="http://yoursite.com/python/python-20190715/"/>
-    <id>http://yoursite.com/python/python-20190715/</id>
-    <published>2019-07-15T06:32:00.000Z</published>
-    <updated>2019-07-15T08:53:28.443Z</updated>
-    
-    <content type="html"><![CDATA[<p>学习随录系列<br><a id="more"></a><br>功能：实现对一个由若干行组成、每行均为[0.xxx, 0.xxx, …]格式的json文件的裁剪</p><p>README</p><ol><li>在同一目录下新建一个input.txt，其中存放需要转换的文件名。<br>！仅文件名，无后缀名，无路径</li><li>在该目录下放置同名的json文件</li><li>在该目录启动cmd，运行该py文件</li><li>本代码只注重效率，未考虑文件读取失败的问题，故请确保有合法输入文件</li></ol><p>代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"></span><br><span class="line">numbers = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>] <span class="comment">#只保留numbers[i]的整数倍行</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'input.txt'</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> input_file: <span class="comment">#读取文件名</span></span><br><span class="line"></span><br><span class="line">files = input_file.read().decode(<span class="string">'utf-8'</span>).split(<span class="string">'\r'</span>) <span class="comment">#读取.解码.分割</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> filename <span class="keyword">in</span> files: <span class="comment">#遍历</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> filename == <span class="string">'\n'</span> <span class="keyword">or</span> filename == <span class="string">'\r'</span>:</span><br><span class="line"><span class="keyword">break</span> <span class="comment">#防止空行异常跳出</span></span><br><span class="line"><span class="keyword">if</span> filename[<span class="number">0</span>] == <span class="string">'\n'</span>:</span><br><span class="line">filename = filename[<span class="number">1</span>:] <span class="comment">#防止前导换行符</span></span><br><span class="line"><span class="keyword">if</span> filename[len(filename)<span class="number">-1</span>] == <span class="string">'\n'</span>:</span><br><span class="line">filename = filename[:len(filename)<span class="number">-1</span>] <span class="comment">#防止后置换行符</span></span><br><span class="line"></span><br><span class="line">infile = filename + <span class="string">'.'</span> + <span class="string">'json'</span> <span class="comment">#构造输入文件名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> numbers: <span class="comment">#遍历切割依据</span></span><br><span class="line"></span><br><span class="line">outfile = filename + <span class="string">'-'</span> + str(n) + <span class="string">'.'</span> + <span class="string">'json'</span> <span class="comment">#构造输出文件名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(infile, <span class="string">'rb'</span>) <span class="keyword">as</span> fr: <span class="comment">#打开输入文件</span></span><br><span class="line">file_str = fr.read().decode(<span class="string">'utf-8'</span>).split(<span class="string">'['</span>) <span class="comment">#读取.解码.分割</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(outfile, <span class="string">'wb'</span>) <span class="keyword">as</span> fw: <span class="comment">#打开输出文件</span></span><br><span class="line">ans = file_str[<span class="number">0</span>] + <span class="string">'['</span> <span class="comment">#预置</span></span><br><span class="line">i = n + <span class="number">1</span> <span class="comment">#取数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> i &lt; len(file_str): <span class="comment">#取所需行</span></span><br><span class="line">ans += <span class="string">'['</span> + file_str[i] <span class="comment">#构造输出文件</span></span><br><span class="line">i += n</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ans[len(ans)<span class="number">-1</span>] != <span class="string">'&#125;'</span>: <span class="comment">#防止异常结束</span></span><br><span class="line">i = len(ans) - <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> ans[i] != <span class="string">','</span>:</span><br><span class="line">i -= <span class="number">1</span></span><br><span class="line">ans = ans[:i] + <span class="string">']&#125;'</span></span><br><span class="line"></span><br><span class="line">fw.write(ans.encode(<span class="string">'utf-8'</span>)) <span class="comment">#写文件</span></span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;学习随录系列&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://yoursite.com/categories/python/"/>
-    
-    
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
   </entry>
   

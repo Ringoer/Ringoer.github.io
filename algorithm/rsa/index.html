@@ -73,7 +73,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="algorithm,">
 
 
 
@@ -84,16 +84,20 @@
 
 
 
-<meta name="description" content="随处可见的一般社畜">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ringo&#39;s Coding Life">
-<meta property="og:url" content="http://yoursite.com/archives/2020/11/index.html">
+<meta name="description" content="学习 HTTPS 必备的 RSA 算法的基础">
+<meta name="keywords" content="algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图解非对称加密">
+<meta property="og:url" content="http://yoursite.com/algorithm/rsa/index.html">
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
-<meta property="og:description" content="随处可见的一般社畜">
+<meta property="og:description" content="学习 HTTPS 必备的 RSA 算法的基础">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://pic.ringoer.com/RSA%E5%9B%BE%E8%A7%A3.png">
+<meta property="og:updated_time" content="2020-11-16T11:24:29.268Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ringo&#39;s Coding Life">
-<meta name="twitter:description" content="随处可见的一般社畜">
+<meta name="twitter:title" content="图解非对称加密">
+<meta name="twitter:description" content="学习 HTTPS 必备的 RSA 算法的基础">
+<meta name="twitter:image" content="https://pic.ringoer.com/RSA%E5%9B%BE%E8%A7%A3.png">
 
 
 
@@ -123,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2020/11/">
+  <link rel="canonical" href="http://yoursite.com/algorithm/rsa/">
 
 
 
 
 
-  <title>归档 | Ringo's Coding Life</title>
+  <title>图解非对称加密 | Ringo's Coding Life</title>
   
 
 
@@ -148,7 +152,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -284,141 +288,208 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/algorithm/rsa/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ringoer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ringo's Coding Life">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h1 class="post-title" itemprop="name headline">图解非对称加密</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-16T17:09:00+08:00">
+                2020-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        很好! 目前共计 87 篇文章。 继续努力。
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">algorithm</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2020">2020</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/algorithm/rsa/" itemprop="url">
-              
-                <span itemprop="name">图解非对称加密</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-11-16T17:09:00+08:00" content="2020-11-16">
-          11-16
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/programing/localGit/" itemprop="url">
-              
-                <span itemprop="name">Git本地操作</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-11-16T12:40:00+08:00" content="2020-11-16">
-          11-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/programing/commandLine/" itemprop="url">
-              
-                <span itemprop="name">常用命令行合集</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-11-13T18:49:00+08:00" content="2020-11-13">
-          11-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>学习 HTTPS 必备的 RSA 算法的基础</p>
+<a id="more"></a>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>所谓非对称加密，就是服务器和客户端，在不直接互通私钥的情况下，通过公钥和互相发送的密文，推出本次连接使用的密钥</p>
+<p>非对称加密涉及的数学原理非常多，想了解的可以看 <a href="https://blog.csdn.net/wjiabin/article/details/85228078" target="_blank" rel="noopener">非对称加密算法–RSA加密原理</a></p>
+<p>本文不解释数学原理，只讲解加密的具体流程</p>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p>首先看下图，下图对流程作出了简单描述</p>
+<p><img src="https://pic.ringoer.com/RSA%E5%9B%BE%E8%A7%A3.png" alt="RSA图解"></p>
+<p>接下来开始具体描述</p>
+<ol>
+<li>设服务器有一组公钥 [k1,k2] 和一个取余公式 <code>p=&gt;k1**p%k2</code>，其中 k1、k2、p 均要求是质数</li>
+<li>服务器收到了客户端的连接请求，将公钥发给客户端</li>
+<li>服务器产生一个<strong>随机质数</strong> p，代入公钥求得密文 m1，发送给客户端</li>
+<li>客户端也产生一个<strong>随机质数</strong> q，代入公钥求得密文 m2，发送给服务器</li>
+<li>服务器和客户端各自使用自己收到的密文，取代公钥中的 k1，求得结果就是共同的密钥</li>
+<li>往后的通信中，双方均使用该密钥，进行对称加密通信</li>
+</ol>
+<p>显然 k2 要尽可能大，才能尽可能减小碰撞</p>
+<p>现在代入值计算一下是否正确</p>
+<ol>
+<li>设 k1=13，k2=31，p=23，q=19</li>
+<li><code>m1 = 13**23%31 =24</code>，<code>m2 = 13**19%31 = 21</code></li>
+<li><code>21**23%31 = 17</code>，<code>24**19%31 = 17</code></li>
+<li>验证完毕</li>
+</ol>
+<p>感兴趣的朋友可以自行验证一下，面试的时候能答出上述流程就行了</p>
+<p>至于数学原理，我不知道你能不能看懂，反正我看不懂，2333</p>
 
       
-
     </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--It's the end.<i class="fa fa-life-ring"></i>Thanks for your read.--</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/programing/localGit/" rel="next" title="Git本地操作">
+                <i class="fa fa-chevron-left"></i> Git本地操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/uncategorized/mainpage/" rel="prev" title="Welcome to No. 68 Floating Island">
+                Welcome to No. 68 Floating Island <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -426,6 +497,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -446,8 +521,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -508,6 +592,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流程"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -643,6 +743,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
