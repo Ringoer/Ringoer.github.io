@@ -19,7 +19,7 @@
   <entry>
     <title><![CDATA[Git远程操作]]></title>
     <url>%2Fprograming%2FremoteGit%2F</url>
-    <content type="text"><![CDATA[有了本地操作，肯定还得保存到云端 配置连接默认 本地操作 中的配置已经完成了 以下命令全部都在 bash 中执行 生成 ssh 密钥执行命令 ssh-keygen -t rsa -C ringoer@qq.com 此时会生成ssh密钥。命令中邮件地址替换为自己的 查看密钥执行命令 cat ~/.ssh/id_rsa.pub 此时会在控制台显示一串密钥，复制下来 设置密钥打开 github，打开 settings，选择 SSH and GPG keys，选择 New SSH key title 随便写，key 的文本则填写刚才复制出来的密钥，然后 add key 一台电脑只需要一个密钥 测试配对执行命令 ssh -T git@github.com 如遇询问 yes or no，请输入 yes 并继续 设置目标仓库在 github 上新建一个 repository，然后复制其 ssh 地址，形如 `git@github.com:Ringoer/xxx.git` 注意不要复制到 HTTPS 地址 然后在本地执行命令 git remote add origin git@github.com:Ringoer/xxx.git 执行后会在本地仓库创建一个名为 origin 的仓库，指向目标远程仓库 理论上可以随意命名这个仓库，不叫 origin 也可以，但是业界潜规则就是第一个仓库要叫 origin。如果以后新建了其它仓库，可以自己尝试叫别的名字 如果忘记自己配置了哪些远程仓库，可以通过命令 git remote -v 来查看在当前本地仓库配置的所有远程仓库及其别名 创建完成后，就可以直接通过 origin 操作远程仓库了 然后就又是我们熟悉的 CRUD 了 但是在 Git 远程操作中，略有些变化，大致如下表 动作 描述 特点 push 推送本地仓库代码到远程仓库 会在远程仓库强制创建分支 pull 从远程仓库拉取指定分支的代码到本地 要求本地已有对应分支 clone 从远程仓库克隆指定分支的代码到本地 最好在空目录下克隆，否则会覆盖已有内容 push通过命令 git push 可以上传本地仓库的代码到远程仓库 该命令有如下变体 命令 描述 git push -u origin master 推送本地仓库的 master 分支到远程仓库的 master 分支，并将该远程仓库设置为上传流（upstream） git push 推送本地仓库所有修改到被设置为 upstream 的远程仓库 git push origin master 推送本地仓库的 master 分支到远程仓库的 master 分支 git push origin master:child 推送本地仓库的 master 分支到远程仓库的 child 分支，格式是 本地:远程 clone通过命令 git clone 可以拉取远程仓库代码到本地仓库 该命令有如下变体 命令 描述 git clone [git] 拉取指定 git 地址对应的仓库的所有分支代码，到新目录中，新目录与远程 repository 的名字相同 git clone [git] . 拉取指定 git 地址对应的仓库的所有分支代码，到当前目录中 git clone [git] [folderName] 拉取指定 git 地址对应的仓库的所有分支代码，到指定名字目录中，若该目录不存在会被新建，否则已有内容会被覆盖 注意，执行 clone 之后不会自动进入新文件夹，需要手动进入 pull通过命令 git pull 可以拉取远程仓库代码到本地仓库已有分支 该命令可能会产生冲突 该命令有如下变体 命令 描述 git pull 拉取 upstream 仓库的，与当前所在分支相同的分支的所有内容到本地 git pull origin master:child 拉取 origin 仓库的，master 分支的代码到本地 child 分支 在该命令中如果想回避冲突，可以使用 git stash 和 git stash pop 组合命令 stash压栈通过命令 git stash 可以将本地仓库已经标记但还未 commit 的文件隐藏进缓存栈中 此时执行 git pull 不会与缓存栈中文件作对比 可以多次执行命令 git stash 来不断压栈 弹出当 pull 完成后可以通过命令 git stash pop 来弹出栈顶内容 可以根据需要来弹出，但因为栈的特性，必然是只能按顺序弹出 该操作可能会引起冲突 查看可以通过命令 git stash list 来查看当前缓存栈中保存的内容 清空可以通过命令 git stash clear 来清空缓存栈中所需内容 注意，该操作不可复原 其它缩写可以通过 code ~/.bashrc 命令，通过 vscode 打开 bash 配置文件 然后通过 alias 指令，指定缩写 如 alias ga=&quot;git add&quot; 来令缩写命令 ga 等效于 git add 命令 不止 git 命令，其它 bash 命令也可以通过这种方法设置缩写 格式可以通过 git rebase 命令来为 git log 指定排版 假设现在有三个版本，版本号如图 版本 版本号 1 bikh345 2 12jop3i 3（最新） u09dsf3 现在想合并已有版本1和2，使得日志缩短，可以通过命令 git rebase -i u09dsf3 来告诉 git，我想对 u09dsf3 之前的版本进行修改 此时 git 会弹出默认编辑器，向你请求修改，同时会给出帮助，按帮助修改即可 修改完毕后，保存，关闭这个文件，git 就会开始处理你的修改 在处理完成之前，如果你反悔了，可以通过命令 git rebase --abort 来取消这次 rebase 如果又反悔了（什么人啊这是），可以通过命令 git rebase --continue 来继续这次 rebase rebase 也有可能出错，看看日志解决即可 大概就这些 感谢饥人谷对 其它 部分的帮助]]></content>
+    <content type="text"><![CDATA[有了本地操作，肯定还得保存到云端 配置连接默认 本地操作 中的配置已经完成了 以下命令全部都在 bash 中执行 ssh 原理ssh 是基于非对称加密的 RSA 算法，算法流程请点我 通过 ssh 加密，使得本地和远程可以安全地通信 生成 ssh 密钥执行命令 ssh-keygen -t rsa -C ringoer@qq.com 此时会生成ssh密钥。命令中邮件地址替换为自己的 查看密钥执行命令 cat ~/.ssh/id_rsa.pub 此时会在控制台显示一串密钥，复制下来 设置密钥打开 github，打开 settings，选择 SSH and GPG keys，选择 New SSH key title 随便写，key 的文本则填写刚才复制出来的密钥，然后 add key 一台电脑只需要一个密钥 测试配对执行命令 ssh -T git@github.com 如遇询问 yes or no，请输入 yes 并继续 设置目标仓库在 github 上新建一个 repository，然后复制其 ssh 地址，形如 `git@github.com:Ringoer/xxx.git` 注意不要复制到 HTTPS 地址 然后在本地执行命令 git remote add origin git@github.com:Ringoer/xxx.git 执行后会在本地仓库创建一个名为 origin 的仓库，指向目标远程仓库 理论上可以随意命名这个仓库，不叫 origin 也可以，但是业界潜规则就是第一个仓库要叫 origin。如果以后新建了其它仓库，可以自己尝试叫别的名字 如果忘记自己配置了哪些远程仓库，可以通过命令 git remote -v 来查看在当前本地仓库配置的所有远程仓库及其别名 创建完成后，就可以直接通过 origin 操作远程仓库了 然后就又是我们熟悉的 CRUD 了 但是在 Git 远程操作中，略有些变化，大致如下表 动作 描述 特点 push 推送本地仓库代码到远程仓库 会在远程仓库强制创建分支 pull 从远程仓库拉取指定分支的代码到本地 要求本地已有对应分支 clone 从远程仓库克隆指定分支的代码到本地 最好在空目录下克隆，否则会覆盖已有内容 push通过命令 git push 可以上传本地仓库的代码到远程仓库 该命令有如下变体 命令 描述 git push -u origin master 推送本地仓库的 master 分支到远程仓库的 master 分支，并将该远程仓库设置为上传流（upstream） git push 推送本地仓库所有修改到被设置为 upstream 的远程仓库 git push origin master 推送本地仓库的 master 分支到远程仓库的 master 分支 git push origin master:child 推送本地仓库的 master 分支到远程仓库的 child 分支，格式是 本地:远程 clone通过命令 git clone 可以拉取远程仓库代码到本地仓库 该命令有如下变体 命令 描述 git clone [git] 拉取指定 git 地址对应的仓库的所有分支代码，到新目录中，新目录与远程 repository 的名字相同 git clone [git] . 拉取指定 git 地址对应的仓库的所有分支代码，到当前目录中 git clone [git] [folderName] 拉取指定 git 地址对应的仓库的所有分支代码，到指定名字目录中，若该目录不存在会被新建，否则已有内容会被覆盖 注意，执行 clone 之后不会自动进入新文件夹，需要手动进入 pull通过命令 git pull 可以拉取远程仓库代码到本地仓库已有分支 该命令可能会产生冲突 该命令有如下变体 命令 描述 git pull 拉取 upstream 仓库的，与当前所在分支相同的分支的所有内容到本地 git pull origin master:child 拉取 origin 仓库的，master 分支的代码到本地 child 分支 在该命令中如果想回避冲突，可以使用 git stash 和 git stash pop 组合命令 stash压栈通过命令 git stash 可以将本地仓库已经标记但还未 commit 的文件隐藏进缓存栈中 此时执行 git pull 不会与缓存栈中文件作对比 可以多次执行命令 git stash 来不断压栈 弹出当 pull 完成后可以通过命令 git stash pop 来弹出栈顶内容 可以根据需要来弹出，但因为栈的特性，必然是只能按顺序弹出 该操作可能会引起冲突 查看可以通过命令 git stash list 来查看当前缓存栈中保存的内容 清空可以通过命令 git stash clear 来清空缓存栈中所需内容 注意，该操作不可复原 其它缩写可以通过 code ~/.bashrc 命令，通过 vscode 打开 bash 配置文件 然后通过 alias 指令，指定缩写 如 alias ga=&quot;git add&quot; 来令缩写命令 ga 等效于 git add 命令 不止 git 命令，其它 bash 命令也可以通过这种方法设置缩写 格式可以通过 git rebase 命令来为 git log 指定排版 假设现在有三个版本，版本号如图 版本 版本号 1 bikh345 2 12jop3i 3（最新） u09dsf3 现在想合并已有版本1和2，使得日志缩短，可以通过命令 git rebase -i u09dsf3 来告诉 git，我想对 u09dsf3 之前的版本进行修改 此时 git 会弹出默认编辑器，向你请求修改，同时会给出帮助，按帮助修改即可 修改完毕后，保存，关闭这个文件，git 就会开始处理你的修改 在处理完成之前，如果你反悔了，可以通过命令 git rebase --abort 来取消这次 rebase 如果又反悔了（什么人啊这是），可以通过命令 git rebase --continue 来继续这次 rebase rebase 也有可能出错，看看日志解决即可 大概就这些 感谢饥人谷对 其它 部分的帮助]]></content>
       <categories>
         <category>programing</category>
       </categories>
@@ -456,8 +456,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>Luogu</tag>
         <tag>dp</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
@@ -705,8 +705,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>bfs</tag>
         <tag>Luogu</tag>
+        <tag>bfs</tag>
       </tags>
   </entry>
   <entry>
@@ -740,8 +740,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>Luogu</tag>
         <tag>dp</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
@@ -910,8 +910,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>Luogu</tag>
         <tag>dp</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
