@@ -73,7 +73,7 @@
 
 
 
-  <meta name="keywords" content="frontend,">
+  <meta name="keywords" content="html,">
 
 
 
@@ -85,14 +85,14 @@
 
 
 <meta name="description" content="HTML入门">
-<meta name="keywords" content="frontend">
+<meta name="keywords" content="html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTML入门">
 <meta property="og:url" content="http://yoursite.com/frontend/html-introduction/index.html">
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="HTML入门">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-19T14:21:45.697Z">
+<meta property="og:updated_time" content="2020-11-19T14:59:58.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML入门">
 <meta name="twitter:description" content="HTML入门">
@@ -421,7 +421,56 @@
 </li>
 <li><p>文档头之后是文档体，用于书写页面正文</p>
 </li>
+<li><p>meta:vp 是什么？</p>
+<p>是 meta 的默认配置，具体含义如下</p>
+</li>
 </ol>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>charset</td>
+<td>UTF-8</td>
+<td>指定页面使用 UTF-8 编码</td>
+</tr>
+<tr>
+<td>name</td>
+<td>viewport</td>
+<td>指定根据视口大小的设置</td>
+</tr>
+<tr>
+<td>content&gt;width</td>
+<td>device-width</td>
+<td>视口大小等于设备大小</td>
+</tr>
+<tr>
+<td>content&gt;initial-scale</td>
+<td>1.0</td>
+<td>初始大小与视口同大</td>
+</tr>
+<tr>
+<td>content&gt;minimum-scale</td>
+<td>1.0</td>
+<td>最小缩小比例与视口同大</td>
+</tr>
+<tr>
+<td>content&gt;maximum-scale</td>
+<td>1.0</td>
+<td>最大放大比例与视口同大</td>
+</tr>
+<tr>
+<td>content&gt;user-scalable</td>
+<td>no</td>
+<td>禁止用户手动放大页面</td>
+</tr>
+</tbody>
+</table>
 <h1 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h1><h2 id="基本标签"><a href="#基本标签" class="headerlink" title="基本标签"></a>基本标签</h2><table>
 <thead>
 <tr>
@@ -629,33 +678,45 @@
 <thead>
 <tr>
 <th>属性名</th>
+<th>是否取值</th>
 <th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>class</td>
+<td>是</td>
 <td>css 类</td>
 </tr>
 <tr>
 <td>hidden</td>
+<td>否</td>
 <td>visible=hidden，此时有渲染，但无事件</td>
 </tr>
 <tr>
 <td>id</td>
+<td>是</td>
 <td>声明全局唯一 id，但需要程序员手动控制</td>
 </tr>
 <tr>
 <td>style</td>
+<td>是</td>
 <td>内联样式</td>
 </tr>
 <tr>
 <td>tabindex</td>
+<td>是</td>
 <td>指定 tab 的顺序，使用正整数，越小越优先；=0则最后；=-1则不会被 tab 访问</td>
 </tr>
 <tr>
 <td>title</td>
+<td>是</td>
 <td>指定所在元素的说明，在鼠标放置在该元素上时会显示浮窗</td>
+</tr>
+<tr>
+<td>contenteditable</td>
+<td>是</td>
+<td>指定所在元素是否（true/false）可以被用户编辑</td>
 </tr>
 </tbody>
 </table>
@@ -688,7 +749,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/frontend/" rel="tag"># frontend</a>
+            <a href="/tags/html/" rel="tag"># html</a>
           
         </div>
       
@@ -813,7 +874,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
