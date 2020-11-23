@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/links/index.html</loc>
+    
+    <lastmod>2020-11-23T16:18:23.368Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/frontend/css-box-summary/</loc>
+    
+    <lastmod>2020-11-23T16:14:38.131Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/others/MyWebsiteGuide/</loc>
     
     <lastmod>2020-11-23T08:45:37.495Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>http://yoursite.com/programing/remoteGit/</loc>
     
     <lastmod>2020-11-23T07:51:37.262Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/links/index.html</loc>
-    
-    <lastmod>2020-11-23T06:28:18.974Z</lastmod>
     
   </url>
   
