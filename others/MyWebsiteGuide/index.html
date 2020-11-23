@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://pic.ringoer.com/建站教程-文章结尾标识.png">
 <meta property="og:image" content="http://pic.ringoer.com/建站教程-外链网易云音乐.png">
 <meta property="og:image" content="http://pic.ringoer.com/建站教程-导航栏项目改名.png">
-<meta property="og:updated_time" content="2019-09-12T04:17:38.019Z">
+<meta property="og:updated_time" content="2020-11-23T08:45:37.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="本站建站指导">
 <meta name="twitter:description" content="本站建站指导">
@@ -411,7 +411,7 @@
 <li>安装git。<br><a href="https://git-for-windows.github.io/" target="_blank" rel="noopener">https://git-for-windows.github.io/</a></li>
 <li>鼠标右键安装node.js的地方，进入nodemudule文件夹，选择Git Bash，使用以下命令安装hexo<ol>
 <li><code>npm install hexo-cli -g</code></li>
-<li><code>npm install hexo-deployer-git –save</code></li>
+<li><code>npm install hexo-deployer-git --save</code><br>最新版 nodejs 不需要 –save 参数</li>
 </ol>
 </li>
 <li>创建放置博客文件的文件夹：hexo文件夹，如E:\hexo。最好不在中文目录下。<br>注意：以后进行hexo操作都要进入到此文件夹中；对于git操作，若无特殊说明，则也进入到此文件夹中（在此文件夹中启动Git Bash）</li>
@@ -431,7 +431,8 @@
 <li>输入命令：<code>cat ~/.ssh/id_rsa.pub</code><br>此时会在控制台显示一串密钥，复制下来。</li>
 <li>打开github，打开settings，选择SSH and GPG keys，选择New SSH key。<br>title随便写，key的文本则填写刚才复制出来的密钥，然后add key。</li>
 <li>输入命令：<code>ssh -T git@github.com</code><br>上述命令不可修改</li>
-<li>打开hexo文件夹中的_config.yml，修改文档末尾的deploy，示例如下：<br><img src="http://pic.ringoer.com/建站教程-修改deploy.png" alt="修改deploy"><br>其中蓝色部分应替换成自己的链接。链接来源参考自己github仓库的链接（如图）：<br><img src="http://pic.ringoer.com/建站教程-github仓库链接示例.png" alt="github仓库链接示例"><br>注意：hexo的配置文件中任何<code>:</code>后面都是带一个空格的。</li>
+<li>打开hexo文件夹中的_config.yml，修改文档末尾的deploy，示例如下：<br><img src="http://pic.ringoer.com/建站教程-修改deploy.png" alt="修改deploy"><br>因为zzzq，现在新建的repository的默认branch已经变成main了，记得检查一下是master还是main<br>其中蓝色部分应替换成自己的链接。链接来源参考自己github仓库的链接（如图）：<br><img src="http://pic.ringoer.com/建站教程-github仓库链接示例.png" alt="github仓库链接示例"><br>注意：hexo的配置文件中任何<code>:</code>后面都是带一个空格的。  </li>
+<li>输入命令 <code>hexo g</code> 和 <code>hexo d</code> 生成页面并部署到 github 上</li>
 </ol>
 </li>
 <li>绑定自己的域名<ol>
@@ -441,7 +442,7 @@
 </li>
 </ol>
 <h1 id="个性化"><a href="#个性化" class="headerlink" title="个性化"></a>个性化</h1><ol>
-<li>下载主题。此处我选用next主题，Pisces主题风格（默认为Muse）。<br>修改/themes/next下的配置文件中的schemes字段。<br><img src="http://pic.ringoer.com/建站教程-配置主题-1.png" alt="配置主题-1"><br>取消需要的主题风格前的井字号，然后在之前的主题风格前加入井字号即可。<br>之后配置网站信息，如图。<br><img src="http://pic.ringoer.com/建站教程-配置主题-2.png" alt="配置主题-2"></li>
+<li>下载主题。可以前往 <a href="https://hexo.io/themes/" target="_blank" rel="noopener">Themes | Hexo</a> 选择主题。<br>此处我选用next主题，Pisces主题风格（默认为Muse）。<br>修改/themes/next下的配置文件中的schemes字段。<br><img src="http://pic.ringoer.com/建站教程-配置主题-1.png" alt="配置主题-1"><br>取消需要的主题风格前的井字号，然后在之前的主题风格前加入井字号即可。<br>之后配置网站信息，如图。<br><img src="http://pic.ringoer.com/建站教程-配置主题-2.png" alt="配置主题-2"></li>
 <li>底部信息。修改/themes/next下的配置文件中的footer字段。<br><img src="http://pic.ringoer.com/建站教程-配置footer.png" alt="配置footer"></li>
 <li>文章缩略。修改/themes/next下的配置文件中的auto_excerpt字段。<br><img src="http://pic.ringoer.com/建站教程-文章缩略.png" alt="文章缩略"><br>enable改成true即可。<br>也可以手动在每篇文章中添加<code>&lt;!--more--&gt;</code>字段，在该字段后的部分会被隐藏。</li>
 <li>修改导航栏。修改/themes/next下的配置文件中的menu字段。<br><img src="http://pic.ringoer.com/建站教程-修改导航栏.png" alt="修改导航栏"><br>想要什么选项，就去掉其之前的井字号，或自己新加入一个。<br><code>||</code>后面是该项所用的图标</li>
@@ -639,7 +640,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/others/MyWebsiteGuide/</loc>
+    
+    <lastmod>2020-11-23T08:45:37.495Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/programing/remoteGit/</loc>
+    
+    <lastmod>2020-11-23T07:51:37.262Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/links/index.html</loc>
+    
+    <lastmod>2020-11-23T06:28:18.974Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/html-tags/</loc>
     
     <lastmod>2020-11-19T15:59:52.924Z</lastmod>
@@ -12,13 +33,6 @@
     <loc>http://yoursite.com/frontend/html-introduction/</loc>
     
     <lastmod>2020-11-19T14:59:58.163Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/programing/remoteGit/</loc>
-    
-    <lastmod>2020-11-16T14:27:36.140Z</lastmod>
     
   </url>
   
@@ -247,23 +261,9 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/others/MyWebsiteGuide/</loc>
-    
-    <lastmod>2019-09-12T04:17:38.019Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/python/python-20190715/</loc>
     
     <lastmod>2019-07-15T08:53:28.443Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/links/index.html</loc>
-    
-    <lastmod>2019-07-10T15:06:46.377Z</lastmod>
     
   </url>
   
