@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/css-layout/</loc>
+    
+    <lastmod>2020-11-24T16:02:08.287Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/web/nodejs/</loc>
+    
+    <lastmod>2020-11-24T07:41:50.876Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/links/index.html</loc>
     
     <lastmod>2020-11-23T16:18:23.368Z</lastmod>
@@ -61,13 +75,6 @@
     <loc>http://yoursite.com/programing/commandLine/</loc>
     
     <lastmod>2020-11-13T12:37:11.629Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/web/nodejs/</loc>
-    
-    <lastmod>2020-11-13T10:50:50.329Z</lastmod>
     
   </url>
   
