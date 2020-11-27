@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="computer-network,knowledge,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文简单介绍一些计算机网络相关的专业知识">
+<meta name="keywords" content="computer-network,knowledge">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络">
+<meta property="og:url" content="http://yoursite.com/knowledge/computer-network/index.html">
+<meta property="og:site_name" content="Ringo&#39;s Coding Life">
+<meta property="og:description" content="本文简单介绍一些计算机网络相关的专业知识">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://pic.ringoer.com/三次握手.png">
+<meta property="og:image" content="https://pic.ringoer.com/四次挥手.png">
+<meta property="og:image" content="https://pic.ringoer.com/DNS查询.png">
+<meta property="og:updated_time" content="2020-11-27T15:27:54.141Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络">
+<meta name="twitter:description" content="本文简单介绍一些计算机网络相关的专业知识">
+<meta name="twitter:image" content="https://pic.ringoer.com/三次握手.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/knowledge/computer-network/">
+
+
+
+
+
+  <title>计算机网络 | Ringo's Coding Life</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ringo's Coding Life</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI to ACM</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            元初之地
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-blog">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-text-o"></i> <br>
+            
+            文章相关
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            自己绍介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-contact">
+          <a href="/contact/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-envelope-o"></i> <br>
+            
+            联系方式
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br>
+            
+            友情链接
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            站内搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/knowledge/computer-network/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ringoer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ringo's Coding Life">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机网络</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-25T21:31:00+08:00">
+                2020-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/knowledge/" itemprop="url" rel="index">
+                    <span itemprop="name">knowledge</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文简单介绍一些计算机网络相关的专业知识</p>
+<a id="more"></a>
+<p>众所周知，计算机网络最重要的概念是 OSI 七层模型</p>
+<h1 id="OSI-七层模型"><a href="#OSI-七层模型" class="headerlink" title="OSI 七层模型"></a>OSI 七层模型</h1><p>自底向上，分为以下七层</p>
+<ol>
+<li>物理层，完成 bit 到载波之间的转换，处理物理介质接口</li>
+<li>数据链路层，负责介质访问控制和逻辑链路控制</li>
+<li>网络层，负责主机到主机之间的通信与路由寻址</li>
+<li>传输层，负责进程间端到端通信和可靠传输</li>
+<li>会话层，负责会话的建立、撤销与面向连接的口令认证等</li>
+<li>表示层，负责信息的加密、解密、压缩、转换等</li>
+<li>应用层，提供最通用的应用程序（电子邮件、web等），完成用户与软件的交互</li>
+</ol>
+<p>然后先介绍一下重要的协议们</p>
+<ol>
+<li>网络层，IP 协议</li>
+<li>传输层，TCP 协议</li>
+<li>应用层，HTTP 协议</li>
+<li>介于网络层和传输层之间，SSL 协议</li>
+</ol>
+<h1 id="IP-协议"><a href="#IP-协议" class="headerlink" title="IP 协议"></a>IP 协议</h1><p>网络层负责路径确定与逻辑寻址</p>
+<p>而路径，就是由 IP 地址提供的，通过点分十进制计数法确定 IPv4 地址</p>
+<p>但是显然 IP 地址总数是有限的，怎么延长寿命呢？</p>
+<p>1985 年起增加 “子网号字段”，IP 地址变为 网络号+子网号+主机号</p>
+<p>其中，主机号全 0 代表网络，主机号全 1 代表广播</p>
+<p>这样，网络数量就增加了，但还是不够用，于是又产生了 网络地址转换——NAT</p>
+<p>根据网络的 ABC 类，分配不同的私有地址，私有地址是同一路由器内特有的</p>
+<p>常见的民用 IP 地址是 C 类，私有地址就是 192.168.0.0/16， 16 指子网掩码</p>
+<p>为了 IP 协议的正常运转，又产生了 差错报告机制——ICMP，我们知道的 ping 命令测试网络连接可达性，就是基于 ICMP 的</p>
+<p>而且 ping 命令是应用层直接使用 网络层 ICMP 的，并没有经过传输层的 TCP 或 UDP</p>
+<p>一个 ping 实例如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ping baidu.com</span><br><span class="line"></span><br><span class="line">正在 Ping baidu.com [220.181.38.148] 具有 32 字节的数据:</span><br><span class="line">来自 220.181.38.148 的回复: 字节=32 时间=49ms TTL=53</span><br><span class="line">来自 220.181.38.148 的回复: 字节=32 时间=46ms TTL=53</span><br><span class="line">来自 220.181.38.148 的回复: 字节=32 时间=47ms TTL=53</span><br><span class="line">来自 220.181.38.148 的回复: 字节=32 时间=47ms TTL=53</span><br><span class="line"></span><br><span class="line">220.181.38.148 的 Ping 统计信息:</span><br><span class="line">    数据包: 已发送 = 4，已接收 = 4，丢失 = 0 (0% 丢失)，</span><br><span class="line">往返行程的估计时间(以毫秒为单位):</span><br><span class="line">    最短 = 46ms，最长 = 49ms，平均 = 47ms</span><br></pre></td></tr></table></figure>
+<h1 id="TCP-协议"><a href="#TCP-协议" class="headerlink" title="TCP 协议"></a>TCP 协议</h1><p>传输层有 TCP 协议和 UDP 协议，其中 TCP 协议负责端到端连接、可靠性和流量控制</p>
+<p>TCP 的特点如下</p>
+<ol>
+<li>面向连接</li>
+<li>点对点</li>
+<li>可靠</li>
+<li>全双工</li>
+<li>字节流</li>
+</ol>
+<p>相对的 UDP 的特点如下</p>
+<ol>
+<li>无连接</li>
+<li>尽力交付</li>
+<li>面向报文</li>
+<li>允许广播</li>
+</ol>
+<p>因为 TCP 有 UDP 所没有的最重要的机制 —— 三次握手、四次挥手，所以 TCP 传输会比 UDP 安全很多，也易于控制，但是也因此在连接上消耗了更多时间，传输速率不如 UDP 快</p>
+<p>TCP 的主要机制如下，其特点全部依赖其机制</p>
+<ul>
+<li>应答机制、超时机制、重传机制、窗口机制</li>
+<li>流量控制：滑动窗口机制</li>
+<li>拥塞控制：慢开始、拥塞避免、快重传、快恢复、随机早期检测</li>
+<li>连接的建立和解除：三次握手、四次挥手</li>
+</ul>
+<p>虽然实际的数据报交换还是网络层在负责，但传输层解决了网络层的主要问题：丢包、重复、乱序</p>
+<p>为什么可以解决这些问题呢？因为网络通信本质上是两个进程间的通信，而不是主机之间的通信</p>
+<p>通信中由 IP 地址唯一标识主机，由端口号唯一标识进程，所以可以通过 IP 地址+端口号的形式来进行进程间通信</p>
+<p>而传输层又向上层隐藏了硬件拓扑、路由细节等，使得上层应用程序可以直接调用其接口，建立一条虚拟的端到端的通信信道</p>
+<p>建立信道和解除的过程如下图</p>
+<p><img src="https://pic.ringoer.com/三次握手.png" alt="三次握手"><img src="https://pic.ringoer.com/四次挥手.png" alt="四次挥手"></p>
+<h1 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>万维网 WWW（World Wide Web）建立的原因，是一个美好的愿景：万物互联</p>
+<p>万维网是分布式超媒体系统，是超文本系统的扩充</p>
+<p>在万维网客户程序与万维网服务器程序之间进行交互所使用的就是超文本传输协议 HTTP，这是一个应用层协议，基于 TCP 进行可靠传输</p>
+<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p>万维网通过”链接”的方法能主动地按需获取信息，不同的信息通过 <strong>统一资源定位符 URL</strong> 来标识</p>
+<p>URL 的格式如下</p>
+<p><code>&lt;协议&gt;://&lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;</code></p>
+<p>此处的协议可以是 http、ftp、file 等，但本文只介绍 http 协议相关内容</p>
+<h2 id="协议版本"><a href="#协议版本" class="headerlink" title="协议版本"></a>协议版本</h2><p>HTTP 1.0 协议是无状态的，HTTP 本身也是无连接的，虽然使用了基于 TCP 的可靠传输，但是每次通过 TCP 传输完毕后，该 TCP 连接都会被关闭</p>
+<p>作为改进，HTTP 1.1 协议使用持续连接，指在收到服务器响应后，连接仍会保持一段时间，同一个客户和该服务器之间可以继续使用这条连接进行通信</p>
+<h2 id="域名系统"><a href="#域名系统" class="headerlink" title="域名系统"></a>域名系统</h2><p>URL 中的主机号可以是 IP 地址，或一个域名，或一个计算机地址标识符</p>
+<p>域名系统 DNS（Domain Name System）提供了将人类可读符号映射到计算机地址的服务（计算机地址不止是 IP 地址）</p>
+<p>域名与计算机地址之间的关系是多对一，即一个域名只能映射到一个计算机地址，但一个计算机地址可以被多个域名所映射</p>
+<p>域名的结构为 <strong>层次树状结构</strong>，由标号序列组成，各部分之间用 点号 隔开</p>
+<p>但是如何知道域名和计算机地址的映射关系？需要通过 DNS 服务器来进行解析</p>
+<p>每个 DNS 服务器负责一个区，此时该 DNS 服务器称为 <strong>权限域名服务器</strong>，用来保存该区中所有主机的域名到 计算机地址 的映射</p>
+<p>包括 权限域名服务器，DNS 服务器自顶向下共有以下类型</p>
+<ol>
+<li><p>根域名服务器</p>
+<p>最重要的域名服务器。所有根域名服务器都知道所有顶级域名服务器的域名和 IP 地址</p>
+<p>不论是哪一个本地域名服务器，只要这个本地域名服务器不能自己解析一个域名，就会首先求助根域名服务器</p>
+</li>
+<li><p>顶级域名服务器</p>
+<p>负责管理在自己注册的所有二级域名</p>
+<p>响应可能是域名解析结果，也可能是下一步应当询问的域名服务器地址</p>
+</li>
+<li><p>权限域名服务器</p>
+<p>负责一个区的域名服务器</p>
+<p>响应可能是域名解析结果，也可能是下一步应当询问的权限域名服务器地址</p>
+</li>
+<li><p>本地域名服务器，也称为默认域名服务器</p>
+<p>一般是客户端主机上设置的首选 DNS 服务器，也称为 ISP DNS 服务器</p>
+<p>当主机发出 DNS 查询请求时，该请求报文首先发送给本地域名服务器</p>
+</li>
+</ol>
+<p>显然查询 DNS 的请求是要经过多级中转的。如何决定查询顺序呢？</p>
+<p>有两个阶段</p>
+<ol>
+<li><p>递归查询：主机向本地域名服务器的查询</p>
+<p>如果主机所询问的本地域名服务器不知道域名解析的结果，则本地域名服务器就以 DNS 客户的身份，向其他服务器继续发出查询请求报文</p>
+</li>
+<li><p>迭代查询：本地域名服务器向根域名服务器及其他域名服务器的查询</p>
+<p>如果本地域名服务器所询问的根域名服务器不知道域名解析的结果，则告诉本地域名服务器下一个查询目标服务器的地址，由本地域名服务器继续提交请求</p>
+</li>
+</ol>
+<p>示意图如下</p>
+<p><img src="https://pic.ringoer.com/DNS查询.png" alt="DNS查询"></p>
+<p>这是服务器上的 DNS 查询，但不是每次 DNS 查询都直接从本地域名服务器开始</p>
+<p>DNS 查询流程按顺序一般如下</p>
+<ol>
+<li>浏览器缓存</li>
+<li>操作系统缓存</li>
+<li>路由器缓存</li>
+<li>主机上的 hosts 文件</li>
+<li>本地域名服务器…</li>
+</ol>
+<p>可以使用 <code>nslookup [addr]</code> 命令来解析目标域名</p>
+<p>一个 nslookup 实例如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">nslookup baidu.com</span><br><span class="line"></span><br><span class="line">服务器:  UnKnown</span><br><span class="line">Address:  192.168.1.1</span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">名称:    baidu.com</span><br><span class="line">Addresses:  220.181.38.148</span><br><span class="line">          39.156.69.79</span><br></pre></td></tr></table></figure>
+<h2 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h2><p>此处特指软件意义上的端口，有别于交换机上的硬件端口</p>
+<p>端口号一般是一个 16 为无符号整数，范围在 0 - 65536</p>
+<p>一般 0 - 1023 号端口是服务保留端口，自己的项目最好不要启动在这些端口上，除非你知道自己在干什么</p>
+<p>常用端口一般有 20、21、22、80、443 等</p>
+<h2 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h2><p>对于静态资源服务器，路径一般与服务器所在的磁盘目录一一对应</p>
+<p>对于动态服务器，路径一般是个逻辑路径，用以标识资源</p>
+<p>在动态服务器的路径，一般采用 RESTFUL API 设计，用 URI 标识资源，用 HTTP 动词描述动作</p>
+<p>一般在路径的末尾都有一个斜杠，除非该路径指向一个具体的静态文件</p>
+<h2 id="报文结构"><a href="#报文结构" class="headerlink" title="报文结构"></a>报文结构</h2><p>HTTP 有两类报文：请求报文（request）和响应报文（response）</p>
+<p>由于 HTTP 是面向文本的，所以报文中每个字段都是 ASCII 码串，长度不确定</p>
+<p>报文都分为开始行、首部行和实体主体，分别对应 Chrome 控制台中看到的 General、Headers 和 Payload</p>
+<p>在请求报文中，开始行就是请求行</p>
+<p>可以在本地命令行通过 <code>curl -v [url]</code> 查看报文信息</p>
+<p>一个 curl 实例如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">curl -v baidu.com</span><br><span class="line"></span><br><span class="line">* Rebuilt URL to: baidu.com/</span><br><span class="line">*   Trying 220.181.38.148...</span><br><span class="line">* TCP_NODELAY <span class="built_in">set</span></span><br><span class="line">* Connected to baidu.com (220.181.38.148) port 80 (<span class="comment">#0)</span></span><br><span class="line">&gt; GET / HTTP/1.1</span><br><span class="line">&gt; Host: baidu.com</span><br><span class="line">&gt; User-Agent: curl/7.55.1</span><br><span class="line">&gt; Accept: */*</span><br><span class="line">&gt;</span><br><span class="line">&lt; HTTP/1.1 200 OK</span><br><span class="line">&lt; Date: Fri, 27 Nov 2020 04:02:06 GMT</span><br><span class="line">&lt; Server: Apache</span><br><span class="line">&lt; Last-Modified: Tue, 12 Jan 2010 13:48:00 GMT</span><br><span class="line">&lt; ETag: <span class="string">"51-47cf7e6ee8400"</span></span><br><span class="line">&lt; Accept-Ranges: bytes</span><br><span class="line">&lt; Content-Length: 81</span><br><span class="line">&lt; Cache-Control: max-age=86400</span><br><span class="line">&lt; Expires: Sat, 28 Nov 2020 04:02:06 GMT</span><br><span class="line">&lt; Connection: Keep-Alive</span><br><span class="line">&lt; Content-Type: text/html</span><br><span class="line">&lt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"refresh"</span> content=<span class="string">"0;url=http://www.baidu.com/"</span>&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">* Connection <span class="comment">#0 to host baidu.com left intact</span></span><br></pre></td></tr></table></figure>
+<h2 id="HTTP-动词"><a href="#HTTP-动词" class="headerlink" title="HTTP 动词"></a>HTTP 动词</h2><p>显然请求方法是很重要的。通常有如下请求方法</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OPTION</td>
+<td>向服务器请求一些构成请求的关键选项，例如允许的方法</td>
+</tr>
+<tr>
+<td>HEAD</td>
+<td>向服务器询问，首部行中哪些头部是 required</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>查</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>增</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>改</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>部分改</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>删</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>用于环回测试</td>
+</tr>
+<tr>
+<td>CONNECT</td>
+<td>用于代理服务器</td>
+</tr>
+</tbody>
+</table>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><p>HTTP 状态码分为 5 大类</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1xx</td>
+<td>通知</td>
+</tr>
+<tr>
+<td>2xx</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td>重定向</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td>客户端出错</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>服务器出错</td>
+</tr>
+</tbody>
+</table>
+<p>常见的有 200、301、302、304、401、403、404、415、500、502 等</p>
+<h1 id="SSL-协议"><a href="#SSL-协议" class="headerlink" title="SSL 协议"></a>SSL 协议</h1><p>SSL 只有一个重点，就是 RSA 加密，可以查看本文 <a href="https://ringoer.com/algorithm/rsa/" target="_blank" rel="noopener">图解非对称加密</a></p>
+<p>接下来介绍一下物理层和数据链路层</p>
+<p>待续</p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--It's the end.<i class="fa fa-life-ring"></i>Thanks for your read.--</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/computer-network/" rel="tag"># computer-network</a>
+          
+            <a href="/tags/knowledge/" rel="tag"># knowledge</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/frontend/css-animation/" rel="next" title="CSS动画">
+                <i class="fa fa-chevron-left"></i> CSS动画
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/others/ckhyk5oi800fwm8u3wzlalvsx/" rel="prev" title="Hexo唯一ID遍历器">
+                Hexo唯一ID遍历器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg" alt="Ringoer">
+            
+              <p class="site-author-name" itemprop="name">Ringoer</p>
+              <p class="site-description motion-element" itemprop="description">随处可见的一般社畜</p>
+          </div>
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OSI-七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI 七层模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IP-协议"><span class="nav-number">2.</span> <span class="nav-text">IP 协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-协议"><span class="nav-number">3.</span> <span class="nav-text">TCP 协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP-协议"><span class="nav-number">4.</span> <span class="nav-text">HTTP 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URL"><span class="nav-number">4.2.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协议版本"><span class="nav-number">4.3.</span> <span class="nav-text">协议版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名系统"><span class="nav-number">4.4.</span> <span class="nav-text">域名系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端口"><span class="nav-number">4.5.</span> <span class="nav-text">端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路径"><span class="nav-number">4.6.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报文结构"><span class="nav-number">4.7.</span> <span class="nav-text">报文结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-动词"><span class="nav-number">4.8.</span> <span class="nav-text">HTTP 动词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态码"><span class="nav-number">4.9.</span> <span class="nav-text">状态码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSL-协议"><span class="nav-number">5.</span> <span class="nav-text">SSL 协议</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ringoer.com 版权所有 ICP证：<a href="http://www.beian.miit.gov.cn">闽ICP备17033389号</a></span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
