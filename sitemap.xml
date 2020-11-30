@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/javascript-object/</loc>
+    
+    <lastmod>2020-11-30T06:20:39.426Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/javascript-base-grammar/</loc>
     
     <lastmod>2020-11-30T03:28:00.840Z</lastmod>

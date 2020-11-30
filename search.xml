@@ -6,6 +6,17 @@
     <content type="text"><![CDATA[Are You Going To Scarborough Fair ?]]></content>
   </entry>
   <entry>
+    <title><![CDATA[JS对象用法]]></title>
+    <url>%2Ffrontend%2Fjavascript-object%2F</url>
+    <content type="text"><![CDATA[JS 也有面向对象 又到了我第 114514 喜欢的 CRUD 环节 Create创建属性一般有两种办法 在对象声明时创建 在对象声明后插入 声明对象一般有两种 直接创建 123let obj=&#123; x:1&#125; 通过 Object 对象方法创建 123let obj=new Object(&#123; x:1&#125;) 为什么会有两种写法？因为第二种才是正规的 但是架不住第一种更方便，于是第一种也变成合法的了 obj 的键一定是字符串，所以可以写任意的键名，甚至包括 空字符串 和 emoji 需要注意的是，无论你怎么写 obj 的键，它在构造完成后都会变成字符串 可以通过 Object.keys(obj) 来查看 比如 键是数字的情况 123let obj=&#123; 2:'233'&#125; 此时 obj 会拥有一个名为 ‘2’ 的键 有同名变量的情况 1234let a=100;let obj=&#123; a:'233'&#125; 此时 obj 会拥有一个名为 ‘a’ 的键 但还有 2 种情况例外 当 obj 是数字表达式的时候 123let obj=&#123; 1e2: '233'&#125; 此时 obj 会拥有一个名为 ‘100’ 的键 当 obj 使用方括号表达式的时候 1234let a=233;let obj=&#123; [a]:'233'&#125; 此时 obj 会拥有一个名为 ‘233’ 的键 而且，obj 在自动构建后会包含一个 __proto__ 属性指向其原型 那我不要默认的 Object 原型，想要别的原型怎么办？ 可以使用 Object.create 来创建来自指定原型的新对象 示例如下 12345let common=&#123; xxx:1&#125;;let a=Object.create(common,&#123;yyy:&#123;value:2&#125;&#125;);console.log(a); 期望输出如下 12345&#123;yyy: 2&#125; yyy: 2 __proto__: xxx: 1 __proto__: Object 此时 a 可以访问属性 xxx 和 yyy，其中 yyy 来自自身，xxx 来自原型 需要注意的是，在 create 的第二个参数中，要求写的是属性描述符，一般包括 value，属性值，必填 writeable，默认 true，可以编辑，若为 false 则只读 enumerable，默认 true，可以被枚举，若为 false 则不能通过简单的键遍历找到 configureable，默认 true，可以被重新配置，若为 false 则永远在当前对象上保持当前状态 等 4 个配置 插入属性一般有两种逐条插入的写法 obj.property = value obj[property] = value 都是合法的写法 但是对于第一种，点号后必须是完整键名，不加引号 对于第二种，方括号内可以是表达式或字符串，如果可以识别为字符串，则字符串优先 示例如下 12345678910let obj=&#123; xxx: 666&#125;;obj['abc']=233;let abc='xxx';console.log(obj.abc); // 233console.log(obj['abc']); // 233console.log(obj[abc]); // 666 可见点符号的识别和方括号的识别是不一样的 还有一种批量插入的写法 Object.assign 12345678let obj=&#123; xxx: 666, yyy: 233&#125;;Object.assign(obj,&#123;xxx:111,zzz:114514&#125;)console.log(obj); 期望输出如下 1&#123;xxx: 111, yyy: 233, zzz: 114514&#125; 可见 assign 可以覆盖，可以新增，而且不会影响其他原有值 Retrieve显然可以分为按键查找和按值查找两种类型 按键查找可以使用以下两种方法 in Object.hasOwnProperty in 通过查找原型链确定某个参数是否存在于指定对象上 Object.hasOwnProperty 只会查找对象本身，不会上升到原型链 也可以用以下的 Object 方法来查找键或值 Object.keys 列出所有键 Object.values 列出所有值 Object.entries 列出所有键值对 按值查找通过上述的 entries 方法取得所有键值对，然后遍历即可 Update可以使用 点符号 方括号 Object.assign Object.defineProperty 来更新属性 需要注意的是，上述方法均不会直接修改到原型上 比如原型上有属性 xxx，当前对象 obj 上没有 则令 obj.xxx=’233’，会为当前对象绑定一个新属性 xxx，而不会修改原型上的 虽然可以通过 __proto__.xxx 来修改，但十分不推荐修改原型的属性 那如果直接修改原型呢？ 虽然 JS 是允许直接通过 __proto__ = xxx 来修改对象的原型指向的，但性能十分之低下 如果一定要修改原型，最好在创建对象的时候使用 Object.create，在创建时就指定新的原型 Delete一般有删除值和删除键两种需求 对于删除值，只需要取对应的键，然后赋值 undefined 即可 对于删除键，只需要使用 delete 语句 1delete obj.property; 即可删除键 可以用 property in obj 查看 obj 中是否还含有指定键名 但待删除的键不可以是不可配置的（通过 Object.defineProperty 设置的不可配置） 需要注意的是，delete 语句用于删除属性时，在所有情况下都会返回 true 表示删除成功，即便 obj 中不存在目标键 除非将 delete 用于删除对象等非属性值，才会返回 false 谢谢阅读]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JS语法-基于C]]></title>
     <url>%2Ffrontend%2Fjavascript-base-grammar%2F</url>
     <content type="text"><![CDATA[本文描述 JavaScript 的基本语法，但和 c 一样的就跳过了 表达式和语句与 c 基本相同，但是 c 对于分号是强要求，js 对于分号并不强要求，只要不影响断句，想怎么样都可以 并且，c 对于换行的语句基本不支持，但是 js 依然是只要不影响断句就可以 但是 return 不一样，js 的 return 不能换行，否则会返回 undefined 标识符c 的标识符只能接受数字字母下划线，且不能以数字开头 js 的标识符可以接受所有符号，包括希腊文、中文等，不过依然不能以数字开头 if、else、switch、三目表达式与 c 完全相同 while、break、continue与 c 完全相同 forc 只能接受 for(初始化; 循环条件; 迭代) 这种形式 js 除了上述形式，还可以接受 for(let 标识符 of 可迭代对象) 或 for(let 标识符 in 可迭代对象) 的形式 for … in 还可以用于枚举对象键 label类似于 c 的 goto 语句 区别是 c 只有 goto，只能前往 label 所在区域 但是 js 只有 break 和 continue，只能打破现在所在 label 为什么这里 continue 不是循环？因为 continue 的作用是进入下一次迭代，但是普通的 label，除非写在循环中，否则哪里来的下一次迭代呢 以上]]></content>
@@ -36,8 +47,8 @@
         <category>frontend</category>
       </categories>
       <tags>
-        <tag>frontend</tag>
         <tag>javascript</tag>
+        <tag>frontend</tag>
       </tags>
   </entry>
   <entry>
@@ -532,9 +543,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
-        <tag>HDU</tag>
         <tag>题解</tag>
+        <tag>HDU</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
@@ -698,8 +709,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
         <tag>题解</tag>
+        <tag>线段树</tag>
         <tag>Luogu</tag>
       </tags>
   </entry>
@@ -711,8 +722,8 @@
         <category>algorithm</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
         <tag>题解</tag>
+        <tag>线段树</tag>
         <tag>Luogu</tag>
         <tag>algorithm</tag>
         <tag>SegmentTree</tag>
@@ -879,9 +890,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>HDU</tag>
         <tag>题解</tag>
         <tag>SPFA</tag>
+        <tag>HDU</tag>
       </tags>
   </entry>
   <entry>
