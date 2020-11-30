@@ -2,6 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/javascript-base-grammar/</loc>
+    
+    <lastmod>2020-11-30T03:28:00.840Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/others/MyWebsiteGuide/</loc>
+    
+    <lastmod>2020-11-28T08:39:36.280Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/frontend/browser-request-mechanism/</loc>
+    
+    <lastmod>2020-11-28T07:54:18.176Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/programing/django/</loc>
+    
+    <lastmod>2020-11-28T07:53:25.694Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/programing/remoteGit/</loc>
+    
+    <lastmod>2020-11-28T07:51:56.443Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/programing/localGit/</loc>
+    
+    <lastmod>2020-11-28T07:51:48.801Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/knowledge/HammingCode/</loc>
+    
+    <lastmod>2020-11-28T07:51:15.179Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/javascript-history/</loc>
     
     <lastmod>2020-11-28T04:08:41.968Z</lastmod>
@@ -19,13 +68,6 @@
     <loc>http://yoursite.com/404.html</loc>
     
     <lastmod>2020-11-28T04:06:52.926Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/frontend/browser-request-mechanism/</loc>
-    
-    <lastmod>2020-11-27T15:27:59.610Z</lastmod>
     
   </url>
   
@@ -72,20 +114,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/others/MyWebsiteGuide/</loc>
-    
-    <lastmod>2020-11-23T08:45:37.495Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/programing/remoteGit/</loc>
-    
-    <lastmod>2020-11-23T07:51:37.262Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/frontend/html-tags/</loc>
     
     <lastmod>2020-11-19T15:59:52.924Z</lastmod>
@@ -107,23 +135,9 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/programing/localGit/</loc>
-    
-    <lastmod>2020-11-16T07:54:14.971Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/programing/commandLine/</loc>
     
     <lastmod>2020-11-13T12:37:11.629Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/programing/HammingCode/</loc>
-    
-    <lastmod>2020-11-13T10:48:03.610Z</lastmod>
     
   </url>
   
@@ -271,13 +285,6 @@
     <loc>http://yoursite.com/J2EE/deploy-on-ubuntu/</loc>
     
     <lastmod>2020-06-03T15:44:05.571Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/python/django/</loc>
-    
-    <lastmod>2020-04-05T02:45:05.468Z</lastmod>
     
   </url>
   
