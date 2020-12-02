@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/javascript-setTimeout/</loc>
+    
+    <lastmod>2020-12-02T02:53:03.316Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/algorithm/python-counterpoint/</loc>
+    
+    <lastmod>2020-12-01T07:21:55.533Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/javascript-object/</loc>
     
     <lastmod>2020-11-30T06:20:39.426Z</lastmod>

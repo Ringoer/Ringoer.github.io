@@ -6,6 +6,28 @@
     <content type="text"><![CDATA[Are You Going To Scarborough Fair ?]]></content>
   </entry>
   <entry>
+    <title><![CDATA[前端-JS循环打印与延迟执行]]></title>
+    <url>%2Ffrontend%2Fjavascript-setTimeout%2F</url>
+    <content type="text"><![CDATA[众所周知 var 在循环里有坑 本文介绍基于经典例子——打印 0 到 5 关于打印 0 到 5 这个任务，该怎么办呢？很自然地想到使用循环打印 但如果是普通的循环打印，就不会有这篇文章了 我们要做的是——通过 setTimeout 的循环打印 首先是 c 风格的循环打印代码 123456let i = 0for(i = 0; i&lt;6; i++)&#123; setTimeout(()=&gt;&#123; console.log(i) &#125;,0)&#125; run 了一看，ん？？怎么打了 6 个 6 原因是此时 i 变量相对于 for 来说处在全局，而不是封闭的词法环境 光是这个原因，都足以抹平 let 和 var 的差距了 再加上 setTimeout 的宏任务，会在下一个事件循环开启的时候才执行（关于宏任务，会在其它文章介绍，本篇略 于是执行就变成了 声明 i=0 循环设置定时器，定时器中索引指向 i 循环完毕，i=6 当前事件循环清空，开启下一个事件循环 通过索引发现 i=6，于是所有定时器都打印了 6 那怎么办呢？此时注意到，刚才我提到了一个关键词——封闭的词法环境 那采用闭包的思想，让 i 处于封闭的词法环境，不就可以了！ 来试试 12345for(let i = 0; i&lt;6; i++)&#123; setTimeout(()=&gt;&#123; console.log(i) &#125;,0)&#125; 现在就可以正常打印 0 到 5 了！ 为什么呢？因为此时 i 的作用域仅限于 for 之内，每个 setTimeout 获取 i 的索引的时候，获取到的都是不一样的值，所以现在可以正常打印 但是在这里，换成 var 就大不相同了 因为通过 var 声明的变量实际上会绑定到 window，所以此时获取的索引还是相同，还是要打印 6 个 6 那么，还有什么别的，能通过 setTimeout 打印 0 到 5 的办法呢？ 容易想到，有两种改变 通过在 setTimeout 中自增来实现 通过 generator 实现 先说第一种，代码很简单，把控制自增的部分从 for 移动到 setTimeout 就可以了 123456let n = 0for(let i = 0; i&lt;6; i++)&#123; setTimeout(()=&gt;&#123; console.log(n++) &#125;,0)&#125; 注意到此时 let i 除了控制循环，已经和 setTimeout 没有关系了 配合后置 ++ 运算符的先取值再自增特性，很容易实现了在 setTimeout 中的自增 那么 generator 怎么实现呢？ 我不想在这里介绍 generator 语法（（实在太长了 直接给出例子 1234567891011function* generateSequence(start, end) &#123; for (let i = start; i &lt;= end; i++) yield i;&#125;let g=generateSequence(0,5)for(var i = 0; i&lt;6; i++)&#123; setTimeout(()=&gt;&#123; console.log(g.next().value) &#125;,0)&#125; 我们可以声明一个生成器工厂，每当运行该工厂方法的时候，传入上下界，然后返回一个生成器 每当生成器调用 next 方法的时候，都会返回一个对象，该对象包含 value 字段和 done 字段，分别表示抛出的值和该生成器当前的状态 显然生成器的调用是不可逆的，所以也约等于刚才说的在 setTimeout 中自增 以上 你还有别的办法吗？可以通过本站的”联系方式”向我发邮件~~]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[py对拍器]]></title>
+    <url>%2Falgorithm%2Fpython-counterpoint%2F</url>
+    <content type="text"><![CDATA[今天在验题的时候，与其他验题人输出不合，偶感，特此写一个对拍器 可以用于 c/cpp 对拍 请先去除代码中的 freopen，并编译成 exe 使用时只需要修改运行目录，和验题人标识符，即可 1234567891011121314151617181920212223242526272829import osos.chdir('E:\problems\div1\T1')arr=os.listdir()input_files=[file for file in arr if file.endswith('.in')]l=len(input_files)names=['lzz','ringoer']for name in names: for i in range(l): os.system(name+'.exe &lt;'+input_files[i]+' &gt;'+str(i+1)+'.'+name+'.out')arr=os.listdir()output_files=[file for file in arr if file.endswith('.out')]ans=[[open(file,mode='r',encoding='utf-8').read() for file in output_files if name in file] for name in names]for i in range(l): flag=True for j in range(1,len(names)): if ans[0][i] != ans[j][i]: flag=False break if flag: print(flag) else: print(i) for j in range(0,len(names)): print(names[j]+'='+ans[j][i]) 高度解耦，非常美观]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JS对象用法]]></title>
     <url>%2Ffrontend%2Fjavascript-object%2F</url>
     <content type="text"><![CDATA[JS 也有面向对象 又到了我第 114514 喜欢的 CRUD 环节 Create创建属性一般有两种办法 在对象声明时创建 在对象声明后插入 声明对象一般有两种 直接创建 123let obj=&#123; x:1&#125; 通过 Object 对象方法创建 123let obj=new Object(&#123; x:1&#125;) 为什么会有两种写法？因为第二种才是正规的 但是架不住第一种更方便，于是第一种也变成合法的了 obj 的键一定是字符串，所以可以写任意的键名，甚至包括 空字符串 和 emoji 需要注意的是，无论你怎么写 obj 的键，它在构造完成后都会变成字符串 可以通过 Object.keys(obj) 来查看 比如 键是数字的情况 123let obj=&#123; 2:'233'&#125; 此时 obj 会拥有一个名为 ‘2’ 的键 有同名变量的情况 1234let a=100;let obj=&#123; a:'233'&#125; 此时 obj 会拥有一个名为 ‘a’ 的键 但还有 2 种情况例外 当 obj 是数字表达式的时候 123let obj=&#123; 1e2: '233'&#125; 此时 obj 会拥有一个名为 ‘100’ 的键 当 obj 使用方括号表达式的时候 1234let a=233;let obj=&#123; [a]:'233'&#125; 此时 obj 会拥有一个名为 ‘233’ 的键 而且，obj 在自动构建后会包含一个 __proto__ 属性指向其原型 那我不要默认的 Object 原型，想要别的原型怎么办？ 可以使用 Object.create 来创建来自指定原型的新对象 示例如下 12345let common=&#123; xxx:1&#125;;let a=Object.create(common,&#123;yyy:&#123;value:2&#125;&#125;);console.log(a); 期望输出如下 12345&#123;yyy: 2&#125; yyy: 2 __proto__: xxx: 1 __proto__: Object 此时 a 可以访问属性 xxx 和 yyy，其中 yyy 来自自身，xxx 来自原型 需要注意的是，在 create 的第二个参数中，要求写的是属性描述符，一般包括 value，属性值，必填 writeable，默认 true，可以编辑，若为 false 则只读 enumerable，默认 true，可以被枚举，若为 false 则不能通过简单的键遍历找到 configureable，默认 true，可以被重新配置，若为 false 则永远在当前对象上保持当前状态 等 4 个配置 插入属性一般有两种逐条插入的写法 obj.property = value obj[property] = value 都是合法的写法 但是对于第一种，点号后必须是完整键名，不加引号 对于第二种，方括号内可以是表达式或字符串，如果可以识别为字符串，则字符串优先 示例如下 12345678910let obj=&#123; xxx: 666&#125;;obj['abc']=233;let abc='xxx';console.log(obj.abc); // 233console.log(obj['abc']); // 233console.log(obj[abc]); // 666 可见点符号的识别和方括号的识别是不一样的 还有一种批量插入的写法 Object.assign 12345678let obj=&#123; xxx: 666, yyy: 233&#125;;Object.assign(obj,&#123;xxx:111,zzz:114514&#125;)console.log(obj); 期望输出如下 1&#123;xxx: 111, yyy: 233, zzz: 114514&#125; 可见 assign 可以覆盖，可以新增，而且不会影响其他原有值 Retrieve显然可以分为按键查找和按值查找两种类型 按键查找可以使用以下两种方法 in Object.hasOwnProperty in 通过查找原型链确定某个参数是否存在于指定对象上 Object.hasOwnProperty 只会查找对象本身，不会上升到原型链 也可以用以下的 Object 方法来查找键或值 Object.keys 列出所有键 Object.values 列出所有值 Object.entries 列出所有键值对 按值查找通过上述的 entries 方法取得所有键值对，然后遍历即可 Update可以使用 点符号 方括号 Object.assign Object.defineProperty 来更新属性 需要注意的是，上述方法均不会直接修改到原型上 比如原型上有属性 xxx，当前对象 obj 上没有 则令 obj.xxx=’233’，会为当前对象绑定一个新属性 xxx，而不会修改原型上的 虽然可以通过 __proto__.xxx 来修改，但十分不推荐修改原型的属性 那如果直接修改原型呢？ 虽然 JS 是允许直接通过 __proto__ = xxx 来修改对象的原型指向的，但性能十分之低下 如果一定要修改原型，最好在创建对象的时候使用 Object.create，在创建时就指定新的原型 Delete一般有删除值和删除键两种需求 对于删除值，只需要取对应的键，然后赋值 undefined 即可 对于删除键，只需要使用 delete 语句 1delete obj.property; 即可删除键 可以用 property in obj 查看 obj 中是否还含有指定键名 但待删除的键不可以是不可配置的（通过 Object.defineProperty 设置的不可配置） 需要注意的是，delete 语句用于删除属性时，在所有情况下都会返回 true 表示删除成功，即便 obj 中不存在目标键 除非将 delete 用于删除对象等非属性值，才会返回 false 谢谢阅读]]></content>
@@ -47,8 +69,8 @@
         <category>frontend</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
         <tag>frontend</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -543,9 +565,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
-        <tag>HDU</tag>
         <tag>线段树</tag>
+        <tag>HDU</tag>
+        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
@@ -709,8 +731,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>线段树</tag>
+        <tag>题解</tag>
         <tag>Luogu</tag>
       </tags>
   </entry>
@@ -722,8 +744,8 @@
         <category>algorithm</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>线段树</tag>
+        <tag>题解</tag>
         <tag>Luogu</tag>
         <tag>algorithm</tag>
         <tag>SegmentTree</tag>
@@ -890,9 +912,9 @@
         <category>Answer</category>
       </categories>
       <tags>
+        <tag>HDU</tag>
         <tag>题解</tag>
         <tag>SPFA</tag>
-        <tag>HDU</tag>
       </tags>
   </entry>
   <entry>
