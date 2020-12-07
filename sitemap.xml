@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/dom-api/</loc>
+    
+    <lastmod>2020-12-07T15:06:34.821Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/frontend/jquery/</loc>
+    
+    <lastmod>2020-12-07T15:06:11.148Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/javascript-setTimeout/</loc>
     
     <lastmod>2020-12-02T03:38:38.563Z</lastmod>
