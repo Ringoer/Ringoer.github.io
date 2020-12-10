@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="本文介绍一些前端常用且重要的标签">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-19T15:59:52.924Z">
+<meta property="og:updated_time" content="2020-12-10T15:19:35.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML重要标签">
 <meta name="twitter:description" content="本文介绍一些前端常用且重要的标签">
@@ -402,7 +402,7 @@
 <li><a href="#canvas">canvas</a></li>
 <li><a href="#svg">svg</a></li>
 </ol>
-<h1 id="table"><a href="#table" class="headerlink" title="table"></a><span id="table">table</span></h1><p>table，表格标签，用于制表，包含以下子标签</p>
+<h1 id="table"><a href="#table" class="headerlink" title="table"></a>table</h1><p>table，表格标签，用于制表，包含以下子标签</p>
 <table>
 <thead>
 <tr>
@@ -471,7 +471,7 @@
 </tr>
 </tbody>
 </table>
-<h1 id="form"><a href="#form" class="headerlink" title="form"></a><span id="form">form</span></h1><p>form，表单标签，常用于提交请求</p>
+<h1 id="form"><a href="#form" class="headerlink" title="form"></a>form</h1><p>form，表单标签，常用于提交请求</p>
 <p>主要功能全部体现在其属性上，故此处先讲属性</p>
 <table>
 <thead>
@@ -687,7 +687,7 @@
 </tbody>
 </table>
 <p>在项目中一般不使用 form 直接提交数据，而使用 js 拦截提交事件，然后用 ajax 提交，故现在 form 标签更多仅作为一个表示而已</p>
-<h1 id="a"><a href="#a" class="headerlink" title="a"></a><span id="a">a</span></h1><p>a，超链接标签，常用于跳转页面，没有专属的子标签</p>
+<h1 id="a"><a href="#a" class="headerlink" title="a"></a>a</h1><p>a，超链接标签，常用于跳转页面，没有专属的子标签</p>
 <p>重要属性如下</p>
 <table>
 <thead>
@@ -723,7 +723,7 @@
 <p>也可以设置一个用于触发 JavaScript 方法，其余什么也不做的 a 标签</p>
 <p>此处使用 javascript 伪协议，代码如下</p>
 <p><code>&lt;a href=&quot;javascript:;&quot;&gt;点击我什么也没发生&lt;/a&gt;</code></p>
-<h1 id="img"><a href="#img" class="headerlink" title="img"></a><span id="img">img</span></h1><p>img，图片标签，用于通过 GET 请求来引入图片，没有专属的子标签</p>
+<h1 id="img"><a href="#img" class="headerlink" title="img"></a>img</h1><p>img，图片标签，用于通过 GET 请求来引入图片，没有专属的子标签</p>
 <p>重要属性如下</p>
 <table>
 <thead>
@@ -783,14 +783,43 @@
 <li>永远不要在不合比例的情况下同时指定 height 和 width，否则图片将严重变形</li>
 <li>最好只使用 width 来修改图片尺寸</li>
 </ol>
-<h1 id="video"><a href="#video" class="headerlink" title="video"></a><span id="video">video</span></h1><p>video，视频标签，用于引入视频</p>
-<p>待更新</p>
-<h1 id="audio"><a href="#audio" class="headerlink" title="audio"></a><span id="audio">audio</span></h1><p>audio，音频标签，用于引入音频</p>
-<p>待更新</p>
-<h1 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a><span id="canvas">canvas</span></h1><p>canvas</p>
-<p>待更新</p>
-<h1 id="svg"><a href="#svg" class="headerlink" title="svg"></a><span id="svg">svg</span></h1><p>svg</p>
-<p>待更新</p>
+<h1 id="video"><a href="#video" class="headerlink" title="video"></a>video</h1><p>video，视频标签，用于引入视频</p>
+<p>有以下重要属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>是否取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>src</td>
+<td>是</td>
+<td>指定视频来源</td>
+</tr>
+<tr>
+<td>controls</td>
+<td>否</td>
+<td>提供一些用户操作</td>
+</tr>
+<tr>
+<td>preload</td>
+<td>是</td>
+<td>指示视频是否应该被缓存</td>
+</tr>
+</tbody>
+</table>
+<p>其余部分请查看 mdn</p>
+<h1 id="audio"><a href="#audio" class="headerlink" title="audio"></a>audio</h1><p>audio，音频标签，用于引入音频</p>
+<p>重要属性与 video 相同</p>
+<h1 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h1><p>canvas，为用户提供一张画布</p>
+<p>具体的比较难以说明，建议查看以下画图板范例，或 mdn</p>
+<p><a href="https://github.com/Ringoer/Toy/blob/main/22/canvas.html" target="_blank" rel="noopener">https://github.com/Ringoer/Toy/blob/main/22/canvas.html</a></p>
+<h1 id="svg"><a href="#svg" class="headerlink" title="svg"></a>svg</h1><p>svg，矢量图形，一般要用的时候直接去网上找一个 svg 库，然后引用他们的 svg 即可</p>
+<p>常用 svg 库如下</p>
+<p><a href="https://www.iconfont.cn/" target="_blank" rel="noopener">Iconfont-阿里巴巴矢量图标库</a></p>
 
       
     </div>
@@ -943,7 +972,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
