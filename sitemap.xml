@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/answer/yxyz201802-0101/</loc>
+    
+    <lastmod>2020-12-12T15:23:33.138Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/answer/yxyz201802-0103/</loc>
     
     <lastmod>2020-12-12T14:58:47.762Z</lastmod>
@@ -229,13 +236,6 @@
     <loc>http://yoursite.com/answer/yxyz201802-0201/</loc>
     
     <lastmod>2020-12-12T14:16:22.160Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/answer/yxyz201802-0101/</loc>
-    
-    <lastmod>2020-12-12T14:15:27.305Z</lastmod>
     
   </url>
   

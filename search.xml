@@ -168,8 +168,8 @@
         <category>frontend</category>
       </categories>
       <tags>
-        <tag>http</tag>
         <tag>浏览器</tag>
+        <tag>http</tag>
       </tags>
   </entry>
   <entry>
@@ -866,8 +866,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
+        <tag>dp</tag>
         <tag>云霄一中月赛</tag>
-        <tag>背包dp</tag>
       </tags>
   </entry>
   <entry>
@@ -951,8 +951,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>HDU</tag>
         <tag>SPFA</tag>
+        <tag>HDU</tag>
       </tags>
   </entry>
   <entry>
