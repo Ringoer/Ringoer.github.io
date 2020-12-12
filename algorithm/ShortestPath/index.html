@@ -73,7 +73,7 @@
 
 
 
-  <meta name="keywords" content="algorithm,ShortestPath,">
+  <meta name="keywords" content="最短路,">
 
 
 
@@ -85,14 +85,14 @@
 
 
 <meta name="description" content="以下第1和第2均假设起点为1号点，终点为n号点。">
-<meta name="keywords" content="algorithm,ShortestPath">
+<meta name="keywords" content="最短路">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最短路三大算法核心程序段">
 <meta property="og:url" content="http://yoursite.com/algorithm/ShortestPath/index.html">
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="以下第1和第2均假设起点为1号点，终点为n号点。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-12T12:32:14.366Z">
+<meta property="og:updated_time" content="2020-12-12T14:39:31.645Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最短路三大算法核心程序段">
 <meta name="twitter:description" content="以下第1和第2均假设起点为1号点，终点为n号点。">
@@ -389,7 +389,8 @@
       
 
       
-        <p>以下第1和第2均假设起点为1号点，终点为n号点。<br><a id="more"></a></p>
+        <p>以下第1和第2均假设起点为1号点，终点为n号点。</p>
+<a id="more"></a>
 <h1 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h1><p>等待重写</p>
 <h1 id="SPFA"><a href="#SPFA" class="headerlink" title="SPFA"></a>SPFA</h1><p>适用于单源最短路，可以处理负权边，不能处理负环。<br>思路：从起点开始寻找起点能到达的结点，然后按次序将结点入队，每当入队时标记入队，每当出队取消标记，重复处理，直到队列为空。<br>重点：和Dijkstra相比就是多了v数组用来保存结点是否在队列里，其结果导致同一个结点可以重复入队。而Dijkstra中所有结点都只能入队一次。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> e[<span class="number">1010</span>][<span class="number">1010</span>],ans[<span class="number">1010</span>],v[<span class="number">1010</span>],n;</span><br><span class="line"><span class="comment">//取e[a][b]=w表示存在一条从a通向b的道路，道路长度为w，其值应该在main中已经处理好</span></span><br><span class="line"><span class="comment">//取ans[i]表示从起点到结点i的距离为ans[i]</span></span><br><span class="line"><span class="comment">//取v[i]表示结点i是否在队列中</span></span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">spfa</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(!q.empty()) q.pop();<span class="comment">//清空队列</span></span><br><span class="line">    <span class="built_in">memset</span>(v,<span class="number">0</span>,<span class="keyword">sizeof</span>(v));<span class="comment">//初始化v数组</span></span><br><span class="line">    <span class="built_in">memset</span>(ans,<span class="number">0</span>,<span class="keyword">sizeof</span>(ans));<span class="comment">//初始化ans数组</span></span><br><span class="line">    q.push(<span class="number">1</span>);<span class="comment">//起点入队</span></span><br><span class="line">    v[<span class="number">1</span>]=<span class="number">1</span>;<span class="comment">//起点标记为已经在队列中</span></span><br><span class="line">    <span class="keyword">while</span>(!q.empty())<span class="comment">//当队列非空时</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> st=q.front();<span class="comment">//取队头元素</span></span><br><span class="line">        q.pop();<span class="comment">//弹出</span></span><br><span class="line">        v[st]=<span class="number">0</span>;<span class="comment">//标记队头元素为不在队列中</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//枚举所有点</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i==<span class="number">1</span>) <span class="keyword">continue</span>;<span class="comment">//如果i是起点，跳过</span></span><br><span class="line">            <span class="keyword">int</span> p=<span class="number">0</span>;<span class="comment">//取变量p来记录是否发生更优解的更新</span></span><br><span class="line">            <span class="keyword">if</span>(e[st][i]&amp;&amp;(!ans[i]||ans[i]&gt;ans[st]+e[st][i])) ans[i]=ans[st]+e[st][i],p=<span class="number">1</span>;<span class="comment">//发生更优解的更新，p=1</span></span><br><span class="line">            <span class="keyword">if</span>(p&amp;&amp;!v[i]) q.push(i),v[i]=<span class="number">1</span>;<span class="comment">//如果发生更优解的更新，且结点i未入队，则结点i入队，标记为已入队</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="Floyd"><a href="#Floyd" class="headerlink" title="Floyd"></a>Floyd</h1><p>适用于求所有结点间的最短路径。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> d[<span class="number">100</span>][<span class="number">100</span>];<span class="comment">//用d[i][j]表示从i到j的最短路径</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;n;k++)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">            d[i][j]=min(d[i][j],d[i][k]+d[k][j]);</span><br></pre></td></tr></table></figure></p>
@@ -420,9 +421,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/algorithm/" rel="tag"># algorithm</a>
-          
-            <a href="/tags/ShortestPath/" rel="tag"># ShortestPath</a>
+            <a href="/tags/最短路/" rel="tag"># 最短路</a>
           
         </div>
       
@@ -435,7 +434,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Answer/luogu-p1880/" rel="next" title="Luogu P1880 [NOI1995]石子合并 题解">
+              <a href="/answer/luogu-p1880/" rel="next" title="Luogu P1880 [NOI1995]石子合并 题解">
                 <i class="fa fa-chevron-left"></i> Luogu P1880 [NOI1995]石子合并 题解
               </a>
             
@@ -536,7 +535,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -547,7 +546,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

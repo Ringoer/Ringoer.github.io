@@ -88,11 +88,11 @@
 <meta name="keywords" content="题解,SPFA,云霄一中月赛">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2018年4月月赛 Day2 Violet 题解">
-<meta property="og:url" content="http://yoursite.com/Answer/yxyz201804-0203/index.html">
+<meta property="og:url" content="http://yoursite.com/answer/yxyz201804-0203/index.html">
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="2018年4月月赛 Day2 Violet 题解">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-04T01:39:41.569Z">
+<meta property="og:updated_time" content="2020-12-12T14:26:44.400Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2018年4月月赛 Day2 Violet 题解">
 <meta name="twitter:description" content="2018年4月月赛 Day2 Violet 题解">
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/Answer/yxyz201804-0203/">
+  <link rel="canonical" href="http://yoursite.com/answer/yxyz201804-0203/">
 
 
 
@@ -300,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Answer/yxyz201804-0203/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/answer/yxyz201804-0203/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ringoer">
@@ -352,8 +352,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Answer/" itemprop="url" rel="index">
-                    <span itemprop="name">Answer</span>
+                  <a href="/categories/answer/" itemprop="url" rel="index">
+                    <span itemprop="name">answer</span>
                   </a>
                 </span>
 
@@ -389,16 +389,24 @@
       
 
       
-        <p>2018年4月月赛 Day2 Violet 题解<br><a id="more"></a></p>
-<h1 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h1><p>少佐在哪！！别拦着我！！我要去找少佐！！ 自从那天的别离之后，Violet和少佐已经分别许久。就在Violet从昏迷中恢复意识的那一刻起，Violet一直在计划着去寻找少佐。<br>现在，时机成熟了。</p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>Violet只能确定少佐在n个城市中的某一个，却不知道具体在哪一个，而从疗养院所在地s去到任意一个城市，都需要经过若干城市之间的若干有向道路。这些道路错综复杂，Violet想尽快赶到。<br>请你帮她算算到各个城市的最短时间吧。</p>
-<h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行包含三个整数N、M、S，分别表示点的个数、有向边的个数、出发点的编号。<br>接下来M行每行包含三个整数Fi、Gi、Wi，分别表示第i条有向边的出发点、目标点和长度。</p>
+        <p>2018年4月月赛 Day2 Violet 题解</p>
+<a id="more"></a>
+<h1 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h1><p>少佐在哪！！别拦着我！！我要去找少佐！！ 自从那天的别离之后，Violet和少佐已经分别许久。就在Violet从昏迷中恢复意识的那一刻起，Violet一直在计划着去寻找少佐。  </p>
+<p>现在，时机成熟了。</p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>Violet只能确定少佐在n个城市中的某一个，却不知道具体在哪一个，而从疗养院所在地s去到任意一个城市，都需要经过若干城市之间的若干有向道路。这些道路错综复杂，Violet想尽快赶到。  </p>
+<p>请你帮她算算到各个城市的最短时间吧。</p>
+<h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行包含三个整数N、M、S，分别表示点的个数、有向边的个数、出发点的编号。</p>
+<p>接下来M行每行包含三个整数Fi、Gi、Wi，分别表示第i条有向边的出发点、目标点和长度。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>一行，包含N个用空格分隔的整数，其中第i个整数表示从点S出发到点i的最短路径长度（若S=i则最短路径长度为0，若从点S无法到达点i，则最短路径长度为2147483647）</p>
-<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><p>输入样例#1：<br>4 6 1<br>1 2 2<br>2 3 2<br>2 4 1<br>1 3 5<br>3 4 3<br>1 4 4</p>
-<p>输出样例#1：<br>0 2 4 3</p>
+<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><p>输入样例#1：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">4 6 1</span><br><span class="line">1 2 2</span><br><span class="line">2 3 2</span><br><span class="line">2 4 1</span><br><span class="line">1 3 5</span><br><span class="line">3 4 3</span><br><span class="line">1 4 4</span><br></pre></td></tr></table></figure>
+<p>输出样例#1：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 2 4 3</span><br></pre></td></tr></table></figure>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>1&lt;=N&lt;=10000，1&lt;=M&lt;=500000</p>
-<p>邻接表板子题……<br>可类比Luogu P3371<br>代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span><span class="keyword">int</span> next,dis;&#125;; </span><br><span class="line"><span class="built_in">vector</span>&lt;edge&gt; e[<span class="number">10010</span>];</span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">10010</span>];</span><br><span class="line"><span class="keyword">bool</span> v[<span class="number">10010</span>]=&#123;<span class="literal">false</span>&#125;;</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> f,<span class="keyword">int</span> g,<span class="keyword">int</span> w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    edge x;</span><br><span class="line">    x.next=g;</span><br><span class="line">    x.dis=w;</span><br><span class="line">    e[f].push_back(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">spfa</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(!q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> t=q.front();</span><br><span class="line">        q.pop();</span><br><span class="line">        v[t]=<span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">vector</span>&lt;edge&gt;::iterator i=e[t].begin();i!=e[t].end();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> tmp=ans[t]+i-&gt;dis,ttt=i-&gt;next;</span><br><span class="line">            <span class="keyword">if</span>(tmp&lt;ans[ttt])</span><br><span class="line">            &#123;</span><br><span class="line">                ans[ttt]=tmp;</span><br><span class="line">                <span class="keyword">if</span>(!v[ttt])</span><br><span class="line">                &#123;</span><br><span class="line">                    q.push(ttt);</span><br><span class="line">                    v[ttt]=<span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m,s;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;s;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) ans[i]=<span class="number">2147483647</span>;</span><br><span class="line">    ans[s]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> f,g,w;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>,&amp;f,&amp;g,&amp;w);</span><br><span class="line">        addedge(f,g,w);</span><br><span class="line">    &#125;</span><br><span class="line">    q.push(s);</span><br><span class="line">    v[s]=<span class="literal">true</span>;</span><br><span class="line">    spfa();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">printf</span>(<span class="string">"%d "</span>,ans[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
+<p>邻接表板子题……  </p>
+<p>可类比Luogu P3371  </p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span><span class="keyword">int</span> next,dis;&#125;; </span><br><span class="line"><span class="built_in">vector</span>&lt;edge&gt; e[<span class="number">10010</span>];</span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">10010</span>];</span><br><span class="line"><span class="keyword">bool</span> v[<span class="number">10010</span>]=&#123;<span class="literal">false</span>&#125;;</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> f,<span class="keyword">int</span> g,<span class="keyword">int</span> w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    edge x;</span><br><span class="line">    x.next=g;</span><br><span class="line">    x.dis=w;</span><br><span class="line">    e[f].push_back(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">spfa</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(!q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> t=q.front();</span><br><span class="line">        q.pop();</span><br><span class="line">        v[t]=<span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">vector</span>&lt;edge&gt;::iterator i=e[t].begin();i!=e[t].end();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> tmp=ans[t]+i-&gt;dis,ttt=i-&gt;next;</span><br><span class="line">            <span class="keyword">if</span>(tmp&lt;ans[ttt])</span><br><span class="line">            &#123;</span><br><span class="line">                ans[ttt]=tmp;</span><br><span class="line">                <span class="keyword">if</span>(!v[ttt])</span><br><span class="line">                &#123;</span><br><span class="line">                    q.push(ttt);</span><br><span class="line">                    v[ttt]=<span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m,s;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;s;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) ans[i]=<span class="number">2147483647</span>;</span><br><span class="line">    ans[s]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> f,g,w;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>,&amp;f,&amp;g,&amp;w);</span><br><span class="line">        addedge(f,g,w);</span><br><span class="line">    &#125;</span><br><span class="line">    q.push(s);</span><br><span class="line">    v[s]=<span class="literal">true</span>;</span><br><span class="line">    spfa();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">printf</span>(<span class="string">"%d "</span>,ans[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -442,7 +450,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Answer/yxyz201804-0202/" rel="next" title="2018年4月月赛 Day2 工作分配问题 题解">
+              <a href="/answer/yxyz201804-0202/" rel="next" title="2018年4月月赛 Day2 工作分配问题 题解">
                 <i class="fa fa-chevron-left"></i> 2018年4月月赛 Day2 工作分配问题 题解
               </a>
             
@@ -452,7 +460,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Answer/luogu-p3366/" rel="prev" title="Luogu P3366 【模板】最小生成树 题解">
+              <a href="/answer/luogu-p3366/" rel="prev" title="Luogu P3366 【模板】最小生成树 题解">
                 Luogu P3366 【模板】最小生成树 题解 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -543,7 +551,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -554,7 +562,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

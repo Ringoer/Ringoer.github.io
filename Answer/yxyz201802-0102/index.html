@@ -88,11 +88,11 @@
 <meta name="keywords" content="题解,云霄一中月赛,dfs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2018年2&#x2F;3月月赛 Day1 疯狂的机器人 题解">
-<meta property="og:url" content="http://yoursite.com/Answer/yxyz201802-0102/index.html">
+<meta property="og:url" content="http://yoursite.com/answer/yxyz201802-0102/index.html">
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="2018年2/3月月赛 Day1 疯狂的机器人 题解">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-04T01:40:32.525Z">
+<meta property="og:updated_time" content="2020-12-12T14:14:17.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2018年2&#x2F;3月月赛 Day1 疯狂的机器人 题解">
 <meta name="twitter:description" content="2018年2/3月月赛 Day1 疯狂的机器人 题解">
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/Answer/yxyz201802-0102/">
+  <link rel="canonical" href="http://yoursite.com/answer/yxyz201802-0102/">
 
 
 
@@ -300,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Answer/yxyz201802-0102/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/answer/yxyz201802-0102/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ringoer">
@@ -352,8 +352,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Answer/" itemprop="url" rel="index">
-                    <span itemprop="name">Answer</span>
+                  <a href="/categories/answer/" itemprop="url" rel="index">
+                    <span itemprop="name">answer</span>
                   </a>
                 </span>
 
@@ -389,16 +389,29 @@
       
 
       
-        <p>2018年2/3月月赛 Day1 疯狂的机器人 题解<br><a id="more"></a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>MH：“前几个月给一个机器人写了段代码，发现它只能往两个方向走，不能回退，而且还是随机的，真是无语…”<br>CL：“我看你也够随机的，最后那家伙竟然疯了一样，在上下左右四个方向乱走了，可真是吓死我了”<br>MH：“是啊是啊。我记下了它当时的所在的地图，希望能找到它最远可能从哪里来的”<br>还是机智的你，知道这个机器人最远可能从哪里来的吗？  </p>
-<h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行两个正整数n,m，表示机器人所在地图的规模。<br>第2行到第n+1行，每行m个数字，分别是0,1,-1三种之一。<br>其中，0表示可以行走的路，1表示墙壁，-1表示机器人所在的坐标。</p>
+        <p>2018年2/3月月赛 Day1 疯狂的机器人 题解</p>
+<a id="more"></a>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>MH：“前几个月给一个机器人写了段代码，发现它只能往两个方向走，不能回退，而且还是随机的，真是无语…”  </p>
+<p>CL：“我看你也够随机的，最后那家伙竟然疯了一样，在上下左右四个方向乱走了，可真是吓死我了”  </p>
+<p>MH：“是啊是啊。我记下了它当时的所在的地图，希望能找到它最远可能从哪里来的”</p>
+<p>还是机智的你，知道这个机器人最远可能从哪里来的吗？  </p>
+<h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行两个正整数n,m，表示机器人所在地图的规模。  </p>
+<p>第2行到第n+1行，每行m个数字，分别是0,1,-1三种之一。  </p>
+<p>其中，0表示可以行走的路，1表示墙壁，-1表示机器人所在的坐标。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>一行，包含一个数字。若能有最远可到达的地方，输出该距离，否则输出0。</p>
-<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><p>输入样例#1：<br>4 5<br>1 0 0 0 1<br>0 1 0 1 0<br>1 1 0 1 0<br>0 -1 0 0 0</p>
-<p>输出样例#1：<br>5</p>
-<p>输入样例#2：<br>4 5<br>1 0 0 0 1<br>0 1 0 1 0<br>1 1 0 1 0<br>0 0 1 -1 0</p>
-<p>输出样例#2：<br>3</p>
+<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><p>输入样例#1：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4 5</span><br><span class="line">1 0 0 0 1</span><br><span class="line">0 1 0 1 0</span><br><span class="line">1 1 0 1 0</span><br><span class="line">0 -1 0 0 0</span><br></pre></td></tr></table></figure>
+<p>输出样例#1：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5</span><br></pre></td></tr></table></figure>
+<p>输入样例#2：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4 5</span><br><span class="line">1 0 0 0 1</span><br><span class="line">0 1 0 1 0</span><br><span class="line">1 1 0 1 0</span><br><span class="line">0 0 1 -1 0</span><br></pre></td></tr></table></figure>
+<p>输出样例#2：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>对于100%的数据，1&lt;=n,m&lt;=50。</p>
-<p>定性为搜索题，搜索所有点中到起点走最短路仍最远的地方，也就是求起点到所有点的最短距离的最大值。<br>此处采用dfs。使用bfs的话需要有明确的终点，而本题没有固定终点，因此不适合bfs。<br>代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,final=<span class="number">0</span>,d[<span class="number">60</span>][<span class="number">60</span>],ans[<span class="number">60</span>][<span class="number">60</span>]=&#123;<span class="number">0</span>&#125;,stx,sty;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=x<span class="number">-1</span>;i&lt;=x+<span class="number">1</span>;i++)</span><br><span class="line">  &#123;</span><br><span class="line">      <span class="keyword">if</span>(i&lt;<span class="number">0</span>||i&gt;=n) <span class="keyword">continue</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> j=y<span class="number">-1</span>;j&lt;=y+<span class="number">1</span>;j++)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">if</span>(j&lt;<span class="number">0</span>||j&gt;=m) <span class="keyword">continue</span>;</span><br><span class="line">          <span class="keyword">if</span>(i==stx&amp;&amp;j==sty) <span class="keyword">continue</span>;</span><br><span class="line">          <span class="keyword">if</span>(i==x&amp;&amp;y==j) <span class="keyword">continue</span>;</span><br><span class="line">          <span class="keyword">if</span>(i!=x&amp;&amp;y!=j) <span class="keyword">continue</span>;</span><br><span class="line">          <span class="keyword">if</span>(d[i][j]) <span class="keyword">continue</span>;</span><br><span class="line">          <span class="keyword">int</span> &amp;t=ans[i][j];</span><br><span class="line">          <span class="keyword">if</span>(!t||(t&amp;&amp;t&gt;ans[x][y]+<span class="number">1</span>))</span><br><span class="line">          &#123;</span><br><span class="line">              t=ans[x][y]+<span class="number">1</span>;</span><br><span class="line">              dfs(i,j);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">  &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="built_in">cin</span>&gt;&gt;d[i][j];</span><br><span class="line">          <span class="keyword">if</span>(d[i][j]==<span class="number">-1</span>)</span><br><span class="line">          &#123;</span><br><span class="line">              stx=i;</span><br><span class="line">              sty=j;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  dfs(stx,sty);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++) <span class="keyword">if</span>(final&lt;ans[i][j]) final=ans[i][j];</span><br><span class="line">  <span class="built_in">cout</span>&lt;&lt;final;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>定性为搜索题，搜索所有点中到起点走最短路仍最远的地方，也就是求起点到所有点的最短距离的最大值。  </p>
+<p>此处采用dfs。使用bfs的话需要有明确的终点，而本题没有固定终点，因此不适合bfs。  </p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,final=<span class="number">0</span>,d[<span class="number">60</span>][<span class="number">60</span>],ans[<span class="number">60</span>][<span class="number">60</span>]=&#123;<span class="number">0</span>&#125;,stx,sty;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=x<span class="number">-1</span>;i&lt;=x+<span class="number">1</span>;i++)</span><br><span class="line">  &#123;</span><br><span class="line">      <span class="keyword">if</span>(i&lt;<span class="number">0</span>||i&gt;=n) <span class="keyword">continue</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> j=y<span class="number">-1</span>;j&lt;=y+<span class="number">1</span>;j++)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">if</span>(j&lt;<span class="number">0</span>||j&gt;=m) <span class="keyword">continue</span>;</span><br><span class="line">          <span class="keyword">if</span>(i==stx&amp;&amp;j==sty) <span class="keyword">continue</span>;</span><br><span class="line">          <span class="keyword">if</span>(i==x&amp;&amp;y==j) <span class="keyword">continue</span>;</span><br><span class="line">          <span class="keyword">if</span>(i!=x&amp;&amp;y!=j) <span class="keyword">continue</span>;</span><br><span class="line">          <span class="keyword">if</span>(d[i][j]) <span class="keyword">continue</span>;</span><br><span class="line">          <span class="keyword">int</span> &amp;t=ans[i][j];</span><br><span class="line">          <span class="keyword">if</span>(!t||(t&amp;&amp;t&gt;ans[x][y]+<span class="number">1</span>))</span><br><span class="line">          &#123;</span><br><span class="line">              t=ans[x][y]+<span class="number">1</span>;</span><br><span class="line">              dfs(i,j);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">  &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="built_in">cin</span>&gt;&gt;d[i][j];</span><br><span class="line">          <span class="keyword">if</span>(d[i][j]==<span class="number">-1</span>)</span><br><span class="line">          &#123;</span><br><span class="line">              stx=i;</span><br><span class="line">              sty=j;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  dfs(stx,sty);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++) <span class="keyword">if</span>(final&lt;ans[i][j]) final=ans[i][j];</span><br><span class="line">  <span class="built_in">cout</span>&lt;&lt;final;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -443,7 +456,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Answer/yxyz201802-0101/" rel="next" title="2018年2/3月月赛 Day1 行军（改） 题解">
+              <a href="/answer/yxyz201802-0101/" rel="next" title="2018年2/3月月赛 Day1 行军（改） 题解">
                 <i class="fa fa-chevron-left"></i> 2018年2/3月月赛 Day1 行军（改） 题解
               </a>
             
@@ -453,7 +466,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Answer/yxyz201802-0103/" rel="prev" title="2018年2/3月月赛 Day1 胜利大逃亡 题解">
+              <a href="/answer/yxyz201802-0103/" rel="prev" title="2018年2/3月月赛 Day1 胜利大逃亡 题解">
                 2018年2/3月月赛 Day1 胜利大逃亡 题解 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -544,7 +557,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -555,7 +568,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

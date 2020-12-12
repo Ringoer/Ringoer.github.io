@@ -88,11 +88,11 @@
 <meta name="keywords" content="题解,云霄一中月赛,dfs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2018年1月月赛 工作分配问题 题解">
-<meta property="og:url" content="http://yoursite.com/Answer/yxyz201801-04/index.html">
+<meta property="og:url" content="http://yoursite.com/answer/yxyz201801-04/index.html">
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="2018年1月月赛 工作分配问题 题解">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-04T01:40:41.165Z">
+<meta property="og:updated_time" content="2020-12-12T14:12:41.614Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2018年1月月赛 工作分配问题 题解">
 <meta name="twitter:description" content="2018年1月月赛 工作分配问题 题解">
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/Answer/yxyz201801-04/">
+  <link rel="canonical" href="http://yoursite.com/answer/yxyz201801-04/">
 
 
 
@@ -300,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Answer/yxyz201801-04/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/answer/yxyz201801-04/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ringoer">
@@ -352,8 +352,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Answer/" itemprop="url" rel="index">
-                    <span itemprop="name">Answer</span>
+                  <a href="/categories/answer/" itemprop="url" rel="index">
+                    <span itemprop="name">answer</span>
                   </a>
                 </span>
 
@@ -389,16 +389,26 @@
       
 
       
-        <p>2018年1月月赛 工作分配问题 题解<br><a id="more"></a></p>
+        <p>2018年1月月赛 工作分配问题 题解</p>
+<a id="more"></a>
 <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>设有 n 件工作分配给 n 个人。将工作 i 分配给第 j 个人所需的费用为c[i][j] 。试设计一个算法，为每一个人都分配 1 件不同的工作，并使总费用达到最小。</p>
 <h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行有 1 个正整数 n 。接下来的 n 行，每行 n 个正整数，表示工作费用。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>一行，包含一个正整数，为计算出的最小总费用。</p>
-<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><p>输入样例#1：<br>3<br>10 2 3<br>2 3 4<br>3 4 5</p>
-<p>输出样例#1：<br>9</p>
+<h1 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h1><p>输入样例#1：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">10 2 3</span><br><span class="line">2 3 4</span><br><span class="line">3 4 5</span><br></pre></td></tr></table></figure>
+<p>输出样例#1：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">9</span><br></pre></td></tr></table></figure>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>对于100%的数据，1&lt;=n&lt;=20，1&lt;=c[i][j]&lt;=100。</p>
-<p>分析数据，发现最大数据为所有c[i][j]的和。而格子数最大只有n*n=400，每个c[i][j]最大只有100，故最大数据不大于40000，可以采用int类型。<br>本题也有网络流解法，但网络流解法思维难度过大，不予讨论。<br>采用dfs解决本问题。</p>
+<p>分析数据，发现最大数据为所有c[i][j]的和。而格子数最大只有n*n=400，每个c[i][j]最大只有100，故最大数据不大于40000，可以采用int类型。  </p>
+<p>本题也有网络流解法，但网络流解法思维难度过大，不予讨论。  </p>
+<p>采用dfs解决本问题。</p>
 <p>代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">bool</span> v[<span class="number">30</span>]=&#123;<span class="literal">false</span>&#125;;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> c[<span class="number">30</span>][<span class="number">30</span>],n;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> sum)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&gt;n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(sum&lt;ans) ans=sum;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(ans&gt;sum)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(!v[i])</span><br><span class="line">            &#123;</span><br><span class="line">                v[i]=<span class="literal">true</span>;</span><br><span class="line">                dfs(x+<span class="number">1</span>,sum+c[x][i]);</span><br><span class="line">                v[i]=<span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;c[i][j];</span><br><span class="line">            ans+=c[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>采用ans先存储所有c[i][j]的和，这里也可以将ans初始化为一个远大于40000的值。<br>用v数组保存工作分配情况，v[i]=true表示第i件工作已经被分配，v[i]=false表示第i件工作未被分配。<br>用dfs函数来执行深搜。dfs函数带有两个参量，其中x表示现在正在被分配工作的人的编号，sum表示目前总花费。<br>当x&gt;n时表示人已经被枚举完了，此时判断sum是否小于已有答案ans，若是，则表示产生了更优解，更新ans的值。<br>如果数据简单的话，到这里就可以过了。但本题数据较为复杂，需要剪枝。<br>不论当前枚举到第几个人，只要当前sum&gt;=ans，就表示最终的sum不会比ans小，不会产生更优的解答。所以当且仅当ans&gt;sum的时候继续递归。</p>
+<p>采用ans先存储所有c[i][j]的和，这里也可以将ans初始化为一个远大于40000的值。</p>
+<p>用v数组保存工作分配情况，v[i]=true表示第i件工作已经被分配，v[i]=false表示第i件工作未被分配。  </p>
+<p>用dfs函数来执行深搜。dfs函数带有两个参量，其中x表示现在正在被分配工作的人的编号，sum表示目前总花费。  </p>
+<p>当x&gt;n时表示人已经被枚举完了，此时判断sum是否小于已有答案ans，若是，则表示产生了更优解，更新ans的值。  </p>
+<p>如果数据简单的话，到这里就可以过了。但本题数据较为复杂，需要剪枝。</p>
+<p>不论当前枚举到第几个人，只要当前sum&gt;=ans，就表示最终的sum不会比ans小，不会产生更优的解答。所以当且仅当ans&gt;sum的时候继续递归。</p>
 
       
     </div>
@@ -443,7 +453,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Answer/yxyz201801-03/" rel="next" title="2018年1月月赛 子数整数 题解">
+              <a href="/answer/yxyz201801-03/" rel="next" title="2018年1月月赛 子数整数 题解">
                 <i class="fa fa-chevron-left"></i> 2018年1月月赛 子数整数 题解
               </a>
             
@@ -544,7 +554,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -555,7 +565,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
