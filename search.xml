@@ -6,6 +6,17 @@
     <content type="text"><![CDATA[Are You Going To Scarborough Fair ?]]></content>
   </entry>
   <entry>
+    <title><![CDATA[DOM 事件机制]]></title>
+    <url>%2Ffrontend%2Fdom-event%2F</url>
+    <content type="text"><![CDATA[弱弱地冒一个泡 经常听到冒泡捕获，那到底是什么东西呢？ 事件模型首先就要介绍一下 W3C DOM 事件模型 事件总体上分为三个阶段 捕获阶段，事件从父到子向下传递 目标阶段，事件传递到达发生事件的目标点 冒泡阶段，事件从子到父向上传递 不论是什么事件，没有特殊设置的情况下，都会按顺序经历这三个阶段 除非该事件被取消冒泡，才会在取消冒泡之后停止传递 前两个阶段不能停止传递 通过 on 赋值可以为元素绑定监听器，此时监听器一定是在事件冒泡阶段发生，且后赋值的监听器会覆盖之前的监听器 例如 button.onclick=()=&gt;{} 通过 addEventListener(eventName, listener, useCapture, priority, useWeakReference) 可以设置监听器是在事件的冒泡阶段还是捕获阶段发生，该方式可以为同一个元素的同一个事件设置多个监听 useCapture 默认值是 false，表示监听器在事件冒泡阶段发生，反之当为 true 时即表示在捕获阶段发生 priority 默认值是 0，表示所有同级的监听器按注册顺序进行。可以为个别监听器设置更高的优先级，优先级高的会在该阶段先执行，同优先级的依然按注册顺序进行 useWeakReference 默认值是 false，表示设置监听器为强引用，使得监听器不被垃圾回收，反之 true 则是允许回收 当要取消监听器、或要重新设定优先级时，可以使用 removeEventListener() 来取消监听器，之后再重新设定 每当事件触发一个监听器的时候，都会向监听器内传入两个默认参数 一个是 this，表示事件现在所处的元素 一个是 event，包含事件的完整信息 target 与 currentTarget通过在监听器中打印 event，可以发现两件事 target != currentTarget 如果先保存 event，事件结束后再打印，则会发现 target 变成了 null 对于第一点，target 是事件发生的最小元素，也就是唯一有目标阶段的元素 currentTarget 则是事件现在所处的位置，是传入监听器的 this 对于第二点，则涉及到事件消亡的知识，篇幅过大，此处不介绍了 target 元素 事件先后刚才说到 target 元素是唯一有目标阶段的元素，那么什么是目标阶段？ 实际上，对于 target 元素来说，目标阶段就是捕获冒泡连续发生，不像事件传递路径上别的元素是分开发生的 哦哦，那我懂了，所以对 target 元素来说，监听器也是按照设置好的捕获冒泡顺序执行的吧 不！ 此时监听器不再区分捕获和冒泡，统一按照设置顺序发生 取消冒泡那有时候我想到此为止，不想打扰父级元素，怎么办呢？ 可以在需要中断的元素的冒泡阶段的监听器中，执行 1e.propagetion() 此时就可以阻止事件继续冒泡 默认动作既然冒泡可以阻止，那默认的事件能不能阻止呢？比如我现在有个 a 标签，想做单页面应用的 tab 页跳转，要是按照默认的，可就跳到新页面去了 答案是可以！ 在事件中执行 1e.preventDefault() 就可以阻止默认动作的发生了！ 禁用滚动奇怪，说好的阻止默认动作，怎么我在滚动条上不能 prevent，你骗我！ 等下等下，你真的找准是什么东西产生了滚动条了吗？ 有时候你看着是你的元素产生了滚动条，但说不定是 body 产生的！ 找准了之后，我们来禁用滚动条吧——毕竟滚动条其实只是 CSS 产生的东西 禁用滚动一般分两种： 看不见滚动条 看得见滚动条 对于第一种，其实只需要设置 overflow: hidden 就可以实现了 对于第二种，比较复杂一些 首先能看见滚动条，说明 overflow 至少是 auto，甚至是 scroll 这时候通过划拉滚动条，或者鼠标滚轮，甚至是触屏上的手指，都可以让页面滚动 这种时候就要分三部分禁止 禁止滚动条，通过 #div.scrollTop = 0，即可让滚动条锁定在顶端 禁止鼠标滚轮，通过 #div.onwheel=event=&gt;{event.preventDefault()}，即可阻止滚轮 禁止触控，通过 #div.ontouchstart=event=&gt;{event.preventDefault()}，即可阻止触控 既然能在看得见滚动条的情况下禁止滚动，那能不能在看不见滚动条的情况下允许滚动呢？ 于是就又延伸出一个需求。。。 当然也很简单，通过一个尚未加入标准的 CSS 伪元素即可实现 123#div::-webkit-scrollBar &#123; display:none;&#125; 即可实现在看不见滚动条的情况下允许滚动 自定义事件那万一我玩得不开心，想自定义一个事件，行不行？ 可以！ 通过以下方法即可创建一个自定义事件 1const event = new CustomEvent(eventName, &#123; detail: config &#125;); 其中第一个参数表示你的事件名称，第二个参数是一个包含 detail 属性的对象 关于事件的初始化配置，都写在 detail 中 例如 12345const config=&#123; bubbles: false, cancelable: false&#125;const event = new CustomEvent('test', &#123; detail: config &#125;); 即可创建一个名为 test 的事件，并指示该事件不进行冒泡传递，且不可以被阻止默认动作 创建完成事件后，还要分发事件，才可以让元素上的监听器正常工作，不然你让浏览器怎么触发你设置的事件？2333 要分发事件，首先要选中元素，然后触发他身上的事件 123let div = document.querySelector('#div')div.addEventListener('test',console.log(233))div.dispatchEvent('test') 通过以上代码，就可以为 id 为 div 的元素绑定一个 test 事件的监听器，当事件触发时打印 233 然后向这个元素分发事件，触发对应的监听器 事件委托但是有时候，要为很多相似元素各自绑定相同的监听器 比如一张 10x10 的表格，难道为每个 td 都绑定一个监听器吗？且不说要写 100 行代码，光是 100 个监听器，就卡爆了！ 那么这时候，就需要我们的事件委托 事件委托就是把大量相似子项的相似逻辑的监听器，全部取消，然后利用事件冒泡传递的特性，把监听器绑定在父项上，使得监听器既能获得事件发生的确切位置，又大幅简化了代码，优化了性能 比如开头 10x10 表格的例子，就可以将监听器绑定在 table 标签上，借助冒泡传递，获取事件的 target，来处理对应子项的逻辑 显然，这样是很节省内存的，而且即便后续为表格添加项目，依然可以通过 target 得到事件发生的位置，是非常灵活的 所以，事件委托有以下三大优点 节省内存，多个监听器变为 1 个监听器 动态监听，可以监听未来添加的项目 封装，大幅简化代码逻辑，易于调试 感谢阅读]]></content>
+      <categories>
+        <category>frontend</category>
+      </categories>
+      <tags>
+        <tag>browser</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JQuery]]></title>
     <url>%2Ffrontend%2Fjquery%2F</url>
     <content type="text"><![CDATA[DOM API 好难用，我要用 JQ！ 什么是 JQuery众所周知这 DOM 原生 API 长得 1p，语义还七扭八歪的 于是就诞生了 JQuery ！ 好吧好吧，简单说就是，这是一个封装了 DOM 操作的库，使用它比直接使用原生 DOM API 更方便，更好读 那么，为了形成对比，采用和 DOM 那篇一样的结构 Retrieve既然 CSS 选择器这么好用，JQ 怎么能不吸收一下呢 于是 JQ 采用 $(selector) 来选择元素，返回选择器匹配上的所有元素 Create分为从已有创建和重新创建两种 对于从已有创建，只需要选中元素后，调用 clone 方法，就可以获得一个拷贝了原元素的新元素 对于重新创建，只需要直接调用 JQ 构造函数 $，然后传入新元素的 HTML 表示即可 Delete分为删除元素和删除内容 使用 remove 或 detach 方法即可删除元素，但前者不保留元素，后者保留，便于重新插入文档 使用 empty 方法即可清空元素文本 Update分为 对 JQ 对象的更新 对元素的更新 对元素属性的更新 对事件的更新 对 JQ 对象的更新可以采用 JQ 专属过滤器来改变结果集 1234567891011$('div').has('p'); // 选择包含p元素的div元素$('div').not('.myClass'); //选择class不等于myClass的div元素$('div').filter('.myClass'); //选择class等于myClass的div元素$('div').first(); //选择第1个div元素$('div').eq(5); //选择第6个div元素$('div').next('p'); //选择div元素后面的第一个p元素$('div').parent(); //选择div元素的父元素$('div').closest('form'); //选择离div最近的那个form父元素$('div').children(); //选择div的所有子元素$('div').siblings(); //选择div的同级元素$('div').siblings().end(); //返回上一次结果集，此处等效于选中 div 对元素的更新其实是指元素在 DOM 树上的位置更新 一共有 4 对方法 方法名1 方法名2 描述 insertAfter after 为现有元素插入一个相邻弟弟 insertBefore before 为现有元素插入一个相邻哥哥 appendTo append 为现有元素插入一个最小的儿子 prependTo prepend 为现有元素插入一个最大的儿子 看起来没什么差别，其实还是有的 比如第一对方法，调用例如下 12$('div').insertAfter($('p'));$('p').after($('div')); 显然，虽然都是将 div 元素插入到 p 元素的后面，但前者返回的是对 div 操作的 JQ 元素，后者则是对 p 操作的 JQ 元素 实际情况下根据需要选择 对元素属性的更新JQ 使用同名方法来作为同一个目标的 getter/setter 对于 get，如果结果集包含多个元素，则返回第一个元素的值（text 方法例外 对于 set，不论结果集包含多少元素，对于每个元素都会适配这次 set 通常有如下 getter/setter 来实现对元素属性的更新 方法 结果集目标 描述 html() 第一个元素 get html 内容 html(‘233’) 所有元素 set html 内容为 ‘233’ text() 所有元素 get text 内容 text(‘233’) 所有元素 set text 内容为 ‘233’ attr(‘class’) 第一个元素 get class attr(‘class’,’red’) 所有元素 set class 为 red width() 第一个元素 get width width(‘100px’) 所有元素 set width 为 100px height() 第一个元素 get height height(‘100px’) 所有元素 set height 为 100px val() 第一个元素 get 某个 input 元素的值 val(‘233’) 所有元素 set 某个 input 元素的值为 ‘233’ 对事件的更新直接使用对应事件名作为方法名进行调用 几乎所有事件都支持 调用例如下 123$('button').click(function()&#123; alert('hello')&#125;) 该调用等效于 set，会更新 JQ 对象结果集中的所有元素，下略 可以使用 bind 方法来指定多个事件 12345$('button').bind( 'click change', //同时绑定click和change事件 function()&#123; alert('hello')&#125;) 上述绑定方法会重复被触发，但也可以使用 one 方法来设定只触发一次的事件 123$('button').one('click',function()&#123; alert('hello')&#125;) 不想要的事件，也可以用 unbind 方法来解除绑定 1$('button').unbind('click') 当事件触发时，会默认向方法内传入一个参数 event，表示事件发生时的相关信息 在传入的函数中，如果该函数不是箭头函数，则还可以用 this 来访问触发了该事件的元素 事件触发除了页面上的操作，还可以用事件函数或 trigger 方法手动触发 12$('button').click()$('button').trigger('click') 工具方法除了增删改查，JQ 还提供了一些绑定在 $ 上的方法，不需要选中元素即可调用 方法 描述 $.trim() 去除字符串两端的空格。 $.each() 遍历一个数组或对象。 $.inArray() 返回一个值在数组中的索引位置。如果该值不在数组中，则返回-1。 $.grep() 返回数组中符合某种标准的元素。 $.extend() 将多个对象，合并到第一个对象。 $.makeArray() 将对象转化为数组。 $.type() 判断对象的类别（函数对象、日期对象、数组对象、正则对象等等）。 $.isArray() 判断某个参数是否为数组。 $.isEmptyObject() 判断某个对象是否为空（不含有任何属性）。 $.isFunction() 判断某个参数是否为函数。 $.isPlainObject() 判断某个参数是否为用”{}”或”new $.support() 判断浏览器是否支持某个特性。 特殊效果常用的特殊效果方法如下 方法 描述 fadeIn() 淡入 fadeOut() 淡出 fadeTo() 调整透明度 hide() 隐藏元素 show() 显示元素 slideDown() 向下展开 slideUp() 向上卷起 slideToggle() 依次展开或卷起某个元素 toggle() 依次展示或隐藏某个元素 每个方法都有两个参数默认值，分别是变化速度 400ms 和回调函数 undefined 变化速度有两种表示方法，数字表示毫秒，或 slow 等表示指定速度 回调函数可以指定特效结束时执行的方法 例如 123$('h1').fadeIn(300); // 300毫秒内淡入$('h1').fadeOut('slow'); // 缓慢地淡出$('p').fadeOut(300, function() &#123; $(this).remove(); &#125;); 更复杂的可以使用 animate 自定义 例如 12345678$('div').animate( &#123; left : "+=50", opacity : 0.25 &#125;, 300, function() &#123; alert('done!'); &#125;); 第一个参数填写基于 css 语法的对象，第二个参数表示动画持续时间，第三个参数表示回调函数 封装一个自己封装的 JQ，但是功能肯定比真的 JQ 弱很多，2333 https://github.com/Ringoer/Toy/blob/main/39/main.js 参考链接JQuery设计思想 jQuery API 中文文档]]></content>
@@ -135,8 +146,8 @@
         <category>frontend</category>
       </categories>
       <tags>
-        <tag>http</tag>
         <tag>browser</tag>
+        <tag>http</tag>
       </tags>
   </entry>
   <entry>
@@ -581,9 +592,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
-        <tag>HDU</tag>
         <tag>题解</tag>
+        <tag>HDU</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
@@ -747,8 +758,8 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
         <tag>题解</tag>
+        <tag>线段树</tag>
         <tag>Luogu</tag>
       </tags>
   </entry>
@@ -760,8 +771,8 @@
         <category>algorithm</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
         <tag>题解</tag>
+        <tag>线段树</tag>
         <tag>Luogu</tag>
         <tag>algorithm</tag>
         <tag>SegmentTree</tag>
@@ -928,9 +939,9 @@
         <category>Answer</category>
       </categories>
       <tags>
-        <tag>HDU</tag>
         <tag>题解</tag>
         <tag>SPFA</tag>
+        <tag>HDU</tag>
       </tags>
   </entry>
   <entry>
