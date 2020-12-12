@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-1.png">
 <meta property="og:image" content="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-2.png">
 <meta property="og:image" content="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-3.png">
-<meta property="og:updated_time" content="2020-12-12T15:43:33.868Z">
+<meta property="og:updated_time" content="2020-12-12T16:13:09.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用 WinPCAP 监听并解析 FTP 口令">
 <meta name="twitter:description" content="计算机网络实验4">
@@ -411,47 +411,39 @@
 <h1 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h1><p>用 WinPCAP 监听并分析 FTP 协议并记录 IP、用户名、密码和登陆是否成功。</p>
 <h1 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h1><p>Windows10</p>
 <p>C#</p>
-<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><ol>
-<li><p>wireshark部分</p>
-<ul>
-<li><p>连接</p>
-<ol>
-<li><p>本机向ftp服务器申请连接，flag=SYN</p>
+<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><h2 id="wireshark部分"><a href="#wireshark部分" class="headerlink" title="wireshark部分"></a>wireshark部分</h2><h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><ol>
+<li>本机向ftp服务器申请连接，flag=SYN</li>
+</ol>
 <p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-connect-1.png" alt="connect-1"></p>
-</li>
-<li><p>ftp服务器回复本机，flag=SYN，ACK</p>
+<ol start="2">
+<li>ftp服务器回复本机，flag=SYN，ACK</li>
+</ol>
 <p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-connect-2.png" alt="connect-2"></p>
-</li>
-<li><p>本机收到，向ftp服务器答复，flag=ACK</p>
+<ol start="3">
+<li>本机收到，向ftp服务器答复，flag=ACK</li>
+</ol>
 <p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-connect-3.png" alt="connect-3"></p>
-</li>
-<li><p>ftp服务器收到，向本机发送数据，flag=PSH，ACK</p>
+<ol start="4">
+<li>ftp服务器收到，向本机发送数据，flag=PSH，ACK</li>
+</ol>
 <p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-connect-4.png" alt="connect-4"></p>
-</li>
+<h3 id="断开"><a href="#断开" class="headerlink" title="断开"></a>断开</h3><ol>
+<li>本机向ftp服务器申请断开，flag=FIN，ACK</li>
 </ol>
-</li>
-<li><p>断开</p>
-<ol>
-<li><p>本机向ftp服务器申请断开，flag=FIN，ACK</p>
 <p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-disconnect-1.png" alt="disconnect-1"></p>
-</li>
-<li><p>ftp服务器收到申请，向本机返信，flag=ACK</p>
+<ol start="2">
+<li>ftp服务器收到申请，向本机返信，flag=ACK</li>
+</ol>
 <p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-disconnect-2.png" alt="disconnect-2"></p>
-</li>
-<li><p>ftp服务器已经断开与本机的连接，向本机发信，flag=FIN，ACK</p>
+<ol start="3">
+<li>ftp服务器已经断开与本机的连接，向本机发信，flag=FIN，ACK</li>
+</ol>
 <p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-disconnect-3.png" alt="disconnect-3"></p>
-</li>
-<li><p>本机收到，断开与ftp服务器连接，向ftp服务器返信，flag=ACK</p>
+<ol start="4">
+<li>本机收到，断开与ftp服务器连接，向ftp服务器返信，flag=ACK</li>
+</ol>
 <p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-disconnect-4.png" alt="disconnect-4"></p>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p>监听部分</p>
-<p> <img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-监听部分.png" alt="监听部分"></p>
-</li>
-</ol>
+<h2 id="监听部分"><a href="#监听部分" class="headerlink" title="监听部分"></a>监听部分</h2><p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-监听部分.png" alt="监听部分"></p>
 <h1 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h1><p>大部分与实验三相同。以下解释不同的部分。</p>
 <ol>
 <li><p>全局变量</p>
@@ -663,7 +655,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验目的"><span class="nav-number">1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验环境"><span class="nav-number">2.</span> <span class="nav-text">实验环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验结果"><span class="nav-number">3.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验总结"><span class="nav-number">4.</span> <span class="nav-text">实验总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验目的"><span class="nav-number">1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验环境"><span class="nav-number">2.</span> <span class="nav-text">实验环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验结果"><span class="nav-number">3.</span> <span class="nav-text">实验结果</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#wireshark部分"><span class="nav-number">3.1.</span> <span class="nav-text">wireshark部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接"><span class="nav-number">3.1.1.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#断开"><span class="nav-number">3.1.2.</span> <span class="nav-text">断开</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监听部分"><span class="nav-number">3.2.</span> <span class="nav-text">监听部分</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验总结"><span class="nav-number">4.</span> <span class="nav-text">实验总结</span></a></li></ol></div>
             
 
           </div>

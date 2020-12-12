@@ -120,7 +120,7 @@
 <meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-stop.png">
 <meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-save_diary.png">
 <meta property="og:image" content="http://pic.ringoer.com/捕获并分析帧和IP报文-exit.png">
-<meta property="og:updated_time" content="2020-12-12T15:38:36.176Z">
+<meta property="og:updated_time" content="2020-12-12T16:07:47.042Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="捕获并分析帧和IP报文">
 <meta name="twitter:description" content="计算机网络实验3">
@@ -430,45 +430,22 @@
 <li>C#  </li>
 <li>Visual Studio 2017  </li>
 </ul>
-<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><p>&emsp;测试时，设置为超过10000Bps就会报警</p>
+<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><p>测试时，设置为超过10000Bps就会报警</p>
 <p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-结果.png" alt="实验结果"></p>
-<h1 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h1><ol>
-<li><p>全局初始化</p>
-<p>安装WinPcap和SharpPcap</p>
+<h1 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h1><h2 id="全局初始化"><a href="#全局初始化" class="headerlink" title="全局初始化"></a>全局初始化</h2><p>安装WinPcap和SharpPcap</p>
 <p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-using.png" alt="using"></p>
 <p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-struct.png" alt="struct"></p>
 <p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-全局变量.png" alt="全局变量"></p>
 <p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-初始化.png" alt="初始化"></p>
-</li>
-<li><p>查看网卡信息</p>
-<p>通过调用ipconfig.exe实现</p>
+<h2 id="查看网卡信息"><a href="#查看网卡信息" class="headerlink" title="查看网卡信息"></a>查看网卡信息</h2><p>通过调用ipconfig.exe实现</p>
 <p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-ipconfig.png" alt="ipconfig"></p>
-</li>
-<li><p>适配器</p>
-<p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-载入适配器列表.png" alt="适配器"></p>
-<ol>
-<li>计时动作</li>
-</ol>
-<p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-time_ing.png" alt="计时动作"></p>
-<ol start="2">
-<li>载入适配器列表</li>
-</ol>
-<p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-load_devices.png" alt="load_devices"></p>
-<ol start="3">
-<li>载入适配器信息</li>
-</ol>
-<p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-载入适配器信息.png" alt="载入适配器信息"></p>
-</li>
-<li><p>开始侦听</p>
-</li>
-</ol>
-<p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-start.png" alt="start"></p>
-<ol>
-<li><p>收包动作</p>
-<p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-recv.png" alt="收包"></p>
-</li>
-<li><p>成帧</p>
-<p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_1.png" alt="成帧1"></p>
+<h2 id="适配器"><a href="#适配器" class="headerlink" title="适配器"></a>适配器</h2><p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-载入适配器列表.png" alt="适配器"></p>
+<h3 id="计时动作"><a href="#计时动作" class="headerlink" title="计时动作"></a>计时动作</h3><p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-time_ing.png" alt="计时动作"></p>
+<h3 id="载入适配器列表"><a href="#载入适配器列表" class="headerlink" title="载入适配器列表"></a>载入适配器列表</h3><p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-load_devices.png" alt="load_devices"></p>
+<h3 id="载入适配器信息"><a href="#载入适配器信息" class="headerlink" title="载入适配器信息"></a>载入适配器信息</h3><p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-载入适配器信息.png" alt="载入适配器信息"></p>
+<h2 id="开始侦听"><a href="#开始侦听" class="headerlink" title="开始侦听"></a>开始侦听</h2><p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-start.png" alt="start"></p>
+<h3 id="收包动作"><a href="#收包动作" class="headerlink" title="收包动作"></a>收包动作</h3><p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-recv.png" alt="收包"></p>
+<h3 id="成帧"><a href="#成帧" class="headerlink" title="成帧"></a>成帧</h3><p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_1.png" alt="成帧1"></p>
 <p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_2.png" alt="成帧2"></p>
 <p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_3.png" alt="成帧3"></p>
 <p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_4.png" alt="成帧4"></p>
@@ -476,54 +453,23 @@
 <p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_6.png" alt="成帧6"></p>
 <p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-get_frame_7.png" alt="成帧7"></p>
 <p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-BitConverter.png" alt="BitConverter"></p>
-</li>
-<li><p>成帧时修改流量统计</p>
-<p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-monitor_traffic.png" alt="更新流量统计"></p>
-</li>
-<li><p>监视流量</p>
-<p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-cal_traffic.png" alt="计算流量"></p>
+<h3 id="成帧时修改流量统计"><a href="#成帧时修改流量统计" class="headerlink" title="成帧时修改流量统计"></a>成帧时修改流量统计</h3><p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-monitor_traffic.png" alt="更新流量统计"></p>
+<h3 id="监视流量"><a href="#监视流量" class="headerlink" title="监视流量"></a>监视流量</h3><p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-cal_traffic.png" alt="计算流量"></p>
 <p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-报警.png" alt="报警"></p>
-</li>
-</ol>
-<ol start="5">
-<li>暂停侦听</li>
-</ol>
-<p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-pause.png" alt="pause"></p>
-<ol start="6">
-<li>继续侦听</li>
-</ol>
-<p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-continue.png" alt="continue"></p>
-<ol start="7">
-<li>停止侦听</li>
-</ol>
-<p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-stop.png" alt="stop"></p>
-<ol start="8">
-<li>保存日志</li>
-</ol>
-<p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-save_diary.png" alt="save_diary"></p>
-<ol start="9">
-<li>退出程序</li>
-</ol>
-<p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-exit.png" alt="exit"></p>
-<ol start="10">
-<li><p>技术细节</p>
-<ol>
-<li><p>计算流量的方法</p>
-<p>  构建新结构体（mac + ip +mode）放进dictionary当key，各key累计收发包大小当value。</p>
-<p>  新建线程，每隔1s遍历各来源的收发流量，超过1MB的，可以认为在这1s内平流量达到1MBps以上，故而给本机警告</p>
-<ol start="2">
-<li><p>遍历dictionary</p>
-<p>因为多线程同时在访问dictionary，所以会出现在一个线程遍历dictionary的时候，另一个线程正在新增dictionary的项。此时采用foreach遍历会报错，因为foreach要求正在遍历的对象不能有变化</p>
-</li>
-<li><p>有网络但侦听不到包体</p>
-<p>如果确认程序没错，那么可能是</p>
+<h2 id="暂停侦听"><a href="#暂停侦听" class="headerlink" title="暂停侦听"></a>暂停侦听</h2><p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-pause.png" alt="pause"></p>
+<h2 id="继续侦听"><a href="#继续侦听" class="headerlink" title="继续侦听"></a>继续侦听</h2><p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-continue.png" alt="continue"></p>
+<h2 id="停止侦听"><a href="#停止侦听" class="headerlink" title="停止侦听"></a>停止侦听</h2><p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-stop.png" alt="stop"></p>
+<h2 id="保存日志"><a href="#保存日志" class="headerlink" title="保存日志"></a>保存日志</h2><p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-save_diary.png" alt="save_diary"></p>
+<h2 id="退出程序"><a href="#退出程序" class="headerlink" title="退出程序"></a>退出程序</h2><p><img src="http://pic.ringoer.com/捕获并分析帧和IP报文-exit.png" alt="exit"></p>
+<h2 id="技术细节"><a href="#技术细节" class="headerlink" title="技术细节"></a>技术细节</h2><h3 id="计算流量的方法"><a href="#计算流量的方法" class="headerlink" title="计算流量的方法"></a>计算流量的方法</h3><p>构建新结构体（mac + ip +mode）放进dictionary当key，各key累计收发包大小当value。</p>
+<p>新建线程，每隔1s遍历各来源的收发流量，超过1MB的，可以认为在这1s内平流量达到1MBps以上，故而给本机警告</p>
+<h3 id="遍历dictionary"><a href="#遍历dictionary" class="headerlink" title="遍历dictionary"></a>遍历dictionary</h3><p>因为多线程同时在访问dictionary，所以会出现在一个线程遍历dictionary的时候，另一个线程正在新增dictionary的项。此时采用foreach遍历会报错，因为foreach要求正在遍历的对象不能有变化</p>
+<h3 id="有网络但侦听不到包体"><a href="#有网络但侦听不到包体" class="headerlink" title="有网络但侦听不到包体"></a>有网络但侦听不到包体</h3><p>如果确认程序没错，那么可能是</p>
 <ol>
 <li>选错网卡，要注意选一个有网络的网卡</li>
 <li>当前的网络收发包类型不是ip and tcp，应该是filter的问题，关掉filter即可</li>
 </ol>
-</li>
-<li><p>BitConverter</p>
-<p>会反向获取。</p>
+<h3 id="BitConverter"><a href="#BitConverter" class="headerlink" title="BitConverter"></a>BitConverter</h3><p>会反向获取。</p>
 <p>如，现有byte[] test={0x01,0x10,0x0f,0xff};</p>
 <p>二进制为00000001 00010000 00001111 11111111</p>
 <p>十进制为17829887</p>
@@ -533,15 +479,7 @@
 <p>二进制为11111111 00001111 00010000 00000001</p>
 <p>可见不能得到想要的结果，因为BitConverter会反向转换所给的byte数组</p>
 <p>所以应该先将要转换的数组反向，再使用BitConverter</p>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>参考链接</p>
-<p><a href="https://www.codeproject.com/Articles/12458/SharpPcap-A-Packet-Capture-Framework-for-NET" target="_blank" rel="noopener">SharpPcap</a></p>
-</li>
-</ol>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.codeproject.com/Articles/12458/SharpPcap-A-Packet-Capture-Framework-for-NET" target="_blank" rel="noopener">SharpPcap</a></p>
 
       
     </div>
@@ -727,7 +665,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验目的"><span class="nav-number">1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验环境"><span class="nav-number">2.</span> <span class="nav-text">实验环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验结果"><span class="nav-number">3.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验总结"><span class="nav-number">4.</span> <span class="nav-text">实验总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验目的"><span class="nav-number">1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验环境"><span class="nav-number">2.</span> <span class="nav-text">实验环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验结果"><span class="nav-number">3.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验总结"><span class="nav-number">4.</span> <span class="nav-text">实验总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#全局初始化"><span class="nav-number">4.1.</span> <span class="nav-text">全局初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看网卡信息"><span class="nav-number">4.2.</span> <span class="nav-text">查看网卡信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器"><span class="nav-number">4.3.</span> <span class="nav-text">适配器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计时动作"><span class="nav-number">4.3.1.</span> <span class="nav-text">计时动作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#载入适配器列表"><span class="nav-number">4.3.2.</span> <span class="nav-text">载入适配器列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#载入适配器信息"><span class="nav-number">4.3.3.</span> <span class="nav-text">载入适配器信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始侦听"><span class="nav-number">4.4.</span> <span class="nav-text">开始侦听</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#收包动作"><span class="nav-number">4.4.1.</span> <span class="nav-text">收包动作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成帧"><span class="nav-number">4.4.2.</span> <span class="nav-text">成帧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成帧时修改流量统计"><span class="nav-number">4.4.3.</span> <span class="nav-text">成帧时修改流量统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监视流量"><span class="nav-number">4.4.4.</span> <span class="nav-text">监视流量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暂停侦听"><span class="nav-number">4.5.</span> <span class="nav-text">暂停侦听</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继续侦听"><span class="nav-number">4.6.</span> <span class="nav-text">继续侦听</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#停止侦听"><span class="nav-number">4.7.</span> <span class="nav-text">停止侦听</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存日志"><span class="nav-number">4.8.</span> <span class="nav-text">保存日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#退出程序"><span class="nav-number">4.9.</span> <span class="nav-text">退出程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术细节"><span class="nav-number">4.10.</span> <span class="nav-text">技术细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算流量的方法"><span class="nav-number">4.10.1.</span> <span class="nav-text">计算流量的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历dictionary"><span class="nav-number">4.10.2.</span> <span class="nav-text">遍历dictionary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有网络但侦听不到包体"><span class="nav-number">4.10.3.</span> <span class="nav-text">有网络但侦听不到包体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BitConverter"><span class="nav-number">4.10.4.</span> <span class="nav-text">BitConverter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">4.11.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></div>
             
 
           </div>

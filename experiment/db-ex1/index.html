@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://pic.ringoer.com/db-ex1-p3.png">
 <meta property="og:image" content="http://pic.ringoer.com/db-ex1-p61.png">
-<meta property="og:updated_time" content="2020-11-12T12:39:01.736Z">
+<meta property="og:updated_time" content="2020-12-12T16:22:06.484Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统实验报告-实验1 oracle 11g的安装、配置和使用">
 <meta name="twitter:description" content="只是一篇实验报告。">
@@ -392,50 +392,112 @@
       
 
       
-        <p>只是一篇实验报告。<br><a id="more"></a>  </p>
+        <p>只是一篇实验报告。</p>
+<a id="more"></a>
+<h1 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h1><ol>
+<li><p>掌握Oracle 11g Server的安装</p>
+</li>
+<li><p>掌握Oracle的监听与网络配置</p>
+</li>
+<li><p>掌握Oracle数据库的启动与关闭</p>
+</li>
+<li><p>掌握Oracle的交互式开发环境、工具及常用管理操作命令</p>
+</li>
+</ol>
+<h1 id="实验内容-步骤"><a href="#实验内容-步骤" class="headerlink" title="实验内容/步骤"></a>实验内容/步骤</h1><ol>
+<li><p>安装Oracle 11g（服务器版本）</p>
+</li>
+<li><p>理解安装过程中各选项的含义及作用</p>
+</li>
+<li><p>了解内置用户的登录和服务器预定义角色</p>
+</li>
+<li><p>安装完成后以OEM方式登录、管理数据库</p>
+<p><img src="http://pic.ringoer.com/db-ex1-p3.png" alt="安装完成后以OEM方式登录、管理数据库"></p>
+</li>
+<li><p>创建以自己学号为账号的新用户(S+自己学号)。</p>
+</li>
+<li><p>对账号做相应授权。</p>
+</li>
+<li><p>使用网络配置工具进行网络配置</p>
+</li>
+</ol>
+<h1 id="存在的问题及解决方案"><a href="#存在的问题及解决方案" class="headerlink" title="存在的问题及解决方案"></a>存在的问题及解决方案</h1><ol>
+<li><p>Windows10安装障碍（不满足最低配置）</p>
 <ol>
-<li>实验目的  <ol>
-<li>掌握Oracle 11g Server的安装  </li>
-<li>掌握Oracle的监听与网络配置  </li>
-<li>掌握Oracle数据库的启动与关闭  </li>
-<li>掌握Oracle的交互式开发环境、工具及常用管理操作命令  </li>
+<li><p>提取iso中所有文件</p>
+</li>
+<li><p>记事本打开\stage\cvu\cvu_prereq.xml</p>
+</li>
+<li><p>修改如图字段，重点修改6.2以及Windows 10</p>
+<p><img src="http://pic.ringoer.com/db-ex1-p61.png" alt="重点"></p>
+<p><a href="https://blog.csdn.net/qq_33991989/article/details/77418129" target="_blank" rel="noopener">参考链接</a></p>
+</li>
 </ol>
 </li>
-<li><p>实验内容/步骤  </p>
+</ol>
+<ol start="2">
+<li><p>Environment Variable: “PATH”       失败</p>
 <ol>
-<li>安装Oracle 11g（服务器版本）  </li>
-<li>理解安装过程中各选项的含义及作用<!-- ![理解安装过程中各选项的含义及作用](http://pic.ringoer.com/db-ex1-p1.png) -->  </li>
-<li>了解内置用户的登录和服务器预定义角色  </li>
-<li>安装完成后以OEM方式登录、管理数据库<img src="http://pic.ringoer.com/db-ex1-p3.png" alt="安装完成后以OEM方式登录、管理数据库">  </li>
-<li>创建以自己学号为账号的新用户(S+自己学号)。  </li>
-<li>对账号做相应授权。</li>
-<li>使用网络配置工具进行网络配置</li>
+<li><p>打开环境变量配置，选择PATH</p>
+</li>
+<li><p>先备份PATH，之后删除一部分PATH项，直到不会报错</p>
+</li>
+<li><p>正常安装，结束后恢复原PATH列表</p>
+<p><a href="https://www.cnblogs.com/quixon/p/4852946.html" target="_blank" rel="noopener">参考链接</a></p>
+</li>
 </ol>
 </li>
-<li><p>存在的问题及解决方案(列出遇到的问题及其解决办法，列出没有解决的问题)  </p>
+<li><p>以OEM方式登录</p>
+<p>访问 <a href="localhost:1158/em/console/logon/logon" target="_blank" rel="noopener">localhost:1158/em/console/logon/logon</a></p>
+</li>
+<li><p>创建新用户</p>
 <ol>
-<li><p>Windows10安装障碍（不满足最低配置）  </p>
-<p>① 提取iso中所有文件<br>② 记事本打开\stage\cvu\cvu_prereq.xml<br>③ 修改如图字段，重点修改6.2以及Windows 10<br><img src="http://pic.ringoer.com/db-ex1-p61.png" alt="重点"><br><a href="https://blog.csdn.net/qq_33991989/article/details/77418129" target="_blank" rel="noopener">参考链接</a>  </p>
+<li><p>打开SQL Plus</p>
 </li>
-<li><p>Environment Variable: “PATH”       失败  </p>
-<p>① 打开环境变量配置，选择PATH<br>② 先备份PATH，之后删除一部分PATH项，直到不会报错<br>③ 正常安装，结束后恢复原PATH列表<br><a href="https://www.cnblogs.com/quixon/p/4852946.html" target="_blank" rel="noopener">参考链接</a>  </p>
+<li><p>新建数据表空间，语句如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> dbsp_2 <span class="keyword">datafile</span> <span class="string">'url\filename.dbf'</span></span><br><span class="line"><span class="keyword">size</span> <span class="number">10</span>m</span><br><span class="line"><span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span> <span class="keyword">autoallocate</span>;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>以OEM方式登录  </p>
-<p>访问<a href="localhost:1158/em/console/logon/logon" target="_blank" rel="noopener">localhost:1158/em/console/logon/logon</a>  </p>
+</ol>
 </li>
-<li><p>创建新用户  </p>
-<p>① 打开SQL Plus<br>② 新建数据表空间，语句如下： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create tablespace dbsp_2 datafile &apos;url\filename.dbf&apos;</span><br><span class="line">size 10m</span><br><span class="line">  	extent management local autoallocate;</span><br></pre></td></tr></table></figure>
-<p>其中单引号内链接自行指定，注意指定的文件夹应是已创建的，且新建的文件后缀名为.dbf<br>③ 新建用户，语句如下  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user username identified by password</span><br></pre></td></tr></table></figure>
-<p>其中username为用户名，by后面为密钥<br>④ 授权，语句格式如下：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant connect,resource,dba to username;</span><br></pre></td></tr></table></figure>
+</ol>
+<pre><code>其中单引号内链接自行指定，注意指定的文件夹应是已创建的，且新建的文件后缀名为.dbf 
+</code></pre><ol start="3">
+<li><p>新建用户，语句如下</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> username <span class="keyword">identified</span> <span class="keyword">by</span> <span class="keyword">password</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>其中username为用户名，by后面为密钥
+</code></pre><ol start="4">
+<li><p>授权，语句格式如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">connect</span>,<span class="keyword">resource</span>,dba <span class="keyword">to</span> username;</span><br></pre></td></tr></table></figure>
 <p>可以是如下形式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant [权限] to [用户名];</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> [权限] <span class="keyword">to</span> [用户名];</span><br></pre></td></tr></table></figure>
 <p><a href="https://www.cnblogs.com/bjh1117/p/6605037.html" target="_blank" rel="noopener">参考链接</a>  </p>
 </li>
+</ol>
+<ol start="5">
 <li><p>配置网络  </p>
-<p>① 运行Net Configuration Assist<br>② 选择“本地网络服务名配置”<br>③ 选择“添加”<br>④ 这一步要求输入你要访问的数据库的“全局数据库名”，“全局数据库名”在安装数据库时指定，默认为<code>name.domain</code>（即：数据库名+数据库域名），当然也可以根据自己喜好随意命名，可以通过<code>select * from global_name;</code>进行查询。<br>*可以直接命名为myorcl<br>⑤ 选择网络语数据库的通信协议，默认TCP即可<br>⑥ 主机名填写127.0.0.1用以访问本地数据库，并选择“使用标准端口号1521”<br>⑦ 选择“是，进行测试”<br>⑧ 默认的测试使用Oracle的Scott用户，因为用户被锁或口令不对，一般情况都会测试不成功，这时候可以通过“更改登录”重新输入数据库的用户/口令来进行测试是否连接成功<br>⑨ 网络服务名，即为该远程连接配置命名。默认即可。<br>至此，如果不需要再配置其他的网络服务，则该网络服务名配置完毕。<br><a href="https://blog.csdn.net/dingguanyi/article/details/80875293" target="_blank" rel="noopener">参考链接</a></p>
+<ol>
+<li><p>运行Net Configuration Assist</p>
+</li>
+<li><p>选择“本地网络服务名配置”</p>
+</li>
+<li><p>选择“添加”</p>
+</li>
+<li><p>这一步要求输入你要访问的数据库的“全局数据库名”，“全局数据库名”在安装数据库时指定，默认为<code>name.domain</code>（即：数据库名+数据库域名），当然也可以根据自己喜好随意命名，可以通过<code>select * from global_name;</code>进行查询。</p>
+<p>*可以直接命名为myorcl</p>
+</li>
+<li><p>选择网络语数据库的通信协议，默认TCP即可</p>
+</li>
+<li><p>主机名填写127.0.0.1用以访问本地数据库，并选择“使用标准端口号1521”</p>
+</li>
+<li><p>选择“是，进行测试”</p>
+</li>
+<li><p>默认的测试使用Oracle的Scott用户，因为用户被锁或口令不对，一般情况都会测试不成功，这时候可以通过“更改登录”重新输入数据库的用户/口令来进行测试是否连接成功</p>
+</li>
+<li><p>网络服务名，即为该远程连接配置命名。默认即可。</p>
+<p>至此，如果不需要再配置其他的网络服务，则该网络服务名配置完毕。</p>
+<p><a href="https://blog.csdn.net/dingguanyi/article/details/80875293" target="_blank" rel="noopener">参考链接</a></p>
 </li>
 </ol>
 </li>
@@ -544,8 +606,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -606,6 +677,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验目的"><span class="nav-number">1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验内容-步骤"><span class="nav-number">2.</span> <span class="nav-text">实验内容/步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存在的问题及解决方案"><span class="nav-number">3.</span> <span class="nav-text">存在的问题及解决方案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
