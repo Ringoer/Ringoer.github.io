@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://pic.ringoer.com/db-ex1-p3.png">
 <meta property="og:image" content="http://pic.ringoer.com/db-ex1-p61.png">
-<meta property="og:updated_time" content="2020-12-12T16:22:06.484Z">
+<meta property="og:updated_time" content="2020-12-12T16:37:50.483Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统实验报告-实验1 oracle 11g的安装、配置和使用">
 <meta name="twitter:description" content="只是一篇实验报告。">
@@ -456,18 +456,12 @@
 </li>
 <li><p>新建数据表空间，语句如下：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> dbsp_2 <span class="keyword">datafile</span> <span class="string">'url\filename.dbf'</span></span><br><span class="line"><span class="keyword">size</span> <span class="number">10</span>m</span><br><span class="line"><span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span> <span class="keyword">autoallocate</span>;</span><br></pre></td></tr></table></figure>
+<p>其中单引号内链接自行指定，注意指定的文件夹应是已创建的，且新建的文件后缀名为.dbf </p>
 </li>
-</ol>
-</li>
-</ol>
-<pre><code>其中单引号内链接自行指定，注意指定的文件夹应是已创建的，且新建的文件后缀名为.dbf 
-</code></pre><ol start="3">
 <li><p>新建用户，语句如下</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> username <span class="keyword">identified</span> <span class="keyword">by</span> <span class="keyword">password</span></span><br></pre></td></tr></table></figure>
+<p>其中username为用户名，by后面为密钥</p>
 </li>
-</ol>
-<pre><code>其中username为用户名，by后面为密钥
-</code></pre><ol start="4">
 <li><p>授权，语句格式如下：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">connect</span>,<span class="keyword">resource</span>,dba <span class="keyword">to</span> username;</span><br></pre></td></tr></table></figure>
 <p>可以是如下形式：</p>
@@ -475,7 +469,7 @@
 <p><a href="https://www.cnblogs.com/bjh1117/p/6605037.html" target="_blank" rel="noopener">参考链接</a>  </p>
 </li>
 </ol>
-<ol start="5">
+</li>
 <li><p>配置网络  </p>
 <ol>
 <li><p>运行Net Configuration Assist</p>
