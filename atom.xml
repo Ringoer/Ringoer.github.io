@@ -462,7 +462,7 @@
     <link href="http://yoursite.com/algorithm/rsa/"/>
     <id>http://yoursite.com/algorithm/rsa/</id>
     <published>2020-11-16T09:09:00.000Z</published>
-    <updated>2020-11-16T11:24:29.268Z</updated>
+    <updated>2020-12-12T15:47:28.173Z</updated>
     
     <content type="html"><![CDATA[<p>学习 HTTPS 必备的 RSA 算法的基础</p><a id="more"></a><h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>所谓非对称加密，就是服务器和客户端，在不直接互通私钥的情况下，通过公钥和互相发送的密文，推出本次连接使用的密钥</p><p>非对称加密涉及的数学原理非常多，想了解的可以看 <a href="https://blog.csdn.net/wjiabin/article/details/85228078" target="_blank" rel="noopener">非对称加密算法–RSA加密原理</a></p><p>本文不解释数学原理，只讲解加密的具体流程</p><h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p>首先看下图，下图对流程作出了简单描述</p><p><img src="https://pic.ringoer.com/RSA%E5%9B%BE%E8%A7%A3.png" alt="RSA图解"></p><p>接下来开始具体描述</p><ol><li>设服务器有一组公钥 [k1,k2] 和一个取余公式 <code>p=&gt;k1**p%k2</code>，其中 k1、k2、p 均要求是质数</li><li>服务器收到了客户端的连接请求，将公钥发给客户端</li><li>服务器产生一个<strong>随机质数</strong> p，代入公钥求得密文 m1，发送给客户端</li><li>客户端也产生一个<strong>随机质数</strong> q，代入公钥求得密文 m2，发送给服务器</li><li>服务器和客户端各自使用自己收到的密文，取代公钥中的 k1，求得结果就是共同的密钥</li><li>往后的通信中，双方均使用该密钥，进行对称加密通信</li></ol><p>显然 k2 要尽可能大，才能尽可能减小碰撞</p><p>现在代入值计算一下是否正确</p><ol><li>设 k1=13，k2=31，p=23，q=19</li><li><code>m1 = 13**23%31 =24</code>，<code>m2 = 13**19%31 = 21</code></li><li><code>21**23%31 = 17</code>，<code>24**19%31 = 17</code></li><li>验证完毕</li></ol><p>感兴趣的朋友可以自行验证一下，面试的时候能答出上述流程就行了</p><p>至于数学原理，我不知道你能不能看懂，反正我看不懂，2333</p>]]></content>
     
@@ -476,7 +476,7 @@
       <category term="algorithm" scheme="http://yoursite.com/categories/algorithm/"/>
     
     
-      <category term="algorithm" scheme="http://yoursite.com/tags/algorithm/"/>
+      <category term="https" scheme="http://yoursite.com/tags/https/"/>
     
   </entry>
   

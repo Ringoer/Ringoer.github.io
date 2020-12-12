@@ -213,7 +213,7 @@
         <category>algorithm</category>
       </categories>
       <tags>
-        <tag>algorithm</tag>
+        <tag>https</tag>
       </tags>
   </entry>
   <entry>
@@ -240,13 +240,13 @@
   </entry>
   <entry>
     <title><![CDATA[常用命令行合集]]></title>
-    <url>%2Fprograming%2FcommandLine%2F</url>
+    <url>%2Fprograming%2Fcommand-line%2F</url>
     <content type="text"><![CDATA[20201113命令行总结 首先我们要打开命令行，应该使用 git bash 而不是 Windows cmd，因为命令行实际上就是 bash 脚本语言 关于安装命令行，可以参考 本站建站指导 命令行的默认目录一般是形如 C:\Users\Ringoer ，这里被称之为用户目录，可以缩写为英文波浪线 ~ 然后我们可能要先切换目录到达目标目录 切换目录要切换到根目录（盘符的上级目录）的话，非常容易，只需要 cd / 就行了，此处 / 表示系统根目录 切换盘符的话，也挺简单的，直接在命令行输入盘符+冒号即可。例如 D: 可以切换到 D 盘 切换目录使用命令 cd ，是 change directory 的缩写。使用方法一般有两种 绝对目录 相对目录 绝对目录一般指从盘符开始的目录描述，比如 C:\Users\Ringoer 就是一个标准的绝对目录 需要注意，上面说到用户目录缩写是 ~ ，所以 ~ 也是一个绝对目录 相对目录相对目录的写法一般根据当前目录决定。 首先我们可以在命令行上看到自己当前所在的目录，也可以使用命令 pwd 来显示当前目录 然后，我们可以选择前往上一级目录，此时可以使用命令 cd .. ，注意一定是两个点表示上级目录，如果是一个点则表示当前目录 不知道要去哪个目录怎么办？没关系，可以使用命令 ls （注意是字母 L 的小写）来查看当前目录下的所有子目录或文件，然后 cd 子目录名称 或 cd ./子目录名称 即可进入目标子目录 说到命令行，那最大的用处，肯定是对文件 CRUD 啦 Create-新增创建一个新文件，一般有两种类型 从零创建 从已有创建 从零创建一般使用 touch [...filename] 来创建文件 其中 ... 是 spread 语法，表示不定长参数列表，下同 若目标文件不存在，则在当前目录创建这个文件 若目标文件已经存在，则更新最后更新时间 从已有创建一般使用 cp [filename1] [filename2] 来复制文件 将 文件1 的内容全数复制到 文件2 中 文件夹文件夹也有如上两种情况，分别采用 mkdir [...directoryName] cp -r [directoryName1] [directoryName2] 来创建文件夹 其中参数 -r 表示 递归地复制，概念与 js 中的深度拷贝相同 Retrieve-查询一般有 4 种查询语句 语句 描述 cat […filename] 全量查看文件 head -n [line] […filename] 查看文件前 n 行 tail -n [line] […filename] 查看文件后 n 行 less [filename] 分页查看文件 Update-修改显然修改文件和文件夹是不一样的 文件查询中前三种语句，都是有确定的返回内容的，此时可以通过 &gt; [filename] 将返回内容导入到新的文件中。该命令会覆盖目标文件原有内容 例如，cat 1.txt 2.txt &gt; 3.txt ，将 1.txt 和 2.txt 的内容都全量导出，然后拼接在一起，之后保存到 3.txt 中 也可以通过 &gt;&gt; [filename] 将返回内容导入到新的文件中。该命令会将新内容拼接到目标文件原有内容末尾 例如，cat 1.txt 2.txt &gt;&gt; 3.txt ，将 1.txt 和 2.txt 的内容都全量导出，然后拼接在一起，之后拼接到 3.txt 的末尾 刚才说到”确定的返回内容”，就不得不说说回显命令 echo [body] ，用于将参数体的内容原封不动回显到标准输出中。显然，echo 命令也可以通过 &gt; [filename] 和 &gt;&gt; [filename] 重定向到文件中 echo 还可以输出 bash 脚本代码，实际上就是输出字符串，需要双引号 例如 echo &quot;hello world&quot; ，英文引号，懂得都懂 文件夹修改文件夹是什么意思呢？对比修改文件是指修改其中保存的内容，那修改文件夹显然就是修改文件夹中保存的文件列表 我们可以通过 mv [...filename] [directoryName] 命令来将文件移动到目标文件夹中 其中文件可以指定不少于 1 的任意多个，但目标文件夹只能有一个 mv，实际上是 move 的缩写。 重命名说到这里，肯定会有同学想问，如何重命名呢？这就需要我们刚刚说的 mv 命令了 mv [file1] [file2] 可以实现将文件1重命名为文件2 mv [directory1] [directory2] 可以实现将文件夹1重命名为文件夹2 如果文件2已经存在会怎么样呢？ 那么文件1会改名为文件2，而文件2会被删除 Delete-删除删除一个文件，一般使用 rm [filename] 来删除，其中 rm 是 remove 的缩写 如果删除目标是一个文件夹，一般使用 rm -r [directoryName] 来删除，其中参数 -r 同上 有时候要删除某个文件或文件夹的时候，会触发警告，此时可以通过 -f 来强制删除文件或 -rf 来强制删除文件夹，这也是 rm -rf / 删库跑路的来源。但此举非常不推荐，否则很容易就把重要文件删了导致系统崩溃 但是测试 CRUD 的时候，总是要重复运行很多代码，好烦啊，有没有方便的办法呢？ 脚手架显然我们在上面测试的时候，经常会重复运行代码，输入内容等等。比如下方代码就是一个可能的情况 1234567891011121314echo "Waiting..." &gt; 1.txtecho "hello world" &gt;&gt; 1.txtcp 1.txt 2.txtecho "success" &gt;&gt; 2.txtcat 1.txt 2.txt &gt; 3.txtmkdir testmv 1.txt 2.txt 3.txt testcd testtail -n 4 3.txt &gt; 4.txtless 4.txt 但是我们总不能每一次测试都手打一遍？所以我们要将它保存为一个单独的 bash 代码文件，称之为 bash 脚本，它一旦运行起来，就可以帮助我们运行设定好的代码。 假设我们把它保存为 node.exe，或者干脆不要 exe，直接叫做 node 实际上，对于系统来说，文件后缀是不是 exe 并不是很重要，只要是机器能读懂的语言，都是可执行文件 如果你不是 windows 系统，需要先执行 chmod +x [filename] 命令，来赋予文件执行的权能 然后一般有三种方法运行你的可执行文件。假设此处运行当前目录下的 node，它是一个删除了 exe 后缀的原 exe 文件 ./node，其中单个 . 表示当前目录 sh node，其中 sh 表示将其当作 bash 脚本启动 node 第一种和第二种没有什么区别，主要是第三种 环境变量前面我们讲过可以通过 ls 查看当前目录下的文件列表，那系统怎么知道 ls 是什么命令呢？答案就在系统环境变量 PATH 中 因为 PATH 中登记了 ls 所在的目录，所以系统能找到 ls 的指向 那么答案就很明确了，我们可以把我们现在的运行目录也登记到 PATH 中，就可以通过 node 直接运行我们的可执行文件了 命名冲突但是大家电脑上都已经安装了 nodejs 了吧？这时如果直接在命令行中执行 node 命令，往往会启动了 nodejs 的 node.exe 。那怎么让我们的 node 文件更优先呢？ 答案还是在 PATH 身上 刚才设置 PATH 的时候，可以注意到，PATH 列表右侧有”上移””下移”按钮，可以推测目录在 PATH 中的注册顺序是影响调用决策的重要条件。那么我们把我们的工作目录上移到比 nodejs 目录更上方的位置 此时如果你不是 windows 环境，应该可以看到命令行正常输出了你的 node 文件的内容了。但如果是 windows 环境……还有一个坑点，那就是 windows 环境在决策时 exe 后缀的文件优先级更高。那么把你的 node 文件改名为 node.exe，ok，大功告成！ 好了，关于命令行，我暂且只有这些想说的，谢谢你看到这里，快回去自己动手试验一下吧！]]></content>
       <categories>
         <category>programing</category>
       </categories>
       <tags>
-        <tag>commandLine</tag>
+        <tag>命令行</tag>
       </tags>
   </entry>
   <entry>
@@ -282,7 +282,6 @@
       </categories>
       <tags>
         <tag>javascript</tag>
-        <tag>node</tag>
       </tags>
   </entry>
   <entry>
@@ -412,27 +411,27 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[20190908 Keras试用]]></title>
-    <url>%2FmachineLearning%2F20190908%2F</url>
-    <content type="text"><![CDATA[尝试了二元线性回归。只有代码和注释。12345678910111213141516171819202122232425262728import kerasfrom keras.models import Sequentialfrom keras.layers import Denseimport numpy as np#期望平面z=-6x+y+8trX = np.random.uniform(-100, 100, size=1001)trY = np.random.uniform(-100, 100, size=1001)trZ = 8 - 6 * trX + trY + np.random.randn(*trX.shape) * 0.2trXY = np.array(list(zip(trX,trY)))model = Sequential()#模型实现输入[x,y]，输出对应的z，属于2个输入决定一个输出，所以#第一层Dense的input_dim=2#最后一层Dense的output_dim=1model.add(Dense(input_dim=2, output_dim=200, init='uniform', activation='linear'))model.add(Dense(input_dim=200, output_dim=1, init='uniform', activation='linear'))model.compile(optimizer='adam', loss='mse')model.fit(trXY, trZ, nb_epoch=200, verbose=1)testX = [3,4,0]testY = [1,0,4]testXY = np.array(list(zip(testX,testY)))res = model.predict(testXY)print(testXY)print(res) 关于zip()方法设有123&gt;&gt;&gt; a=[1,4,7]&gt;&gt;&gt; b=[2,5,8]&gt;&gt;&gt; c=[3,6,9] 则有以下结果：12345678&gt;&gt;&gt; d=zip(a,b,c)&gt;&gt;&gt; d&lt;zip object at 0x0000019C55381848&gt;&gt;&gt;&gt; list(d)[(1, 2, 3), (4, 5, 6), (7, 8, 9)]&gt;&gt;&gt; d=[list(i) for i in zip(a,b,c)]&gt;&gt;&gt; d[[1, 2, 3], [4, 5, 6], [7, 8, 9]] 可见zip()方法的参数列表是可变参数列表，可以传入n个参数]]></content>
+    <title><![CDATA[Keras试用 二元线性回归]]></title>
+    <url>%2FmachineLearning%2Fkeras-2%2F</url>
+    <content type="text"><![CDATA[尝试了二元线性回归。 只有代码和注释。 12345678910111213141516171819202122232425262728import kerasfrom keras.models import Sequentialfrom keras.layers import Denseimport numpy as np#期望平面z=-6x+y+8trX = np.random.uniform(-100, 100, size=1001)trY = np.random.uniform(-100, 100, size=1001)trZ = 8 - 6 * trX + trY + np.random.randn(*trX.shape) * 0.2trXY = np.array(list(zip(trX,trY)))model = Sequential()#模型实现输入[x,y]，输出对应的z，属于2个输入决定一个输出，所以#第一层Dense的input_dim=2#最后一层Dense的output_dim=1model.add(Dense(input_dim=2, output_dim=200, init='uniform', activation='linear'))model.add(Dense(input_dim=200, output_dim=1, init='uniform', activation='linear'))model.compile(optimizer='adam', loss='mse')model.fit(trXY, trZ, nb_epoch=200, verbose=1)testX = [3,4,0]testY = [1,0,4]testXY = np.array(list(zip(testX,testY)))res = model.predict(testXY)print(testXY)print(res) 关于zip()方法 设有 123&gt;&gt;&gt; a=[1,4,7]&gt;&gt;&gt; b=[2,5,8]&gt;&gt;&gt; c=[3,6,9] 则有以下结果：12345678&gt;&gt;&gt; d=zip(a,b,c)&gt;&gt;&gt; d&lt;zip object at 0x0000019C55381848&gt;&gt;&gt;&gt; list(d)[(1, 2, 3), (4, 5, 6), (7, 8, 9)]&gt;&gt;&gt; d=[list(i) for i in zip(a,b,c)]&gt;&gt;&gt; d[[1, 2, 3], [4, 5, 6], [7, 8, 9]] 可见zip()方法的参数列表是可变参数列表，可以传入n个参数]]></content>
       <categories>
         <category>machineLearning</category>
       </categories>
       <tags>
         <tag>Keras</tag>
-        <tag>machineLearning</tag>
+        <tag>机器学习</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[20190907 Keras试用]]></title>
-    <url>%2FmachineLearning%2F20190907%2F</url>
-    <content type="text"><![CDATA[第一次入门TensorFlow，然后先搞搞Keras。装环境：1pip install tensorflow 没有合适版本的话，检查一下自己的pip是不是最新版的，python是32位还是64位。 入门代码：线性回归12345678910111213141516171819202122232425262728293031323334353637383940import kerasfrom keras.models import Sequentialfrom keras.layers import Denseimport numpy as np#生成训练集#trX和trY表示训练用的1000个点二维坐标的x和y，类型是nparray#trX中，有1000组数据，每组数据只有1个元素，所以下文中Dense的input_dim=1trX = np.random.uniform(-100, 100, size=1000) #生成1000个在-100~100之间的随机数，返回一个nparraytrY = 5 * trX + 6 + np.random.randn(*trX.shape) * 0.2 #期望y=5x+6，并加入一点点随机波动#实例化model为层次模型model = Sequential()#为模型添加layer#本示例是RNN，所以使用Dense作为layer#前一个Dense的output_dim必须和后一个的input_dim相同#第一个Dense的input_dim必须等于训练集输入的每组元素数#最后一个的output_dim必须等于训练集输出输出的每组元素数model.add(Dense(input_dim=1, output_dim=200, init='uniform', activation='linear'))model.add(Dense(input_dim=200, output_dim=1, init='uniform', activation='linear'))#编译模型，准备训练#optimizer是优化器，一般选adam#loss是损失函数，一般使用mse（均方误差）即可#loss越小，说明训练效果越好，但要小心过拟合model.compile(optimizer='adam', loss='mse')#训练#trX处填写训练集输入，trY处填写训练集输出#nb_epoch是迭代次数，verbose=1表示在控制台输出每次epoch的信息model.fit(trX, trY, nb_epoch=200, verbose=1)#np.array()要求传入一个list，返回一个nparray#arr.tolist()要求arr是一个nparray，返回一个list#model.predict要求传入一个nparrayl = np.array([3,1,-5,-23,-42,52]) #测试集res = model.predict(l) #结果print(l)print(res)]]></content>
+    <title><![CDATA[Keras试用 线性回归]]></title>
+    <url>%2FmachineLearning%2Fkeras-1%2F</url>
+    <content type="text"><![CDATA[第一次入门TensorFlow，然后先搞搞Keras。 装环境： 1pip install tensorflow 没有合适版本的话，检查一下自己的pip是不是最新版的，python是32位还是64位。 入门代码：线性回归12345678910111213141516171819202122232425262728293031323334353637383940import kerasfrom keras.models import Sequentialfrom keras.layers import Denseimport numpy as np#生成训练集#trX和trY表示训练用的1000个点二维坐标的x和y，类型是nparray#trX中，有1000组数据，每组数据只有1个元素，所以下文中Dense的input_dim=1trX = np.random.uniform(-100, 100, size=1000) #生成1000个在-100~100之间的随机数，返回一个nparraytrY = 5 * trX + 6 + np.random.randn(*trX.shape) * 0.2 #期望y=5x+6，并加入一点点随机波动#实例化model为层次模型model = Sequential()#为模型添加layer#本示例是RNN，所以使用Dense作为layer#前一个Dense的output_dim必须和后一个的input_dim相同#第一个Dense的input_dim必须等于训练集输入的每组元素数#最后一个的output_dim必须等于训练集输出输出的每组元素数model.add(Dense(input_dim=1, output_dim=200, init='uniform', activation='linear'))model.add(Dense(input_dim=200, output_dim=1, init='uniform', activation='linear'))#编译模型，准备训练#optimizer是优化器，一般选adam#loss是损失函数，一般使用mse（均方误差）即可#loss越小，说明训练效果越好，但要小心过拟合model.compile(optimizer='adam', loss='mse')#训练#trX处填写训练集输入，trY处填写训练集输出#nb_epoch是迭代次数，verbose=1表示在控制台输出每次epoch的信息model.fit(trX, trY, nb_epoch=200, verbose=1)#np.array()要求传入一个list，返回一个nparray#arr.tolist()要求arr是一个nparray，返回一个list#model.predict要求传入一个nparrayl = np.array([3,1,-5,-23,-42,52]) #测试集res = model.predict(l) #结果print(l)print(res)]]></content>
       <categories>
         <category>machineLearning</category>
       </categories>
       <tags>
         <tag>Keras</tag>
-        <tag>machineLearning</tag>
+        <tag>机器学习</tag>
       </tags>
   </entry>
   <entry>
@@ -461,12 +460,12 @@
   <entry>
     <title><![CDATA[用 WinPCAP 监听并解析 FTP 口令]]></title>
     <url>%2Fexperiment%2FWinPCAP-FTP%2F</url>
-    <content type="text"><![CDATA[计算机网络实验4 实验目的用 WinPCAP 监听并分析 FTP 协议并记录 IP、用户名、密码和登陆是否成功。 实验环境Windows10C# 实验结果 wireshark部分 连接 本机向ftp服务器申请连接，flag=SYN ftp服务器回复本机，flag=SYN，ACK 本机收到，向ftp服务器答复，flag=ACK ftp服务器收到，向本机发送数据，flag=PSH，ACK 断开 本机向ftp服务器申请断开，flag=FIN，ACK ftp服务器收到申请，向本机返信，flag=ACK ftp服务器已经断开与本机的连接，向本机发信，flag=FIN，ACK 本机收到，断开与ftp服务器连接，向ftp服务器返信，flag=ACK 监听部分 实验总结大部分与实验三相同。以下解释不同的部分。 全局变量用FTPmode来表示现在处于解析ftp口令的哪个阶段。取值范围为{“”,”NOW”,”END”}用MyDiary数组来保存一整次解析中，生成日志所需的数据。用MyXML来保存一整次解析中，生成XML文档所需的数据 收包动作当一整次FTP口令解析完成时，生成日志和XML 在get_frame函数中录入生成日志所需的信息，然后读取用户信息 按照COMMAND获取口令 保存停止侦听时询问保存]]></content>
+    <content type="text"><![CDATA[计算机网络实验4 实验目的用 WinPCAP 监听并分析 FTP 协议并记录 IP、用户名、密码和登陆是否成功。 实验环境Windows10 C# 实验结果 wireshark部分 连接 本机向ftp服务器申请连接，flag=SYN ftp服务器回复本机，flag=SYN，ACK 本机收到，向ftp服务器答复，flag=ACK ftp服务器收到，向本机发送数据，flag=PSH，ACK 断开 本机向ftp服务器申请断开，flag=FIN，ACK ftp服务器收到申请，向本机返信，flag=ACK ftp服务器已经断开与本机的连接，向本机发信，flag=FIN，ACK 本机收到，断开与ftp服务器连接，向ftp服务器返信，flag=ACK 监听部分 实验总结大部分与实验三相同。以下解释不同的部分。 全局变量 用FTPmode来表示现在处于解析ftp口令的哪个阶段。取值范围为{“”,”NOW”,”END”} 用MyDiary数组来保存一整次解析中，生成日志所需的数据。 用MyXML来保存一整次解析中，生成XML文档所需的数据 收包动作 当一整次FTP口令解析完成时，生成日志和XML 在get_frame函数中 录入生成日志所需的信息，然后读取用户信息 按照COMMAND获取口令 保存 停止侦听时询问保存]]></content>
       <categories>
         <category>experiment</category>
       </categories>
       <tags>
-        <tag>计算机网络实验</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -527,23 +526,23 @@
   <entry>
     <title><![CDATA[捕获并分析帧和IP报文]]></title>
     <url>%2Fexperiment%2Finterception%2F</url>
-    <content type="text"><![CDATA[计算机网络实验3 实验目的 捕获并分析以太网的帧，获取目标与源网卡的MAC 地址 获取本机地址 获取远端MAC地址 实验环境 Windows 10 C# Visual Studio 2017 实验结果&emsp;测试时，设置为超过10000Bps就会报警 实验总结 全局初始化安装WinPcap和SharpPcap 查看网卡信息通过调用ipconfig.exe实现 适配器 计时动作 载入适配器列表 载入适配器信息 开始侦听 收包动作 成帧 成帧时修改流量统计 监视流量 暂停侦听 继续侦听 停止侦听 保存日志 退出程序 技术细节 计算流量的方法构建新结构体（mac + ip +mode）放进dictionary当key，各key累计收发包大小当value。新建线程，每隔1s遍历各来源的收发流量，超过1MB的，可以认为在这1s内平流量达到1MBps以上，故而给本机警告 遍历dictionary因为多线程同时在访问dictionary，所以会出现在一个线程遍历dictionary的时候，另一个线程正在新增dictionary的项。此时采用foreach遍历会报错，因为foreach要求正在遍历的对象不能有变化 有网络但侦听不到包体如果确认程序没错，那么可能是 选错网卡，要注意选一个有网络的网卡 当前的网络收发包类型不是ip and tcp，应该是filter的问题，关掉filter即可 BitConverter会反向获取。如，现有byte[] test={0x01,0x10,0x0f,0xff};二进制为00000001 00010000 00001111 11111111十进制为17829887此时进行uint ans=BitConverter.ToUInt32(test,0);会得到ans= 4279177217十六进制为ff0f1001二进制为11111111 00001111 00010000 00000001可见不能得到想要的结果，因为BitConverter会反向转换所给的byte数组所以应该先将要转换的数组反向，再使用BitConverter 参考链接SharpPcap]]></content>
+    <content type="text"><![CDATA[计算机网络实验3 实验目的 捕获并分析以太网的帧，获取目标与源网卡的MAC 地址 获取本机地址 获取远端MAC地址 实验环境 Windows 10 C# Visual Studio 2017 实验结果&emsp;测试时，设置为超过10000Bps就会报警 实验总结 全局初始化 安装WinPcap和SharpPcap 查看网卡信息 通过调用ipconfig.exe实现 适配器 计时动作 载入适配器列表 载入适配器信息 开始侦听 收包动作 成帧 成帧时修改流量统计 监视流量 暂停侦听 继续侦听 停止侦听 保存日志 退出程序 技术细节 计算流量的方法 构建新结构体（mac + ip +mode）放进dictionary当key，各key累计收发包大小当value。 新建线程，每隔1s遍历各来源的收发流量，超过1MB的，可以认为在这1s内平流量达到1MBps以上，故而给本机警告 遍历dictionary 因为多线程同时在访问dictionary，所以会出现在一个线程遍历dictionary的时候，另一个线程正在新增dictionary的项。此时采用foreach遍历会报错，因为foreach要求正在遍历的对象不能有变化 有网络但侦听不到包体 如果确认程序没错，那么可能是 选错网卡，要注意选一个有网络的网卡 当前的网络收发包类型不是ip and tcp，应该是filter的问题，关掉filter即可 BitConverter 会反向获取。 如，现有byte[] test={0x01,0x10,0x0f,0xff}; 二进制为00000001 00010000 00001111 11111111 十进制为17829887 此时进行uint ans=BitConverter.ToUInt32(test,0); 会得到ans= 4279177217 十六进制为ff0f1001 二进制为11111111 00001111 00010000 00000001 可见不能得到想要的结果，因为BitConverter会反向转换所给的byte数组 所以应该先将要转换的数组反向，再使用BitConverter 参考链接 SharpPcap]]></content>
       <categories>
         <category>experiment</category>
       </categories>
       <tags>
-        <tag>计算机网络实验</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[模拟RS-232接口双机互联编程]]></title>
     <url>%2Fexperiment%2FRS-232%2F</url>
-    <content type="text"><![CDATA[计算机网络实验2 实验目的 实现两台计算机通过串口通信 实验环境 本机Windows10 虚拟机系统VirtualBox 虚拟机1 Windows7 虚拟机2 Windows7 C# Visual Studio 2017 实验结果启动应用，得到如图界面。因为每个空格都会在确定了前一个空格后变为可编辑，而且会给出相应的默认值，所以可以一直点击确定，直到所有设置都被确定设置完成后得到如图情况，此时点击“启动服务”正常启动服务后收到提示双机互联时应有如图态势 实验总结基于VirtualBox 配置两台虚拟机时，应选择相同的串口 端口模式选择“主机管道”，路径/地址格式为\\.\pipe\xxxx，其中xxxx可以任意填写，但要保证两台虚拟机一致 对于选项“连接至现有通道或套接字”，其中一台虚拟机不勾选，称为pc1，另一台勾选，称为pc2 启动时，应先启动pc1，再启动pc2，否则会报如下错误 软件层面通信前应确保两台虚拟机上的软件都已经成功启动服务，否则不能互联 配置属性 接收 发送 退出]]></content>
+    <content type="text"><![CDATA[计算机网络实验2 实验目的 实现两台计算机通过串口通信 实验环境 本机Windows10 虚拟机系统VirtualBox 虚拟机1 Windows7 虚拟机2 Windows7 C# Visual Studio 2017 实验结果 启动应用，得到如图界面。因为每个空格都会在确定了前一个空格后变为可编辑，而且会给出相应的默认值，所以可以一直点击确定，直到所有设置都被确定 设置完成后得到如图情况，此时点击“启动服务” 正常启动服务后收到提示 双机互联时应有如图态势 实验总结 基于VirtualBox 配置两台虚拟机时，应选择相同的串口 端口模式选择“主机管道”，路径/地址格式为\\.\pipe\xxxx，其中xxxx可以任意填写，但要保证两台虚拟机一致 对于选项“连接至现有通道或套接字”，其中一台虚拟机不勾选，称为pc1，另一台勾选，称为pc2 启动时，应先启动pc1，再启动pc2，否则会报如下错误 软件层面通信前应确保两台虚拟机上的软件都已经成功启动服务，否则不能互联 配置属性 接收 发送 退出]]></content>
       <categories>
         <category>experiment</category>
       </categories>
       <tags>
-        <tag>计算机网络实验</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -565,7 +564,7 @@
         <category>experiment</category>
       </categories>
       <tags>
-        <tag>计算机网络实验</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -644,9 +643,9 @@
         <category>answer</category>
       </categories>
       <tags>
+        <tag>dp</tag>
         <tag>Luogu</tag>
         <tag>题解</tag>
-        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -812,8 +811,8 @@
         <category>answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>dp</tag>
+        <tag>题解</tag>
         <tag>云霄一中月赛</tag>
         <tag>贪心</tag>
       </tags>
@@ -865,8 +864,8 @@
         <category>answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>dp</tag>
+        <tag>题解</tag>
         <tag>云霄一中月赛</tag>
       </tags>
   </entry>
@@ -924,9 +923,9 @@
         <category>answer</category>
       </categories>
       <tags>
+        <tag>dp</tag>
         <tag>Luogu</tag>
         <tag>题解</tag>
-        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -1094,9 +1093,9 @@
         <category>answer</category>
       </categories>
       <tags>
+        <tag>dp</tag>
         <tag>Luogu</tag>
         <tag>题解</tag>
-        <tag>dp</tag>
       </tags>
   </entry>
   <entry>

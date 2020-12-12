@@ -73,7 +73,7 @@
 
 
 
-  <meta name="keywords" content="计算机网络实验,">
+  <meta name="keywords" content="计算机网络,">
 
 
 
@@ -85,7 +85,7 @@
 
 
 <meta name="description" content="计算机网络实验4">
-<meta name="keywords" content="计算机网络实验">
+<meta name="keywords" content="计算机网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用 WinPCAP 监听并解析 FTP 口令">
 <meta property="og:url" content="http://yoursite.com/experiment/WinPCAP-FTP/index.html">
@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-1.png">
 <meta property="og:image" content="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-2.png">
 <meta property="og:image" content="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-3.png">
-<meta property="og:updated_time" content="2020-11-12T12:38:45.116Z">
+<meta property="og:updated_time" content="2020-12-12T15:43:33.868Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用 WinPCAP 监听并解析 FTP 口令">
 <meta name="twitter:description" content="计算机网络实验4">
@@ -406,36 +406,77 @@
       
 
       
-        <p>计算机网络实验4<br><a id="more"></a></p>
-<h1 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h1><p>用 WinPCAP 监听并分析 FTP 协议并记录 IP、用户名、密码和登陆是否<br>成功。</p>
-<h1 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h1><p>Windows10<br>C#</p>
+        <p>计算机网络实验4</p>
+<a id="more"></a>
+<h1 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h1><p>用 WinPCAP 监听并分析 FTP 协议并记录 IP、用户名、密码和登陆是否成功。</p>
+<h1 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h1><p>Windows10</p>
+<p>C#</p>
 <h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><ol>
-<li>wireshark部分<ul>
-<li>连接<ol>
-<li>本机向ftp服务器申请连接，flag=SYN<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-connect-1.png" alt="connect-1"></li>
-<li>ftp服务器回复本机，flag=SYN，ACK<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-connect-2.png" alt="connect-2"></li>
-<li>本机收到，向ftp服务器答复，flag=ACK<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-connect-3.png" alt="connect-3"></li>
-<li>ftp服务器收到，向本机发送数据，flag=PSH，ACK<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-connect-4.png" alt="connect-4"></li>
+<li><p>wireshark部分</p>
+<ul>
+<li><p>连接</p>
+<ol>
+<li><p>本机向ftp服务器申请连接，flag=SYN</p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-connect-1.png" alt="connect-1"></p>
+</li>
+<li><p>ftp服务器回复本机，flag=SYN，ACK</p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-connect-2.png" alt="connect-2"></p>
+</li>
+<li><p>本机收到，向ftp服务器答复，flag=ACK</p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-connect-3.png" alt="connect-3"></p>
+</li>
+<li><p>ftp服务器收到，向本机发送数据，flag=PSH，ACK</p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-connect-4.png" alt="connect-4"></p>
+</li>
 </ol>
 </li>
-<li>断开<ol>
-<li>本机向ftp服务器申请断开，flag=FIN，ACK<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-disconnect-1.png" alt="disconnect-1"></li>
-<li>ftp服务器收到申请，向本机返信，flag=ACK<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-disconnect-2.png" alt="disconnect-2"></li>
-<li>ftp服务器已经断开与本机的连接，向本机发信，flag=FIN，ACK<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-disconnect-3.png" alt="disconnect-3"></li>
-<li>本机收到，断开与ftp服务器连接，向ftp服务器返信，flag=ACK<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-disconnect-4.png" alt="disconnect-4"></li>
+<li><p>断开</p>
+<ol>
+<li><p>本机向ftp服务器申请断开，flag=FIN，ACK</p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-disconnect-1.png" alt="disconnect-1"></p>
+</li>
+<li><p>ftp服务器收到申请，向本机返信，flag=ACK</p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-disconnect-2.png" alt="disconnect-2"></p>
+</li>
+<li><p>ftp服务器已经断开与本机的连接，向本机发信，flag=FIN，ACK</p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-disconnect-3.png" alt="disconnect-3"></p>
+</li>
+<li><p>本机收到，断开与ftp服务器连接，向ftp服务器返信，flag=ACK</p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-disconnect-4.png" alt="disconnect-4"></p>
+</li>
 </ol>
 </li>
 </ul>
 </li>
-<li>监听部分<br> <img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-监听部分.png" alt="监听部分"></li>
+<li><p>监听部分</p>
+<p> <img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-监听部分.png" alt="监听部分"></p>
+</li>
 </ol>
 <h1 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h1><p>大部分与实验三相同。以下解释不同的部分。</p>
 <ol>
-<li>全局变量<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-1.png" alt="1"><br>用FTPmode来表示现在处于解析ftp口令的哪个阶段。取值范围为{“”,”NOW”,”END”}<br>用MyDiary数组来保存一整次解析中，生成日志所需的数据。<br>用MyXML来保存一整次解析中，生成XML文档所需的数据</li>
-<li>收包动作<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-2.png" alt="2"><br>当一整次FTP口令解析完成时，生成日志和XML</li>
-<li>在get_frame函数中<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-3.png" alt="3"><br>录入生成日志所需的信息，然后读取用户信息</li>
-<li>按照COMMAND获取口令<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-4.png" alt="4"></li>
-<li>保存<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-1.png" alt="5-1"><br>停止侦听时询问保存<br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-2.png" alt="5-2"><br><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-3.png" alt="5-3"></li>
+<li><p>全局变量</p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-1.png" alt="1"></p>
+<p>用FTPmode来表示现在处于解析ftp口令的哪个阶段。取值范围为{“”,”NOW”,”END”}</p>
+<p>用MyDiary数组来保存一整次解析中，生成日志所需的数据。</p>
+<p>用MyXML来保存一整次解析中，生成XML文档所需的数据</p>
+</li>
+<li><p>收包动作</p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-2.png" alt="2"></p>
+<p>当一整次FTP口令解析完成时，生成日志和XML</p>
+</li>
+<li><p>在get_frame函数中</p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-3.png" alt="3"></p>
+<p>录入生成日志所需的信息，然后读取用户信息</p>
+</li>
+<li><p>按照COMMAND获取口令</p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-4.png" alt="4"></p>
+</li>
+<li><p>保存</p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-1.png" alt="5-1"></p>
+<p>停止侦听时询问保存</p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-2.png" alt="5-2"></p>
+<p><img src="http://pic.ringoer.com/用 WinPCAP 监听并解析 FTP 口令-5-3.png" alt="5-3"></p>
+</li>
 </ol>
 
       
@@ -464,7 +505,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/计算机网络实验/" rel="tag"># 计算机网络实验</a>
+            <a href="/tags/计算机网络/" rel="tag"># 计算机网络</a>
           
         </div>
       
@@ -589,7 +630,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

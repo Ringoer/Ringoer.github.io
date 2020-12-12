@@ -73,7 +73,7 @@
 
 
 
-  <meta name="keywords" content="计算机网络实验,">
+  <meta name="keywords" content="计算机网络,">
 
 
 
@@ -85,7 +85,7 @@
 
 
 <meta name="description" content="计算机网络实验2">
-<meta name="keywords" content="计算机网络实验">
+<meta name="keywords" content="计算机网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模拟RS-232接口双机互联编程">
 <meta property="og:url" content="http://yoursite.com/experiment/RS-232/index.html">
@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://pic.ringoer.com/模拟RS-232接口双机互联编程-read.png">
 <meta property="og:image" content="http://pic.ringoer.com/模拟RS-232接口双机互联编程-send.png">
 <meta property="og:image" content="http://pic.ringoer.com/模拟RS-232接口双机互联编程-exit.png">
-<meta property="og:updated_time" content="2020-11-12T12:39:15.641Z">
+<meta property="og:updated_time" content="2020-12-12T15:41:53.738Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模拟RS-232接口双机互联编程">
 <meta name="twitter:description" content="计算机网络实验2">
@@ -403,7 +403,8 @@
       
 
       
-        <p>计算机网络实验2<br><a id="more"></a></p>
+        <p>计算机网络实验2</p>
+<a id="more"></a>
 <ol>
 <li>实验目的<ul>
 <li>实现两台计算机通过串口通信  </li>
@@ -418,17 +419,46 @@
 <li>Visual Studio 2017  </li>
 </ul>
 </li>
-<li>实验结果<br><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-结果.png" alt="结果"><br>启动应用，得到如图界面。因为每个空格都会在确定了前一个空格后变为可编辑，而且会给出相应的默认值，所以可以一直点击确定，直到所有设置都被确定<br><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-启动界面.png" alt="启动界面"><br>设置完成后得到如图情况，此时点击“启动服务”<br><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-已经启动.png" alt="成功启动"><br>正常启动服务后收到提示<br><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-连接中.png" alt="连接中"><br>双机互联时应有如图态势</li>
-<li>实验总结<br>基于VirtualBox<ol>
-<li>配置两台虚拟机时，应选择相同的串口<br><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-vbox-1.png" alt="选择串口"></li>
-<li>端口模式选择“主机管道”，路径/地址格式为<code>\\.\pipe\xxxx</code>，其中xxxx可以任意填写，但要保证两台虚拟机一致<br><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-vbox-2.png" alt="选择模式"></li>
-<li>对于选项“连接至现有通道或套接字”，其中一台虚拟机不勾选，称为pc1，另一台勾选，称为pc2</li>
-<li>启动时，应先启动pc1，再启动pc2，否则会报如下错误<br><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-vbox-3.png" alt="报错"></li>
-<li>软件层面通信前应确保两台虚拟机上的软件都已经成功启动服务，否则不能互联</li>
-<li>配置属性<br><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-username.png" alt="属性"><br><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-attribute-1.png" alt="属性"><br><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-attribute-2.png" alt="属性"></li>
-<li>接收<br><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-read.png" alt="接收"></li>
-<li>发送<br><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-send.png" alt="发送"></li>
-<li>退出<br><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-exit.png" alt="退出"></li>
+<li><p>实验结果</p>
+<p><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-结果.png" alt="结果"></p>
+<p>启动应用，得到如图界面。因为每个空格都会在确定了前一个空格后变为可编辑，而且会给出相应的默认值，所以可以一直点击确定，直到所有设置都被确定</p>
+<p><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-启动界面.png" alt="启动界面"></p>
+<p>设置完成后得到如图情况，此时点击“启动服务”</p>
+<p><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-已经启动.png" alt="成功启动"></p>
+<p>正常启动服务后收到提示</p>
+<p><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-连接中.png" alt="连接中"></p>
+<p>双机互联时应有如图态势</p>
+</li>
+<li><p>实验总结</p>
+<p>基于VirtualBox</p>
+<ol>
+<li><p>配置两台虚拟机时，应选择相同的串口</p>
+<p><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-vbox-1.png" alt="选择串口"></p>
+</li>
+<li><p>端口模式选择“主机管道”，路径/地址格式为<code>\\.\pipe\xxxx</code>，其中xxxx可以任意填写，但要保证两台虚拟机一致</p>
+<p><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-vbox-2.png" alt="选择模式"></p>
+</li>
+<li><p>对于选项“连接至现有通道或套接字”，其中一台虚拟机不勾选，称为pc1，另一台勾选，称为pc2</p>
+</li>
+<li><p>启动时，应先启动pc1，再启动pc2，否则会报如下错误</p>
+<p><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-vbox-3.png" alt="报错"></p>
+</li>
+<li><p>软件层面通信前应确保两台虚拟机上的软件都已经成功启动服务，否则不能互联</p>
+</li>
+<li><p>配置属性</p>
+<p><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-username.png" alt="属性"></p>
+<p><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-attribute-1.png" alt="属性"></p>
+<p><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-attribute-2.png" alt="属性"></p>
+</li>
+<li><p>接收</p>
+<p><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-read.png" alt="接收"></p>
+</li>
+<li><p>发送</p>
+<p><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-send.png" alt="发送"></p>
+</li>
+<li><p>退出</p>
+<p><img src="http://pic.ringoer.com/模拟RS-232接口双机互联编程-exit.png" alt="退出"></p>
+</li>
 </ol>
 </li>
 </ol>
@@ -459,7 +489,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/计算机网络实验/" rel="tag"># 计算机网络实验</a>
+            <a href="/tags/计算机网络/" rel="tag"># 计算机网络</a>
           
         </div>
       
@@ -575,7 +605,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
