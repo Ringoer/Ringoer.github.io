@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/event-loop/</loc>
+    
+    <lastmod>2020-12-12T11:35:46.370Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/frontend/dom-api/</loc>
+    
+    <lastmod>2020-12-12T09:50:40.292Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/ajax/</loc>
     
     <lastmod>2020-12-12T05:03:15.454Z</lastmod>
@@ -54,13 +68,6 @@
     <loc>http://yoursite.com/frontend/javascript-history/</loc>
     
     <lastmod>2020-12-10T15:05:17.904Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/frontend/dom-api/</loc>
-    
-    <lastmod>2020-12-10T15:04:37.735Z</lastmod>
     
   </url>
   
