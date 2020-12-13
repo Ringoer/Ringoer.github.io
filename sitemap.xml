@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/cross-domain/</loc>
+    
+    <lastmod>2020-12-13T14:27:38.203Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/promise/</loc>
     
     <lastmod>2020-12-13T08:37:54.360Z</lastmod>
