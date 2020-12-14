@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="本章用以给新手入门。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-02T01:25:14.897Z">
+<meta property="og:updated_time" content="2020-12-14T15:07:01.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++语言-1-入门篇">
 <meta name="twitter:description" content="本章用以给新手入门。">
@@ -389,14 +389,63 @@
       
 
       
-        <p>本章用以给新手入门。<br><a id="more"></a><br>首先，请大家先熟悉下面的，输出一串字符”helloworld”的代码。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;”helloworld”&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这是一句注释</span></span><br></pre></td></tr></table></figure></p>
+        <p>本章用以给新手入门。</p>
+<a id="more"></a>
+<hr>
+<p>首先，请大家先熟悉下面的，输出一串字符”helloworld”的代码。  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;”helloworld”&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这是一句注释</span></span><br></pre></td></tr></table></figure>
 <p>该代码编译运行后，显示的结果如下面这一行：</p>
-<p><pre>helloworld</pre><br>现在开始逐行解释。<br>1、<br><code>#include&lt;iostream&gt;</code>，这句的意思是程序中包含一个叫做iostream的头文件，格式是<code>#include&lt;&gt;</code>，头文件名称填在单书名号中。单书名号结尾不需要加分号。需要包含多个头文件时换行写即可。<br>例：<br><code>#include&lt;iostream&gt;</code><br><code>#include&lt;cstdio&gt;</code><br>也有用双引号的，如<code>#include&quot;cstdio&quot;</code>，虽然这样也可以，不过建议写单书名号。区别在于双引号的是查找自己编写的类库（头文件），而单书名号是查找编译环境自带的类库。<br>常用头文件有：<br>iostream，这个单词由in/out stream组成，是标准输入输出流。<br>cstdio，这个单词由c++ standard in/out组成，是标准输入输出。<br>cmath，这个单词由c++ math组成，是数学库。<br>cstring，这个单词由c++ string组成，是与字符处理有关的头文件。<br>string，这个单词本身就存在，翻译名为“字符串”，使用string类型时需要包含该头文件。<br>algorithm，这个单词本身就存在，翻译名为“算法”，主要包含一些现成的函数。<br>有时候也会见到如”stdio.h”的头文件，这是C语言的头文件，不用管。请大家按C++写法写头文件。<br>2、<br><code>using namespace std;</code><br>这句话，称为“使用(using)命名空间(namespace)std”，其中namespace就是“姓名”和“空间”两个单词的组合，称为“命名空间”。而std是standard的缩写，表示“标准的”。<br>这句话写在所有include之后，不可修改。这是硬性规定，不做赘述。句末要有分号。不论包含多少头文件，都只需写一次。<br>3、<br><code>int main()</code><br>main()表示主函数，括号不可丢，句末无分号。前面的int表示main函数返回int类型。这句其实也是硬性规定。<br>4、<br>左大括号，与第8行的右大括号匹配，构成一个封闭区域，表示main函数的函数体。<br>大括号是函数的界限，表示这一组大括号里面的所有内容都属于这个函数。括号是一一匹配的，不会重复匹配，且每个左大括号只会匹配到离自己最近的且未被匹配的右大括号。<br>5、<br><code>cout&lt;&lt;&quot;helloworld&quot;&lt;&lt;endl;</code><br>输出一个句子并换行。<br>表示输出的是”cout”，是c++ out的缩写。要使用cout，需要包含iostream头文件。<br>这个“句子”的专业表述为“字符串”，因为每个句子实际上都是由一串字符构成的。输出时，在输出的内容中没有双引号。<br>endl是end line的缩写，表示一个换行符。所谓的换行符，就是通常意义上的回车。在输出换行符后，字符串末尾将如同被按下一个回车，光标会来到下一行。<br>*每输出一个变量都需要写两个单书名号，箭头指向cout。<br>&ensp;如<code>cout&lt;&lt;a&lt;&lt;b&lt;&lt;c;</code>//按先后顺序输出三个变量a，b，c。<br>*直接按此方法输出时三个变量会连在一起，如a=1，b=2，c=3时，输入为123，这时需要手动添加空格作为分隔符，代码更改为<code>cout&lt;&lt;a&lt;&lt;&quot; &quot;&lt;&lt;b&lt;&lt;&quot; &quot;&lt;&lt;c;</code>输出变更为1 2 3。<br>*cout支持两种换行符，endl和”\n”，如<code>cout&lt;&lt;endl;</code>或<code>cout&lt;&lt;&quot;\n&quot;;</code>都可以做到换行。<br>*endl中是小写的L，而不是数字1。  </p>
-<p>既然cout是输出，相对的，就有输入。<br>表示输出的是”cin”，是c++ in的缩写。要使用cin，需要包含iostream头文件。<br>cin的用法，将在下一篇章中说明。<br>6、<br><code>return 0;</code><br>表示正常结束程序。主函数的最后必须有这一句话，句末有分号，写在主函数中时不可改动。<br>不论写在主函数的何处，只要程序执行时遇到这句话，都将使得程序正常结束。<br>7、<br>右大括号，与第4行的左大括号匹配，构成一个封闭区域，表示main函数的函数体。<br>大括号是函数的界限，表示这一组大括号里面的所有内容都属于这个函数。括号是一一匹配的，不会重复匹配，且每个右大括号只会匹配到离自己最近的且未被匹配的左大括号。<br>8、<br>两个除号，<code>//</code>，表示注释，程序将会忽视在<code>//</code>之后的这一行的所有内容<br>如果需要多行注释，可以选择<code>/*内容*/</code>的方式，程序将会忽略<code>/*</code>和<code>*/</code>之间的所有内容。<br>示例：<br><code>这里还没被忽略//这句会被忽略</code>  </p>
-<p><code>这句也没被忽略</code>  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helloworld</span><br></pre></td></tr></table></figure>
+<p>现在开始逐行解释。</p>
+<h1 id="include"><a href="#include" class="headerlink" title="#include"></a>#include</h1><p><code>#include&lt;iostream&gt;</code>，这句的意思是程序中包含一个叫做iostream的头文件，格式是<code>#include&lt;&gt;</code>，头文件名称填在单书名号中。单书名号结尾不需要加分号。需要包含多个头文件时换行写即可。</p>
+<p>例：</p>
+<p><code>#include&lt;iostream&gt;</code></p>
+<p><code>#include&lt;cstdio&gt;</code></p>
+<p>也有用双引号的，如<code>#include&quot;cstdio&quot;</code>，虽然这样也可以，不过建议写单书名号。区别在于双引号的是查找自己编写的类库（头文件），而单书名号是查找编译环境自带的类库。</p>
+<p>常用头文件有：</p>
+<p>iostream，这个单词由in/out stream组成，是标准输入输出流。</p>
+<p>cstdio，这个单词由c++ standard in/out组成，是标准输入输出。</p>
+<p>cmath，这个单词由c++ math组成，是数学库。</p>
+<p>cstring，这个单词由c++ string组成，是与字符处理有关的头文件。</p>
+<p>string，这个单词本身就存在，翻译名为“字符串”，使用string类型时需要包含该头文件。</p>
+<p>algorithm，这个单词本身就存在，翻译名为“算法”，主要包含一些现成的函数。</p>
+<p>有时候也会见到如”stdio.h”的头文件，这是C语言的头文件，不用管。请大家按C++写法写头文件。</p>
+<h1 id="using"><a href="#using" class="headerlink" title="using"></a>using</h1><p><code>using namespace std;</code></p>
+<p>这句话，称为“使用(using)命名空间(namespace)std”，其中namespace就是“姓名”和“空间”两个单词的组合，称为“命名空间”。而std是standard的缩写，表示“标准的”。</p>
+<p>这句话写在所有include之后，不可修改。这是硬性规定，不做赘述。句末要有分号。不论包含多少头文件，都只需写一次。</p>
+<h1 id="main"><a href="#main" class="headerlink" title="main"></a>main</h1><p><code>int main()</code></p>
+<p>main()表示主函数，括号不可丢，句末无分号。前面的int表示main函数返回int类型。这句其实也是硬性规定。</p>
+<h1 id="函数体"><a href="#函数体" class="headerlink" title="函数体"></a>函数体</h1><p>左大括号，与第8行的右大括号匹配，构成一个封闭区域，表示main函数的函数体。</p>
+<p>大括号是函数的界限，表示这一组大括号里面的所有内容都属于这个函数。括号是一一匹配的，不会重复匹配，且每个左大括号只会匹配到离自己最近的且未被匹配的右大括号。</p>
+<h1 id="cout"><a href="#cout" class="headerlink" title="cout"></a>cout</h1><p><code>cout&lt;&lt;&quot;helloworld&quot;&lt;&lt;endl;</code></p>
+<p>输出一个句子并换行。</p>
+<p>表示输出的是”cout”，是c++ out的缩写。要使用cout，需要包含iostream头文件。</p>
+<p>这个“句子”的专业表述为“字符串”，因为每个句子实际上都是由一串字符构成的。输出时，在输出的内容中没有双引号。</p>
+<p>endl是end line的缩写，表示一个换行符。所谓的换行符，就是通常意义上的回车。在输出换行符后，字符串末尾将如同被按下一个回车，光标会来到下一行。</p>
+<p>*每输出一个变量都需要写两个单书名号，箭头指向cout。</p>
+<p>&ensp;如<code>cout&lt;&lt;a&lt;&lt;b&lt;&lt;c;</code>//按先后顺序输出三个变量a，b，c。</p>
+<p>*直接按此方法输出时三个变量会连在一起，如a=1，b=2，c=3时，输入为123，这时需要手动添加空格作为分隔符，代码更改为<code>cout&lt;&lt;a&lt;&lt;&quot; &quot;&lt;&lt;b&lt;&lt;&quot; &quot;&lt;&lt;c;</code>输出变更为1 2 3。</p>
+<p>*cout支持两种换行符，endl和”\n”，如<code>cout&lt;&lt;endl;</code>或<code>cout&lt;&lt;&quot;\n&quot;;</code>都可以做到换行。</p>
+<p>*endl中是小写的L，而不是数字1。  </p>
+<p>既然cout是输出，相对的，就有输入。</p>
+<p>表示输出的是”cin”，是c++ in的缩写。要使用cin，需要包含iostream头文件。</p>
+<p>cin的用法，将在下一篇章中说明。</p>
+<h1 id="return"><a href="#return" class="headerlink" title="return"></a>return</h1><p><code>return 0;</code></p>
+<p>表示正常结束程序。主函数的最后必须有这一句话，句末有分号，写在主函数中时不可改动。</p>
+<p>不论写在主函数的何处，只要程序执行时遇到这句话，都将使得程序正常结束。</p>
+<h1 id="函数体结束"><a href="#函数体结束" class="headerlink" title="函数体结束"></a>函数体结束</h1><p>右大括号，与第4行的左大括号匹配，构成一个封闭区域，表示main函数的函数体。</p>
+<p>大括号是函数的界限，表示这一组大括号里面的所有内容都属于这个函数。括号是一一匹配的，不会重复匹配，且每个右大括号只会匹配到离自己最近的且未被匹配的左大括号。</p>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><p>两个除号，<code>//</code>，表示注释，程序将会忽视在<code>//</code>之后的这一行的所有内容</p>
+<p>如果需要多行注释，可以选择<code>/*内容*/</code>的方式，程序将会忽略<code>/*</code>和<code>*/</code>之间的所有内容。</p>
+<p>示例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这里还没被忽略 <span class="comment">//这句会被忽略</span></span><br><span class="line"></span><br><span class="line">这句也没被忽略</span><br></pre></td></tr></table></figure>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*我们</span></span><br><span class="line"><span class="comment">这几行</span></span><br><span class="line"><span class="comment">全都</span></span><br><span class="line"><span class="comment">被忽略了*/</span></span><br></pre></td></tr></table></figure>
-<p>以上，就是对于本篇开头的代码段的完整解释。<br>至此，可以总结出一个C++程序的基本框架。写程序时可以先打好该框架，然后再继续填充。<br>框架如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>到此，第一章结束！<br>感谢PTW对本文的援助。</p>
+<p>以上，就是对于本篇开头的代码段的完整解释。</p>
+<p>至此，可以总结出一个C++程序的基本框架。写程序时可以先打好该框架，然后再继续填充。</p>
+<p>框架如下：  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到此，第一章结束！</p>
+<p>感谢PTW对本文的援助。</p>
 
       
     </div>
@@ -501,8 +550,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -540,7 +598,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -563,6 +621,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#include"><span class="nav-number">1.</span> <span class="nav-text">#include</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#using"><span class="nav-number">2.</span> <span class="nav-text">using</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#main"><span class="nav-number">3.</span> <span class="nav-text">main</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数体"><span class="nav-number">4.</span> <span class="nav-text">函数体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cout"><span class="nav-number">5.</span> <span class="nav-text">cout</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#return"><span class="nav-number">6.</span> <span class="nav-text">return</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数体结束"><span class="nav-number">7.</span> <span class="nav-text">函数体结束</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注释"><span class="nav-number">8.</span> <span class="nav-text">注释</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

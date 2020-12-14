@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="尝试了二元线性回归。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-12-12T15:46:20.154Z">
+<meta property="og:updated_time" content="2020-12-14T14:25:37.711Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Keras试用 二元线性回归">
 <meta name="twitter:description" content="尝试了二元线性回归。">
@@ -391,6 +391,7 @@
       
         <p>尝试了二元线性回归。</p>
 <a id="more"></a>
+<hr>
 <p>只有代码和注释。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">#期望平面z=-6x+y+8</span></span><br><span class="line">trX = np.random.uniform(<span class="number">-100</span>, <span class="number">100</span>, size=<span class="number">1001</span>)</span><br><span class="line">trY = np.random.uniform(<span class="number">-100</span>, <span class="number">100</span>, size=<span class="number">1001</span>)</span><br><span class="line">trZ = <span class="number">8</span> - <span class="number">6</span> * trX + trY + np.random.randn(*trX.shape) * <span class="number">0.2</span></span><br><span class="line">trXY = np.array(list(zip(trX,trY)))</span><br><span class="line"></span><br><span class="line">model = Sequential()</span><br><span class="line"><span class="comment">#模型实现输入[x,y]，输出对应的z，属于2个输入决定一个输出，所以</span></span><br><span class="line"><span class="comment">#第一层Dense的input_dim=2</span></span><br><span class="line"><span class="comment">#最后一层Dense的output_dim=1</span></span><br><span class="line">model.add(Dense(input_dim=<span class="number">2</span>, output_dim=<span class="number">200</span>, init=<span class="string">'uniform'</span>, activation=<span class="string">'linear'</span>))</span><br><span class="line">model.add(Dense(input_dim=<span class="number">200</span>, output_dim=<span class="number">1</span>, init=<span class="string">'uniform'</span>, activation=<span class="string">'linear'</span>))</span><br><span class="line"></span><br><span class="line">model.compile(optimizer=<span class="string">'adam'</span>, loss=<span class="string">'mse'</span>)</span><br><span class="line"></span><br><span class="line">model.fit(trXY, trZ, nb_epoch=<span class="number">200</span>, verbose=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">testX = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">0</span>]</span><br><span class="line">testY = [<span class="number">1</span>,<span class="number">0</span>,<span class="number">4</span>]</span><br><span class="line">testXY = np.array(list(zip(testX,testY)))</span><br><span class="line">res = model.predict(testXY)</span><br><span class="line">print(testXY)</span><br><span class="line">print(res)</span><br></pre></td></tr></table></figure>
 <p>关于zip()方法</p>
@@ -543,7 +544,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -73,7 +73,7 @@
 
 
 
-  <meta name="keywords" content="diary,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -85,14 +85,13 @@
 
 
 <meta name="description" content="记一次由一句注释引发的三小时惨案……">
-<meta name="keywords" content="diary">
 <meta property="og:type" content="article">
 <meta property="og:title" content="20190926 随录">
 <meta property="og:url" content="http://yoursite.com/diary/20190926/index.html">
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="记一次由一句注释引发的三小时惨案……">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-26T13:45:44.043Z">
+<meta property="og:updated_time" content="2020-12-14T14:56:13.172Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="20190926 随录">
 <meta name="twitter:description" content="记一次由一句注释引发的三小时惨案……">
@@ -389,9 +388,30 @@
       
 
       
-        <p>记一次由一句注释引发的三小时惨案……<br><a id="more"></a><br>今天想着玩玩spring boot，遂搭了个hello spring的demo<br>然后想试试dao和thymeleaf，于是什么都玩玩<br>然后发现了这篇文章：<br><a href="https://www.jianshu.com/p/efdd7c92640c" target="_blank" rel="noopener">https://www.jianshu.com/p/efdd7c92640c</a><br>其中有段代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Autowired</span></span><br><span class="line">        <span class="keyword">private</span> UserService userService;</span><br><span class="line">        <span class="meta">@RequestMapping</span>(<span class="string">"/index"</span>)</span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(ModelMap modelMap)</span> </span>&#123;</span><br><span class="line">                 modelMap.addAttribute(<span class="string">"host"</span>,<span class="string">"www.baidu.com"</span>);</span><br><span class="line">                 <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+        <p>记一次由一句注释引发的三小时惨案……</p>
+<a id="more"></a>
+<hr>
+<p>今天想着玩玩spring boot，遂搭了个hello spring的demo</p>
+<p>然后想试试dao和thymeleaf，于是什么都玩玩</p>
+<p>然后发现了这篇文章：</p>
+<p><a href="https://www.jianshu.com/p/efdd7c92640c" target="_blank" rel="noopener">https://www.jianshu.com/p/efdd7c92640c</a></p>
+<p>其中有段代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Autowired</span></span><br><span class="line">        <span class="keyword">private</span> UserService userService;</span><br><span class="line">        <span class="meta">@RequestMapping</span>(<span class="string">"/index"</span>)</span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(ModelMap modelMap)</span> </span>&#123;</span><br><span class="line">                 modelMap.addAttribute(<span class="string">"host"</span>,<span class="string">"www.baidu.com"</span>);</span><br><span class="line">                 <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 <p>照抄之后，我暂时没有UserService类，所以先把<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> UserService userService;</span><br></pre></td></tr></table></figure></p>
-<p>给注释掉了<br>然后惨案就发生了……<br>在build的时候，IDEA不停报错，说<br><code>Consider defining a bean of type &#39;org.springframework.ui.ModelMap&#39; in your configuration.</code><br>为了de这个bug，不停地来往于baidu和google，发现根本没有人遇到和我一样的情况。这是什么意思？？？<br>于是一口闷气在我胸口淤积……<br>甚至对照了以前的项目也没发现什么问题，External Libraries甚至都是一模一样的……<br>差点血都吐出来了，心情差得很<br>经过3个小时的思考与辨析，终于发现——————————<br>我因为注释掉了那句定义，导致@Autowired影响到了下面的方法！！！！<br>因为@Autowired的影响，所以IDEA才会一直问我要Model的bean的definition！！！<br>删掉@Autowired和注释后终于正常build了，然后发现返回的是字符串index……<br>思考了一下，@RestController是不能返回页面的，想返回页面只能是@Controller，修改之后正常了……<br>然而我今天也无心搞下去了，明天再说吧……</p>
+<p>给注释掉了</p>
+<p>然后惨案就发生了……</p>
+<p>在build的时候，IDEA不停报错，说</p>
+<p><code>Consider defining a bean of type &#39;org.springframework.ui.ModelMap&#39; in your configuration.</code></p>
+<p>为了de这个bug，不停地来往于baidu和google，发现根本没有人遇到和我一样的情况。这是什么意思？？？</p>
+<p>于是一口闷气在我胸口淤积……</p>
+<p>甚至对照了以前的项目也没发现什么问题，External Libraries甚至都是一模一样的……</p>
+<p>差点血都吐出来了，心情差得很</p>
+<p>经过3个小时的思考与辨析，终于发现——————————</p>
+<p>我因为注释掉了那句定义，导致@Autowired影响到了下面的方法！！！！</p>
+<p>因为@Autowired的影响，所以IDEA才会一直问我要Model的bean的definition！！！</p>
+<p>删掉@Autowired和注释后终于正常build了，然后发现返回的是字符串index……</p>
+<p>思考了一下，@RestController是不能返回页面的，想返回页面只能是@Controller，修改之后正常了……</p>
+<p>然而我今天也无心搞下去了，明天再说吧……</p>
 
       
     </div>
@@ -416,12 +436,6 @@
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/diary/" rel="tag"># diary</a>
-          
-        </div>
       
 
       
@@ -535,7 +549,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

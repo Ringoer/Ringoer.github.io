@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="本章学习作用域相关知识。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-02T01:24:55.128Z">
+<meta property="og:updated_time" content="2020-12-14T15:25:14.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++语言-6-变量和语句的作用域">
 <meta name="twitter:description" content="本章学习作用域相关知识。">
@@ -389,9 +389,24 @@
       
 
       
-        <p>本章学习作用域相关知识。<br><a id="more"></a><br>采用以下程序段进行说明：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> x=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(a&lt;<span class="number">10</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> b=<span class="number">3</span>;</span><br><span class="line">        a++;</span><br><span class="line">        <span class="keyword">while</span>(b&lt;<span class="number">5</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> c=<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(c&gt;=<span class="number">4</span>) <span class="keyword">break</span>;</span><br><span class="line">            b++;</span><br><span class="line">            c+=b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>先说明一下，a++的效果等于a+=1等于a=a+1，不过a++的执行速度比a=a+1快就是了。同理c+=b是等于c=c+b的。<br>我们可以看到，在本程序段中有4个变量，分别是x，a，b，c，定义的位置各不相同，甚至x是定义在int main()之外的。这是什么意思呢？<br>原来，变量不是定义了之后就通用的，而是有所属范围的。<br>定义在int main外的，不属于任何函数的x，是可以在本程序所有函数中调用的。它定义的位置叫做公共域。而定义在int main里的a，是属于main而不是公共域的。它在main结束时就会清空，不能再访问。也就是说，x可以在程序的任何函数中被访问和修改，而a只能在main里被访问和修改。<br>但是b，c去哪了？我们可以看到，在进入第1个while之后，b才被定义，而c更是定义在第2个while里，且这两个while都属于main，第2个while又属于第1个while。<br>所以，变量b只能在第1个while中被访问和修改，变量c只能在第2个while中被修改。<br>又因为第2个while属于第1个while，所以它能访问和修改变量b，而两个while都属于main，所以能访问和修改变量a。但反过来，不在第1个while里的话，main和其它定义在公共域的函数是不能访问和修改变量b的。同理，不是在第2个while里的话，即使是第1个while里的其它语句，也不能访问和修改变量c。<br>至此，我们能得到一个上下级关系：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">程序本体</span><br><span class="line">——main</span><br><span class="line">————while</span><br><span class="line">——————while</span><br></pre></td></tr></table></figure></p>
-<p>下级可以访问和修改上级中已经定义的变量，而上级不可以访问和修改定义在下级中的变量。<br>根据这套理论，你能猜到第2个while里的break作用范围有多大了吗？就是只能跳出第2个while而已，对第1个while半毛钱影响都没有。continue也是一样的。<br>但是return 0不能乱写，这是特例，所有int类型的函数，比如main，在碰到return 0时会直接结束这个函数自身，跳过下面的所有语句。基于这个特性，也可以用return 0来当程序断点，用来检测当编译成功却运行时错误时哪些语句有问题。<br>当然，不止是return 0，事实上自定义函数和main，碰到return时，不管return是什么都会结束函数。只不过main要求一定要return 0罢了。</p>
+        <p>本章学习作用域相关知识。</p>
+<a id="more"></a>
+<hr>
+<p>采用以下程序段进行说明：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> x=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(a&lt;<span class="number">10</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> b=<span class="number">3</span>;</span><br><span class="line">        a++;</span><br><span class="line">        <span class="keyword">while</span>(b&lt;<span class="number">5</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> c=<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(c&gt;=<span class="number">4</span>) <span class="keyword">break</span>;</span><br><span class="line">            b++;</span><br><span class="line">            c+=b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先说明一下，a++的效果等于a+=1等于a=a+1，不过a++的执行速度比a=a+1快就是了。同理c+=b是等于c=c+b的。</p>
+<p>我们可以看到，在本程序段中有4个变量，分别是x，a，b，c，定义的位置各不相同，甚至x是定义在int main()之外的。这是什么意思呢？</p>
+<p>原来，变量不是定义了之后就通用的，而是有所属范围的。</p>
+<p>定义在int main外的，不属于任何函数的x，是可以在本程序所有函数中调用的。它定义的位置叫做公共域。而定义在int main里的a，是属于main而不是公共域的。它在main结束时就会清空，不能再访问。也就是说，x可以在程序的任何函数中被访问和修改，而a只能在main里被访问和修改。</p>
+<p>但是b，c去哪了？我们可以看到，在进入第1个while之后，b才被定义，而c更是定义在第2个while里，且这两个while都属于main，第2个while又属于第1个while。</p>
+<p>所以，变量b只能在第1个while中被访问和修改，变量c只能在第2个while中被修改。</p>
+<p>又因为第2个while属于第1个while，所以它能访问和修改变量b，而两个while都属于main，所以能访问和修改变量a。但反过来，不在第1个while里的话，main和其它定义在公共域的函数是不能访问和修改变量b的。同理，不是在第2个while里的话，即使是第1个while里的其它语句，也不能访问和修改变量c。</p>
+<p>至此，我们能得到一个上下级关系：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">程序本体</span><br><span class="line">——main</span><br><span class="line">————while</span><br><span class="line">——————while</span><br></pre></td></tr></table></figure>
+<p>下级可以访问和修改上级中已经定义的变量，而上级不可以访问和修改定义在下级中的变量。</p>
+<p>根据这套理论，你能猜到第2个while里的break作用范围有多大了吗？就是只能跳出第2个while而已，对第1个while半毛钱影响都没有。continue也是一样的。</p>
+<p>但是return 0不能乱写，这是特例，所有int类型的函数，比如main，在碰到return 0时会直接结束这个函数自身，跳过下面的所有语句。基于这个特性，也可以用return 0来当程序断点，用来检测当编译成功却运行时错误时哪些语句有问题。</p>
+<p>当然，不止是return 0，事实上自定义函数和main，碰到return时，不管return是什么都会结束函数。只不过main要求一定要return 0罢了。</p>
 <p>第六章到此结束。</p>
 
       
@@ -536,7 +551,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

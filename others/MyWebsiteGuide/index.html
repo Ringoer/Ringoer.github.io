@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://pic.ringoer.com/建站教程-文章结尾标识.png">
 <meta property="og:image" content="http://pic.ringoer.com/建站教程-外链网易云音乐.png">
 <meta property="og:image" content="http://pic.ringoer.com/建站教程-导航栏项目改名.png">
-<meta property="og:updated_time" content="2020-11-28T08:39:36.280Z">
+<meta property="og:updated_time" content="2020-12-14T13:51:07.780Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="本站建站指导">
 <meta name="twitter:description" content="本站建站指导">
@@ -406,6 +406,7 @@
       
         <p>本站建站指导</p>
 <a id="more"></a>
+<hr>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="本地配置"><a href="#本地配置" class="headerlink" title="本地配置"></a>本地配置</h2><ol>
 <li><p>注册 github 账号，并新建一个 github 仓库（Repositories）</p>
 <p>该仓库命名为你的 github 用户名+.github.io</p>
@@ -425,36 +426,41 @@
 <li><p>创建放置博客文件的文件夹：hexo 文件夹，如 E:\hexo。最好不在中文目录下。   </p>
 <p>注意：以后进行 hexo 操作都要进入到此文件夹中；对于 git 操作，若无特殊说明，则也进入到此文件夹中（在此文件夹中启动 Git Bash）</p>
 </li>
-<li><p>进入E:\hexo文件夹，鼠标右键选择“Git Bash”,执行以下命令，初始化hexo，这时候会在该文件夹中创建网站所需要的文件</p>
+<li><p>进入 E:\hexo文件夹，鼠标右键选择“Git Bash”，执行以下命令，初始化 hexo，这时候会在该文件夹中创建网站所需要的文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line">npm install</span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure>
 <p>此时已经可以在本地访问。在Git Bash中输入命令：</p>
-<p><code>hexo s</code></p>
-<p>访问 127.0.0.1:4000 或 localhost:4000 即可看到网页预览。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<p>   访问 127.0.0.1:4000 或 localhost:4000 即可看到网页预览。</p>
 <h2 id="布置到-github-上。"><a href="#布置到-github-上。" class="headerlink" title="布置到 github 上。"></a>布置到 github 上。</h2><ol>
-<li><p>启动Git Bash，输入以下命令：</p>
+<li><p>启动 Git Bash，输入以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config  --global user.name <span class="string">"your name"</span></span><br><span class="line">git config  --global user.email your_email@youremail.com</span><br></pre></td></tr></table></figure>
 <p>其中每条命令的最后一个参数修改为自己的数据</p>
 </li>
-<li><p>输入命令：<code>ssh-keygen -t rsa -C ringoer@qq.com</code></p>
-<p>此时会生成ssh密钥。命令中邮件地址替换为自己的。</p>
+<li><p>输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C ringoer@qq.com</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>输入命令：<code>cat ~/.ssh/id_rsa.pub</code></p>
+</ol>
+<pre><code>此时会生成 ssh 密钥。命令中邮件地址替换为自己的。
+</code></pre><ol start="3">
+<li><p>输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
 <p>此时会在控制台显示一串密钥，复制下来。</p>
 </li>
-<li><p>打开github，打开settings，选择SSH and GPG keys，选择New SSH key。  </p>
-<p>title随便写，key的文本则填写刚才复制出来的密钥，然后add key。</p>
+<li><p>打开 github，打开 settings，选择 SSH and GPG keys，选择New SSH key。  </p>
+<p>title 随便写，key 的文本则填写刚才复制出来的密钥，然后 add key。</p>
 </li>
-<li><p>输入命令：<code>ssh -T git@github.com</code></p>
+<li><p>输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
 <p>上述命令不可修改</p>
 </li>
-<li><p>打开hexo文件夹中的_config.yml，修改文档末尾的deploy，示例如下：</p>
+<li><p>打开 hexo 文件夹中的 _config.yml，修改文档末尾的 deploy，示例如下：</p>
 <p><img src="http://pic.ringoer.com/建站教程-修改deploy.png" alt="修改deploy"></p>
-<p>因为zzzq，现在新建的repository的默认branch已经变成main了，记得检查一下是master还是main</p>
-<p>其中蓝色部分应替换成自己的链接。链接来源参考自己github仓库的链接（如图）：</p>
+<p>因为 zzzq，现在新建的 repository 的默认 branch 已经变成 main 了，记得检查一下是 master 还是 main</p>
+<p>其中蓝色部分应替换成自己的链接。链接来源参考自己 github 仓库的链接（如图）：</p>
 <p><img src="http://pic.ringoer.com/建站教程-github仓库链接示例.png" alt="github仓库链接示例"></p>
-<p>注意：hexo的配置文件中任何<code>:</code>后面都是带一个空格的。  </p>
+<p>注意：hexo 的配置文件中任何<code>:</code>后面都是带一个空格的。  </p>
 </li>
 <li><p>输入命令 <code>hexo g</code> 和 <code>hexo d</code> 生成页面并部署到 github 上</p>
 </li>
@@ -464,25 +470,25 @@
 </ol>
 </li>
 </ol>
-<p>   可以在github的setting中查看是否发布成功。  </p>
+<p>   可以在 github 的 setting 中查看是否发布成功。  </p>
 <ol start="2">
-<li>到自己的域名解析中添加CNAME值，解析到 username.github.io. (注意最后面有点)</li>
+<li>到自己的域名解析中添加 CNAME 值，解析到 username.github.io. (注意最后面有点)</li>
 </ol>
 <h1 id="个性化"><a href="#个性化" class="headerlink" title="个性化"></a>个性化</h1><ol>
 <li><p>下载主题。可以前往 <a href="https://hexo.io/themes/" target="_blank" rel="noopener">Themes | Hexo</a> 选择主题。</p>
-<p>此处我选用next主题，Pisces主题风格（默认为Muse）。</p>
-<p>修改/themes/next下的配置文件中的schemes字段。</p>
+<p>此处我选用 next 主题，Pisces 主题风格（默认为 Muse）。</p>
+<p>修改 /themes/next 下的配置文件中的 schemes 字段。</p>
 <p><img src="http://pic.ringoer.com/建站教程-配置主题-1.png" alt="配置主题-1"></p>
 <p>取消需要的主题风格前的井字号，然后在之前的主题风格前加入井字号即可。</p>
 <p>之后配置网站信息，如图。</p>
 <p><img src="http://pic.ringoer.com/建站教程-配置主题-2.png" alt="配置主题-2"></p>
 </li>
-<li><p>底部信息。修改/themes/next下的配置文件中的footer字段。</p>
+<li><p>底部信息。修改 /themes/next 下的配置文件中的 footer 字段。</p>
 <p><img src="http://pic.ringoer.com/建站教程-配置footer.png" alt="配置footer"></p>
 </li>
-<li><p>文章缩略。修改/themes/next下的配置文件中的auto_excerpt字段。</p>
+<li><p>文章缩略。修改 /themes/next 下的配置文件中的 auto_excerpt 字段。</p>
 <p><img src="http://pic.ringoer.com/建站教程-文章缩略.png" alt="文章缩略"></p>
-<p>enable改成true即可。</p>
+<p>enable 改成 true 即可。</p>
 <p>也可以手动在每篇文章中添加 <code>&lt;!--more--&gt;</code> 字段，在该字段后的部分会被隐藏。</p>
 </li>
 <li><p>修改导航栏。修改 /themes/next 下的配置文件中的menu字段。</p>
@@ -491,26 +497,26 @@
 <p><code>||</code>左边是该项所用的路径</p>
 <p><code>||</code>右边是该项所用的图标</p>
 </li>
-<li><p>菜单项图标。在 <a href="http://www.fontawesome.com.cn/icons-ui/" target="_blank" rel="noopener">http://www.fontawesome.com.cn/icons-ui/</a> 中选择。取用时要去掉前缀fa-。修改/themes/next下的配置文件中的menu字段。</p>
+<li><p>菜单项图标。在 <a href="http://www.fontawesome.com.cn/icons-ui/" target="_blank" rel="noopener">http://www.fontawesome.com.cn/icons-ui/</a> 中选择。取用时要去掉前缀 fa-。修改 /themes/next 下的配置文件中的menu字段。</p>
 </li>
-<li><p>取消页面动画。修改/themes/next下的配置文件中的motion字段。</p>
+<li><p>取消页面动画。修改 /themes/next 下的配置文件中的 motion 字段。</p>
 <p><img src="http://pic.ringoer.com/建站教程-取消页面动画.png" alt="取消页面动画"><br>enable: false即可</p>
 </li>
-<li><p>设置头像。修改/themes/next下的配置文件中的avatar字段。</p>
+<li><p>设置头像。修改 /themes/next 下的配置文件中的 avatar 字段。</p>
 <p><img src="http://pic.ringoer.com/建站教程-设置头像.png" alt="设置头像"></p>
-<p>须确认有/source/images文件夹（如没有则应新建），后在其中添加图片，如图写入路径即可。  </p>
+<p>须确认有 /source/images 文件夹（如没有则应新建），后在其中添加图片，如图写入路径即可。  </p>
 <p>该路径也可以是来自网络的图片路径。</p>
 </li>
-<li><p>设置社交媒体。修改/themes/next下的配置文件中的social字段。</p>
+<li><p>设置社交媒体。修改 /themes/next 下的配置文件中的 social 字段。</p>
 <p><img src="http://pic.ringoer.com/建站教程-社交媒体.png" alt="社交媒体"></p>
-<p>icons_only默认为false，会显示各个图标的名字。若为true则仅有图标。</p>
+<p>icons_only 默认为 false，会显示各个图标的名字。若为 true 则仅有图标。</p>
 </li>
-<li><p>顶部加载进度条。修改/themes/next下的配置文件中的pace字段。</p>
+<li><p>顶部加载进度条。修改 /themes/next 下的配置文件中的 pace 字段。</p>
 <p><img src="http://pic.ringoer.com/建站教程-顶部加载进度条.png" alt="顶部加载进度条"></p>
 </li>
 <li><p>文章结尾标识。分为以下三个步骤。</p>
 <ol>
-<li><p>打开\themes\next\layout_macro文件夹，新建文件passage-end-tag.swig，向其中写入以下片段。</p>
+<li><p>打开 \themes\next\layout_macro 文件夹，新建文件 passage-end-tag.swig，向其中写入以下片段。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;% if not is_index %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"text-align:center;color: #ccc;font-size:14px;"</span>&gt;</span>-------------It's the end.<span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-life-ring"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>Thanks for your read.-------------<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>打开 \themes\next\layout_macro\post.swig 文件，进行如图操作。</p>
@@ -518,7 +524,7 @@
 <p>插入的文本如下：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;% if not is_index %&#125;</span><br><span class="line">    &#123;% include 'passage-end-tag.swig' %&#125;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在/themes/next下的配置文件中加入以下字段。</p>
+<li><p>在 /themes/next 下的配置文件中加入以下字段。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 文章末尾添加“本文结束”标记</span><br><span class="line">passage_end_tag:</span><br><span class="line">   enabled: true</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
@@ -535,7 +541,7 @@
 </ol>
 </li>
 <li><p>本地可视化编辑文章。启动 git bash，执行以下命令。</p>
-<p><code>npm i hexo-admin –save</code>  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-admin –save</span><br></pre></td></tr></table></figure>
 <p>之后执行 hexo s 时，访问 localhost:4000/admin 即可进入文章后台。  </p>
 <p>此处文章编辑使用 markdown。</p>
 </li>
@@ -546,14 +552,14 @@
 </li>
 </ol>
 <h1 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h1><ol>
-<li><p>拷贝原有hexo文件夹至新电脑</p>
+<li><p>拷贝原有 hexo 文件夹至新电脑</p>
 </li>
-<li><p>重新配置git和node.js</p>
+<li><p>重新配置 git 和 node.js</p>
 </li>
-<li><p>安装hexo</p>
+<li><p>安装 hexo</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>进入hexo文件夹，执行以下指令</p>
+<li><p>进入 hexo 文件夹，执行以下指令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hexo-generator-feed --save</span><br><span class="line">npm install hexo-generator-sitemap --save</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>重新配置SSH密钥</p>
@@ -714,7 +720,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

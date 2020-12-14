@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="本章学习循环结构和选择结构的基本用法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-02T01:25:02.847Z">
+<meta property="og:updated_time" content="2020-12-14T15:20:20.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++语言-3-循环语句及选择语句">
 <meta name="twitter:description" content="本章学习循环结构和选择结构的基本用法。">
@@ -389,24 +389,90 @@
       
 
       
-        <p>本章学习循环结构和选择结构的基本用法。<br><a id="more"></a></p>
-<h1 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h1><p><font size="5"><b>while语句</b></font><br>while语句实现”当型”循环，它的一般格式为：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (判断条件)</span><br><span class="line">&#123;</span><br><span class="line">    循环体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>1、当判断条件成立时，循环执行大括号中语句。并且初始化部分和迭代部分是任选的。<br>2、while语句首先检查判断条件，当条件满足时，才去执行循环中的语句。这是”当型”循环的特点。  </p>
-<p><font size="5"><b>do-while语句</b></font><br>do-while语句实现”直到型”循环，它的一般格式为：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line">    循环体</span><br><span class="line">&#125;<span class="keyword">while</span> (判断条件);</span><br></pre></td></tr></table></figure></p>
-<p>1、do-while语句首先执行循环体，然后检查判断条件，若成立，则循环执行大括号中的语句，直到判断条件不成立。<br>2、与while语句不同的是，do-while语句的循环体至少执行一次，是”直到型”循环的特点。  </p>
-<p><font size="5"><b>for语句</b></font><br>for语句也用来实现”当型”循环，它的一般格式为：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (初始化操作;判断条件;迭代部分)</span><br><span class="line">&#123;</span><br><span class="line">    循环体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>1、for语句执行时，首先执行初始化操作，然后检查判断条件是否满足，如果满足，则执行循环体中的语句，最后执行迭代部分。完成一次循环后，重新判断终止条件。<br>2、可以在for语句的初始化部分声明一个变量，它的作用域为一个for语句。<br>3、for语句通常用来执行循环次数确定的情况(如对数组元素进行操作)，也可以根据循环结束条件执行循环次数不确定的情况。<br>4、在初始化部分和迭代部分可以使用逗号语句，来进行多个动作。逗号语句是用逗号分隔的语句序列。例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>,j=<span class="number">10</span>;i&lt;j;i++,j--)</span><br><span class="line">&#123;</span><br><span class="line">    循环体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>5、初始化、终止以及迭代部分都可以为空语句，且只要判断条件为空，就相当于一个无限循环，如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;;i++)</span><br><span class="line">&#123;</span><br><span class="line">    循环体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><font size="4"><b>循环语句的控制</b></font><br>1、break<br>跳出当前所在循环，忽略break以下的所有语句。<br>2、continue<br>直接执行下一次循环，忽略continue以下的所有语句。  </p>
-<h1 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h1><p><font size="5"><b>if-else语句</b></font><br>一般格式为：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(判断条件)</span><br><span class="line">&#123;</span><br><span class="line">    语句<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    语句<span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>当判断条件成立时，执行语句1，否则执行语句2。  </p>
-<p><font size="5"><b>switch语句</b></font><br>一般格式为：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(变量)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> 值<span class="number">1</span>:</span><br><span class="line">    语句<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> 值<span class="number">2</span>:</span><br><span class="line">    语句<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    语句<span class="number">3</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>当变量为值1时执行语句1，当为值2时执行语句2，当不为已给出的任何情况时执行default的语句3。<br>case可以无限添加，不只限2个。<br>需要注意的是，当你没有break时，会一直向下执行。如以下程序段，若变量为值1，则语句1,2,3都将被执行。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(变量)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> 值<span class="number">1</span>:</span><br><span class="line">    语句<span class="number">1</span>;</span><br><span class="line"><span class="keyword">case</span> 值<span class="number">2</span>:</span><br><span class="line">    语句<span class="number">2</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    语句<span class="number">3</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="逻辑判断符号"><a href="#逻辑判断符号" class="headerlink" title="逻辑判断符号"></a>逻辑判断符号</h1><p>小于：<code>&lt;</code>  大于：<code>&gt;</code>  等于：<code>==（两个等号）</code>  小于等于：<code>&lt;=</code>  大于等于：<code>&gt;=</code>  不等于：<code>!=</code><br>特别的，计算时用的等于只有一个等号，判断时才用两个等号。<br>逻辑联结符号<br>且：<code>&amp;&amp;</code>  或：<code>||</code><br>或的符号由两个竖线组成，竖线可以由回车上方的那个键打出。<br>如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(((x&gt;<span class="number">1</span>||x&lt;<span class="number">-1</span>)&amp;&amp;y&gt;<span class="number">2</span>)||(x&lt;<span class="number">-9</span>&amp;&amp;y&gt;<span class="number">0</span>))</span><br><span class="line">&#123;</span><br><span class="line">    sum=sum+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这样表示当满足以下两种情况之一时，sum的值+1。<br>① x大于1且y大于2，或x小于-1且y大于2时。<br>② x小于-9且y大于0时。<br>特别的，使用if(条件1||条件2)的时候，如果条件1成立，则不会判断条件2是否成立，直接进入if的语句块。<br>上述两种符号也属于运算符。<br>使用逻辑符号时的要点<br>*不可以写连等式，如：<br>如果x大于0小于100，不可以写if(0&lt;x&lt;100)，必须拆开，写成if(0&lt;x&amp;&amp;x&lt;100)。其余逻辑符号同理。</p>
+        <p>本章学习循环结构和选择结构的基本用法。</p>
+<a id="more"></a>
+<hr>
+<h1 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h1><h2 id="while语句"><a href="#while语句" class="headerlink" title="while语句"></a>while语句</h2><p>while语句实现”当型”循环，它的一般格式为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (判断条件)</span><br><span class="line">&#123;</span><br><span class="line">    循环体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>当判断条件成立时，循环执行大括号中语句。并且初始化部分和迭代部分是任选的。</li>
+<li>while语句首先检查判断条件，当条件满足时，才去执行循环中的语句。这是”当型”循环的特点。  </li>
+</ol>
+<h2 id="do-while语句"><a href="#do-while语句" class="headerlink" title="do-while语句"></a>do-while语句</h2><p>do-while语句实现”直到型”循环，它的一般格式为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line">    循环体</span><br><span class="line">&#125;<span class="keyword">while</span> (判断条件);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>do-while语句首先执行循环体，然后检查判断条件，若成立，则循环执行大括号中的语句，直到判断条件不成立。</li>
+<li>与while语句不同的是，do-while语句的循环体至少执行一次，是”直到型”循环的特点。</li>
+</ol>
+<h2 id="for语句"><a href="#for语句" class="headerlink" title="for语句"></a>for语句</h2><p>for语句也用来实现”当型”循环，它的一般格式为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (初始化操作;判断条件;迭代部分)</span><br><span class="line">&#123;</span><br><span class="line">    循环体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>for语句执行时，首先执行初始化操作，然后检查判断条件是否满足，如果满足，则执行循环体中的语句，最后执行迭代部分。完成一次循环后，重新判断终止条件。</p>
+</li>
+<li><p>可以在for语句的初始化部分声明一个变量，它的作用域为一个for语句。</p>
+</li>
+<li><p>for语句通常用来执行循环次数确定的情况(如对数组元素进行操作)，也可以根据循环结束条件执行循环次数不确定的情况。</p>
+</li>
+<li><p>在初始化部分和迭代部分可以使用逗号语句，来进行多个动作。逗号语句是用逗号分隔的语句序列。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>,j=<span class="number">10</span>;i&lt;j;i++,j--)</span><br><span class="line">&#123;</span><br><span class="line">    循环体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化、终止以及迭代部分都可以为空语句，且只要判断条件为空，就相当于一个无限循环，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;;i++)</span><br><span class="line">&#123;</span><br><span class="line">    循环体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="循环语句的控制"><a href="#循环语句的控制" class="headerlink" title="循环语句的控制"></a>循环语句的控制</h2><ol>
+<li><p>break</p>
+<p>跳出当前所在循环，忽略break以下的所有语句。</p>
+</li>
+<li><p>continue</p>
+<p>直接执行下一次循环，忽略continue以下的所有语句。  </p>
+</li>
+</ol>
+<h1 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h1><h2 id="if-else语句"><a href="#if-else语句" class="headerlink" title="if-else语句"></a>if-else语句</h2><p>一般格式为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(判断条件)</span><br><span class="line">&#123;</span><br><span class="line">    语句<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    语句<span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当判断条件成立时，执行语句1，否则执行语句2。</p>
+<h2 id="switch语句"><a href="#switch语句" class="headerlink" title="switch语句"></a>switch语句</h2><p>一般格式为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(变量)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> 值<span class="number">1</span>:</span><br><span class="line">    语句<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> 值<span class="number">2</span>:</span><br><span class="line">    语句<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    语句<span class="number">3</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当变量为值1时执行语句1，当为值2时执行语句2，当不为已给出的任何情况时执行default的语句3。</p>
+<p>case可以无限添加，不只限2个。</p>
+<p>需要注意的是，当你没有break时，会一直向下执行。如以下程序段，若变量为值1，则语句1,2,3都将被执行。  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(变量)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> 值<span class="number">1</span>:</span><br><span class="line">    语句<span class="number">1</span>;</span><br><span class="line"><span class="keyword">case</span> 值<span class="number">2</span>:</span><br><span class="line">    语句<span class="number">2</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    语句<span class="number">3</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="逻辑判断符号"><a href="#逻辑判断符号" class="headerlink" title="逻辑判断符号"></a>逻辑判断符号</h1><p>小于：<code>&lt;</code>  大于：<code>&gt;</code>  等于：<code>==（两个等号）</code>  小于等于：<code>&lt;=</code>  大于等于：<code>&gt;=</code>  不等于：<code>!=</code></p>
+<p>特别的，计算时用的等于只有一个等号，判断时才用两个等号。</p>
+<p>逻辑联结符号</p>
+<p>且：<code>&amp;&amp;</code>  或：<code>||</code></p>
+<p>或的符号由两个竖线组成，竖线可以由回车上方的那个键打出。</p>
+<p>如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(((x&gt;<span class="number">1</span>||x&lt;<span class="number">-1</span>)&amp;&amp;y&gt;<span class="number">2</span>)||(x&lt;<span class="number">-9</span>&amp;&amp;y&gt;<span class="number">0</span>))</span><br><span class="line">&#123;</span><br><span class="line">    sum=sum+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样表示当满足以下两种情况之一时，sum的值+1。</p>
+<ol>
+<li><p>x大于1且y大于2，或x小于-1且y大于2时。</p>
+</li>
+<li><p>x小于-9且y大于0时。</p>
+</li>
+</ol>
+<p>特别的，使用if(条件1||条件2)的时候，如果条件1成立，则不会判断条件2是否成立，直接进入if的语句块。</p>
+<p>上述两种符号也属于运算符。</p>
+<p>使用逻辑符号时的要点</p>
+<p>*不可以写连等式，如：</p>
+<p>如果x大于0小于100，不可以写if(0&lt;x&lt;100)，必须拆开，写成if(0&lt;x&amp;&amp;x&lt;100)。其余逻辑符号同理。</p>
 <p>第三章到此结束。</p>
-<p>本章练习：<br>选择语句：<br><a href="https://www.luogu.org/problemnew/show/P1422" target="_blank" rel="noopener">P1422 小玉家的电费</a><br><a href="https://www.luogu.org/problemnew/show/P1085" target="_blank" rel="noopener">P1085 不高兴的津津</a><br><a href="https://www.luogu.org/problemnew/show/P1089" target="_blank" rel="noopener">P1089 津津的储蓄计划</a><br><a href="https://www.luogu.org/problemnew/show/P1909" target="_blank" rel="noopener">P1909 买铅笔</a><br><a href="https://www.luogu.org/problemnew/show/T16594" target="_blank" rel="noopener">T16594 小明的四则运算</a></p>
-<p>循环语句：<br><a href="https://www.luogu.org/problemnew/show/P1008" target="_blank" rel="noopener">P1008 三连击</a><br><a href="https://www.luogu.org/problemnew/show/P1035" target="_blank" rel="noopener">P1035 级数求和</a><br><a href="https://www.luogu.org/problemnew/show/P1423" target="_blank" rel="noopener">P1423 小玉在游泳</a><br><a href="https://www.luogu.org/problemnew/show/P1424" target="_blank" rel="noopener">P1424 小鱼的航程(改进版)</a><br><a href="https://www.luogu.org/problemnew/show/P1980" target="_blank" rel="noopener">P1980 计数问题</a><br><a href="https://www.luogu.org/problemnew/show/T17068" target="_blank" rel="noopener">T17068 有多少平方数</a><br><a href="https://www.luogu.org/problemnew/show/T17072" target="_blank" rel="noopener">T17072 是质数吗？</a><br><a href="https://www.luogu.org/problemnew/show/T17073" target="_blank" rel="noopener">T17073 什么？！n！</a><br><a href="https://www.luogu.org/problemnew/show/T17071" target="_blank" rel="noopener">T17071 四个数的2nd问题</a></p>
+<p>本章练习：</p>
+<p>选择语句：<br><a href="https://www.luogu.org/problemnew/show/P1422" target="_blank" rel="noopener">P1422 小玉家的电费</a></p>
+<p><a href="https://www.luogu.org/problemnew/show/P1085" target="_blank" rel="noopener">P1085 不高兴的津津</a></p>
+<p><a href="https://www.luogu.org/problemnew/show/P1089" target="_blank" rel="noopener">P1089 津津的储蓄计划</a></p>
+<p><a href="https://www.luogu.org/problemnew/show/P1909" target="_blank" rel="noopener">P1909 买铅笔</a></p>
+<p><a href="https://www.luogu.org/problemnew/show/T16594" target="_blank" rel="noopener">T16594 小明的四则运算</a></p>
+<p>循环语句：</p>
+<p><a href="https://www.luogu.org/problemnew/show/P1008" target="_blank" rel="noopener">P1008 三连击</a>  </p>
+<p><a href="https://www.luogu.org/problemnew/show/P1035" target="_blank" rel="noopener">P1035 级数求和</a></p>
+<p><a href="https://www.luogu.org/problemnew/show/P1423" target="_blank" rel="noopener">P1423 小玉在游泳</a></p>
+<p><a href="https://www.luogu.org/problemnew/show/P1424" target="_blank" rel="noopener">P1424 小鱼的航程(改进版)</a></p>
+<p><a href="https://www.luogu.org/problemnew/show/P1980" target="_blank" rel="noopener">P1980 计数问题</a></p>
+<p><a href="https://www.luogu.org/problemnew/show/T17068" target="_blank" rel="noopener">T17068 有多少平方数</a></p>
+<p><a href="https://www.luogu.org/problemnew/show/T17072" target="_blank" rel="noopener">T17072 是质数吗？</a></p>
+<p><a href="https://www.luogu.org/problemnew/show/T17073" target="_blank" rel="noopener">T17073 什么？！n！</a></p>
+<p><a href="https://www.luogu.org/problemnew/show/T17071" target="_blank" rel="noopener">T17071 四个数的2nd问题</a></p>
 
       
     </div>
@@ -559,7 +625,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -592,7 +658,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#循环语句"><span class="nav-number">1.</span> <span class="nav-text">循环语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件语句"><span class="nav-number">2.</span> <span class="nav-text">条件语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑判断符号"><span class="nav-number">3.</span> <span class="nav-text">逻辑判断符号</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#循环语句"><span class="nav-number">1.</span> <span class="nav-text">循环语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#while语句"><span class="nav-number">1.1.</span> <span class="nav-text">while语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#do-while语句"><span class="nav-number">1.2.</span> <span class="nav-text">do-while语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for语句"><span class="nav-number">1.3.</span> <span class="nav-text">for语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环语句的控制"><span class="nav-number">1.4.</span> <span class="nav-text">循环语句的控制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件语句"><span class="nav-number">2.</span> <span class="nav-text">条件语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#if-else语句"><span class="nav-number">2.1.</span> <span class="nav-text">if-else语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#switch语句"><span class="nav-number">2.2.</span> <span class="nav-text">switch语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑判断符号"><span class="nav-number">3.</span> <span class="nav-text">逻辑判断符号</span></a></li></ol></div>
             
 
           </div>
