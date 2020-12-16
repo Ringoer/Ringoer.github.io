@@ -8,7 +8,7 @@
   <entry>
     <title><![CDATA[框架模式之 MVC]]></title>
     <url>%2Fprograming%2Fmvc%2F</url>
-    <content type="text"><![CDATA[常听说 spring MVC，现在都发展到前端 MVC 了 定义经典 MVC 模式中，M 是指 Model 业务模型，V 是指 View 用户界面，C 则是 Controller 控制器 通常是为了使得代码模式固化，让代码复杂度相对稳定 表现后端比如在 spring 中，Model 通常包括 domain、mapper、dao 等三层，定义了对象模型以及对象对应的存取方法 123456789101112131415161718// domainclass User&#123; private Integer id; User()&#123;&#125; public Integer getId()&#123;return this.id;&#125; public void setId(Integer id)&#123;this.id=id;&#125;&#125;// mapperinterface UserMapper&#123; User selectUserById(Integer id);&#125;// dapclass UserDao&#123; @Autowired private UserMapper userMapper; public User selectUserById(Integer id)&#123;return userMapper.selectUserById(id);&#125;&#125; Controller 则是 controller 层 和 service 层，定义了数据接口和关于数据处理的业务方法 1234567891011121314151617// serviceclass UserService&#123; @Autowired private UserDao userDao; public User getUser(Integer id)&#123;return ResponseUtil.ok(userDao.selectUserById(id));&#125;&#125;// controller@RestController("/user")class UserController&#123; @Autowired private UserService userService; @GetMapping("/info") public Object getUser(@RequestParam Integer userId)&#123;return userService.getUser(userId);&#125;&#125; 特别的，当 controller 的注解是 @RestController 的时候，仅作为数据接口 当注解是 @Controller 的时候，可以返回数据或页面，比如 thymeleaf 渲染的页面 这时候，返回页面的 controller 就是所谓的 View 123456789// controller@RestController("")class UserController&#123; @Autowired private UserService userService; @GetMapping("/index") public String index()&#123;return "index.html";&#125;&#125; 前端而在前端中，一般不需要考虑与数据库的交互，数据来源一般都是后端提供的数据接口 这时候，Controller 就不需要提供数据接口，只需要访问，于是原本在后端分离开的 controller 和 service 就融合在了一起，负责提供业务方法 1234567891011const Controller = el =&gt; &#123; return &#123; el: el, init()&#123; model.bindEvents(el) &#125;, add(target,value)&#123; model.data[target]+=value &#125; &#125;&#125; Model 则是负责保存需要用到的用户数据，并为数据设置事件 12345678910111213const Model = &#123; data: &#123; n: 100 &#125;, events: &#123; click: ()=&gt;console.log(n) &#125;, bindEvents(el)&#123; for(let key in this.events)&#123; el.addEventListener(key,this.events[key]) &#125; &#125;&#125; View 则是负责接收业务方法的信号，重新渲染页面，监听数据事件 1234567const View = &#123; html: `233&#123;&#123;n&#125;&#125;`, render(el)&#123; // 被触发 html.replace('&#123;&#123;n&#125;&#125;',model.data.n) el.innerHTML=this.html &#125;&#125; 于是又多了一个和后端不一样的地方——model 和 view 都要关注用户事件 所以前端 MVC 一般还有一个概念，就是 EventBus 事件总线 EventBus 提供一系列事件绑定、触发、解除等相关的方法，然后交由 Model 和 View 来调用 1234567891011const EventBus = &#123; on(el, eventName, fn)&#123; el.addEventListener(eventName,fn) &#125;, off(el, eventName, fn)&#123; el.removeEventListener(eventName,fn) &#125;, trigger(el, eventName)&#123; el.dispatchEvent(eventName) &#125;&#125; 但是现在这些方法怎么转移使用呢？ 基于 js 的特性，可以选择原型链继承或者类继承 此处可以选择类继承，让 Model、View、EventBus 都成为 class 然后 Model、View 都 extends EventBus，就可以拥有 EventBus 的所有方法 之后在使用的时候，声明一个该类的实例即可 表驱动编程上述伪代码中，我们采用了遍历 model.events 的方法来为 events 里的每个键值对都执行绑定 实际上就是先为要绑定的列表作成一个哈希表，然后遍历这个表 基于这种方法的编程，代码复杂度恒定——无论增加多少个表项，都不需要修改绑定部分的业务代码 模块化其实 MVC 也就是一种模块化，毕竟代码分离了 模块化说到底就是为了方便维护各个部分的代码 比如同一个页面上有多块不同的功能，这时候我总不可以牵一发而动全身吧，那重构和渲染成本也太高了 这时候就可以选择在编程的时候模块化，使得代码耦合度降低，上层实现不直接依赖于底层架构 具体来说就是我们可以把页面上的每个不同功能的部分都应用一次 MVC 架构，这样每个部分都是直接依赖 MVC 提供的接口，而不关心内部的实现 就像前后端通信一样，只需要接口文档规定好，不需要调用者去关心接口内部是怎么写的 既然前后端分离的好处显而易见，那模块分离的好处，是不是也同理呢？ 感谢阅读]]></content>
+    <content type="text"><![CDATA[常听说 spring MVC，现在都发展到前端 MVC 了 定义经典 MVC 模式中，M 是指 Model 业务模型，V 是指 View 用户界面，C 则是 Controller 控制器 通常是为了使得代码模式固化，让代码复杂度相对稳定 表现后端比如在 spring 中，Model 通常包括 domain、mapper、dao 等三层，定义了对象模型以及对象对应的存取方法 123456789101112131415161718// domainclass User&#123; private Integer id; User()&#123;&#125; public Integer getId()&#123;return this.id;&#125; public void setId(Integer id)&#123;this.id=id;&#125;&#125;// mapperinterface UserMapper&#123; User selectUserById(Integer id);&#125;// dapclass UserDao&#123; @Autowired private UserMapper userMapper; public User selectUserById(Integer id)&#123;return userMapper.selectUserById(id);&#125;&#125; Controller 则是 controller 层 和 service 层，定义了数据接口和关于数据处理的业务方法 1234567891011121314151617// serviceclass UserService&#123; @Autowired private UserDao userDao; public User getUser(Integer id)&#123;return ResponseUtil.ok(userDao.selectUserById(id));&#125;&#125;// controller@RestController("/user")class UserController&#123; @Autowired private UserService userService; @GetMapping("/info") public Object getUser(@RequestParam Integer userId)&#123;return userService.getUser(userId);&#125;&#125; 特别的，当 controller 的注解是 @RestController 的时候，仅作为数据接口 当注解是 @Controller 的时候，可以返回数据或页面，比如 thymeleaf 渲染的页面 这时候，返回页面的 controller 就是所谓的 View 12345678@Controller("")class UserController&#123; @Autowired private UserService userService; @GetMapping("/index") public String index()&#123;return "index.html";&#125;&#125; 前端而在前端中，一般不需要考虑与数据库的交互，数据来源一般都是后端提供的数据接口 这时候，Controller 就不需要提供数据接口，只需要访问，于是原本在后端分离开的 controller 和 service 就融合在了一起，负责提供业务方法 1234567891011const Controller = el =&gt; &#123; return &#123; el: el, init()&#123; model.bindEvents(el) &#125;, add(target,value)&#123; model.data[target]+=value &#125; &#125;&#125; Model 则是负责保存需要用到的用户数据，并为数据设置事件 12345678910111213const Model = &#123; data: &#123; n: 100 &#125;, events: &#123; click: ()=&gt;console.log(n) &#125;, bindEvents(el)&#123; for(let key in this.events)&#123; el.addEventListener(key,this.events[key]) &#125; &#125;&#125; View 则是负责接收业务方法的信号，重新渲染页面，监听数据事件 1234567const View = &#123; html: `233&#123;&#123;n&#125;&#125;`, render(el)&#123; // 被触发 html.replace('&#123;&#123;n&#125;&#125;',model.data.n) el.innerHTML=this.html &#125;&#125; 于是又多了一个和后端不一样的地方——model 和 view 都要关注用户事件 所以前端 MVC 一般还有一个概念，就是 EventBus 事件总线 EventBus 提供一系列事件绑定、触发、解除等相关的方法，然后交由 Model 和 View 来调用 1234567891011const EventBus = &#123; on(el, eventName, fn)&#123; el.addEventListener(eventName,fn) &#125;, off(el, eventName, fn)&#123; el.removeEventListener(eventName,fn) &#125;, trigger(el, eventName)&#123; el.dispatchEvent(eventName) &#125;&#125; 但是现在这些方法怎么转移使用呢？ 基于 js 的特性，可以选择原型链继承或者类继承 此处可以选择类继承，让 Model、View、EventBus 都成为 class 然后 Model、View 都 extends EventBus，就可以拥有 EventBus 的所有方法 之后在使用的时候，声明一个该类的实例即可 表驱动编程上述伪代码中，我们采用了遍历 model.events 的方法来为 events 里的每个键值对都执行绑定 实际上就是先为要绑定的列表作成一个哈希表，然后遍历这个表 基于这种方法的编程，代码复杂度恒定——无论增加多少个表项，都不需要修改绑定部分的业务代码 模块化其实 MVC 也就是一种模块化，毕竟代码分离了 模块化说到底就是为了方便维护各个部分的代码 比如同一个页面上有多块不同的功能，这时候我总不可以牵一发而动全身吧，那重构和渲染成本也太高了 这时候就可以选择在编程的时候模块化，使得代码耦合度降低，上层实现不直接依赖于底层架构 具体来说就是我们可以把页面上的每个不同功能的部分都应用一次 MVC 架构，这样每个部分都是直接依赖 MVC 提供的接口，而不关心内部的实现 就像前后端通信一样，只需要接口文档规定好，不需要调用者去关心接口内部是怎么写的 既然前后端分离的好处显而易见，那模块分离的好处，是不是也同理呢？ 感谢阅读]]></content>
       <categories>
         <category>programing</category>
       </categories>
@@ -697,9 +697,9 @@
         <category>answer</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>Luogu</tag>
         <tag>题解</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -865,8 +865,8 @@
         <category>answer</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>题解</tag>
+        <tag>dp</tag>
         <tag>云霄一中月赛</tag>
         <tag>贪心</tag>
       </tags>
@@ -918,8 +918,8 @@
         <category>answer</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>题解</tag>
+        <tag>dp</tag>
         <tag>云霄一中月赛</tag>
       </tags>
   </entry>
@@ -971,9 +971,9 @@
         <category>answer</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>Luogu</tag>
         <tag>题解</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -1126,9 +1126,9 @@
         <category>answer</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>Luogu</tag>
         <tag>题解</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
