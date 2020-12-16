@@ -73,7 +73,7 @@
 
 
 
-  <meta name="keywords" content="java,ubuntu,linux,docker,vue,">
+  <meta name="keywords" content="java,ubuntu,linux,docker,nginx,">
 
 
 
@@ -85,14 +85,14 @@
 
 
 <meta name="description" content="这年头不是全栈工程师，连中间件实验都做不了了">
-<meta name="keywords" content="java,ubuntu,linux,docker,vue">
+<meta name="keywords" content="java,ubuntu,linux,docker,nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu下使用Docker部署的办法">
 <meta property="og:url" content="http://yoursite.com/docker/docker/index.html">
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="这年头不是全栈工程师，连中间件实验都做不了了">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-12-14T13:40:36.806Z">
+<meta property="og:updated_time" content="2020-12-15T15:09:12.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu下使用Docker部署的办法">
 <meta name="twitter:description" content="这年头不是全栈工程师，连中间件实验都做不了了">
@@ -569,7 +569,7 @@
 </tr>
 </tbody>
 </table>
-<h1 id="docker-借助-nginx-部署-vue"><a href="#docker-借助-nginx-部署-vue" class="headerlink" title="docker 借助 nginx 部署 vue"></a>docker 借助 nginx 部署 vue</h1><p>参考链接：</p>
+<h1 id="docker-部署基于-nginx-的前端项目"><a href="#docker-部署基于-nginx-的前端项目" class="headerlink" title="docker 部署基于 nginx 的前端项目"></a>docker 部署基于 nginx 的前端项目</h1><p>参考链接：</p>
 <p><a href="http://dockone.io/article/8834" target="_blank" rel="noopener">http://dockone.io/article/8834</a></p>
 <p><a href="https://www.cnblogs.com/littleorange7/p/12838101.html" target="_blank" rel="noopener">https://www.cnblogs.com/littleorange7/p/12838101.html</a></p>
 <ol>
@@ -578,6 +578,7 @@
 <li><p>在服务器上为 vue 项目新建一个文件夹（假设命名为 vue）</p>
 </li>
 <li><p>在本地使用命令 <code>npm run build</code> 打包 vue 项目，打包完成后会在项目目录下产生一个 dist 文件夹。将该文件夹上传到服务器</p>
+<p>不如说，几乎所有前端用的打包框架都是产生 dist 文件夹</p>
 </li>
 <li><p>在本地编写 Dockerfile 文件</p>
 <p>文件内容如下，照抄即可</p>
@@ -734,7 +735,7 @@
           
             <a href="/tags/docker/" rel="tag"># docker</a>
           
-            <a href="/tags/vue/" rel="tag"># vue</a>
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
           
         </div>
       
@@ -837,7 +838,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">111</span>
+                  <span class="site-state-item-count">112</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -892,7 +893,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本知识"><span class="nav-number">1.</span> <span class="nav-text">基本知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ubuntu-安装-docker"><span class="nav-number">2.</span> <span class="nav-text">ubuntu 安装 docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#预备"><span class="nav-number">2.1.</span> <span class="nav-text">预备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首次安装时，需要设置仓库"><span class="nav-number">2.2.1.</span> <span class="nav-text">首次安装时，需要设置仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-Docker-Engine-Community"><span class="nav-number">2.2.2.</span> <span class="nav-text">安装 Docker Engine-Community</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ubuntu-使用-docker-部署jar"><span class="nav-number">3.</span> <span class="nav-text">ubuntu 使用 docker 部署jar</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建-docker-镜像"><span class="nav-number">3.1.</span> <span class="nav-text">构建 docker 镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作镜像"><span class="nav-number">3.2.</span> <span class="nav-text">操作镜像</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-借助-nginx-部署-vue"><span class="nav-number">4.</span> <span class="nav-text">docker 借助 nginx 部署 vue</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本知识"><span class="nav-number">1.</span> <span class="nav-text">基本知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ubuntu-安装-docker"><span class="nav-number">2.</span> <span class="nav-text">ubuntu 安装 docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#预备"><span class="nav-number">2.1.</span> <span class="nav-text">预备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首次安装时，需要设置仓库"><span class="nav-number">2.2.1.</span> <span class="nav-text">首次安装时，需要设置仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-Docker-Engine-Community"><span class="nav-number">2.2.2.</span> <span class="nav-text">安装 Docker Engine-Community</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ubuntu-使用-docker-部署jar"><span class="nav-number">3.</span> <span class="nav-text">ubuntu 使用 docker 部署jar</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建-docker-镜像"><span class="nav-number">3.1.</span> <span class="nav-text">构建 docker 镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作镜像"><span class="nav-number">3.2.</span> <span class="nav-text">操作镜像</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-部署基于-nginx-的前端项目"><span class="nav-number">4.</span> <span class="nav-text">docker 部署基于 nginx 的前端项目</span></a></li></ol></div>
             
 
           </div>

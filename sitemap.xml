@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/programing/mvc/</loc>
+    
+    <lastmod>2020-12-16T14:03:03.212Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/docker/docker/</loc>
+    
+    <lastmod>2020-12-15T15:09:12.944Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/frontend/navigation-page/</loc>
+    
+    <lastmod>2020-12-15T15:07:49.333Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/cpp/cpp-11/</loc>
     
     <lastmod>2020-12-14T15:28:40.099Z</lastmod>
@@ -233,13 +254,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/docker/docker/</loc>
-    
-    <lastmod>2020-12-14T13:40:36.806Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/programing/ubuntu-mysql/</loc>
     
     <lastmod>2020-12-14T13:40:26.456Z</lastmod>
@@ -299,13 +313,6 @@
     <loc>http://yoursite.com/knowledge/computer-network/</loc>
     
     <lastmod>2020-12-14T10:12:55.811Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/frontend/navigation-page/</loc>
-    
-    <lastmod>2020-12-14T10:10:03.662Z</lastmod>
     
   </url>
   
