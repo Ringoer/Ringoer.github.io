@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/webpack-2/</loc>
+    
+    <lastmod>2020-12-20T07:13:04.905Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/webpack-1/</loc>
     
-    <lastmod>2020-12-19T16:40:06.988Z</lastmod>
+    <lastmod>2020-12-20T07:07:10.416Z</lastmod>
     
   </url>
   
