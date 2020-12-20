@@ -101,7 +101,7 @@
 <meta property="og:image" content="https://pic.ringoer.com/webpack-1-6.png">
 <meta property="og:image" content="https://pic.ringoer.com/webpack-1-7.png">
 <meta property="og:image" content="https://pic.ringoer.com/webpack-1-8.png">
-<meta property="og:updated_time" content="2020-12-20T07:07:10.416Z">
+<meta property="og:updated_time" content="2020-12-20T13:00:32.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Webpack 入门 1">
 <meta name="twitter:description" content="目前版本第一的打包工具 Webpack 其之一">
@@ -439,6 +439,11 @@
 <p><img src="https://pic.ringoer.com/webpack-1-6.png" alt=""></p>
 <p>打开内容一看，就是和我们的 index.js 里面是一样的内容！甚至还自己分析了语义，省去了不必要的代码</p>
 <p>这就是 webpack 的基本功能 js 转换</p>
+<h1 id="入口"><a href="#入口" class="headerlink" title="入口"></a>入口</h1><p>entry 除了上文提到的单入口指定</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./path/to/my/entry/file.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'my-first-webpack.bundle.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>也可以指定多个入口，传入一个 hashtable 即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">      app: <span class="string">'./src/index.js'</span>,</span><br><span class="line">      print: <span class="string">'./src/print.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'my-first-webpack.bundle.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>传入的入口 js 会分别打包，有兴趣的朋友可以自己尝试一下</p>
 <h1 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h1><p>显然代码一般都有开发和部署两种状态，webpack 也有不同的对应代码</p>
 <p>在配置中可以添加 mode 字段来指示 webpack 模式，有两种选择</p>
 <ol>
@@ -610,7 +615,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-count">116</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -665,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-Webpack"><span class="nav-number">1.</span> <span class="nav-text">什么是 Webpack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始"><span class="nav-number">3.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模式"><span class="nav-number">4.</span> <span class="nav-text">模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出哈希"><span class="nav-number">5.</span> <span class="nav-text">输出哈希</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#快捷构建"><span class="nav-number">6.</span> <span class="nav-text">快捷构建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下集预告"><span class="nav-number">7.</span> <span class="nav-text">下集预告</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-Webpack"><span class="nav-number">1.</span> <span class="nav-text">什么是 Webpack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始"><span class="nav-number">3.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#入口"><span class="nav-number">4.</span> <span class="nav-text">入口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模式"><span class="nav-number">5.</span> <span class="nav-text">模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出哈希"><span class="nav-number">6.</span> <span class="nav-text">输出哈希</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#快捷构建"><span class="nav-number">7.</span> <span class="nav-text">快捷构建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下集预告"><span class="nav-number">8.</span> <span class="nav-text">下集预告</span></a></li></ol></div>
             
 
           </div>
