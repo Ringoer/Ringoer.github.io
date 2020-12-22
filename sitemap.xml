@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/vue-start/</loc>
+    
+    <lastmod>2020-12-22T08:27:50.525Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/diary/20201222/</loc>
+    
+    <lastmod>2020-12-22T03:48:09.393Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/webpack-4/</loc>
     
     <lastmod>2020-12-20T15:50:21.001Z</lastmod>
