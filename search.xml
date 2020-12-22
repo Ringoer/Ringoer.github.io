@@ -8,7 +8,7 @@
   <entry>
     <title><![CDATA[Vue 起步]]></title>
     <url>%2Ffrontend%2Fvue-start%2F</url>
-    <content type="text"><![CDATA[前端三大框架中相对最简单的 Vue 框架，该怎么上手呢 Vue 这么大名头，就不赘述什么了2333 直接上 官方文档 因为作者是中国人，所以中文文档很有参考价值，就直接贴中文文档了（ 快速创建 vue 项目点击官方文档首页上的 起步，可以来到介绍 通常有以下方法来创建一个 vue 项目 script 标签+cdn通过 1&lt;script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"&gt;&lt;/script&gt; 可以在 html 页面上引入 vue 内容，推荐小型项目使用 npm通过命令 1npm install vue 可以安装 vue 最新稳定版，推荐大型项目使用 vue 脚手架可以使用官方提供的 @vue/cli 快速构建 vue 项目 官方介绍如下 它为现代前端工作流提供了 batteries-included 的构建设置。只需要几分钟的时间就可以运行起来并带有热重载、保存时 lint 校验，以及生产环境可用的构建版本。 可以查阅 cli 对应的 官网 具体使用方法如下 安装1npm install -g @vue/cli-service-global 创建项目1vue create hello-world 此时 vue 会询问你，是否采用默认的配置，建议新手选”是” 选否的话，vue 会询问你具体的各个配置的选项，此时使用方向键的上下来选择选项，并通过空格选定 注意，此时按回车的话会直接决定这个询问的结果，进入下个询问 当然你后悔的话，ctrl+c 就可以了，2333 在询问完所有配置后，vue 会询问你是否保存上述配置为默认配置，这里一般也建议选否 命令行不习惯的话，也可以用图形化界面 1vue ui 通过上述命令可以打开一个浏览器窗口以显示图形化界面来操作 vue codesandbox.io什么？我一句命令行也不想打？可以！ 可以访问 codesandbox.io 来创建 vue 项目 注意，此时不要登录，登录会有创建数量限制，不登录则无限 打开页面后直接访问右上角的 create sandbox，在新弹出的菜单中选择 vue 即可创建一个 vue 项目 codesandbox 提供了在线的热更新，但因为是在线的，所以会略有延迟 为了解决这个延迟，codesandbox 也提供了下载到本地的方法： 找到代码编辑界面左上角的 file 选项 选择 export to zip ok！你下载了一个 zip，解压就可以得到你的 vue 项目了，方便快捷 其效果类似于用 idea 创建 spring boot 项目的时候的 spring assistant，什么都不用做就有一个 helloworld 了2333 （不过命令行还是要学，不亏 vue 不同版本有哪些版本在刚才的介绍中，完全没提及使用 vue 的哪个版本，其实各自有各自默认的版本 vue 有 2x2=4 种主要版本——完整版/非完整版+开发版/生产版 非完整版一般也称作仅运行版本（runtime only） 对应的文件名如下 完整版 非完整版 开发版 vue.js vue.runtime.js 生产版 vue.min.js vue.runtime.min.js 具体特点如下 完整版，有完整完全的功能 非完整版，没有编译模板的功能，只支持渲染函数，体积比完整版小 30% 开发版，包含警告等内容 生产版，不含有警告，且体积比开发版更小，旨在让用户下载最少的 js 完整版和非完整版的区别假设有如下 html 12345&lt;body&gt; &lt;div id="app"&gt; &lt;/div&gt;&lt;/body&gt; 现在意图在 app 中显示一个数字，并提供一个 button 使得点击后可以改变这个数字 如果你使用完整版，只需要这样写即可 1234567&lt;body&gt; &lt;div id="app"&gt; &#123;&#123;n&#125;&#125; &lt;button @click="add"&gt;+1&lt;/button&gt; &lt;/div&gt; &lt;script&gt; // 此处通过 cdn 引入完整版 vue &lt;/script&gt;&lt;/body&gt; 然后在 js 中写 1234567891011new Vue(&#123; el: '#app', data: &#123; n: 0 &#125;, methods: &#123; add()&#123; this.n++ &#125; &#125;&#125;) 或者 html 的 app 中不写内容，而是写在 new Vue 内 1234567891011121314151617new Vue(&#123; el: '#app', data: &#123; n: 0 &#125;, template: ` &lt;div&gt; &#123;&#123;n&#125;&#125; &lt;button @click="add"&gt;+1&lt;/button&gt; &lt;/div&gt; `, methods: &#123; add()&#123; this.n++ &#125; &#125;&#125;) 注意，此处的 template 需要包裹在同一个 div 中 就可以实现点击按钮后自增，并同步到页面上 但是如果用非完整版，就不能这样写 首先 html 要改成这样 12345&lt;body&gt; &lt;div id="app"&gt; &lt;/div&gt; &lt;script&gt; // 此处通过 cdn 引入非完整版 vue &lt;/script&gt;&lt;/body&gt; 然后在 js 中写 12345678910111213141516new Vue(&#123; el: '#app', data: &#123; n: 0 &#125;, render(h)&#123; return h('div', [this.n, h('button', &#123; on: &#123;click: this.add&#125; &#125;, '+1')]) &#125;, methods: &#123; add()&#123; this.n++ &#125; &#125;&#125;) vue 提供的 render 方法接受一个参数，是 vue 封装好向开发者传来的渲染函数，一般命名为 h（因为文档里就是 h） 在上例中，h 函数接收 2 个或 3 个参数 如果只有两个参数，第一个表示其所属的 html 元素类型，第二个参数表示其显示文本 如果有三个参数，第一个参数同上，第二个参数表示其属性配置，第三个表示其显示文本 非完整版的意义既然非完整版这么麻烦，有什么价值呢？ 答案就是大小和独立 在完整版中，vue 的参数直接侵入了模板 html，一旦发生修改，则全部都要改，在实际开发中很难同步；而采用 template 参数的话，又导致在 js 中混入了奇怪的不属于 js 的部件 在非完整版中，所有的局部配置都依赖于同一个 js，当发生修改的时候，只需要修改当前 js 最重要的是，非完整版支持 vue 模块化！便于控制不同部分的代码 综上，实际项目中，应该优先使用非完整版（为了更小体积），并且开发中使用开发版，发布的时候使用生产版 vue 模块创建 vue 项目后，就可以发现核心文件 main.js 和 app.vue 其中 app.vue 就是项目的主模块，并可以以类似逻辑创建 .vue 后缀的文件作为项目的新的 vue 模块 每个 vue 模块都包含以下 3 部分 template，指示该模块的 html 模板，在需要填充时将该部分填充到 app.vue 的对应位置 script，指示该模块使用的 vue 实例的配置 style scoped，指示该模块使用的样式 注意，此处一般要注明 scoped 以使得样式只应用于当前模块，否则会应用到全局 在用户访问时，router 组件会选择 component 并返回 当在 app.vue router-view 中选择 name=”default” 时，router 里不需要写对象，直接写目标模块即可 当选择 name=”xxx” 时，router 返回的 component 必须是对象，且包含你指定的 name 字段，该字段值是目标模块对象 vue 与 SEO众所周知 vue 是单页应用，从上面的说明也看出了 vue 的特点：主页只有一个 div#app，没有别的东西，这样搜索引擎怎么知道你这个页面和什么有关系呢 可以在模板里写 meta 标签来指示本网站相关内容，或是在 div#app 中写入内容（反正会被 vue 渲染替换） 但是仍然治标不治本，SEO 效果仍然很差，这时候就需要——服务端渲染（SSR） 不过 SSR 已经远超本章内容了，就不描述了 感谢阅读]]></content>
+    <content type="text"><![CDATA[前端三大框架中相对最简单的 Vue 框架，该怎么上手呢 Vue 这么大名头，就不赘述什么了2333 直接上 官方文档 因为作者是中国人，所以中文文档很有参考价值，就直接贴中文文档了（ 快速创建 vue 项目点击官方文档首页上的 起步，可以来到介绍 通常有以下方法来创建一个 vue 项目 script 标签+cdn通过 1&lt;script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"&gt;&lt;/script&gt; 可以在 html 页面上引入 vue 内容，推荐小型项目使用 npm通过命令 1npm install vue 可以安装 vue 最新稳定版，推荐大型项目使用 vue 脚手架可以使用官方提供的 @vue/cli 快速构建 vue 项目 官方介绍如下 它为现代前端工作流提供了 batteries-included 的构建设置。只需要几分钟的时间就可以运行起来并带有热重载、保存时 lint 校验，以及生产环境可用的构建版本。 可以查阅 cli 对应的 官网 具体使用方法如下 安装1npm install -g @vue/cli-service-global 创建项目1vue create hello-world 此时 vue 会询问你，是否采用默认的配置，建议新手选”是” 选否的话，vue 会询问你具体的各个配置的选项，此时使用方向键的上下来选择选项，并通过空格选定 注意，此时按回车的话会直接决定这个询问的结果，进入下个询问 当然你后悔的话，ctrl+c 就可以了，2333 在询问完所有配置后，vue 会询问你是否保存上述配置为默认配置，这里一般也建议选否 命令行不习惯的话，也可以用图形化界面 1vue ui 通过上述命令可以打开一个浏览器窗口以显示图形化界面来操作 vue codesandbox.io什么？我一句命令行也不想打？可以！ 可以访问 codesandbox.io 来创建 vue 项目 注意，此时不要登录，登录会有创建数量限制，不登录则无限 打开页面后直接访问右上角的 create sandbox，在新弹出的菜单中选择 vue 即可创建一个 vue 项目 codesandbox 提供了在线的热更新，但因为是在线的，所以会略有延迟 为了解决这个延迟，codesandbox 也提供了下载到本地的方法： 找到代码编辑界面左上角的 file 选项 选择 export to zip ok！你下载了一个 zip，解压就可以得到你的 vue 项目了，方便快捷 其效果类似于用 idea 创建 spring boot 项目的时候的 spring assistant，什么都不用做就有一个 helloworld 了2333 （不过命令行还是要学，不亏 vue 不同版本有哪些版本在刚才的介绍中，完全没提及使用 vue 的哪个版本，其实各自有各自默认的版本 vue 有 2x2=4 种主要版本——完整版/非完整版+开发版/生产版 非完整版一般也称作仅运行版本（runtime only） 对应的文件名如下 完整版 非完整版 开发版 vue.js vue.runtime.js 生产版 vue.min.js vue.runtime.min.js 具体特点如下 完整版，有完整完全的功能 非完整版，没有编译模板的功能，只支持渲染函数，体积比完整版小 30% 开发版，包含警告等内容 生产版，不含有警告，且体积比开发版更小，旨在让用户下载最少的 js 完整版和非完整版的区别假设有如下 html 12345&lt;body&gt; &lt;div id="app"&gt; &lt;/div&gt;&lt;/body&gt; 现在意图在 app 中显示一个数字，并提供一个 button 使得点击后可以改变这个数字 如果你使用完整版，只需要这样写即可 1234567&lt;body&gt; &lt;div id="app"&gt; &#123;&#123;n&#125;&#125; &lt;button @click="add"&gt;+1&lt;/button&gt; &lt;/div&gt; &lt;script&gt; // 此处通过 cdn 引入完整版 vue &lt;/script&gt;&lt;/body&gt; 然后在 js 中写 1234567891011new Vue(&#123; el: '#app', data: &#123; n: 0 &#125;, methods: &#123; add()&#123; this.n++ &#125; &#125;&#125;) 或者 html 的 app 中不写内容，而是写在 new Vue 内 1234567891011121314151617new Vue(&#123; el: '#app', data: &#123; n: 0 &#125;, template: ` &lt;div&gt; &#123;&#123;n&#125;&#125; &lt;button @click="add"&gt;+1&lt;/button&gt; &lt;/div&gt; `, methods: &#123; add()&#123; this.n++ &#125; &#125;&#125;) 注意，此处的 template 需要包裹在同一个 div 中 就可以实现点击按钮后自增，并同步到页面上 但是如果用非完整版，就不能这样写 首先 html 要改成这样 12345&lt;body&gt; &lt;div id="app"&gt; &lt;/div&gt; &lt;script&gt; // 此处通过 cdn 引入非完整版 vue &lt;/script&gt;&lt;/body&gt; 然后在 js 中写 12345678910111213141516new Vue(&#123; el: '#app', data: &#123; n: 0 &#125;, render(h)&#123; return h('div', [this.n, h('button', &#123; on: &#123;click: this.add&#125; &#125;, '+1')]) &#125;, methods: &#123; add()&#123; this.n++ &#125; &#125;&#125;) vue 提供的 render 方法接受一个参数，是 vue 封装好向开发者传来的渲染函数，一般命名为 h（因为文档里就是 h） 在上例中，h 函数接收 2 个或 3 个参数 如果只有两个参数，第一个表示其所属的 html 元素类型，第二个参数表示其显示文本 如果有三个参数，第一个参数同上，第二个参数表示其属性配置，第三个表示其显示文本 非完整版的意义既然非完整版这么麻烦，有什么价值呢？ 答案就是大小和独立 在完整版中，vue 的参数直接侵入了模板 html，一旦发生修改，则全部都要改，在实际开发中很难同步；而采用 template 参数的话，又导致在 js 中混入了奇怪的不属于 js 的部件 在非完整版中，所有的局部配置都依赖于同一个 js，当发生修改的时候，只需要修改当前 js 最重要的是，非完整版支持 vue 组件化！便于控制不同部分的代码 综上，实际项目中，应该优先使用非完整版（为了更小体积），并且开发中使用开发版，发布的时候使用生产版 vue 组件创建 vue 项目后，就可以发现核心文件 main.js 和 app.vue 其中 app.vue 就是项目的主组件，并可以以类似逻辑创建 .vue 后缀的文件作为项目的新的 vue 组件 每个 vue 组件都包含以下 3 部分 template，指示该组件的 html 模板，在需要填充时将该部分填充到 app.vue 的对应位置 script，指示该组件使用的 vue 实例的配置 style scoped，指示该组件使用的样式 注意，此处一般要注明 scoped 以使得样式只应用于当前组件，否则会应用到全局 在用户访问时，router 组件会选择 component 并返回 当在 app.vue router-view 中选择 name=”default” 时，router 里不需要写对象，直接写目标组件即可 当选择 name=”xxx” 时，router 返回的 component 必须是对象，且包含你指定的 name 字段，该字段值是目标组件对象 vue 与 SEO众所周知 vue 是单页应用，从上面的说明也看出了 vue 的特点：主页只有一个 div#app，没有别的东西，这样搜索引擎怎么知道你这个页面和什么有关系呢 可以在模板里写 meta 标签来指示本网站相关内容，或是在 div#app 中写入内容（反正会被 vue 渲染替换） 但是仍然治标不治本，SEO 效果仍然很差，这时候就需要——服务端渲染（SSR） 不过 SSR 已经远超本章内容了，就不描述了 感谢阅读]]></content>
       <categories>
         <category>frontend</category>
       </categories>
@@ -760,9 +760,9 @@
         <category>answer</category>
       </categories>
       <tags>
+        <tag>dp</tag>
         <tag>Luogu</tag>
         <tag>题解</tag>
-        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -840,8 +840,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>云霄一中月赛</tag>
         <tag>并查集</tag>
+        <tag>云霄一中月赛</tag>
       </tags>
   </entry>
   <entry>
@@ -928,8 +928,8 @@
         <category>answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>dp</tag>
+        <tag>题解</tag>
         <tag>云霄一中月赛</tag>
         <tag>贪心</tag>
       </tags>
@@ -981,8 +981,8 @@
         <category>answer</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>dp</tag>
+        <tag>题解</tag>
         <tag>云霄一中月赛</tag>
       </tags>
   </entry>
@@ -1034,9 +1034,9 @@
         <category>answer</category>
       </categories>
       <tags>
+        <tag>dp</tag>
         <tag>Luogu</tag>
         <tag>题解</tag>
-        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -1061,8 +1061,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>HDU</tag>
         <tag>SPFA</tag>
+        <tag>HDU</tag>
       </tags>
   </entry>
   <entry>
@@ -1189,9 +1189,9 @@
         <category>answer</category>
       </categories>
       <tags>
+        <tag>dp</tag>
         <tag>Luogu</tag>
         <tag>题解</tag>
-        <tag>dp</tag>
       </tags>
   </entry>
   <entry>

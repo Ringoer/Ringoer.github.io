@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="前端三大框架中相对最简单的 Vue 框架，该怎么上手呢">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-12-22T08:27:50.525Z">
+<meta property="og:updated_time" content="2020-12-22T14:04:24.096Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue 起步">
 <meta name="twitter:description" content="前端三大框架中相对最简单的 Vue 框架，该怎么上手呢">
@@ -489,23 +489,23 @@
 <p>答案就是大小和独立</p>
 <p>在完整版中，vue 的参数直接侵入了模板 html，一旦发生修改，则全部都要改，在实际开发中很难同步；而采用 template 参数的话，又导致在 js 中混入了奇怪的不属于 js 的部件</p>
 <p>在非完整版中，所有的局部配置都依赖于同一个 js，当发生修改的时候，只需要修改当前 js</p>
-<p>最重要的是，非完整版支持 vue 模块化！便于控制不同部分的代码</p>
+<p>最重要的是，非完整版支持 vue 组件化！便于控制不同部分的代码</p>
 <p>综上，实际项目中，应该优先使用非完整版（为了更小体积），并且开发中使用开发版，发布的时候使用生产版</p>
-<h1 id="vue-模块"><a href="#vue-模块" class="headerlink" title="vue 模块"></a>vue 模块</h1><p>创建 vue 项目后，就可以发现核心文件 main.js 和 app.vue</p>
-<p>其中 app.vue 就是项目的主模块，并可以以类似逻辑创建 .vue 后缀的文件作为项目的新的 vue 模块</p>
-<p>每个 vue 模块都包含以下 3 部分</p>
+<h1 id="vue-组件"><a href="#vue-组件" class="headerlink" title="vue 组件"></a>vue 组件</h1><p>创建 vue 项目后，就可以发现核心文件 main.js 和 app.vue</p>
+<p>其中 app.vue 就是项目的主组件，并可以以类似逻辑创建 .vue 后缀的文件作为项目的新的 vue 组件</p>
+<p>每个 vue 组件都包含以下 3 部分</p>
 <ol>
-<li><p>template，指示该模块的 html 模板，在需要填充时将该部分填充到 app.vue 的对应位置</p>
+<li><p>template，指示该组件的 html 模板，在需要填充时将该部分填充到 app.vue 的对应位置</p>
 </li>
-<li><p>script，指示该模块使用的 vue 实例的配置</p>
+<li><p>script，指示该组件使用的 vue 实例的配置</p>
 </li>
-<li><p>style scoped，指示该模块使用的样式</p>
-<p>注意，此处一般要注明 scoped 以使得样式只应用于当前模块，否则会应用到全局</p>
+<li><p>style scoped，指示该组件使用的样式</p>
+<p>注意，此处一般要注明 scoped 以使得样式只应用于当前组件，否则会应用到全局</p>
 </li>
 </ol>
 <p>在用户访问时，router 组件会选择 component 并返回</p>
-<p>当在 app.vue router-view 中选择 name=”default” 时，router 里不需要写对象，直接写目标模块即可</p>
-<p>当选择 name=”xxx” 时，router 返回的 component 必须是对象，且包含你指定的 name 字段，该字段值是目标模块对象</p>
+<p>当在 app.vue router-view 中选择 name=”default” 时，router 里不需要写对象，直接写目标组件即可</p>
+<p>当选择 name=”xxx” 时，router 返回的 component 必须是对象，且包含你指定的 name 字段，该字段值是目标组件对象</p>
 <h1 id="vue-与-SEO"><a href="#vue-与-SEO" class="headerlink" title="vue 与 SEO"></a>vue 与 SEO</h1><p>众所周知 vue 是单页应用，从上面的说明也看出了 vue 的特点：主页只有一个 div#app，没有别的东西，这样搜索引擎怎么知道你这个页面和什么有关系呢</p>
 <p>可以在模板里写 meta 标签来指示本网站相关内容，或是在 div#app 中写入内容（反正会被 vue 渲染替换）</p>
 <p>但是仍然治标不治本，SEO 效果仍然很差，这时候就需要——服务端渲染（SSR）</p>
@@ -697,7 +697,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#快速创建-vue-项目"><span class="nav-number">1.</span> <span class="nav-text">快速创建 vue 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#script-标签-cdn"><span class="nav-number">1.1.</span> <span class="nav-text">script 标签+cdn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm"><span class="nav-number">1.2.</span> <span class="nav-text">npm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-脚手架"><span class="nav-number">1.3.</span> <span class="nav-text">vue 脚手架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.3.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建项目"><span class="nav-number">1.3.2.</span> <span class="nav-text">创建项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#codesandbox-io"><span class="nav-number">1.4.</span> <span class="nav-text">codesandbox.io</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-不同版本"><span class="nav-number">2.</span> <span class="nav-text">vue 不同版本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#有哪些版本"><span class="nav-number">2.1.</span> <span class="nav-text">有哪些版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完整版和非完整版的区别"><span class="nav-number">2.2.</span> <span class="nav-text">完整版和非完整版的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非完整版的意义"><span class="nav-number">2.3.</span> <span class="nav-text">非完整版的意义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-模块"><span class="nav-number">3.</span> <span class="nav-text">vue 模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-与-SEO"><span class="nav-number">4.</span> <span class="nav-text">vue 与 SEO</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#快速创建-vue-项目"><span class="nav-number">1.</span> <span class="nav-text">快速创建 vue 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#script-标签-cdn"><span class="nav-number">1.1.</span> <span class="nav-text">script 标签+cdn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm"><span class="nav-number">1.2.</span> <span class="nav-text">npm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-脚手架"><span class="nav-number">1.3.</span> <span class="nav-text">vue 脚手架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.3.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建项目"><span class="nav-number">1.3.2.</span> <span class="nav-text">创建项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#codesandbox-io"><span class="nav-number">1.4.</span> <span class="nav-text">codesandbox.io</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-不同版本"><span class="nav-number">2.</span> <span class="nav-text">vue 不同版本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#有哪些版本"><span class="nav-number">2.1.</span> <span class="nav-text">有哪些版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完整版和非完整版的区别"><span class="nav-number">2.2.</span> <span class="nav-text">完整版和非完整版的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非完整版的意义"><span class="nav-number">2.3.</span> <span class="nav-text">非完整版的意义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-组件"><span class="nav-number">3.</span> <span class="nav-text">vue 组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-与-SEO"><span class="nav-number">4.</span> <span class="nav-text">vue 与 SEO</span></a></li></ol></div>
             
 
           </div>
