@@ -93,7 +93,7 @@
 <meta property="og:description" content="new Vue()传入的参数，都有哪些呢">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://cn.vuejs.org/images/lifecycle.png">
-<meta property="og:updated_time" content="2020-12-23T14:57:58.505Z">
+<meta property="og:updated_time" content="2020-12-25T07:24:10.676Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue 构造选项">
 <meta name="twitter:description" content="new Vue()传入的参数，都有哪些呢">
@@ -477,6 +477,16 @@
 <p>例如，某 vue 实例有以下组分</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        n: <span class="number">0</span>,</span><br><span class="line">        m: <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;</span><br><span class="line">    n(newval,oldval)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`n changed from <span class="subst">$&#123;oldval&#125;</span> to <span class="subst">$&#123;newval&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>则当 n 变化的时候就会打印调试语句</p>
+<p>若要在初始化时就执行 watch 选项，可以使用 immediate 参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        n: <span class="number">0</span>,</span><br><span class="line">        m: <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;</span><br><span class="line">    n: &#123;</span><br><span class="line">        handler: <span class="function"><span class="keyword">function</span>(<span class="params">newval,oldval</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`n changed from <span class="subst">$&#123;oldval&#125;</span> to <span class="subst">$&#123;newval&#125;</span>`</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        immediate: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若要监听对象字段，可以用字符串显式指定</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        obj: &#123;</span><br><span class="line">            n: <span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">        m: <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;</span><br><span class="line">    <span class="string">'obj.n'</span>: <span class="function"><span class="keyword">function</span>(<span class="params">newval,oldval</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`obj.n changed from <span class="subst">$&#123;oldval&#125;</span> to <span class="subst">$&#123;newval&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>直接监听对象的话，其中字段值的改变不会触发监听函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        obj: &#123;</span><br><span class="line">            n: <span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">        m: <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;</span><br><span class="line">    obj: <span class="function"><span class="keyword">function</span>(<span class="params">newval,oldval</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`obj changed from <span class="subst">$&#123;oldval&#125;</span> to <span class="subst">$&#123;newval&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vm.obj.n = <span class="number">1</span>  <span class="comment">// 不会触发对 obj 的监听</span></span><br></pre></td></tr></table></figure>
+<p>因为对基本类型的 === 判断，是基于值的，而对象的判断是基于地址的</p>
+<p>此时 obj 指向的地址没有改变，所以 vue 认为 obj 没有更新</p>
+<p>如果要在修改其中字段时，也触发对 obj 的监听，可以使用 deep 参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        obj: &#123;</span><br><span class="line">            n: <span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">        m: <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;</span><br><span class="line">    obj: &#123;</span><br><span class="line">        handler: <span class="function"><span class="keyword">function</span>(<span class="params">newval,oldval</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`obj changed from <span class="subst">$&#123;oldval&#125;</span> to <span class="subst">$&#123;newval&#125;</span>`</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        deep: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vm.obj.n = <span class="number">1</span>  <span class="comment">// 会触发对 obj 的监听</span></span><br></pre></td></tr></table></figure>
 <p>更多用法请看官方文档</p>
 <h1 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h1><h2 id="el"><a href="#el" class="headerlink" title="el"></a>el</h2><p>用于指示当前 vue 实例在页面上的挂载目标</p>
 <p>通常 el 可以</p>
@@ -514,12 +524,61 @@
 <h2 id="directives"><a href="#directives" class="headerlink" title="directives"></a>directives</h2><p>用于自定义当前实例可用的模板指令</p>
 <p>例子如下</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">directives: &#123;</span><br><span class="line">  focus: &#123;</span><br><span class="line">    <span class="comment">// 指令的定义</span></span><br><span class="line">    inserted: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</span><br><span class="line">      el.focus()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定义一个 focus 指令，之后可以在模板中使用 v-focus</p>
+<p>定义一个 focus 指令，当插入到页面中执行对应的函数，之后可以在模板中使用 v-focus</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-focus</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一般有 5 种钩子可选</p>
+<ul>
+<li>bind，绑定到元素时调用</li>
+<li>inserted，插入到元素时调用</li>
+<li>update，所在组件的虚拟结点更新时调用，但可能在更新前被调用</li>
+<li>componentUpdated，所在组件及其子组件全部更新后调用</li>
+<li>unbind，解除绑定时调用</li>
+</ul>
+<p>上述 5 种钩子，会被按顺序传入以下参数</p>
+<ol>
+<li><p>el，绑定的元素</p>
+</li>
+<li><p>binding，该事件的具体数据</p>
+<p>假设现在有 <code>v-on:click=&quot;hello&quot;</code>，其中 hello 是一个方法</p>
+<ol>
+<li><p>name，指令名，不包括 <code>v-</code> 前缀</p>
+<p>本例中 <code>binding.name === on</code></p>
+</li>
+<li><p>value，指令的绑定值</p>
+<p>本例中 <code>binding.value === hello</code></p>
+<p>若绑定的内容是可以立即求值的，则绑定其值</p>
+<p>如 <code>v-on:click=&quot;1+1&quot;</code>，value 就取值 2，而不是表达式 1+1</p>
+</li>
+<li><p>oldValue，指令绑定的前一个值，仅在发生更新时，即 update 或 componentUpdated 钩子中传入</p>
+</li>
+<li><p>expression，字符串形式的指令表达式</p>
+<p>沿用 2 中的例子，分别取 <code>hello</code> 和 <code>1+1</code></p>
+</li>
+<li><p>arg，传给指令的参数</p>
+<p>本例中 <code>binding.arg === &#39;click&#39;</code></p>
+</li>
+<li><p>modifiers，一个包含修饰符的对象</p>
+<p>例如在 <code>v-my-directive.foo.bar</code> 中，有</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">binding.modifiers === &#123;</span><br><span class="line">    foo: <span class="literal">true</span>,</span><br><span class="line">    bar: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>vnode，所在的虚拟结点</p>
+</li>
+<li><p>oldVnode，上一个虚拟结点</p>
+<p>仅在发生更新时，即 update 或 componentUpdated 钩子中传入</p>
+</li>
+</ol>
+<p>主要用于减少 DOM 操作</p>
 <p>每个指令都可以绑定专有的钩子函数，详见 <a href="https://cn.vuejs.org/v2/guide/custom-directive.html#%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">文档</a></p>
-<h1 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h1><h2 id="mixins"><a href="#mixins" class="headerlink" title="mixins"></a>mixins</h2><p>将待混入的对象混入到 vue 实例中，相同的属性会合并</p>
+<h1 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h1><h2 id="mixins"><a href="#mixins" class="headerlink" title="mixins"></a>mixins</h2><p>将待混入的对象混入到 vue 实例中，相同的属性会智能合并，即</p>
+<ul>
+<li>对于 data，覆盖相同的，保留不同的</li>
+<li>对于 methods 和生命周期钩子函数等，全部保留</li>
+</ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mixin = &#123;</span><br><span class="line">  created: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="number">1</span>) &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  created: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="number">2</span>) &#125;,</span><br><span class="line">  mixins: [mixin]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>如上例，最终两个 created 阶段的 function 都会在 vm 实例的 created 阶段执行，输出 1和2</p>
+<p>记得加方括号</p>
 <h2 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h2><p>与 mixins 类似，使得当前实例继承另一个实例的所有值</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> CompA = &#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在没有调用 `Vue.extend` 时候继承 CompA</span></span><br><span class="line"><span class="keyword">const</span> CompB = &#123;</span><br><span class="line">  extends: CompA,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如上例，CompA 的所有内容会在 CompB 内被展开</p>
@@ -529,6 +588,7 @@
 <p>然后在子组件中</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    inject: [<span class="string">'reload'</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>就成功向子组件注入了 reload 方法，在子组件中也可以通过 this.reload() 来实现局部刷新了</p>
+<p>注意，此处传递依然遵循 JS 传递规则，即 3 个基本类型传值，其余传引用</p>
 <hr>
 <p>感谢阅读</p>
 
@@ -661,7 +721,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-count">121</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>

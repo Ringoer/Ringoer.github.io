@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/frontend/vue-reactivity/</loc>
+    <loc>http://yoursite.com/frontend/vue-v-directives/</loc>
     
-    <lastmod>2020-12-23T14:58:03.205Z</lastmod>
+    <lastmod>2020-12-29T16:07:25.123Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/frontend/vue-options/</loc>
     
-    <lastmod>2020-12-23T14:57:58.505Z</lastmod>
+    <lastmod>2020-12-25T07:24:10.676Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/frontend/vue-reactivity/</loc>
+    
+    <lastmod>2020-12-23T14:58:03.205Z</lastmod>
     
   </url>
   
