@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/vue-router/</loc>
+    
+    <lastmod>2021-01-03T15:19:20.509Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/frontend/vue-vuex/</loc>
+    
+    <lastmod>2021-01-03T15:19:17.217Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/vue-v-directives/</loc>
     
     <lastmod>2020-12-29T16:07:25.123Z</lastmod>
