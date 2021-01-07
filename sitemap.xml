@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/react-start/</loc>
+    
+    <lastmod>2021-01-07T16:13:42.689Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/vue-router/</loc>
     
     <lastmod>2021-01-03T15:19:20.509Z</lastmod>
