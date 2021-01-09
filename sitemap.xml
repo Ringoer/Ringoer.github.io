@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/react-function-component/</loc>
+    
+    <lastmod>2021-01-09T15:14:19.256Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/react-class-component/</loc>
     
-    <lastmod>2021-01-09T10:25:02.948Z</lastmod>
+    <lastmod>2021-01-09T10:55:38.386Z</lastmod>
     
   </url>
   
