@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/react-hooks/</loc>
+    
+    <lastmod>2021-01-14T15:25:35.325Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/react-function-component/</loc>
     
-    <lastmod>2021-01-09T15:22:57.062Z</lastmod>
+    <lastmod>2021-01-14T15:19:33.412Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/frontend/react-start/</loc>
+    
+    <lastmod>2021-01-12T03:36:54.654Z</lastmod>
     
   </url>
   
@@ -12,13 +26,6 @@
     <loc>http://yoursite.com/frontend/react-class-component/</loc>
     
     <lastmod>2021-01-09T10:55:38.386Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/frontend/react-start/</loc>
-    
-    <lastmod>2021-01-07T16:13:42.689Z</lastmod>
     
   </url>
   

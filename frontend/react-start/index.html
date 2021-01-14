@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="耦合度爆炸（划掉）函数式编程思想的具现化——React 框架">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-07T16:13:42.689Z">
+<meta property="og:updated_time" content="2021-01-12T03:36:54.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React 起步">
 <meta name="twitter:description" content="耦合度爆炸（划掉）函数式编程思想的具现化——React 框架">
@@ -426,10 +426,28 @@
 <p>即可启动 react app，不出意外的话会自动打开 localhost:3000 并显示 react 默认页面</p>
 <p>自带的热更新效果有限，想查看最新效果，最好还是手动刷新一下</p>
 <p>打开 <code>src/index.js</code> 就可以看到主入口代码</p>
-<p>暂时不需要考虑太多，只需要知道其中 <code>ReactDOM.render</code> 函数负责渲染页面，<code>React.StrictMode</code> 标签是一个占位符，不会渲染到页面上，实际渲染的部分只有该占位符内部的部分</p>
+<p>暂时不需要考虑太多，只需要知道</p>
+<ol>
+<li><p><code>ReactDOM.render</code> 函数负责渲染页面</p>
+</li>
+<li><p><code>React.StrictMode</code> 标签是一个占位符，不会渲染到页面上，实际渲染的部分只有该占位符内部的部分</p>
+</li>
+<li><p><code>React.createElement</code> 函数可以创建一个 react 元素</p>
+</li>
+<li><p>原则上模板必须是一个整体，不能是两个或多个并列的元素，但是可以使用 <code>React.Fragment</code> 标签做到整体的效果</p>
+<p>但是写 <code>React.Fragment</code> 也太多字母了，所以 react 提供了缩写 <code>&lt;&gt;</code>，与上述等效</p>
+<p>其对应的闭合标签是 <code>&lt;/&gt;</code></p>
+</li>
+</ol>
 <p><code>ReactDOM.render</code> 的格式如下</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(template, target)</span><br></pre></td></tr></table></figure>
-<p>第一个参数填写要渲染的模板，第二个参数填写模板要挂载到页面上的哪个位置</p>
+<p>第一个参数填写要渲染的模板</p>
+<p>第二个参数填写模板要挂载到页面上的哪个位置</p>
+<p><code>React.createElement</code> 的格式如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">React.createElement(type, props, text)</span><br></pre></td></tr></table></figure>
+<p>第一个参数表示创建的类型，如 <code>&#39;div&#39;</code></p>
+<p>第二个参数表示该标签持有的属性，如 <code>{className: &#39;container&#39;}</code></p>
+<p>第三个参数表示该标签内部的文本</p>
 <h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><p>与 vue 的构造选项不同，react 采用独特的 JSX 语法来书写模板</p>
 <p>在 <code>index.js</code> 中，我们可以看到，<code>ReactDOM.render</code> 函数实际渲染的部分是 <code>&lt;App /&gt;</code> 标签，该标签通过</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span>;</span><br></pre></td></tr></table></figure>
@@ -645,7 +663,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">126</span>
+                  <span class="site-state-item-count">127</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>

@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="没什么特殊情况的话，一般还是用函数组件">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-09T15:22:57.062Z">
+<meta property="og:updated_time" content="2021-01-14T15:19:33.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React 函数组件">
 <meta name="twitter:description" content="没什么特殊情况的话，一般还是用函数组件">
@@ -449,7 +449,7 @@
 <p>在函数组件中通过 <code>useUpdate(fn, n)</code> 进行调用即可</p>
 <p>现在就还挺好看了，用法也和原生 useEffect 挺像</p>
 <p>现在把这段逻辑抽离到单独的文件中，然后引入它</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// useUpdate.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; useEffect, useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> useUpdate = <span class="function">(<span class="params">fn, dep</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [flag, setFlag] = useState(<span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (flag) fn()</span><br><span class="line">    <span class="keyword">else</span> setFlag(<span class="function"><span class="params">flag</span> =&gt;</span> <span class="literal">true</span>)</span><br><span class="line">  &#125;, [fn, dep, flag])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> useUpdate</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// useUpdate.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; useEffect, useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> useUpdate = <span class="function">(<span class="params">fn, dep</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [flag, setFlag] = useState(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (flag) fn();</span><br><span class="line">    <span class="keyword">else</span> setFlag(<span class="function"><span class="params">flag</span> =&gt;</span> <span class="literal">true</span>);</span><br><span class="line">  &#125;, [fn, dep, flag]);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> useUpdate;</span><br></pre></td></tr></table></figure>
 <p>之后就可以在任意文件中引入它了</p>
 <p>注意，此处一般建议将 fn 和 flag 都放入监听数组中，否则 react 担心 fn 和 flag 一旦变化，会导致执行结果脱离预期，所以会引发警告（虽然警告一般都不重要）</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上就是 react 函数组件的主要内容</p>
@@ -507,8 +507,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/uncategorized/mainpage/" rel="prev" title="Welcome to No. 68 Floating Island">
-                Welcome to No. 68 Floating Island <i class="fa fa-chevron-right"></i>
+              <a href="/frontend/react-hooks/" rel="prev" title="React Hooks">
+                React Hooks <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -587,7 +587,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">126</span>
+                  <span class="site-state-item-count">127</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
