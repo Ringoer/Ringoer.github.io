@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/vue3-features/</loc>
+    
+    <lastmod>2021-02-16T15:05:42.096Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2021-01-15T03:06:02.381Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/react-hooks/</loc>
     
     <lastmod>2021-01-14T15:25:35.325Z</lastmod>
@@ -124,13 +138,6 @@
     <loc>http://yoursite.com/blog/index.html</loc>
     
     <lastmod>2020-12-19T07:40:01.058Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/about/index.html</loc>
-    
-    <lastmod>2020-12-19T07:26:07.181Z</lastmod>
     
   </url>
   

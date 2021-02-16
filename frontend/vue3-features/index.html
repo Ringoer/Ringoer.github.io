@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vue,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="vue 都发布新版本 vue3 了，不跟上时代怎么可以 本文结合 ts">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue 3 特性简述">
+<meta property="og:url" content="http://yoursite.com/frontend/vue3-features/index.html">
+<meta property="og:site_name" content="Ringo&#39;s Coding Life">
+<meta property="og:description" content="vue 都发布新版本 vue3 了，不跟上时代怎么可以 本文结合 ts">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-02-16T15:05:42.096Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue 3 特性简述">
+<meta name="twitter:description" content="vue 都发布新版本 vue3 了，不跟上时代怎么可以 本文结合 ts">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/frontend/vue3-features/">
+
+
+
+
+
+  <title>Vue 3 特性简述 | Ringo's Coding Life</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ringo's Coding Life</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI to ACM</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            元初之地
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-blog">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-text-o"></i> <br>
+            
+            文章相关
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            自己绍介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-contact">
+          <a href="/contact/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-envelope-o"></i> <br>
+            
+            联系方式
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br>
+            
+            友情链接
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            站内搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/frontend/vue3-features/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ringoer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ringo's Coding Life">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue 3 特性简述</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-16T20:03:00+08:00">
+                2021-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/frontend/" itemprop="url" rel="index">
+                    <span itemprop="name">frontend</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>vue 都发布新版本 vue3 了，不跟上时代怎么可以</p>
+<p>本文结合 ts</p>
+<a id="more"></a>
+<hr>
+<p>目录大致如下</p>
+<ol>
+<li>构建</li>
+<li>路由</li>
+<li>构造选项</li>
+<li>ref</li>
+<li>钩子函数</li>
+<li>标签属性</li>
+<li>scss</li>
+<li>总结</li>
+</ol>
+<h1 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h1><p>与 vue2 使用 webpack 不同，vue3 可以使用 vite 进行构建</p>
+<blockquote>
+<p>Vite，一个基于浏览器原生 ES imports 的开发服务器。利用浏览器去解析 imports，在服务器端按需编译返回，完全跳过了打包这个概念，服务器随起随用。同时不仅有 Vue 文件支持，还搞定了热更新，而且热更新的速度不会随着模块增多而变慢。针对生产环境则可以把同一份代码用 rollup 打。虽然现在还比较粗糙，但这个方向我觉得是有潜力的，做得好可以彻底解决改一行代码等半天热更新的问题。</p>
+</blockquote>
+<p>简单说就是，在生产环境使用模块，省略打包步骤，开发环境可以秒级启动</p>
+<p>安装 vite，只需要执行以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g create-vite-app</span><br></pre></td></tr></table></figure>
+<p>安装成功后，可以通过两个命令来构建</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create-vite-app [projectName]</span><br><span class="line">// 或</span><br><span class="line">cva [projectName]</span><br></pre></td></tr></table></figure>
+<p>即可在当前目录下构建一个基于 vite 的 vue3 新项目</p>
+<p>之后通过命令行 <code>cd</code> 进入该项目目录，执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>初始化 <code>node_modules</code> 之后，再运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<p>即可启动项目预览了，通常会启动在 3000 端口</p>
+<p>但是，当在项目中使用 ts 时，ts 无法识别 vue 后缀的文件，这时候可以在项目的 <code>src</code> 目录下新建一个文件 <code>shims.d.ts</code> 来处理识别问题</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// shims.d.ts</span></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">module</span> '*.vue' &#123;</span><br><span class="line">  <span class="keyword">import</span> &#123; ComponentOptions &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line">  <span class="keyword">const</span> componentOptions: ComponentOptions</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> componentOptions</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当静态报错为”无法识别 vue 后缀的文件”时，打开该 ts，再返回原代码，即可解决红线报错</p>
+<h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><p>先来看一个 vue2 的路由示例</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> login <span class="keyword">from</span> <span class="string">'@/components/others/login'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router(&#123;</span><br><span class="line">    mode: <span class="string">'history'</span>,</span><br><span class="line">    routes: [</span><br><span class="line">        &#123;</span><br><span class="line">            path: <span class="string">'/login'</span>,</span><br><span class="line">            name: <span class="string">'login'</span>,</span><br><span class="line">            component: login</span><br><span class="line">        &#125;,</span><br><span class="line">    ],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+<p>可见，vue2 中声明一个路由，是使用 new 操作符来新建一个 <code>Router</code> 对象，并向其构造函数中传入 options 来达成的</p>
+<p>现在再给出一个 vue3 的路由示例</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createWebHistory, createRouter &#125; <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./views/Home.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> history = createWebHistory()</span><br><span class="line"><span class="keyword">const</span> router = createRouter(&#123;</span><br><span class="line">  history,</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; path: <span class="string">'/'</span>, component: Home &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+<p>细节上，vue3 采用了 <code>createRouter</code> 函数来创建一个 <code>Router</code> 对象，对用户隐藏了内部细节，但仍然要求用户传入一个 options，且该 options 也主要包括 <code>mode</code> 和 <code>routes</code> 两个选项</p>
+<p>同时，在 vue3 中，声明一个路由模式，由字符串改为了函数返回值，具体对应如下</p>
+<table>
+<thead>
+<tr>
+<th>vue2 写法</th>
+<th>vue3 写法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mode 字段</td>
+<td>history 字段</td>
+</tr>
+<tr>
+<td>mode: ‘hash’</td>
+<td>history: createWebHashHistory()</td>
+</tr>
+<tr>
+<td>mode: ‘history’</td>
+<td>history: createWebHistory()</td>
+</tr>
+<tr>
+<td>mode: ‘memory’</td>
+<td>history: createMemoryHistory()</td>
+</tr>
+</tbody>
+</table>
+<p>整体上大同小异，使用时注意细节即可</p>
+<h1 id="构造选项"><a href="#构造选项" class="headerlink" title="构造选项"></a>构造选项</h1><p>一个 vue2 的 script 标签写法，大致有如下格式</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    props:&#123;</span><br><span class="line">        a:&#123;</span><br><span class="line">            <span class="keyword">type</span>: <span class="built_in">String</span>,</span><br><span class="line">            <span class="keyword">default</span>: <span class="string">'233'</span></span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    data()&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            ...data</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted()&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="comment">// and other lifecycle</span></span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        xxx()&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>诸如此类</p>
+<p>但是在 vue3 中，除 <code>props</code> 写法照旧之外，其余均可以通过 <code>setup</code> 方法进行处理</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    props:&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;,</span><br><span class="line">    setup()&#123;</span><br><span class="line">        <span class="keyword">const</span> a = ref(<span class="string">'233'</span>)</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            a</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <code>setup</code> 方法中，所有通过 <code>return</code> 暴露出的变量，都等效于 vue2 中 <code>data</code> 暴露的变量；所有通过 <code>return</code> 暴露出的函数，都等效于 vue2 中 <code>methods</code> 暴露的函数</p>
+<p>而生命周期钩子，也可以直接写在 <code>setup</code> 中，如 <code>mounted</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// vue2</span></span><br><span class="line">mounted()&#123;</span><br><span class="line">    <span class="comment">// some code</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// vue3</span></span><br><span class="line">setup()&#123;</span><br><span class="line">    onMounted(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="comment">// some code</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一种类似于 DOM 事件中 <code>click -&gt; onClick</code> 的转化，将 <code>mounted</code> 转化为了 <code>onMounted</code>，此时 <code>onMounted</code> 接受一个函数作为参数</p>
+<p>除此之外，要在 <code>setup</code> 中使用传递到组件上的参数，在 vue2 中只需要使用 <code>this.xxx</code> 就可以访问到，而在 vue3 中必须要在 <code>setup</code> 的形参列表中声明后才可以使用</p>
+<p><code>setup</code> 接受两个参数，第一个是绑定参数 props，第二个是上下文 context</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">setup(props, context)&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;xxx&#125; = props</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        xxx</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>等效于 vue2 中的</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    props:[<span class="string">'xxx'</span>],</span><br><span class="line">	data()&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            xxx: <span class="keyword">this</span>.xxx</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么，在 props 中未声明的绑定参数，都去哪了呢？</p>
+<p>在 vue2 中，可以通过 <code>this.$attrs</code> 来访问到其余的参数</p>
+<p>而在 vue3 中，要通过 <code>context.attrs</code> 来访问</p>
+<p>注意：</p>
+<ol>
+<li>在父组件中绑定到子组件的事件，不会出现在 props 里</li>
+<li>props不支持事件，支持其余属性，不在props里的都会到attrs里，但 props 要先声明</li>
+<li>props里有多种类型，attrs只有字符串</li>
+</ol>
+<p>如果不希望子组件继承父组件给出的参数，也可以显式指定不继承</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    inheritAttrs: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意 <code>inheritAttrs: false</code> 选项<strong>不会</strong>影响 <code>style</code> 和 <code>class</code> 的绑定</p>
+<p>综上，假如有一个需求是，父组件会向子组件中传入若干参数，而只希望绑定变量名为 <code>xxx</code> 以外的其余变量，那么可以有如下写法</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">setup(props, context)&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;xxx, ...rest&#125; = context.attrs</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        rest</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在模板中，要绑定的地方，写入 <code>v-bind=&quot;rest&quot;</code> 即可绑定所有参数</p>
+<h1 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h1><p>细心的朋友应该已经注意到了，上面出现一个名为 <code>ref</code> 的用法，且用法形似一个函数</p>
+<p>熟悉 ES6 的 proxy 的话，可以看出 <code>ref</code> 其实就是返回一个对传入数据的代理，这个代理拦截了 get 和 set 操作，并在 set 的时候通知视图更新</p>
+<p>熟悉 react 的朋友，是不是感觉和 <code>useState</code> 很像？其实就是把 getter/setter 返回到同一个对象身上而已，2333</p>
+<p>设在以下代码段中使用 <code>ref</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> visible = ref([<span class="literal">true</span>,<span class="literal">true</span>])</span><br></pre></td></tr></table></figure>
+<p>则有以下特点</p>
+<ol>
+<li><p>可以使用 const 声明代理对象，反正是这个对象不能变，不是里面的代理内容不能变</p>
+</li>
+<li><p>在 script 标签中读取数组内容时，必须使用 <code>visible.value</code> 才能取得数组，直接访问 <code>visible</code> 取得的是代理对象</p>
+<p><strong>尽可能不要直接修改代理内容</strong></p>
+</li>
+<li><p>在 template 标签（模板）中读取数组内容时，直接访问 <code>visible</code> 即可得到数组内容</p>
+</li>
+<li><p>当模板中引用的代理对象的 set 代理，发现代理内容被更新时，会自动通知视图进行更新</p>
+</li>
+<li><p><code>ref</code> 代理自带 vue2 的 data 做不到的深度监听，比如修改数组项、或对象的字段</p>
+</li>
+</ol>
+<h1 id="钩子函数"><a href="#钩子函数" class="headerlink" title="钩子函数"></a>钩子函数</h1><p>vue3 新增了一个重要的钩子函数 <code>watchEffect</code></p>
+<p>当然，同时可以使用 vue2 的 watch 属性，不赘述了</p>
+<p><code>watchEffect</code> 的主要效果是，注册一个侦听，该侦听会在声明时立刻执行，并在之后所有生命周期函数被调用前，或 <code>setup</code> 函数被调用时执行</p>
+<p>一般写法如下</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">watchEffect(<span class="function"><span class="params">onInvalidate</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// work</span></span><br><span class="line">    onInvalidate(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    <span class="comment">// options</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><code>watchEffect</code> 接受两个参数，其中第一个参数必选，第二个参数可选</p>
+<p>第一个参数是每次执行时的执行函数，该函数会提供一个入参，表示侦听执行失败时的善后函数，类似于 <code>catch</code> 语句块中的 <code>finally</code>。此处的入参 <code>onInvalidate</code> 也接受一个函数，表示善后时执行的内容</p>
+<p>第二个参数表示 <code>watchEffect</code> 的配置，一般用于配置 <code>watchEffect</code> 执行的时机</p>
+<p>例如以下代码</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watchEffect(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">// work</span></span><br><span class="line">&#125;,&#123;</span><br><span class="line">    flush: <span class="string">'post'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><code>options</code> 中的字段 <code>flush</code>，默认值是 <code>&#39;pre&#39;</code>，表示在钩子函数执行之<strong>前</strong>就执行侦听，所以如果想在之后执行，就要手动设置为 <code>&#39;post&#39;</code></p>
+<p>注意，会在所有生命周期函数被调用后执行，意味着它有可能在 <code>beforeCreate</code> 生命周期之前，或 <code>created</code> 之前就被执行，所以请注意控制其执行时机 </p>
+<h1 id="标签属性"><a href="#标签属性" class="headerlink" title="标签属性"></a>标签属性</h1><p>也许有人觉得，写一个 <code>setup</code> 函数，和 vue2 好像没有什么本质差别</p>
+<p>但是，vue3 可以在 script 标签上另加一个新属性： <code>setup</code> </p>
+<p>当写一个 script 标签的时候，可以写作如下形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lang=&quot;ts&quot; setup&gt;</span><br><span class="line">xxx</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>此时 script 标签内部的所有内容，都被视为运行在 <code>setup</code> 函数中</p>
+<p>那 <code>setup</code> 的两个参数怎么办呢？直接写在属性上就好</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lang=&quot;ts&quot; setup=&quot;props,context&quot;&gt;</span><br><span class="line">xxx</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>这样就可以在 script 标签中正常使用 <code>props</code> 和 <code>context</code> 了</p>
+<p>那原来在 <code>setup</code> 中的 return 导出怎么办呢？答案是可以直接 export</p>
+<p>例如原来有如下 <code>setup</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">setup()&#123;</span><br><span class="line">    <span class="keyword">const</span> data=ref(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> &#123;data&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在可以直接写作如下模样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lang=&quot;ts&quot; setup=&quot;props,context&quot;&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    // 原有 vue 配置</span><br><span class="line">&#125;</span><br><span class="line">export const data = ref(0)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>之后的使用与上例相同，直接在模板中引用即可</p>
+<p>但是，虽然看起来很装逼，不过该写法尚未得到广泛支持，反正到2021年2月16日为止，我在我的编辑器里是用不了，2333</p>
+<h1 id="teleport"><a href="#teleport" class="headerlink" title="teleport"></a>teleport</h1><p>vue3 还有一个重要的新组件： <code>teleport</code></p>
+<p>它用来将新建的渲染挂载到页面上的某个目标，而不是原定位置</p>
+<p>考虑以下情况：我们需要制作一个弹窗功能，希望弹窗弹出后，其在 DOM 树的位置是 body 的直接子级</p>
+<p>那么可以得到如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;template v-if=&quot;visible&quot;&gt;</span><br><span class="line">		&lt;teleport to=&quot;body&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;dialog&quot;&gt;</span><br><span class="line">                对话框内容</span><br><span class="line">    		&lt;/div&gt;</span><br><span class="line">    	&lt;/teleport&gt;</span><br><span class="line">	&lt;/template&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<p>那么，上述模板在检测到 <code>visible</code> 变为 true 之后，要渲染内部的内容</p>
+<p>内部第一层是 <code>teleport</code>，其 <code>to</code> 属性为 <code>body</code>，那么会将 <code>teleport</code> 内部的所有内容，挂载到 <code>body</code> 上，成为其最后一个子结点</p>
+<p>发现了吧？其实 <code>teleport</code> 最重要的就是 <code>to</code> 属性，该属性接受一个 CSS 选择器，指定要挂载的位置</p>
+<p>选择器重复怎么办？自己看看 JQuery 吧（</p>
+<h1 id="scss"><a href="#scss" class="headerlink" title="scss"></a>scss</h1><p>在 vue3 with vite 中，除了原生 css 外，还可以写超集 scss</p>
+<p>scss 完全兼容 css 语法，并在此上提供了一些新语法</p>
+<ol>
+<li>$ 变量名</li>
+<li>嵌套层级</li>
+<li>mixin</li>
+<li>include</li>
+</ol>
+<h2 id="变量名"><a href="#变量名" class="headerlink" title="$ 变量名"></a>$ 变量名</h2><p>在 scss 中，可以声明 $ 开头的变量名，作为常量在下文中使用</p>
+<p>示例如下</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$color</span>: <span class="number">#ababab</span>;</span><br><span class="line"><span class="selector-id">#app</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$color</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就可以将 <code>#app</code> 的背景色设为 <code>#ababab</code></p>
+<h2 id="嵌套层级"><a href="#嵌套层级" class="headerlink" title="嵌套层级"></a>嵌套层级</h2><p>在 scss 中，包含关系可以直接写在嵌套中，不需要像 css 一样全部写在根</p>
+<p>设有如下 DOM 结构</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">            内容</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>则如果要分别设置 标题 和 内容 部分的样式，并给 <code>#app</code> 设置 hover 样式，在原生 css 中，要这么写</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#app</span>&gt;<span class="selector-class">.title</span>&#123;</span><br><span class="line">    xxx</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#app</span>&gt;<span class="selector-class">.context</span>&#123;</span><br><span class="line">    yyy</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#app</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">    zzz</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而在 scss 中，只需要这么写</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#app</span>&#123;</span><br><span class="line">    &gt;<span class="selector-class">.title</span>&#123;</span><br><span class="line">        xxx</span><br><span class="line">    &#125;</span><br><span class="line">    &gt;<span class="selector-class">.content</span>&#123;</span><br><span class="line">        yyy</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;:hover&#123;</span><br><span class="line">        zzz</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于子元素选择器，可以直接嵌套书写</p>
+<p>对于伪元素、伪类，需要使用 <code>&amp;</code> 来作为当前层级的标识符</p>
+<p>在上文中的 <code>&amp;:hover</code> 等效于 <code>#app:hover</code></p>
+<h2 id="mixin"><a href="#mixin" class="headerlink" title="mixin"></a>mixin</h2><p>当有一套固定的模式 css 要适用于多种不同属性时，可以使用 <code>@mixin</code> 语法</p>
+<p>类似于 css 中的 function</p>
+<p>设有如下 mixin</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">mixin</span> layout(<span class="variable">$color</span>)&#123;</span><br><span class="line">    &amp;:hover&#123;</span><br><span class="line">        <span class="attribute">background-color</span>:<span class="variable">$color</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>则表示声明了一个函数 layout，要求传入一个变量，在函数中设为 hover 状态下的背景色</p>
+<p>声明之后，使用 <code>include</code> 进行混入</p>
+<h2 id="include"><a href="#include" class="headerlink" title="include"></a>include</h2><p>设有上述 <code>mixin</code>，则可以按不同情况混入</p>
+<p>比如要在 <code>.title</code> 和 <code>.content</code>，分别适配不同的背景色，则可以有如下写法</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#app</span>&#123;</span><br><span class="line">    &gt;<span class="selector-class">.title</span>&#123;</span><br><span class="line">        <span class="variable">$color</span>: blue;</span><br><span class="line">        @<span class="keyword">include</span> layout(<span class="variable">$color</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    &gt;<span class="selector-class">.content</span>&#123;</span><br><span class="line">        <span class="variable">$color</span>: yellow;</span><br><span class="line">        @<span class="keyword">include</span> layout(<span class="variable">$color</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$color</span>: red;</span><br><span class="line">    @<span class="keyword">include</span> layout(<span class="variable">$color</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>等效于写作</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#app</span>&#123;</span><br><span class="line">    &gt;<span class="selector-class">.title</span>&#123;</span><br><span class="line">        &amp;:hover&#123;</span><br><span class="line">            <span class="attribute">background-color</span>: blue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &gt;<span class="selector-class">.content</span>&#123;</span><br><span class="line">        &amp;:hover&#123;</span><br><span class="line">            <span class="attribute">background-color</span>: yellow;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;:hover&#123;</span><br><span class="line">        <span class="attribute">background-color</span>: red;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可见，<code>mixin</code> 和 <code>include</code> 是搭配使用的，且使用效果为直接替换在原位</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>vue3 还是搞出来一些很好玩的东西，有空多研究一下</p>
+<p>而且和 ts 相性很好，又吸收了 react 的优点，未来超过 react 不是没有可能</p>
+<p>但是！！！太新的特性，使用的时候要先检查一下有没有得到支持了，不要改完代码才发现没支持，又要改回去</p>
+<p>这里我要点名表扬 <code>git reset --hard [version]</code>，存档合理的话，这简直是神技，2333</p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://www.zhihu.com/question/394062839/answer/1496127786" target="_blank" rel="noopener">如何看待 Web 开发构建工具 Vite？ - 阿里巴巴淘系技术</a></p>
+<p><a href="https://v3.cn.vuejs.org/guide/reactivity-computed-watchers.html#%E5%81%9C%E6%AD%A2%E4%BE%A6%E5%90%AC" target="_blank" rel="noopener">响应式计算和侦听 - watchEffect</a></p>
+<hr>
+<p>感谢阅读</p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--It's the end.<i class="fa fa-life-ring"></i>Thanks for your read.--</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/frontend/react-hooks/" rel="next" title="React Hooks">
+                <i class="fa fa-chevron-left"></i> React Hooks
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/uncategorized/mainpage/" rel="prev" title="Welcome to No. 68 Floating Island">
+                Welcome to No. 68 Floating Island <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg" alt="Ringoer">
+            
+              <p class="site-author-name" itemprop="name">Ringoer</p>
+              <p class="site-description motion-element" itemprop="description">随处可见的一般社畜</p>
+          </div>
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">128</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#构建"><span class="nav-number">1.</span> <span class="nav-text">构建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路由"><span class="nav-number">2.</span> <span class="nav-text">路由</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构造选项"><span class="nav-number">3.</span> <span class="nav-text">构造选项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ref"><span class="nav-number">4.</span> <span class="nav-text">ref</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#钩子函数"><span class="nav-number">5.</span> <span class="nav-text">钩子函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标签属性"><span class="nav-number">6.</span> <span class="nav-text">标签属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#teleport"><span class="nav-number">7.</span> <span class="nav-text">teleport</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scss"><span class="nav-number">8.</span> <span class="nav-text">scss</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量名"><span class="nav-number">8.1.</span> <span class="nav-text">$ 变量名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套层级"><span class="nav-number">8.2.</span> <span class="nav-text">嵌套层级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mixin"><span class="nav-number">8.3.</span> <span class="nav-text">mixin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#include"><span class="nav-number">8.4.</span> <span class="nav-text">include</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">10.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ringoer.com 版权所有 ICP证：<a href="https://beian.miit.gov.cn/">闽ICP备17033389号</a></span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
