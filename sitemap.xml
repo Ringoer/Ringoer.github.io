@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/frontend/css-scss/</loc>
+    
+    <lastmod>2021-02-17T03:52:31.602Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/frontend/vue3-features/</loc>
     
-    <lastmod>2021-02-16T15:05:42.096Z</lastmod>
+    <lastmod>2021-02-17T03:51:52.693Z</lastmod>
     
   </url>
   
