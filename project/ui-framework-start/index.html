@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
 <meta property="og:description" content="先宣传一下我自己的 UI 框架 Laby UI - 一个基于Vue3的UI框架 既然是一个 UI 框架，总要有展示的地方吧 让我们先搭一个官网">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-02-21T11:58:24.991Z">
+<meta property="og:updated_time" content="2021-02-21T12:16:13.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UI 框架-起步">
 <meta name="twitter:description" content="先宣传一下我自己的 UI 框架 Laby UI - 一个基于Vue3的UI框架 既然是一个 UI 框架，总要有展示的地方吧 让我们先搭一个官网">
@@ -552,6 +552,18 @@
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/router.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; createWebHistory, createRouter &#125; <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> history = createWebHistory()</span><br><span class="line"><span class="keyword">const</span> router = createRouter(&#123;</span><br><span class="line">    history,</span><br><span class="line">    routes: [</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
 <p>然后在 <code>main.ts</code> 中引入</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'./index.scss'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"></span><br><span class="line">createApp(App).use(router).mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="使用-svg"><a href="#使用-svg" class="headerlink" title="使用 svg"></a>使用 svg</h1><p>有时候只有文字不太好看，有图片比较好</p>
+<p>可以使用 <a href="https://www.iconfont.cn/" target="_blank" rel="noopener">icon font</a> 提供的免费图标，使用教程大致如下</p>
+<ol>
+<li>选择喜欢的图标，加入购物车</li>
+<li>新建一个项目，或选择一个已有项目，将购物车里的图标加入该项目</li>
+<li>进入”我的项目”，生成新的引用链接</li>
+<li>选择 <code>Symbol</code> 模式，复制链接，粘贴到本地项目的 <code>index.html</code> 的新 script 标签中</li>
+</ol>
+<p>之后就可以在本地使用如下的方式引用 svg 了</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">use</span> <span class="attr">xlink:href</span>=<span class="string">"#icon-Vue"</span>&gt;</span><span class="tag">&lt;/<span class="name">use</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>svg 的命名，参考 icon font 上”我的项目”里设置的每个图标的名称</p>
+<p>！！！如果图标有任何变化（包括数量或命名等），必须重新生成引用链接！！！</p>
 <h1 id="其余部分"><a href="#其余部分" class="headerlink" title="其余部分"></a>其余部分</h1><p>篇幅所限，其余部分分开写了，请按顺序查看以下文章</p>
 <p><a href="https://ringoer.com/project/ui-framework-topnav/">UI 框架-顶边栏</a></p>
 <p><a href="https://ringoer.com/project/ui-framework-home/">UI 框架-首页</a></p>
@@ -696,7 +708,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">132</span>
+                  <span class="site-state-item-count">133</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -751,7 +763,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计选型"><span class="nav-number">1.</span> <span class="nav-text">设计选型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#需求分析"><span class="nav-number">2.</span> <span class="nav-text">需求分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建官网"><span class="nav-number">3.</span> <span class="nav-text">搭建官网</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#整体布局设计"><span class="nav-number">4.</span> <span class="nav-text">整体布局设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路由设计"><span class="nav-number">5.</span> <span class="nav-text">路由设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其余部分"><span class="nav-number">6.</span> <span class="nav-text">其余部分</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计选型"><span class="nav-number">1.</span> <span class="nav-text">设计选型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#需求分析"><span class="nav-number">2.</span> <span class="nav-text">需求分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建官网"><span class="nav-number">3.</span> <span class="nav-text">搭建官网</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#整体布局设计"><span class="nav-number">4.</span> <span class="nav-text">整体布局设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路由设计"><span class="nav-number">5.</span> <span class="nav-text">路由设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-svg"><span class="nav-number">6.</span> <span class="nav-text">使用 svg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其余部分"><span class="nav-number">7.</span> <span class="nav-text">其余部分</span></a></li></ol></div>
             
 
           </div>
