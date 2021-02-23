@@ -2,9 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ringoer.com/project/ui-framework-start/</loc>
+    
+    <lastmod>2021-02-23T10:51:29.587Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ringoer.com/project/ui-framework-card/</loc>
+    
+    <lastmod>2021-02-23T10:47:46.212Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ringoer.com/project/ui-framework-table/</loc>
+    
+    <lastmod>2021-02-23T10:39:29.328Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ringoer.com/project/ui-framework-tabs/</loc>
+    
+    <lastmod>2021-02-23T10:39:17.916Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ringoer.com/project/ui-framework-switch/</loc>
+    
+    <lastmod>2021-02-23T10:39:06.108Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ringoer.com/project/ui-framework-dialog/</loc>
+    
+    <lastmod>2021-02-23T10:38:49.184Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://ringoer.com/project/ui-framework-button/</loc>
     
-    <lastmod>2021-02-21T15:10:38.543Z</lastmod>
+    <lastmod>2021-02-23T08:45:27.252Z</lastmod>
     
   </url>
   
@@ -26,13 +68,6 @@
     <loc>https://ringoer.com/project/ui-framework-topnav/</loc>
     
     <lastmod>2021-02-21T12:18:54.152Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ringoer.com/project/ui-framework-start/</loc>
-    
-    <lastmod>2021-02-21T12:16:13.371Z</lastmod>
     
   </url>
   
