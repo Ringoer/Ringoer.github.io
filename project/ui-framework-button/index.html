@@ -93,7 +93,7 @@
 <meta property="og:description" content="官网做好了，现在开始做核心组件吧！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://pic.ringoer.com/laby-ui-6.png">
-<meta property="og:updated_time" content="2021-02-23T08:45:27.252Z">
+<meta property="og:updated_time" content="2021-02-24T09:48:17.067Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UI 框架-Button 组件">
 <meta name="twitter:description" content="官网做好了，现在开始做核心组件吧！">
@@ -485,7 +485,9 @@
 <p>ok，组件功能也完成了</p>
 <p>什么？你说属性绑定完成了，事件绑定怎么办？？</p>
 <p>那个不用担心，在外部传递到组件的事件，在组件只有唯一根元素的情况下，是会自动绑定到根元素上面的，所以现在这样基本就完成了</p>
-<h1 id="样式表"><a href="#样式表" class="headerlink" title="样式表"></a>样式表</h1><p>然后补全样式表，建议直接打字抄一遍吧，一边抄一边理解比较好</p>
+<h1 id="样式表"><a href="#样式表" class="headerlink" title="样式表"></a>样式表</h1><p>然后补全样式表</p>
+<p>注意，UI 库的样式表一般不要加 <code>scoped</code> 修饰符，为了尽可能减少对用户样式表的影响，方便用户 DIY</p>
+<p>建议直接打字抄一遍吧，一边抄一边理解比较好</p>
 <p>特别注意，button 元素会有默认黑色外边框，不属于 border，必须通过 <code>outline: none;</code> 才能消除</p>
 <p>然后，我们使用 css3 的 <code>var()</code> 语法，取得我们通过 js 绑定到 style 上的 <code>--color</code> 属性</p>
 <p>为什么是 <code>--color</code> 而不是 <code>color</code> ？因为 <code>var()</code> 语法要求这个参数必须是 <code>--</code> 开头，才可以正常访问到</p>
@@ -629,7 +631,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">141</span>
+                  <span class="site-state-item-count">143</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>

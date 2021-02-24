@@ -2,16 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://ringoer.com/project/ui-framework-rollup/</loc>
+    <loc>https://ringoer.com/project/ui-framework-deploy/</loc>
     
-    <lastmod>2021-02-23T16:36:40.607Z</lastmod>
+    <lastmod>2021-02-24T13:58:59.348Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ringoer.com/project/ui-framework-code-improve/</loc>
+    
+    <lastmod>2021-02-24T13:49:08.792Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://ringoer.com/project/ui-framework-improve/</loc>
     
-    <lastmod>2021-02-23T16:34:30.740Z</lastmod>
+    <lastmod>2021-02-24T09:54:40.169Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ringoer.com/project/ui-framework-button/</loc>
+    
+    <lastmod>2021-02-24T09:48:17.067Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ringoer.com/project/ui-framework-rollup/</loc>
+    
+    <lastmod>2021-02-23T16:36:40.607Z</lastmod>
     
   </url>
   
@@ -54,13 +75,6 @@
     <loc>https://ringoer.com/project/ui-framework-dialog/</loc>
     
     <lastmod>2021-02-23T10:38:49.184Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ringoer.com/project/ui-framework-button/</loc>
-    
-    <lastmod>2021-02-23T08:45:27.252Z</lastmod>
     
   </url>
   
