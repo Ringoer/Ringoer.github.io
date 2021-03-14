@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ringoer.com/programing/virtual-dom/</loc>
+    
+    <lastmod>2021-03-14T14:36:09.113Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ringoer.com/links/index.html</loc>
+    
+    <lastmod>2021-03-05T04:17:23.120Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ringoer.com/J2EE/oomall-order/</loc>
+    
+    <lastmod>2021-03-01T08:54:24.038Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://ringoer.com/project/ui-framework-deploy/</loc>
     
     <lastmod>2021-02-24T13:58:59.348Z</lastmod>
@@ -222,13 +243,6 @@
     <loc>https://ringoer.com/frontend/webpack-1/</loc>
     
     <lastmod>2020-12-20T13:00:32.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ringoer.com/links/index.html</loc>
-    
-    <lastmod>2020-12-19T07:45:44.242Z</lastmod>
     
   </url>
   
@@ -705,13 +719,6 @@
     <loc>https://ringoer.com/J2EE/oomall/</loc>
     
     <lastmod>2020-12-12T14:38:09.350Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ringoer.com/J2EE/oomall/</loc>
-    
-    <lastmod>2020-12-12T14:38:01.034Z</lastmod>
     
   </url>
   
