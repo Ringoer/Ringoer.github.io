@@ -6,6 +6,17 @@
     <content type="text"><![CDATA[Are You Going To Scarborough Fair ?]]></content>
   </entry>
   <entry>
+    <title><![CDATA[在 umi 中使用 dva]]></title>
+    <url>%2Fprograming%2Fumi-dva%2F</url>
+    <content type="text"><![CDATA[在 umi 中使用 dva 就像用 redux 一样 umi 是自带 dva 的，只需要先建一个名为 src/models 的文件夹方便统一管理，然后从 umi 库中取得 getDvaApp 函数 例如，现在有一个数据源，名为 breadcrumb 面包屑，保存面包屑组件的信息 引入 dva可以这样写 store.ts（可以任意命名，只是我喜欢叫 store） 123456// models/store.tsimport &#123; getDvaApp &#125; from "umi"const app = getDvaApp()app.model(require('./breadcrumb').default) 使用 app.model 注册到全局数据源，注意要通过 .default 取得最终输出 声明初始化然后声明数据源的格式和内容 123456// interfaces/Breadcrumb.tsinterface Breadcrumb &#123; index: number, pathname: string, name: string&#125; 12345678910111213// models/breadcrumb.tsexport default &#123; namespace: 'breadcrumb', state: [&#123; index: 0, pathname: '/', name: '首页' &#125;], reducers: &#123; info(state: Breadcrumb[], &#123; payload &#125;: &#123; payload: Breadcrumb[] &#125;) &#123; if (state.length &lt; payload[0].index) &#123; return state &#125; return state.slice(0, payload[0].index).concat([...payload]); &#125;, &#125;,&#125;; 在这里我设计为一个数组，通过数组项来保存面包屑的信息，提交数据变更的时候也要提交数组格式 注意 reducers 中的起名，后续提交变更时，必须使用该起名 注入组件例如我向 /首页/[版块 id] 这个路径的 [id].tsx 组件注入面包屑数据源 设该组件原本写法如下 1export default (props: any)=&gt;&#123;&#125; 现在需要写作 12345import &#123; connect &#125; from &apos;umi&apos;export default connect( (&#123; breadcrumb &#125;: &#123; breadcrumb: Breadcrumb[] &#125;) =&gt; (&#123; breadcrumb &#125;))((props: any)=&gt;&#123;&#125;) 如上，将数据源连接到组件上 可见，这个 connent 函数，类似于一个立即执行函数 这个立即执行函数要求传入两个参数，第二个是原组件，不赘述了；第一个是要注入的数据源函数，这个函数的传入参数是从全局数据源中获取的数据，返回值是包含该数据的一个对象 传入后，数据会实际绑定在 props 上，如本例可以通过 props.breadcrumb 访问到数据 同时，props 上也会绑定 dispatch 方法，可以通过该方法提交数据变更 注意，不论连接了多少数据，只要有连接数据，就会有 dispatch 函数 提交变更如上例，提交变更的一个写法如下 1234props.dispatch(&#123; type: 'breadcrumb/info', payload: [&#123; index: 0, pathname: '/', name: '首页' &#125;] ,&#125;) 要求提交一个对象，该对象包含至少两个字段 其一是 type，命名格式为 [namespace]/[reducerName]，具体要参考你的定义 其二是 payload（也可以是其它名称，取决于你的定义），包含你传入的数据 ok，umi 中使用 dva 的方法，就是这样了 感谢阅读]]></content>
+      <categories>
+        <category>programing</category>
+      </categories>
+      <tags>
+        <tag>umi</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[虚拟 DOM 和 DOM diff]]></title>
     <url>%2Fprograming%2Fvirtual-dom%2F</url>
     <content type="text"><![CDATA[常常听说原生 DOM 操作比虚拟 DOM 操作慢，真的是这样吗？ 先说结论：原生 DOM 操作和虚拟 DOM 操作相比，单次的速度是差不多的，并不会慢。但是原生 DOM 操作只会忠实地执行程序写定的内容，而不会自动优化；而虚拟 DOM 往往内置一些算法，能压缩 DOM 操作的次数，所以最后看起来，就是虚拟 DOM 操作整体上要快于原生 DOM 操作 那为什么会这样呢？首先要了解一下虚拟 DOM 到底是什么 虚拟 DOM 是什么众所周知，在控制台可以看到 DOM 树，但是总不能每次在内存中操作，都分析一次页面结构吧？肯定要想办法保存到内存中 那么，内存中的 DOM 树就是虚拟 DOM 树，每个结点就是虚拟 DOM 结点 虚拟 DOM 的优点在反应变更到页面上之前，我们可以通过延缓操作，来使得计算和变更分离，使得变更操作更集中 然后就可以计算，这一部分的变更中，有哪些是重复的呢？重复的变更，合并为同一次，就可以减少变更量了 比如添加 n 个结点，原本操作是for i in range(n): insert(node)，现在是直接 insert(node*n)，显然复杂度从 O(n) 降低到了 O(1) 同理，这一部分的 DOM 操作，涉及了多少结点呢？实际变更的结点，有没有指定的数量那么多？减少为需要的数量即可 比如变更 n 个结点数据，变 [0,1,1,1,...1,0] 为 [1,1,1,...,1]，显然只有首尾两个需要变更，如果中间全部变更，那成本也太大了，所以这里也是复杂度从 O(n) 降低到了 O(1) 当然，实际的内部计算没有这么简单，只是举个简单例子，2333 除了上述两点外，大家都知道 js 是跨平台的，那么基于 js 的内存的 DOM 树，自然也是跨平台的，岂不美哉？ 虚拟 DOM 的缺点有优点自然也有缺点 用 c++ 写过树的朋友都知道，在 build 的时候每个结点都要 Node* p=new Node() 然后挂载到父结点的 lchild 或者 rchild 上 同理，在 js 创建虚拟 DOM，一般分为 vue 式和 react 式两种 vue 式1234567// 只有在 render 函数中才能得到 h 函数h('div', &#123; class: 'red', on: &#123; click: () =&gt; &#123; &#125; &#125;,&#125;, [h('span',&#123;&#125;,'span1'), h('span', &#123;&#125;, 'span2']) 创建出来的结点结构如下 1234567891011121314const vNode = &#123; tag: "div", // 标签名 or 组件名 data: &#123; class: "red", // 标签上的属性 on: &#123; click: () =&gt; &#123;&#125; // 事件 &#125; &#125;, children: [ // 子元素们 &#123; tag: "span", ... &#125;, &#123; tag: "span", ... &#125; ], ...&#125; react 式12345createElement('div',&#123;className:'red',onClick:()=&gt; &#123;&#125;&#125;,[ createElement('span', &#123;&#125;, 'span1'), createElement('span', &#123;&#125;, 'span2') ]) 创建出来的结点结构如下 1234567891011121314const vNode = &#123; key: null, props: &#123; children: [ // 子元素们 &#123; type: 'span', ... &#125;, &#123; type: 'span', ... &#125; ], className: "red" // 标签上的属性 onClick: () =&gt; &#123;&#125; // 事件 &#125;, ref: null, type: "div", // 标签名 or 组件名 ...&#125; 显然创建很麻烦，但是我们还有 template 和 jsx！ template直接使用 XML 语法声明页面结构，然后通过 vue-loader 解析即可 jsx12345678()=&gt;&#123; return ( &lt;div className="red" onClick="&#123;()=&gt; &#123;&#125;&#125;"&gt; &lt;span&gt;span1&lt;/span&gt; &lt;span&gt;span2&lt;/span&gt; &lt;/div&gt; )&#125; 虽然简化了，但还是强依赖，且麻烦，不过总比不能创建好，2333 DOM diff 是什么直接使用新结点和旧结点，找到最近公共祖先，然后比对该子树，哪里发生了变更 比如在先序序列 ABCDEFG，中序序列 CBDAFEG 的二叉树上，删除 F 结点，并在 F 的根上插入 H 结点 对于计算机来说，它得到的新子树是 EGH(先) GEH(中) 的子树，与原子树 EFG(先) FEG(中) 对比，是将结点 F 修改为结点 G，将结点 G 修改为结点 H 所以，人类认为的一次删除和一次操作，在计算机的理解就是两次修改 然后再同步到原树上，变为先序序列 ABCDEGH，中序序列 CBDAGEH DOM diff 的优点如上，可以不用遍历整棵树就快速算出新子树，且不需要全部替换树，只需要替换子树 DOM diff 的问题如上，计算机的理解和人类的理解不一样 如果上例中没有第二步插入，那么计算机会理解为 变更结点 F 为结点 G 删除结点 G 要注意这一点！！但其实效率还是比你直接操作真实 DOM 要高 感谢阅读]]></content>
@@ -540,8 +551,8 @@
         <category>knowledge</category>
       </categories>
       <tags>
-        <tag>计算机网络</tag>
         <tag>http(s)</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>

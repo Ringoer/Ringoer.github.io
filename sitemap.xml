@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ringoer.com/programing/umi-dva/</loc>
+    
+    <lastmod>2021-03-14T15:17:23.940Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://ringoer.com/programing/virtual-dom/</loc>
     
     <lastmod>2021-03-14T14:36:09.113Z</lastmod>
