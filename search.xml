@@ -6,6 +6,14 @@
     <content type="text"><![CDATA[Are You Going To Scarborough Fair ?]]></content>
   </entry>
   <entry>
+    <title><![CDATA[服务器迁移笔记]]></title>
+    <url>%2Fprograming%2Fserver-migration%2F</url>
+    <content type="text"><![CDATA[小水管不够用了，新买了大水管 然后本社恐不想和人打交道，遂放弃腾讯云的自动迁移，而是手动迁移 目录主要分为以下步骤 基本环境配置 mysql 配置 redis 配置 域名解析配置 本来应该有 kafka 之类的消息队列配置，但是我现在还没用过，以后再说吧 serverless（没配，有朝一日再写 基本环境配置安全组默认是全开，这肯定不行，建议开以下端口 协议 端口 描述 ICMP - 支持 Ping 服务 ICMPv6 - 支持 Ping 服务 TCP 20 ftp 连接端口 TCP 21 ftp 数据端口 TCP 22 ssh 登录端口 TCP 80 网站默认端口 TCP 443 ssl 默认端口 TCP 3306 mysql 默认端口 TCP 3389 windows 登录端口 TCP 6379 redis 默认端口 TCP （任意端口段） 自己的服务想用的端口 - 其余端口 均拒绝 root 账户总不能跟我说你愿意每次命令都打个 sudo 吧，你愿意我也不愿意 首先，执行 1sudo passwd root 更改 root 用户的密码 然后修改文件 /etc/ssh/sshd_config 在文件中找到这两行 12LoginGraceTime 2mPermitRootLogin yes 这两行本来有注释，把注释号删掉，然后把 PermitRootLogin 字段值改为 yes 就行 然后重启服务器，用 root 用户登录，就可以不用每个命令都打 sudo 了 docker都是依赖 docker 做容器隔离的，没有 docker 怎么行 ubuntu 安装直接运行 1curl -sSL https://get.daocloud.io/docker | sh 即可 然后用 1docker run hello-world 验证安装 mysql我的系统是 ubuntu，千万千万不要用 linux 的方法，ubuntu 不完全一样 直接运行 1apt-get install mysql-server 即可 然后进行配置 初始化配置：mysql_secure_installation 123456789101112131415161718192021222324252627282930313233#1VALIDATE PASSWORD PLUGIN can be used to test passwords...Press y|Y for Yes, any other key for No: N (选择N ,不会进行密码的强校验)#2Please set the password for root here...New password: (输入密码)Re-enter new password: (重复输入)#3By default, a MySQL installation has an anonymous user,allowing anyone to log into MySQL without having to havea user account created for them...Remove anonymous users? (Press y|Y for Yes, any other key for No) : N (选择N，不删除匿名用户)#4Normally, root should only be allowed to connect from'localhost'. This ensures that someone cannot guess atthe root password from the network...Disallow root login remotely? (Press y|Y for Yes, any other key for No) : N (选择N，允许root远程连接)#5By default, MySQL comes with a database named 'test' thatanyone can access...Remove test database and access to it? (Press y|Y for Yes, any other key for No) : N (选择N，不删除test数据库)#6Reloading the privilege tables will ensure that all changesmade so far will take effect immediately.Reload privilege tables now? (Press y|Y for Yes, any other key for No) : Y (选择Y，修改权限立即生效)————————————————版权声明：本文为CSDN博主「風の住む街~」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。原文链接：https://blog.csdn.net/weixin_38924500/article/details/106261971 之后检查服务起了没有 1systemctl status mysql.service 接下来，为了 navicat 可以连接上需要改绑定配置 进入目录 /etc/mysql/mysql.conf.d，打开文件 mysqld.cnf 找到字段 bind-address，直接注释掉 然后通过终端进入 mysql 1mysql -u root -p 接下来查看 root 用户状态 12mysql&gt; use mysql;mysql&gt; select host,user,plugin from user; 如果在 user=root 的行，host 字段值不为 %，plugin 字段值不为 mysql_native_password，那就需要修改配置 1234ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '密码';ALTER USER 'root'@'localhost' IDENTIFIED BY '密码' PASSWORD EXPIRE NEVER;UPDATE user SET host = '%' WHERE user = 'root';UPDATE user SET plugin='mysql_native_password' WHERE user='root' 然后重启 mysql，就可以用 navicat 登录了 redis先安装一下 1apt install redis-server 好了，安装完毕，通过 1redis-server 即可启动 redis 服务，然后通过 1redis-cli 即可连接到 redis 服务 然后是改配置文件 和mysql 的 bind-address 差不多，redis 配置文件也有一个 bind 属性 打开 /etc/redis/redis.conf，找到 bind 127.0.0.1 ::1，然后注释掉这一行 然后执行 1redis-server restart 重启服务 接下来进入 redis，执行 1config set requirepass '密码' 即可设置 redis 的密码，之后所有操作都要先用 auth 验证密码才行 域名建议直接暂停解析 然后访问域名，确定域名解析真的已经停止了 然后修改解析值，再重新发布 就可以了 感谢阅读]]></content>
+      <categories>
+        <category>programing</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[在 umi 中使用 dva]]></title>
     <url>%2Fprograming%2Fumi-dva%2F</url>
     <content type="text"><![CDATA[在 umi 中使用 dva 就像用 redux 一样 umi 是自带 dva 的，只需要先建一个名为 src/models 的文件夹方便统一管理，然后从 umi 库中取得 getDvaApp 函数 例如，现在有一个数据源，名为 breadcrumb 面包屑，保存面包屑组件的信息 引入 dva可以这样写 store.ts（可以任意命名，只是我喜欢叫 store） 123456// models/store.tsimport &#123; getDvaApp &#125; from "umi"const app = getDvaApp()app.model(require('./breadcrumb').default) 使用 app.model 注册到全局数据源，注意要通过 .default 取得最终输出 声明初始化然后声明数据源的格式和内容 123456// interfaces/Breadcrumb.tsinterface Breadcrumb &#123; index: number, pathname: string, name: string&#125; 12345678910111213// models/breadcrumb.tsexport default &#123; namespace: 'breadcrumb', state: [&#123; index: 0, pathname: '/', name: '首页' &#125;], reducers: &#123; info(state: Breadcrumb[], &#123; payload &#125;: &#123; payload: Breadcrumb[] &#125;) &#123; if (state.length &lt; payload[0].index) &#123; return state &#125; return state.slice(0, payload[0].index).concat([...payload]); &#125;, &#125;,&#125;; 在这里我设计为一个数组，通过数组项来保存面包屑的信息，提交数据变更的时候也要提交数组格式 注意 reducers 中的起名，后续提交变更时，必须使用该起名 注入组件例如我向 /首页/[版块 id] 这个路径的 [id].tsx 组件注入面包屑数据源 设该组件原本写法如下 1export default (props: any)=&gt;&#123;&#125; 现在需要写作 12345import &#123; connect &#125; from &apos;umi&apos;export default connect( (&#123; breadcrumb &#125;: &#123; breadcrumb: Breadcrumb[] &#125;) =&gt; (&#123; breadcrumb &#125;))((props: any)=&gt;&#123;&#125;) 如上，将数据源连接到组件上 可见，这个 connent 函数，类似于一个立即执行函数 这个立即执行函数要求传入两个参数，第二个是原组件，不赘述了；第一个是要注入的数据源函数，这个函数的传入参数是从全局数据源中获取的数据，返回值是包含该数据的一个对象 传入后，数据会实际绑定在 props 上，如本例可以通过 props.breadcrumb 访问到数据 同时，props 上也会绑定 dispatch 方法，可以通过该方法提交数据变更 注意，不论连接了多少数据，只要有连接数据，就会有 dispatch 函数 提交变更如上例，提交变更的一个写法如下 1234props.dispatch(&#123; type: 'breadcrumb/info', payload: [&#123; index: 0, pathname: '/', name: '首页' &#125;] ,&#125;) 要求提交一个对象，该对象包含至少两个字段 其一是 type，命名格式为 [namespace]/[reducerName]，具体要参考你的定义 其二是 payload（也可以是其它名称，取决于你的定义），包含你传入的数据 ok，umi 中使用 dva 的方法，就是这样了 感谢阅读]]></content>
@@ -14,6 +22,7 @@
       </categories>
       <tags>
         <tag>umi</tag>
+        <tag>dva</tag>
       </tags>
   </entry>
   <entry>
@@ -551,8 +560,8 @@
         <category>knowledge</category>
       </categories>
       <tags>
-        <tag>http(s)</tag>
         <tag>计算机网络</tag>
+        <tag>http(s)</tag>
       </tags>
   </entry>
   <entry>
@@ -1134,8 +1143,8 @@
       </categories>
       <tags>
         <tag>题解</tag>
-        <tag>并查集</tag>
         <tag>云霄一中月赛</tag>
+        <tag>并查集</tag>
       </tags>
   </entry>
   <entry>
