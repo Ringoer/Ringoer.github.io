@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react native,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="总是应该认识一些基本概念">
+<meta name="keywords" content="react native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端-RN-起步">
+<meta property="og:url" content="https://ringoer.com/frontend/ckt4kmw2l00k5rou3mrcznf7m/index.html">
+<meta property="og:site_name" content="Ringo&#39;s Coding Life">
+<meta property="og:description" content="总是应该认识一些基本概念">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-09-03T16:26:54.666Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端-RN-起步">
+<meta name="twitter:description" content="总是应该认识一些基本概念">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ringoer.com/frontend/ckt4kmw2l00k5rou3mrcznf7m/">
+
+
+
+
+
+  <title>前端-RN-起步 | Ringo's Coding Life</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ringo's Coding Life</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI to ACM</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            元初之地
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-blog">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-text-o"></i> <br>
+            
+            文章相关
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            自己绍介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-contact">
+          <a href="/contact/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-envelope-o"></i> <br>
+            
+            联系方式
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br>
+            
+            友情链接
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            站内搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ringoer.com/frontend/ckt4kmw2l00k5rou3mrcznf7m/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ringoer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ringo's Coding Life">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">前端-RN-起步</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-01T19:27:00+08:00">
+                2021-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/frontend/" itemprop="url" rel="index">
+                    <span itemprop="name">frontend</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>总是应该认识一些基本概念</p>
+<a id="more"></a>
+<h1 id="原生组件"><a href="#原生组件" class="headerlink" title="原生组件"></a>原生组件</h1><p>在 rn 中不可以使用 html 标签，只能使用 rn 提供的原生组件，或第三方提供的可以用于 rn 的组件</p>
+<p>原生组件列表请参看官方链接：<a href="https://reactnative.cn/docs/components-and-apis" target="_blank" rel="noopener">https://reactnative.cn/docs/components-and-apis</a></p>
+<p>主要有以下核心组件：</p>
+<table>
+<thead>
+<tr>
+<th>组件名</th>
+<th>等效 html 标签</th>
+<th>重要的特殊之处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>View</td>
+<td>div</td>
+<td>无点击事件</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>span</td>
+<td>所有直接文本必须包裹在 <code>&lt;Text&gt;</code> 之中，包括实体字符</td>
+</tr>
+<tr>
+<td>Image</td>
+<td>img</td>
+<td>必须指明高度和宽度</td>
+</tr>
+<tr>
+<td>ScrollView</td>
+<td>-</td>
+<td>ScrollView 不可以嵌套在另一个 ScrollView 中</td>
+</tr>
+<tr>
+<td>TextInput</td>
+<td>input</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h1 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h1><p>有了结构，自然要有样式</p>
+<p>内联的样式可以直接通过组件的 <code>style</code> 属性进行书写，每个属性使用驼峰写法</p>
+<p>注意每个标签可以具有的 <code>style</code> 是不一样的，比如 <code>color</code> 属性，无法设置在 <code>View</code> 组件上（因为 View 不能直接包含文本），只能设置在 <code>Text</code> 组件上</p>
+<p>也可以使用内部样式，写法如下</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;StyleSheet&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = StyleSheet.create(&#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    minHeight: <span class="string">'100%'</span>,</span><br><span class="line">    backgroundColor: <span class="string">'white'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  placeholder: &#123;</span><br><span class="line">    height: <span class="number">60</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>create 之后的 <code>styles</code> 实质上也还是一个对象，可以通过 <code>styles.container</code> 来使用样式，只不过通过 <code>StyleSheet.create</code> 来创建的话，会有自动代码补全</p>
+<p>使用时，直接书写于组件的 <code>style</code> 属性中。注意，react 原本是写于 <code>className</code> 属性中，此处不同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">    &lt;Text&gt;demo&lt;/Text&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<p>也可以使用 spread 运算符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;&#123;...styles.container, backgroundColor: &apos;black&apos;&#125;&#125;&gt;</span><br><span class="line">    &lt;Text&gt;demo&lt;/Text&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<p>在上一章中我们引入了 less 支持，所以当然也可以写外部样式</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.less</span></span><br><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: white;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">'./index.less'</span></span><br></pre></td></tr></table></figure>
+<p>之后用法与内部样式一样</p>
+<h1 id="基本布局"><a href="#基本布局" class="headerlink" title="基本布局"></a>基本布局</h1><p>为了达到类似 caho 的移动端效果，我们需要页脚</p>
+<p>则有如下组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import &#123;SafeAreaView, ScrollView, View&#125; from &apos;react-native&apos;;</span><br><span class="line">const Layout = () =&gt; &#123;</span><br><span class="line">    return (</span><br><span class="line">        &lt;SafeAreaView style=&#123;styles.container&#125;&gt;</span><br><span class="line">            &lt;ScrollView&gt;</span><br><span class="line">                &lt;Component navigation=&#123;navigation&#125; /&gt;</span><br><span class="line">                &lt;View style=&#123;styles.placeholder&#125; /&gt;</span><br><span class="line">            &lt;/ScrollView&gt;</span><br><span class="line">            &lt;Footer navigation=&#123;navigation&#125; /&gt;</span><br><span class="line">        &lt;/SafeAreaView&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先使用 <code>SafeAreaView</code> 作为外层，以做到 ios 支持。详见 <a href="https://reactnative.cn/docs/safeareaview" target="_blank" rel="noopener">https://reactnative.cn/docs/safeareaview</a></p>
+<p>然后使用 <code>ScrollView</code> 包裹主要视图，使得主视图组件可以上下滑动；同时，提供一个自定义的 <code>Footer</code> 组件作为页脚</p>
+<p>注意，此处页脚必须写在 <code>ScrollView</code> 外部，才可以固定在视图下部，起到类似于 <code>positon: fixed;</code> 之效果</p>
+<p>为什么要这样？因为 rn 的 style 不支持 <code>position: fixed;</code></p>
+<p>如果写在 <code>ScrollView</code> 内部，就会造成必须滚动到页面最下方才可以看到页脚</p>
+<p>同时，因为页脚现在类似 <code>fixed</code>，所以会遮挡掉 <code>ScrollView</code> 最末尾的部分，所以需要在 <code>ScrollView</code> 中放置一个等高的空组件来占位</p>
+<h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><p>路由如何配置，是非常重要的一环，必须要了解</p>
+<h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><p>参考 <a href="https://caho.ringoer.com" target="_blank" rel="noopener">Caho</a>，我暂且设置了如下路由</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Route &#123;</span><br><span class="line">  path: <span class="built_in">string</span>;</span><br><span class="line">  title: <span class="built_in">string</span>;</span><br><span class="line">  component: React.ComponentType&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router: Route[] = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/login'</span>,</span><br><span class="line">    title: <span class="string">'登录'</span>,</span><br><span class="line">    component: LoginScreen,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/forum'</span>,</span><br><span class="line">    title: <span class="string">'首页'</span>,</span><br><span class="line">    component: HomeScreen,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/forum/[id]'</span>,</span><br><span class="line">    title: <span class="string">'版块'</span>,</span><br><span class="line">    component: ForumIdScreen,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/forum/all'</span>,</span><br><span class="line">    title: <span class="string">'所有版块'</span>,</span><br><span class="line">    component: ForumScreen,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/topic/[id]'</span>,</span><br><span class="line">    title: <span class="string">'帖子'</span>,</span><br><span class="line">    component: TopicScreen,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/user/[id]'</span>,</span><br><span class="line">    title: <span class="string">'用户'</span>,</span><br><span class="line">    component: UserScreen,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/message'</span>,</span><br><span class="line">    title: <span class="string">'消息'</span>,</span><br><span class="line">    component: MessageScreen,</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>使用 <code>react-navigation</code> 来实现路由</p>
+<p>文档地址：<a href="https://reactnavigation.org/docs/getting-started/" target="_blank" rel="noopener">https://reactnavigation.org/docs/getting-started/</a></p>
+<p>安装依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add @react-navigation/native @react-navigation/native-stack react-native-screens react-native-safe-area-context</span><br></pre></td></tr></table></figure>
+<p>然后打开 <code>App.tsx</code>，引入需要的组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import &#123;NavigationContainer&#125; from &apos;@react-navigation/native&apos;;</span><br><span class="line">import &#123;createNativeStackNavigator&#125; from &apos;@react-navigation/native-stack&apos;;</span><br><span class="line"></span><br><span class="line">const Stack = createNativeStackNavigator();</span><br></pre></td></tr></table></figure>
+<p><code>react-navigation</code> 要求我们通过 <code>NavigationContainer</code> 和 <code>Stack</code> 注册路由，之后才可以正常使用</p>
+<p>注册写法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">import router from &apos;./router&apos;;</span><br><span class="line"></span><br><span class="line">const createScreen =</span><br><span class="line">  (Component: React.ComponentType&lt;any&gt;) =&gt;</span><br><span class="line">  (&#123;navigation&#125;: &#123;navigation: Navigation&#125;) =&gt; &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;SafeAreaView style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;ScrollView&gt;</span><br><span class="line">          &lt;Component navigation=&#123;navigation&#125; /&gt;</span><br><span class="line">          &lt;View style=&#123;styles.placeholder&#125; /&gt;</span><br><span class="line">        &lt;/ScrollView&gt;</span><br><span class="line">        &lt;Footer navigation=&#123;navigation&#125; /&gt;</span><br><span class="line">      &lt;/SafeAreaView&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">const Router = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;NavigationContainer&gt;</span><br><span class="line">      &lt;Stack.Navigator initialRouteName=&quot;/forum&quot;&gt;</span><br><span class="line">        &#123;router.map(route =&gt; (</span><br><span class="line">          &lt;Stack.Screen</span><br><span class="line">            key=&#123;route.path&#125;</span><br><span class="line">            name=&#123;route.path&#125;</span><br><span class="line">            component=&#123;createScreen(route.component)&#125;</span><br><span class="line">            options=&#123;&#123;</span><br><span class="line">              title: route.title,</span><br><span class="line">              headerTitleAlign: &apos;center&apos;,</span><br><span class="line">              headerRight: () =&gt; &lt;Logout /&gt;,</span><br><span class="line">            &#125;&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        ))&#125;</span><br><span class="line">      &lt;/Stack.Navigator&gt;</span><br><span class="line">    &lt;/NavigationContainer&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先使用 <code>&lt;NavigationContainer&gt;</code> 创建 navigation 容器，然后使用 <code>&lt;Stack.Navigator&gt;</code> 创建路由栈，用于在不同路由之间往返，最后通过 <code>&lt;Stack.Screen&gt;</code> 声明每一个路由</p>
+<p>对于每条路由，可以手写，也可以如上这般通过数组遍历来完成，但要注意，<code>&lt;Stack.Navigator&gt;</code> 只接受 <code>&lt;Stack.Screen&gt;</code> 作为直接子级</p>
+<p>对于每个 Screen，必要参数有 <code>name</code> 和 <code>component</code>，用于指示其唯一标识符和要渲染的组件。上例中的 <code>key</code> 是因为数组方法 <code>map</code> 要求对每个组件传入 <code>key</code> 作为唯一标识符</p>
+<p>此处的 <code>component</code> 使用了一个包装函数，来使得所有组件共用相同的布局，不需要各自引入页脚</p>
+<p>此外，还可以传入 <code>options</code> 来指示路由的标题等内容。上例中传入了 <code>title</code> 作为标题，<code>headerTitleAlign</code> 作为标题的对齐方式，<code>headerRight</code> 作为附加在标题右侧的组件。该标题会渲染在每个页面的最上方，等效顶边栏</p>
+<p>现在就完成路由的配置了，启动应用就会发现应用路由到了 <code>initialRouteName</code> 所指示的组件</p>
+<p>如果没有指示 <code>initialRouteName</code>，则会路由到 <code>&lt;Stack.Screen&gt;</code> 列表中的第一个组件</p>
+<h2 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h2><p>可是这样只能到达一个页面呀，该怎么前往其它页面呢</p>
+<p>可以使用注入的 <code>navigation</code></p>
+<p>对于通过路由到达的每个组件，其 <code>props</code> 中均会被注入一个 <code>navigation</code> 导航器，该导航器具有两个重要方法：</p>
+<ol>
+<li><code>navigate: (navigationName: NavigationName, payload?: any) =&gt; void;</code>，第一个参数是路由名 (name)，第二个参数可选，是通过路由传递的参数</li>
+<li><code>getState: () =&gt; any;</code>，可以获得上层路由传递过来的参数，包含路由栈内全部的参数</li>
+</ol>
+<p>显然，这是归属于路由的功能，但是 <code>react-navigation</code> 不提供 <code>navigation</code> 的类型定义，所以我们可以在 <code>./src/router/index.ts</code> 中提供我们自己的类型定义</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> paths = [</span><br><span class="line">  <span class="string">'/login'</span>,</span><br><span class="line">  <span class="string">'/forum'</span>,</span><br><span class="line">  <span class="string">'/forum/[id]'</span>,</span><br><span class="line">  <span class="string">'/forum/all'</span>,</span><br><span class="line">  <span class="string">'/topic/[id]'</span>,</span><br><span class="line">  <span class="string">'/user/[id]'</span>,</span><br><span class="line">  <span class="string">'/message'</span>,</span><br><span class="line">] <span class="keyword">as</span> <span class="keyword">const</span>;</span><br><span class="line"><span class="keyword">type</span> NavigationName = <span class="keyword">typeof</span> paths[<span class="built_in">number</span>];</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> Navigation &#123;</span><br><span class="line">  navigate: <span class="function">(<span class="params">navigationName: NavigationName, payload?: <span class="built_in">any</span></span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">  getState: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">any</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过这样的定义，我们就可以在外部使用 <code>navigation</code> 的使用，声明其类型为 <code>Navigation</code>，并在其 <code>navigate</code> 方法中使用代码自动补全</p>
+<p>然后，我们可以在任意的直接路由到达的组件中，获取 <code>navigation</code> 导航器，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// ./src/screen/user/index.tsx</span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123;Text, View&#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123;Navigation&#125; from &apos;../../router&apos;;</span><br><span class="line"></span><br><span class="line">export default (props: &#123;navigation: Navigation&#125;) =&gt; &#123;</span><br><span class="line">  const &#123;navigation&#125; = props;</span><br><span class="line">  const &#123;routes&#125; = navigation.getState();</span><br><span class="line">  const &#123;id&#125; = routes[routes.length - 1].params;</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;View&gt;</span><br><span class="line">      &lt;Text&gt;&#123;id&#125;&lt;/Text&gt;</span><br><span class="line">    &lt;/View&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>则从页脚跳转到 <code>/user/[id]</code> 的代码如下</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">navigation.navigate(<span class="string">'/user/[id]'</span>, &#123;id: userId&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="页脚"><a href="#页脚" class="headerlink" title="页脚"></a>页脚</h1><p>刚才一直说页脚，它是怎么实现的呢？</p>
+<p>其实就是在 <code>View</code> 里面放 <code>Icon</code>，2333</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123;View&#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123;connect&#125; from &apos;react-redux&apos;;</span><br><span class="line"></span><br><span class="line">import Icon from &apos;../../iconfont&apos;;</span><br><span class="line">import &#123;User&#125; from &apos;../../interface&apos;;</span><br><span class="line">import &#123;Navigation&#125; from &apos;../../router&apos;;</span><br><span class="line"></span><br><span class="line">import styles from &apos;./index.less&apos;;</span><br><span class="line"></span><br><span class="line">const Footer = connect(</span><br><span class="line">  state =&gt; state,</span><br><span class="line">  dispatch =&gt; (&#123;dispatch&#125;),</span><br><span class="line">)((props: any) =&gt; &#123;</span><br><span class="line">  const &#123;navigation, user&#125;: &#123;navigation: Navigation; user: User&#125; = props;</span><br><span class="line">  return (</span><br><span class="line">    &lt;View style=&#123;styles.footer&#125;&gt;</span><br><span class="line">      &lt;Icon</span><br><span class="line">        name=&quot;home&quot;</span><br><span class="line">        style=&#123;styles.footerIcon&#125;</span><br><span class="line">        onPress=&#123;() =&gt; navigation.navigate(&apos;/forum&apos;)&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">      &lt;Icon</span><br><span class="line">        name=&quot;ring&quot;</span><br><span class="line">        style=&#123;styles.footerIcon&#125;</span><br><span class="line">        onPress=&#123;() =&gt; navigation.navigate(&apos;/message&apos;)&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">      &lt;Icon</span><br><span class="line">        name=&quot;person&quot;</span><br><span class="line">        style=&#123;styles.footerIcon&#125;</span><br><span class="line">        onPress=&#123;() =&gt; &#123;</span><br><span class="line">          if (user) &#123;</span><br><span class="line">            navigation.navigate(&apos;/user/[id]&apos;, &#123;id: user.id&#125;);</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            navigation.navigate(&apos;/login&apos;);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">    &lt;/View&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default Footer;</span><br></pre></td></tr></table></figure>
+<p>注意，此处使用了 <code>onPress</code> 属性，可以认为等效于在写 html 时的 <code>onClick</code> 属性，但是 <code>View</code> 上是没有该属性的，需要使用 <code>TouchableOpacity</code> 等可点击组件，但这是后面的内容了</p>
+<hr>
+<p>感谢阅读</p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--It's the end.<i class="fa fa-life-ring"></i>Thanks for your read.--</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react-native/" rel="tag"># react native</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/frontend/ckt4kmw2s00karou3drwzrsoi/" rel="next" title="前端-RN-初始化">
+                <i class="fa fa-chevron-left"></i> 前端-RN-初始化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/frontend/ckt4kmw2k00k4rou3mj3qvmtl/" rel="prev" title="前端-RN-组件">
+                前端-RN-组件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg" alt="Ringoer">
+            
+              <p class="site-author-name" itemprop="name">Ringoer</p>
+              <p class="site-description motion-element" itemprop="description">随处可见的一般社畜</p>
+          </div>
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">149</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原生组件"><span class="nav-number">1.</span> <span class="nav-text">原生组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样式"><span class="nav-number">2.</span> <span class="nav-text">样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本布局"><span class="nav-number">3.</span> <span class="nav-text">基本布局</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路由"><span class="nav-number">4.</span> <span class="nav-text">路由</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计"><span class="nav-number">4.1.</span> <span class="nav-text">设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">4.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跳转"><span class="nav-number">4.3.</span> <span class="nav-text">跳转</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#页脚"><span class="nav-number">5.</span> <span class="nav-text">页脚</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ringoer.com 版权所有 ICP证：<a href="https://beian.miit.gov.cn/">闽ICP备17033389号</a></span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
