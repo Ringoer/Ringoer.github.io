@@ -2,23 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://ringoer.com/frontend/ckt4kmw2s00karou3drwzrsoi/</loc>
+    <loc>https://ringoer.com/links/index.html</loc>
     
-    <lastmod>2021-09-03T16:27:47.679Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ringoer.com/frontend/ckt4kmw2l00k5rou3mrcznf7m/</loc>
-    
-    <lastmod>2021-09-03T16:26:54.666Z</lastmod>
+    <lastmod>2021-09-05T02:16:28.540Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://ringoer.com/frontend/ckt4kmw2k00k4rou3mj3qvmtl/</loc>
+    <loc>https://ringoer.com/frontend/rn-start/</loc>
     
-    <lastmod>2021-09-03T16:26:05.513Z</lastmod>
+    <lastmod>2021-09-05T02:14:18.363Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ringoer.com/frontend/rn-init/</loc>
+    
+    <lastmod>2021-09-05T02:13:53.075Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ringoer.com/frontend/rn-component/</loc>
+    
+    <lastmod>2021-09-05T02:13:36.729Z</lastmod>
     
   </url>
   
@@ -40,13 +47,6 @@
     <loc>https://ringoer.com/programing/virtual-dom/</loc>
     
     <lastmod>2021-03-14T14:36:09.113Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ringoer.com/links/index.html</loc>
-    
-    <lastmod>2021-03-05T04:17:23.120Z</lastmod>
     
   </url>
   
