@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="使用 ts + mobx 开发的时候，有时候会遇到我们定义了可枚举的联合类型的情况，但是 mobx 自带的 types 默认不支持可枚举的联合类型，怎么办呢？  类型定义比如此时我们有可枚举的联合类型如下 1type TKind = 0 | 1 | 2 如果在 mobx 定义中使用 types.number 肯定是不对的，类型提示对不上 这时我们可以使用 types 提供的 types.custo">
+<meta name="description" content="使用 ts + mobx 开发的时候，有时候会遇到我们定义了可枚举的联合类型的情况，但是 mobx 自带的 types 默认不支持可枚举的联合类型，怎么办呢？">
 <meta name="keywords" content="mobx,typescript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mobx 自定义类型">
 <meta property="og:url" content="https://ringoer.com/frontend/mobx-custom-types/index.html">
 <meta property="og:site_name" content="Ringo&#39;s Coding Life">
-<meta property="og:description" content="使用 ts + mobx 开发的时候，有时候会遇到我们定义了可枚举的联合类型的情况，但是 mobx 自带的 types 默认不支持可枚举的联合类型，怎么办呢？  类型定义比如此时我们有可枚举的联合类型如下 1type TKind = 0 | 1 | 2 如果在 mobx 定义中使用 types.number 肯定是不对的，类型提示对不上 这时我们可以使用 types 提供的 types.custo">
+<meta property="og:description" content="使用 ts + mobx 开发的时候，有时候会遇到我们定义了可枚举的联合类型的情况，但是 mobx 自带的 types 默认不支持可枚举的联合类型，怎么办呢？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-12-09T14:51:11.569Z">
+<meta property="og:updated_time" content="2021-12-09T14:58:21.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mobx 自定义类型">
-<meta name="twitter:description" content="使用 ts + mobx 开发的时候，有时候会遇到我们定义了可枚举的联合类型的情况，但是 mobx 自带的 types 默认不支持可枚举的联合类型，怎么办呢？  类型定义比如此时我们有可枚举的联合类型如下 1type TKind = 0 | 1 | 2 如果在 mobx 定义中使用 types.number 肯定是不对的，类型提示对不上 这时我们可以使用 types 提供的 types.custo">
+<meta name="twitter:description" content="使用 ts + mobx 开发的时候，有时候会遇到我们定义了可枚举的联合类型的情况，但是 mobx 自带的 types 默认不支持可枚举的联合类型，怎么办呢？">
 
 
 
@@ -390,7 +390,7 @@
 
       
         <p>使用 ts + mobx 开发的时候，有时候会遇到我们定义了可枚举的联合类型的情况，但是 mobx 自带的 types 默认不支持可枚举的联合类型，怎么办呢？</p>
-<hr>
+<a id="more"></a>
 <h1 id="类型定义"><a href="#类型定义" class="headerlink" title="类型定义"></a>类型定义</h1><p>比如此时我们有可枚举的联合类型如下</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> TKind = <span class="number">0</span> | <span class="number">1</span> | <span class="number">2</span></span><br></pre></td></tr></table></figure>
 <p>如果在 mobx 定义中使用 <code>types.number</code> 肯定是不对的，类型提示对不上</p>
