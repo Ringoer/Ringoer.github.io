@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="浏览器,http(s),">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="众所周知，前端的内容一般都是通过 HTTP 相关协议获取，并在浏览器上呈现的">
+<meta name="keywords" content="浏览器,http(s)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器请求机制">
+<meta property="og:url" content="https://ringoer.com/frontend/browser-request-mechanism/index.html">
+<meta property="og:site_name" content="Ringo&#39;s Coding Life">
+<meta property="og:description" content="众所周知，前端的内容一般都是通过 HTTP 相关协议获取，并在浏览器上呈现的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://pic.ringoer.com/缓存机制.png">
+<meta property="og:image" content="https://pic.ringoer.com/Cache-Control推荐设置.png">
+<meta property="og:image" content="https://pic.ringoer.com/css-animation-render-5.jpg">
+<meta property="og:updated_time" content="2020-12-14T10:13:40.456Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器请求机制">
+<meta name="twitter:description" content="众所周知，前端的内容一般都是通过 HTTP 相关协议获取，并在浏览器上呈现的">
+<meta name="twitter:image" content="https://pic.ringoer.com/缓存机制.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ringoer.com/frontend/browser-request-mechanism/">
+
+
+
+
+
+  <title>浏览器请求机制 | Ringo's Coding Life</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ringo's Coding Life</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI to ACM</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            元初之地
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-blog">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-text-o"></i> <br>
+            
+            文章相关
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            自己绍介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-contact">
+          <a href="/contact/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-envelope-o"></i> <br>
+            
+            联系方式
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br>
+            
+            友情链接
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            站内搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ringoer.com/frontend/browser-request-mechanism/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ringoer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ringo's Coding Life">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浏览器请求机制</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-23T13:43:00+08:00">
+                2020-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/frontend/" itemprop="url" rel="index">
+                    <span itemprop="name">frontend</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>众所周知，前端的内容一般都是通过 HTTP 相关协议获取，并在浏览器上呈现的</p>
+<a id="more"></a>
+<p>要想深刻了解浏览器的请求机制，首先要有一定的 <a href="https://ringoer.com/knowledge/computer-network/">计算机网络基础</a></p>
+<h1 id="浏览器的请求流程"><a href="#浏览器的请求流程" class="headerlink" title="浏览器的请求流程"></a>浏览器的请求流程</h1><p>显然，我们要先了解一下，当我们访问一个网页时，浏览器都做了什么</p>
+<p>浏览器执行了以下动作</p>
+<ol>
+<li>URL 解析，判断用户输入的是什么，自动组装请求</li>
+<li>查看本地缓存，是否有已经缓存的该地址的资源，若未过期则直接取用，跳到处理 HTML 文档</li>
+<li>DNS 查询，获得服务器地址</li>
+<li>与服务器建立 TCP 连接，如果是 HTTPS 协议，还会有密钥交换</li>
+<li>向服务器发送 HTTP 或 HTTPS 请求</li>
+<li>服务器如果回复了一个永久重定向（301）或临时重定向（302），则浏览器需要向新的地址重新发送请求</li>
+<li>服务器处理请求并响应，此时浏览器收到的响应状态码可能是 200 或 304</li>
+<li>浏览器开始处理 HTML 文档，根据 HTML 文档生成 DOM 树和 CSSOM 树</li>
+<li>合并两棵树，得到渲染树</li>
+<li>根据渲染树，开始执行渲染五步骤</li>
+</ol>
+<p>总的来说，涉及以下知识点</p>
+<ol>
+<li>缓存机制</li>
+<li>DNS 查询</li>
+<li>TCP 连接</li>
+<li>HTTP 与 HTTPS</li>
+<li>页面渲染</li>
+</ol>
+<h1 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h1><p>显然网络请求是非常消耗时间的</p>
+<p>有没有办法能减少网络请求呢？答案就是缓存</p>
+<h2 id="缓存位置"><a href="#缓存位置" class="headerlink" title="缓存位置"></a>缓存位置</h2><p>首先要了解一下缓存保存在哪里，浏览器又是如何索引缓存的</p>
+<p>按照访问顺序，缓存一般有如下 4 个存储位置</p>
+<ol>
+<li>Service Worker</li>
+<li>Memory Cache</li>
+<li>Disk Cache</li>
+<li>Push Cache</li>
+</ol>
+<h3 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h3><p>Service Worker 是运行在浏览器背后的独立线程，一般可以用来实现缓存功能<br>使用 Service Worker 的话，传输协议必须为 HTTPS，因为 Service Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全<br>Service Worker 的缓存与浏览器其他内建的缓存机制不同，它可以让我们自由控制缓存哪些文件、如何匹配缓存、如何读取缓存，并且缓存是持续性的</p>
+<h3 id="Memory-Cache"><a href="#Memory-Cache" class="headerlink" title="Memory Cache"></a>Memory Cache</h3><p>也就是内存缓存，包含一些小文件</p>
+<p>但一旦关掉当前标签页，该标签页对应的内存缓存就被释放了</p>
+<h3 id="Disk-Cache"><a href="#Disk-Cache" class="headerlink" title="Disk Cache"></a>Disk Cache</h3><p>硬盘缓存，显然比内存缓存要慢，但存储空间要大，且只有资源过期了才会释放资源</p>
+<p>一般大文件会放到 Disk Cache 中，小文件放到 Memory Cache 中</p>
+<p>但如果当前系统内存占用高，则会优先存进 Disk Cache</p>
+<h3 id="Push-Cache"><a href="#Push-Cache" class="headerlink" title="Push Cache"></a>Push Cache</h3><p>是 HTTP 2 中的 <strong>服务端推送</strong> 产生的缓存，只在 session 中存在，且缓存时间也很短（在 Chrome 中约 5 分钟）</p>
+<p>关于其优点，详见 HTTP 2 的特点描述</p>
+<h2 id="缓存过程"><a href="#缓存过程" class="headerlink" title="缓存过程"></a>缓存过程</h2><p>浏览器会根据以下流程，确定缓存的处理方法</p>
+<p>URL 解析后，是否含有目标地址的缓存？</p>
+<ul>
+<li><p>否</p>
+<ul>
+<li>向服务器发送请求</li>
+<li>返回请求结果和缓存标识，将结果存入缓存</li>
+</ul>
+</li>
+<li><p>是</p>
+<p> 缓存是否过期？</p>
+<p> 根据 Expires ( HTTP 1.0 ) 或 Cache-Control ( HTTP 1.1 ) 判断</p>
+<ul>
+<li>是（协商缓存机制）<ul>
+<li>在头部添加字段 If-Modified-Since ( HTTP 1.0 ) 或 If-None-Match ( HTTP 1.1 ) ，然后向服务器发送请求</li>
+<li>服务器根据字段值判断资源是否有更新，并响应给浏览器</li>
+<li>资源是否更新？<ul>
+<li>是，则连带 HTML 文档一同返回给浏览器，同时状态码置为 200，浏览器将请求结果存入缓存</li>
+<li>否，返回状态码 304，读取并返回缓存</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>否（强缓存机制）<ul>
+<li>读取并返回缓存</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>缓存机制图示如下</p>
+<p><img src="https://pic.ringoer.com/缓存机制.png" alt="缓存机制"></p>
+<h2 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h2><p>缓存未过期，则不会向服务器发送请求，直接读取并返回缓存</p>
+<p>该操作会在控制台产生一个假请求，返回状态码 200，并显示 from memory cache 或 from disk cache</p>
+<p>由上图可见，有两个参数可以决定强缓存</p>
+<ol>
+<li>Expires</li>
+<li>Cache-Control</li>
+</ol>
+<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>是 HTTP 1 的产物</p>
+<p>由服务端指定具体多久之后过期，关键字段名为 max-age，实际的 Expires = max-age + 服务器收到请求的时间</p>
+<p>显然，Expires 是否过期，取决于与本地时间的对比结果，所以如果设置本地时间为超过 Expires 的值，则会直接造成 Expires 过期</p>
+<h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>是 HTTP 1.1 的产物</p>
+<p>一般有以下字段</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>参考值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public</td>
+<td>无</td>
+<td>客户端和代理服务器均可以缓存该资源</td>
+</tr>
+<tr>
+<td>private</td>
+<td>无</td>
+<td>只有客户端可以缓存该资源</td>
+</tr>
+<tr>
+<td>max-age</td>
+<td>30</td>
+<td>缓存 30 秒后过期</td>
+</tr>
+<tr>
+<td>s-maxage</td>
+<td>30</td>
+<td>覆盖 max-age，但只在代理服务器中生效</td>
+</tr>
+<tr>
+<td>no-store</td>
+<td>无</td>
+<td>不缓存</td>
+</tr>
+<tr>
+<td>no-cache</td>
+<td>无</td>
+<td>资源被缓存，但立即过期，下次请求会发起协商缓存认证</td>
+</tr>
+<tr>
+<td>max-stale</td>
+<td>30</td>
+<td>30 秒内即使过期也使用该缓存</td>
+</tr>
+<tr>
+<td>min-fresh</td>
+<td>30</td>
+<td>希望在 30 秒内获取最新的响应</td>
+</tr>
+</tbody>
+</table>
+<p>推荐的配置思路图如下</p>
+<p><img src="https://pic.ringoer.com/Cache-Control推荐设置.png" alt=""></p>
+<p>在使用 Cache-Control 的时候，有两种常见情况，其描述和对策如下</p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>对策</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>资源频繁更新</td>
+<td>Cache-Control: no-cache</td>
+<td>永不缓存，确保时效性</td>
+</tr>
+<tr>
+<td>资源不常更新</td>
+<td>Cache-Control: max-age=31536000</td>
+<td>缓存一年</td>
+</tr>
+</tbody>
+</table>
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p>由上文可知，Cache-Control 是更新版本的参数，也具有更强大的功能，所以当 Cache-Control 和 Expires 同时存在时，Cache-Control 优先级要高于 Expires</p>
+<p>现在的 Expires，只是为了兼容不支持 HTTP 1.1 的环境罢了</p>
+<h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><p>当强缓存查找不到未过期的合适缓存，但存在已过期的合适缓存时，浏览器会采用协商缓存策略</p>
+<p>一般有两种情况</p>
+<ol>
+<li>协商缓存有效，服务器返回 304 Not Modified</li>
+<li>协商缓存失效，服务器返回 200 和新的资源</li>
+</ol>
+<p>那么如何提交协商缓存请求呢？可以通过设置两组参数实现</p>
+<h3 id="Last-Modified-和-If-Modified-Since"><a href="#Last-Modified-和-If-Modified-Since" class="headerlink" title="Last-Modified 和 If-Modified-Since"></a>Last-Modified 和 If-Modified-Since</h3><p>是 HTTP 1 提出的缓存控制参数</p>
+<p>浏览器在第一次访问资源时，服务器可以在响应中加入请求头 Last-Modified，值是这个资源在服务器上的最后修改时间</p>
+<p>浏览器下次强缓存命中失败，要请求这个资源时，发现这个已过期资源带有 Last-Modified 标识，则会在请求中带上 If-Modified-Since 的 header</p>
+<p>服务器收到 If-Modified-Since 后，与服务器上的资源对比，如果 If-Modified-Since 的时间小于服务器上该资源的最后更新时间，则说明资源有更新，服务器返回 200 和新的资源文件，否则仅返回 304</p>
+<p>但如果客户在本地打开缓存文件，即使没有修改，也依然会造成 Last-Modified 更新，此时会导致缓存失效</p>
+<p>并且，Last-Modified 的精确度是秒，所以如果在小于秒的时间内修改了文件，Last-Modified 并不会更新，导致命中的文件不正确</p>
+<p>所以，HTTP 1.1 提出了更加精确的验证参数，Etag 和 If-None-Match</p>
+<h3 id="Etag-和-If-None-Match"><a href="#Etag-和-If-None-Match" class="headerlink" title="Etag 和 If-None-Match"></a>Etag 和 If-None-Match</h3><p>浏览器在第一次访问资源时，服务器可以在响应中加入请求头 Etag，值是这个资源在服务器上的唯一标识。只要文件发生变化，Etag 就会重新生成</p>
+<p>如同 Last-Modified，浏览器在使用 Etag 进行协商缓存时，也会在请求中加入特殊的 header，此时这个 header 为 If-None-Match</p>
+<p>如果 If-None-Match 与服务器上的文件标识符相同，则返回 304，否则返回 200 和新的资源文件</p>
+<h3 id="对比-1"><a href="#对比-1" class="headerlink" title="对比"></a>对比</h3><p>显然 Etag 要比 Last-Modified 更精确，但精确的代价就是生成标识符的算法的复杂性增大</p>
+<p>但大部分情况下，Etag 造成的性能损耗都可以忽略不计，所以当 Etag 和 Last-Modified 同时存在时，Etag 的优先级较高</p>
+<h3 id="无缓存策略"><a href="#无缓存策略" class="headerlink" title="无缓存策略"></a>无缓存策略</h3><p>如果服务器什么缓存都没设置，难道就不缓存了吗？显然不是</p>
+<p>此时浏览器会取响应报文中的 Date 来减去 Last-Modified，取得一个时间差值，然后取这个差值的 10% 作为缓存时间</p>
+<h1 id="DNS-查询"><a href="#DNS-查询" class="headerlink" title="DNS 查询"></a>DNS 查询</h1><p>DNS 查询流程按顺序一般如下</p>
+<ol>
+<li>浏览器缓存</li>
+<li>操作系统缓存</li>
+<li>路由器缓存</li>
+<li>主机上的 hosts 文件</li>
+<li>本地域名服务器等域名服务器</li>
+</ol>
+<h1 id="TCP-连接"><a href="#TCP-连接" class="headerlink" title="TCP 连接"></a>TCP 连接</h1><p>流程中说到，浏览器与服务器之间会建立 TCP 连接来传输数据，那么显然具有至少一个 TCP 连接</p>
+<p>那么自然产生了以下问题</p>
+<ol>
+<li>一个 TCP 连接能用多久？什么时候断开？</li>
+<li>一个 TCP 连接可以承担几个 HTTP 请求的任务？</li>
+<li>一个 TCP 连接能不能同时发送数个 HTTP 请求？</li>
+<li>浏览器最多能对同一服务器建立几个 TCP 连接？</li>
+</ol>
+<h2 id="一个-TCP-连接能用多久"><a href="#一个-TCP-连接能用多久" class="headerlink" title="一个 TCP 连接能用多久"></a>一个 TCP 连接能用多久</h2><p>在 HTTP 1 中，服务器会在响应了一个 HTTP 请求后，立刻断开这个 TCP 连接</p>
+<p>但如果要对该服务器连续发起多个请求，重复建立连接显然开销过大</p>
+<p>于是开始有某些服务器，提出了不在 HTTP 标准中的头部字段 Connection，并通过设置 Connection: keep-alive 来保持当前请求使用的 TCP 连接不断开</p>
+<p>因为 SSL 也是基于 TCP 的，所以此时 SSL 连接也不会断开，不需要重新交换密钥和验证</p>
+<p>既然 Connection: keep-alive 这么好用，于是 HTTP 1.1 就将其加入了标准之中，并且默认保持 TCP 连接，除非手动在请求头中指定 Connection: close</p>
+<h2 id="一个-TCP-连接可以承担几个-HTTP-请求的任务"><a href="#一个-TCP-连接可以承担几个-HTTP-请求的任务" class="headerlink" title="一个 TCP 连接可以承担几个 HTTP 请求的任务"></a>一个 TCP 连接可以承担几个 HTTP 请求的任务</h2><p>从上一个问题，显然可以看出，如果一个 TCP 连接不断开，是可以用来发送多个 HTTP 请求的，直到断开为止</p>
+<h2 id="一个-TCP-连接能不能同时发送数个-HTTP-请求"><a href="#一个-TCP-连接能不能同时发送数个-HTTP-请求" class="headerlink" title="一个 TCP 连接能不能同时发送数个 HTTP 请求"></a>一个 TCP 连接能不能同时发送数个 HTTP 请求</h2><p>在 HTTP 1.1 中，一个 TCP 连接同时只能处理一个请求，不同请求不能同时使用同一个 TCP 连接</p>
+<p>虽然标准中设计了一个参数 Pipelining 来试图解决这个问题，但是了解网络工作原理的人都知道，客户端按某个顺序发送的请求，服务器并不能按顺序接收（同一个请求的 IP 报文可以，详见 IP 数据报）</p>
+<p>那就造成客户端发送请求后，接收到的响应不能和请求按发送时的顺序一一对应，那请求就完全错乱了</p>
+<p>所以在 HTTP 1.x 的场合，浏览器没有合适的并发方案，只能通过保持连接或同时并行多个连接来提高效率</p>
+<p>但是 HTTP 2 中引入了多路复用的概念，在应用层采取如同网络层的 IP 数据报一样的分段标号模式，此时同一个 TCP 连接就可以正常并发多个 HTTP 请求了</p>
+<h2 id="浏览器最多能对同一服务器建立几个-TCP-连接"><a href="#浏览器最多能对同一服务器建立几个-TCP-连接" class="headerlink" title="浏览器最多能对同一服务器建立几个 TCP 连接"></a>浏览器最多能对同一服务器建立几个 TCP 连接</h2><p>依据浏览器不同，这个限制是不同的</p>
+<p>对于 Chrome，最多允许对同一个 host 建立 6 个 TCP 连接</p>
+<h1 id="HTTP-与-HTTPS"><a href="#HTTP-与-HTTPS" class="headerlink" title="HTTP 与 HTTPS"></a>HTTP 与 HTTPS</h1><p>HTTP 1.0 和 HTTP 1.1 在上文已经有提到一些了，除了缓存机制和 TCP 以外也没有什么太大的差别，所以着重讨论 HTTP 2.0 和 HTTPS</p>
+<h2 id="HTTP-2-0"><a href="#HTTP-2-0" class="headerlink" title="HTTP 2.0"></a>HTTP 2.0</h2><p>HTTP 2.0 有如下特点</p>
+<ol>
+<li>二进制分帧</li>
+<li>首部压缩</li>
+<li>多路复用</li>
+<li>服务端推送</li>
+</ol>
+<h3 id="二进制分帧"><a href="#二进制分帧" class="headerlink" title="二进制分帧"></a>二进制分帧</h3><p>我们知道数据链路层有以太网帧，网络层有 IP 报文分割，此处的二进制分帧设计思路正是基于前两者的特点而得来的</p>
+<p>使用了二进制分帧后，每个 HTTP 报文都使用二进制格式传输数据，每个报文都由一个或多个帧组成</p>
+<p>相比 HTTP 1.x 的文本格式传输，HTTP 2.0 的二进制格式解析效率更高</p>
+<p>为了正常使用帧，HTTP 2.0 同时使用了流的概念</p>
+<p>流是一个虚拟通道，可以承载双向消息，每个流都有一个唯一 ID</p>
+<p>简单理解，流就是同一组请求和响应的组号</p>
+<h3 id="首部压缩"><a href="#首部压缩" class="headerlink" title="首部压缩"></a>首部压缩</h3><p>显然每个请求之间都使用了大量的头部字段，且这些字段的值在浏览器和服务器之前是一致的</p>
+<p>HTTP 2.0 则采用了”首部表”来缓存已经发送过的头部字段键值对，使得浏览器和服务器对于与缓存相同的字段，不需要重复在请求中发送，显著减小了请求报文的大小</p>
+<p>该首部表在 HTTP 2.0 连接断开前始终存在，由使用双方共同更新</p>
+<p>当产生未记录的键值对时，要么更新首部表中的记录值，要么追加到首部表的末端</p>
+<h3 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h3><p>在 HTTP 2.0 中，相同域名下的所有通信都使用同一个连接完成，该连接可以并发任意数量的请求和响应，克服了 HTTP 1.x 中同一个连接不能并发请求的问题，消除了 TCP 连接多次建立以及浏览器同时维护多个 TCP 连接的开销</p>
+<p>之所以可以做到这一点，是因为二进制分帧后，同一个流的每个帧都含有首部流标识，可以乱序发送，双方都可以根据首部流标识得到正确的消息</p>
+<p>该设计思路的具体描述可以参考 IP 数据报的分割</p>
+<h3 id="服务端推送"><a href="#服务端推送" class="headerlink" title="服务端推送"></a>服务端推送</h3><p>是 HTTP 2.0 最重要的特性</p>
+<p>在 HTTP 1.x 中，如果浏览器没有发出请求，服务器是不能向浏览器发送数据的</p>
+<p>但在 HTTP 2.0 中，服务器可以打开 PUSH 模式，当浏览器请求了一个资源后，服务器可以推送相关资源给浏览器</p>
+<p>例如，有如下 HTML</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"style.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"example.png"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果在 HTTP 1.x 中，浏览器需要发起 3 个请求，才可以得到整个页面的完整数据</p>
+<p>但在 HTTP 2.0 中，如果服务器打开 了 PUSH 模式，浏览器只需要发送 1 个请求，申请取得 HTML 文档，服务器就会先返回 HTML 文档，然后根据 HTML 文档中的资源指向，向浏览器推送 css 文件和 png 文件，这样浏览器在后续要使用的时候，就发现已经收到了资源，不需要再发请求了</p>
+<p>这样，只要 1 个请求，就完成了以前 3 个请求才能完成的事情，效率显然大大提高</p>
+<p>既然服务器可以主动推送，客户端自然也可以选择是否接受</p>
+<p>如果服务端推送的资源已经被浏览器缓存过，浏览器可以通过发送RST_STREAM帧来拒收</p>
+<p>主动推送也遵守同源策略，服务器不会随便推送第三方资源给客户端。</p>
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>HTTPS 基于 SSL 协议，采用 RSA 算法，使得通信双方不需要直接发送私钥，就可以达成合意开始加密通信</p>
+<p>具体流程如下</p>
+<ol>
+<li>浏览器向服务器发起 HTTPS 连接请求</li>
+<li>服务器向浏览器发送公钥和根据自己的私钥与公钥联合加密的密文</li>
+<li>浏览器收到公钥和密文，随机产生一个私钥，向服务器发送根据自己的私钥与公钥联合加密的密文</li>
+<li>双方都根据公钥、自己的私钥和对方发送的密文进行计算，得到共同的密钥，通信建立</li>
+<li>在之后的通信中，都使用这个计算出来的密钥进行加密通信</li>
+</ol>
+<p>算法原理概述可以参看 <a href="https://ringoer.com/algorithm/rsa/">图解非对称加密</a></p>
+<h1 id="页面渲染"><a href="#页面渲染" class="headerlink" title="页面渲染"></a>页面渲染</h1><p>首先是浏览器渲染 5 步图</p>
+<p><img src="https://pic.ringoer.com/css-animation-render-5.jpg" alt=""></p>
+<p>根据上图，可知浏览器渲染流程如下</p>
+<h2 id="首次渲染"><a href="#首次渲染" class="headerlink" title="首次渲染"></a>首次渲染</h2><ol>
+<li>解析 JS 脚本。该动作会导致阻塞，所以一般放在 HTML 文档最后</li>
+<li>构建 DOM 树和 CSSOM 树</li>
+<li>合并为渲染树，进行布局</li>
+<li>布局完成后，根据渲染树进行绘制</li>
+<li>绘制完成后交由 GPU 进行合成</li>
+</ol>
+<h2 id="后续渲染"><a href="#后续渲染" class="headerlink" title="后续渲染"></a>后续渲染</h2><ol>
+<li>解析 JS 脚本</li>
+<li>计算布局和样式更改</li>
+<li>将布局和样式更改同步到渲染树上</li>
+<li>根据渲染树重排、重绘</li>
+<li>重绘完成后交由 GPU 进行合成</li>
+</ol>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><p>浏览器渲染有如下几个特性</p>
+<h3 id="容错机制"><a href="#容错机制" class="headerlink" title="容错机制"></a>容错机制</h3><p>我们在编码中从来没有见过浏览器报 HTML 和 CSS 的错，因为现代浏览器对 CSS 有强大的容错能力，会自动修复那些可以修复的 HTML 和 CSS 的语法错误，对于不能修复的则直接跳过不加解析</p>
+<h3 id="页面生命周期"><a href="#页面生命周期" class="headerlink" title="页面生命周期"></a>页面生命周期</h3><p>HTML 页面生命周期中有以下事件</p>
+<ol>
+<li>DOMContentLoaded</li>
+<li>load</li>
+<li>beforeunload</li>
+<li>unload</li>
+</ol>
+<p>触发时间点如下</p>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>触发时点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DOMContentLoaded</td>
+<td>当 DOM 树构建完毕</td>
+</tr>
+<tr>
+<td>load</td>
+<td>当所有资源已经加载完毕</td>
+</tr>
+<tr>
+<td>beforeunload</td>
+<td>当用户正在离开页面，此时数据尚未清除</td>
+</tr>
+<tr>
+<td>unload</td>
+<td>当用户已经离开页面</td>
+</tr>
+</tbody>
+</table>
+<p>通常我们可以利用 beforeunload 事件来弹出一个对话框，用以询问用户是否确定离开</p>
+<p>需要注意的是，当 DOMContentLoaded 事件发生时，async 和 defer 脚本可能尚未执行，其余文件也很有可能正在下载中，不要轻易访问它们</p>
+<p>除了上述事件，我们也可以用 document.readyState 来获取页面当前的状态，并通过 readystatechange 事件来监听页面生命周期的变化</p>
+<p>document.readyState 通常有 3 个值</p>
+<ol>
+<li>loading，页面正在加载中</li>
+<li>interactive，页面解析完毕，触发时点与 DOMContentLoaded 相同，但执行时比 DOMContentLoaded 要早</li>
+<li>complete，页面上所有资源都已经加载完毕，触发时点与 load 相同，但执行时比 load 要早</li>
+</ol>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://www.cnblogs.com/jin-zhe/p/11586327.html" target="_blank" rel="noopener">在浏览器输入URL回车之后发生了什么？（超详细版）</a></p>
+<p><a href="https://www.jianshu.com/p/54cc04190252" target="_blank" rel="noopener">深入理解浏览器的缓存机制</a></p>
+<p><a href="https://www.jianshu.com/p/aaba68b87416" target="_blank" rel="noopener">面试官问我：一个 TCP 连接可以发多少个 HTTP 请求？我竟然回答不上来…</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/26559480" target="_blank" rel="noopener">一文读懂 HTTP/2 特性</a></p>
+<p><a href="https://www.cnblogs.com/confach/p/10141273.html" target="_blank" rel="noopener">深入浅出：HTTP/2</a></p>
+<p><a href="https://segmentfault.com/a/1190000011468675" target="_blank" rel="noopener">页面生命周期：DOMContentLoaded, load, beforeunload, unload</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--It's the end.<i class="fa fa-life-ring"></i>Thanks for your read.--</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/浏览器/" rel="tag"># 浏览器</a>
+          
+            <a href="/tags/http-s/" rel="tag"># http(s)</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/frontend/css-box-summary/" rel="next" title="CSS盒子要点简述">
+                <i class="fa fa-chevron-left"></i> CSS盒子要点简述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/frontend/css-layout/" rel="prev" title="CSS布局">
+                CSS布局 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg" alt="Ringoer">
+            
+              <p class="site-author-name" itemprop="name">Ringoer</p>
+              <p class="site-description motion-element" itemprop="description">随处可见的一般社畜</p>
+          </div>
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">150</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器的请求流程"><span class="nav-number">1.</span> <span class="nav-text">浏览器的请求流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缓存机制"><span class="nav-number">2.</span> <span class="nav-text">缓存机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存位置"><span class="nav-number">2.1.</span> <span class="nav-text">缓存位置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Worker"><span class="nav-number">2.1.1.</span> <span class="nav-text">Service Worker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory-Cache"><span class="nav-number">2.1.2.</span> <span class="nav-text">Memory Cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Disk-Cache"><span class="nav-number">2.1.3.</span> <span class="nav-text">Disk Cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Push-Cache"><span class="nav-number">2.1.4.</span> <span class="nav-text">Push Cache</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存过程"><span class="nav-number">2.2.</span> <span class="nav-text">缓存过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强缓存"><span class="nav-number">2.3.</span> <span class="nav-text">强缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Expires"><span class="nav-number">2.3.1.</span> <span class="nav-text">Expires</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Control"><span class="nav-number">2.3.2.</span> <span class="nav-text">Cache-Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对比"><span class="nav-number">2.3.3.</span> <span class="nav-text">对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协商缓存"><span class="nav-number">2.4.</span> <span class="nav-text">协商缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Last-Modified-和-If-Modified-Since"><span class="nav-number">2.4.1.</span> <span class="nav-text">Last-Modified 和 If-Modified-Since</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Etag-和-If-None-Match"><span class="nav-number">2.4.2.</span> <span class="nav-text">Etag 和 If-None-Match</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对比-1"><span class="nav-number">2.4.3.</span> <span class="nav-text">对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无缓存策略"><span class="nav-number">2.4.4.</span> <span class="nav-text">无缓存策略</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS-查询"><span class="nav-number">3.</span> <span class="nav-text">DNS 查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-连接"><span class="nav-number">4.</span> <span class="nav-text">TCP 连接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个-TCP-连接能用多久"><span class="nav-number">4.1.</span> <span class="nav-text">一个 TCP 连接能用多久</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个-TCP-连接可以承担几个-HTTP-请求的任务"><span class="nav-number">4.2.</span> <span class="nav-text">一个 TCP 连接可以承担几个 HTTP 请求的任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个-TCP-连接能不能同时发送数个-HTTP-请求"><span class="nav-number">4.3.</span> <span class="nav-text">一个 TCP 连接能不能同时发送数个 HTTP 请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器最多能对同一服务器建立几个-TCP-连接"><span class="nav-number">4.4.</span> <span class="nav-text">浏览器最多能对同一服务器建立几个 TCP 连接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP-与-HTTPS"><span class="nav-number">5.</span> <span class="nav-text">HTTP 与 HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-2-0"><span class="nav-number">5.1.</span> <span class="nav-text">HTTP 2.0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二进制分帧"><span class="nav-number">5.1.1.</span> <span class="nav-text">二进制分帧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首部压缩"><span class="nav-number">5.1.2.</span> <span class="nav-text">首部压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多路复用"><span class="nav-number">5.1.3.</span> <span class="nav-text">多路复用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端推送"><span class="nav-number">5.1.4.</span> <span class="nav-text">服务端推送</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS"><span class="nav-number">5.2.</span> <span class="nav-text">HTTPS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#页面渲染"><span class="nav-number">6.</span> <span class="nav-text">页面渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首次渲染"><span class="nav-number">6.1.</span> <span class="nav-text">首次渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后续渲染"><span class="nav-number">6.2.</span> <span class="nav-text">后续渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特性"><span class="nav-number">6.3.</span> <span class="nav-text">特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#容错机制"><span class="nav-number">6.3.1.</span> <span class="nav-text">容错机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面生命周期"><span class="nav-number">6.3.2.</span> <span class="nav-text">页面生命周期</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">7.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ringoer.com 版权所有 ICP证：<a href="https://beian.miit.gov.cn/">闽ICP备17033389号</a></span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

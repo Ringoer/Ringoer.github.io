@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ui-framework,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基本完工了，但是代码还是很丑，重复的地方过多">
+<meta name="keywords" content="ui-framework">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UI 框架-代码优化">
+<meta property="og:url" content="https://ringoer.com/project/ui-framework-code-improve/index.html">
+<meta property="og:site_name" content="Ringo&#39;s Coding Life">
+<meta property="og:description" content="基本完工了，但是代码还是很丑，重复的地方过多">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://pic.ringoer.com/laby-ui-17.png">
+<meta property="og:updated_time" content="2021-02-24T13:49:08.792Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UI 框架-代码优化">
+<meta name="twitter:description" content="基本完工了，但是代码还是很丑，重复的地方过多">
+<meta name="twitter:image" content="https://pic.ringoer.com/laby-ui-17.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ringoer.com/project/ui-framework-code-improve/">
+
+
+
+
+
+  <title>UI 框架-代码优化 | Ringo's Coding Life</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ringo's Coding Life</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI to ACM</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            元初之地
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-blog">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-text-o"></i> <br>
+            
+            文章相关
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            自己绍介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-contact">
+          <a href="/contact/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-envelope-o"></i> <br>
+            
+            联系方式
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br>
+            
+            友情链接
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            站内搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ringoer.com/project/ui-framework-code-improve/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ringoer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ringo's Coding Life">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UI 框架-代码优化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-24T18:38:00+08:00">
+                2021-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/project/" itemprop="url" rel="index">
+                    <span itemprop="name">project</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>基本完工了，但是代码还是很丑，重复的地方过多</p>
+<a id="more"></a>
+<hr>
+<h1 id="汇总全局设定"><a href="#汇总全局设定" class="headerlink" title="汇总全局设定"></a>汇总全局设定</h1><p>首先，先让我们建立一个全局设定文件，方便后续查阅、管理</p>
+<p>出于个人爱好，我喜欢管这样的文件叫 <code>Global</code>，并且我决定放在 <code>src</code> 目录下</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Global.ts</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> components = &#123;</span><br><span class="line">    <span class="string">'Button'</span>: &#123;</span><br><span class="line">        name: <span class="string">'Button'</span>, title: <span class="string">'Button 按钮'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'Card'</span>: &#123;</span><br><span class="line">        name: <span class="string">'Card'</span>, title: <span class="string">'Card 卡片'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'Dialog'</span>: &#123;</span><br><span class="line">        name: <span class="string">'Dialog'</span>, title: <span class="string">'Dialog 对话框'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'Switch'</span>: &#123;</span><br><span class="line">        name: <span class="string">'Switch'</span>, title: <span class="string">'Switch 开关'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'Table'</span>: &#123;</span><br><span class="line">        name: <span class="string">'Table'</span>, title: <span class="string">'Table 表格'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'Tabs'</span>: &#123;</span><br><span class="line">        name: <span class="string">'Tabs'</span>, title: <span class="string">'Tabs 标签页'</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> guidances = &#123;</span><br><span class="line">    <span class="string">'introduction'</span>: &#123; path: <span class="string">"introduction"</span>, title: <span class="string">"介绍"</span> &#125;,</span><br><span class="line">    <span class="string">'install'</span>: &#123; path: <span class="string">"install"</span>, title: <span class="string">"安装"</span> &#125;,</span><br><span class="line">    <span class="string">'start'</span>: &#123; path: <span class="string">"start"</span>, title: <span class="string">"快速上手"</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该文件告诉了外部引用者，本项目的几个主要文档页的信息</p>
+<h1 id="化简样例"><a href="#化简样例" class="headerlink" title="化简样例"></a>化简样例</h1><p>显然每个在 <code>src/component</code> 下的组件文档页都是引用 <code>./example</code> 下对应的例子</p>
+<p>那么我们应该把引用收束到一起，再暴露给组件文档页</p>
+<p>首先，新建 <code>src/component/contents</code> 文件夹，为每个组件新建对应的样例管理文件</p>
+<p>显然，该文件需要包含</p>
+<ol>
+<li>所有的样例引入</li>
+<li>该样例专属的参数列表</li>
+</ol>
+<p>例如为 Button 组件新建 <code>src/component/contents/Button.ts</code> 文件</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> LabyComponent1 <span class="keyword">from</span> <span class="string">"../example/Button/Button1.example.vue"</span>;</span><br><span class="line"><span class="keyword">import</span> LabyComponent2 <span class="keyword">from</span> <span class="string">"../example/Button/Button2.example.vue"</span>;</span><br><span class="line"><span class="keyword">import</span> LabyComponent3 <span class="keyword">from</span> <span class="string">"../example/Button/Button3.example.vue"</span>;</span><br><span class="line"><span class="keyword">import</span> LabyComponent4 <span class="keyword">from</span> <span class="string">"../example/Button/Button4.example.vue"</span>;</span><br><span class="line"><span class="keyword">import</span> LabyComponent5 <span class="keyword">from</span> <span class="string">"../example/Button/Button5.example.vue"</span>;</span><br><span class="line"><span class="keyword">import</span> LabyComponent6 <span class="keyword">from</span> <span class="string">"../example/Button/Button6.example.vue"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    components: [</span><br><span class="line">        LabyComponent1,</span><br><span class="line">        LabyComponent2,</span><br><span class="line">        LabyComponent3,</span><br><span class="line">        LabyComponent4,</span><br><span class="line">        LabyComponent5,</span><br><span class="line">        LabyComponent6,</span><br><span class="line">    ],</span><br><span class="line">    attributes: [</span><br><span class="line">        &#123; attr: <span class="string">'level'</span>, desp: <span class="string">'默认类型'</span>, <span class="keyword">type</span>: <span class="string">'string'</span>, values: <span class="string">'default / plain / primary / success / info / warning / danger'</span>, <span class="keyword">default</span>: <span class="string">'default'</span> &#125;,</span><br><span class="line">        &#123; attr: <span class="string">'disabled'</span>, desp: <span class="string">'是否禁用'</span>, <span class="keyword">type</span>: <span class="string">'boolean'</span>, values: <span class="string">'false / true'</span>, <span class="keyword">default</span>: <span class="string">'false'</span> &#125;,</span><br><span class="line">        &#123; attr: <span class="string">'theme'</span>, desp: <span class="string">'式样'</span>, <span class="keyword">type</span>: <span class="string">'string'</span>, values: <span class="string">'button / link / text'</span>, <span class="keyword">default</span>: <span class="string">'button'</span> &#125;,</span><br><span class="line">        &#123; attr: <span class="string">'loding'</span>, desp: <span class="string">'是否加载中'</span>, <span class="keyword">type</span>: <span class="string">'boolean'</span>, values: <span class="string">'false / true'</span>, <span class="keyword">default</span>: <span class="string">'false'</span> &#125;,</span><br><span class="line">        &#123; attr: <span class="string">'size'</span>, desp: <span class="string">'尺寸'</span>, <span class="keyword">type</span>: <span class="string">'string'</span>, values: <span class="string">'middle / small / large'</span>, <span class="keyword">default</span>: <span class="string">'middle'</span> &#125;,</span><br><span class="line">        &#123; attr: <span class="string">'color'</span>, desp: <span class="string">'颜色'</span>, <span class="keyword">type</span>: <span class="string">'string'</span>, values: <span class="string">'任意合法颜色值'</span>, <span class="keyword">default</span>: <span class="string">'#f3678e'</span> &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我为 Button 创建了 6 个样例，所以有 6 条静态引入</p>
+<p>注意，对 vue 文件的引入，只能在代码中静态引入，不可以像 md 一样动态引入，否则必须要先配置对 vue 文件的额外解析</p>
+<p>然后在 Button 组件文档页中引入该 ts</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> LabyCard <span class="keyword">from</span> <span class="string">"../lib/Card.vue"</span>;</span><br><span class="line"><span class="keyword">import</span> LabyTable <span class="keyword">from</span> <span class="string">"../lib/Table.vue"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Example <span class="keyword">from</span> <span class="string">"./contents/Button"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">"vue"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    components: &#123;</span><br><span class="line">        LabyCard,</span><br><span class="line">        LabyTable,</span><br><span class="line">    &#125;,</span><br><span class="line">    setup(props) &#123;</span><br><span class="line">        <span class="keyword">const</span> heads = [</span><br><span class="line">            &#123; name: <span class="string">"参数"</span>, identifier: <span class="string">"attr"</span> &#125;,</span><br><span class="line">            &#123; name: <span class="string">"含义"</span>, identifier: <span class="string">"desp"</span> &#125;,</span><br><span class="line">            &#123; name: <span class="string">"类型"</span>, identifier: <span class="string">"type"</span> &#125;,</span><br><span class="line">            &#123; name: <span class="string">"可选值"</span>, identifier: <span class="string">"values"</span> &#125;,</span><br><span class="line">            &#123; name: <span class="string">"默认值"</span>, identifier: <span class="string">"default"</span> &#125;,</span><br><span class="line">        ];</span><br><span class="line">        <span class="keyword">const</span> keys = heads.map(<span class="function">(<span class="params">item: <span class="built_in">any</span></span>) =&gt;</span> item.identifier);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">const</span> &#123; components, attributes &#125; = Example;</span><br><span class="line">        <span class="keyword">const</span> visibility = ref(components.map(<span class="function">(<span class="params">item</span>) =&gt;</span> <span class="literal">false</span>));</span><br><span class="line">        <span class="keyword">const</span> toggle = <span class="function">(<span class="params">index</span>) =&gt;</span> &#123;</span><br><span class="line">            visibility.value[index] = !visibility.value[index];</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            Prism,</span><br><span class="line">            heads,</span><br><span class="line">            keys,</span><br><span class="line">            components,</span><br><span class="line">            attributes,</span><br><span class="line">            visibility,</span><br><span class="line">            toggle,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>修改模板为 <code>v-for</code> 遍历</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>Button 文档<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">         <span class="attr">class</span>=<span class="string">"container"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">v-for</span>=<span class="string">"(&#123; ...component &#125;, index) in components"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">:key</span>=<span class="string">"index"</span></span></span><br><span class="line"><span class="tag">         &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">laby-card</span> <span class="attr">class</span>=<span class="string">"example"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;&#123; component.__sourceCodeTitle &#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">"component"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span> <span class="attr">class</span>=<span class="string">"markdown-body"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">pre</span></span></span><br><span class="line"><span class="tag">                     <span class="attr">v-if</span>=<span class="string">"visibility[index]"</span></span></span><br><span class="line"><span class="tag">                     <span class="attr">v-html</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">                             Prism.highlight(</span></span></span><br><span class="line"><span class="tag"><span class="string">                             component.__sourceCode,</span></span></span><br><span class="line"><span class="tag"><span class="string">                             Prism.languages.html,</span></span></span><br><span class="line"><span class="tag"><span class="string">                             'html'</span></span></span><br><span class="line"><span class="tag"><span class="string">                             )</span></span></span><br><span class="line"><span class="tag"><span class="string">                             "</span></span></span><br><span class="line"><span class="tag">                     &gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"toggle"</span> @<span class="attr">click</span>=<span class="string">"toggle(index)"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"close"</span> <span class="attr">v-if</span>=<span class="string">"visibility[index]"</span>&gt;</span></span><br><span class="line">                    △</span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"desp"</span>&gt;</span>隐藏代码<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"open"</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">                    ▽</span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"desp"</span>&gt;</span>显示代码<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">laby-card</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">laby-table</span> <span class="attr">bordered</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span> <span class="attr">v-for</span>=<span class="string">"(head, index) in heads"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span>&#123;&#123; head.name &#125;&#125;<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span> <span class="attr">v-for</span>=<span class="string">"(attribute, index) in attributes"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span> <span class="attr">v-for</span>=<span class="string">"key in keys"</span> <span class="attr">:key</span>=<span class="string">"key"</span> <span class="attr">v-html</span>=<span class="string">"attribute[key]"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">laby-table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>效果如图</p>
+<p><img src="https://pic.ringoer.com/laby-ui-17.png" alt="效果图"></p>
+<h1 id="抽取公用显示"><a href="#抽取公用显示" class="headerlink" title="抽取公用显示"></a>抽取公用显示</h1><p>显然，每个组件文档页，都具有与 Button 组件文档页类似的结构</p>
+<p>那么我们可以把这个结构抽取出来，然后按照需要进行引入</p>
+<p>先抽取结构，我选择在 <code>src/views</code> 下新建 <code>Content.vue</code> 来承载这个结构</p>
+<p>组件列表和参数表通过 <code>src/components/contents</code> 下的汇总来引入</p>
+<p>引入后，根据字段名的不同，制作哈希表 <code>LabyMap</code></p>
+<p>再要求用户传入参数 <code>props</code>，通过 <code>name</code> 来指定选择要显示哪个组件文档页，通过 <code>title</code> 来指示现在的组件文档页的标题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line">// Content.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">&lt;h1&gt;&#123;&#123; title &#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;br /&gt;</span><br><span class="line">&lt;div</span><br><span class="line">     class=&quot;container&quot;</span><br><span class="line">     v-for=&quot;(&#123; ...component &#125;, index) in components&quot;</span><br><span class="line">     :key=&quot;index&quot;</span><br><span class="line">     &gt;</span><br><span class="line">    &lt;laby-card class=&quot;example&quot;&gt;</span><br><span class="line">        &lt;h2&gt;&#123;&#123; component.__sourceCodeTitle &#125;&#125;&lt;/h2&gt;</span><br><span class="line">        &lt;br /&gt;</span><br><span class="line">        &lt;component :is=&quot;component&quot; /&gt;</span><br><span class="line">        &lt;br /&gt;</span><br><span class="line">        &lt;br /&gt;</span><br><span class="line">        &lt;code class=&quot;markdown-body&quot;&gt;</span><br><span class="line">            &lt;pre</span><br><span class="line">                 v-if=&quot;visibility[index]&quot;</span><br><span class="line">                 v-html=&quot;</span><br><span class="line">                         Prism.highlight(</span><br><span class="line">                         component.__sourceCode,</span><br><span class="line">                         Prism.languages.html,</span><br><span class="line">                         &apos;html&apos;</span><br><span class="line">                         )</span><br><span class="line">                         &quot;</span><br><span class="line">                 &gt;&lt;/pre&gt;</span><br><span class="line">    &lt;/code&gt;</span><br><span class="line"></span><br><span class="line">        &lt;button class=&quot;toggle&quot; @click=&quot;toggle(index)&quot;&gt;</span><br><span class="line">            &lt;span class=&quot;close&quot; v-if=&quot;visibility[index]&quot;&gt;</span><br><span class="line">                △</span><br><span class="line">                &lt;span class=&quot;desp&quot;&gt;隐藏代码&lt;/span&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">            &lt;span class=&quot;open&quot; v-else&gt;</span><br><span class="line">                ▽</span><br><span class="line">                &lt;span class=&quot;desp&quot;&gt;显示代码&lt;/span&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">    &lt;/laby-card&gt;</span><br><span class="line">    &lt;br /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;laby-table bordered&gt;</span><br><span class="line">    &lt;thead&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;th v-for=&quot;(head, index) in heads&quot; :key=&quot;index&quot;&gt;&#123;&#123; head.name &#125;&#125;&lt;/th&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;/thead&gt;</span><br><span class="line">    &lt;tbody&gt;</span><br><span class="line">        &lt;tr v-for=&quot;(attribute, index) in attributes&quot; :key=&quot;index&quot;&gt;</span><br><span class="line">            &lt;td v-for=&quot;key in keys&quot; :key=&quot;key&quot; v-html=&quot;attribute[key]&quot;&gt;&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;/tbody&gt;</span><br><span class="line">    &lt;/laby-table&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script lang=&quot;ts&quot;&gt;</span><br><span class="line">    import LabyButtons from &quot;../components/contents/Button&quot;;</span><br><span class="line">    import LabyCards from &quot;../components/contents/Card&quot;;</span><br><span class="line">    import LabyDialogs from &quot;../components/contents/Dialog&quot;;</span><br><span class="line">    import LabySwitchs from &quot;../components/contents/Switch&quot;;</span><br><span class="line">    import LabyTables from &quot;../components/contents/Table&quot;;</span><br><span class="line">    import LabyTabss from &quot;../components/contents/Tabs&quot;;</span><br><span class="line"></span><br><span class="line">    import &#123; ref &#125; from &quot;vue&quot;;</span><br><span class="line">    import LabyCard from &quot;../lib/Card.vue&quot;;</span><br><span class="line">    import LabyTable from &quot;../lib/Table.vue&quot;;</span><br><span class="line">    import &quot;prismjs&quot;;</span><br><span class="line">    import &quot;prismjs/themes/prism.css&quot;;</span><br><span class="line"></span><br><span class="line">    const Prism = (window as any).Prism;</span><br><span class="line"></span><br><span class="line">    const LabyMap = &#123;</span><br><span class="line">        Button: LabyButtons,</span><br><span class="line">        Card: LabyCards,</span><br><span class="line">        Dialog: LabyDialogs,</span><br><span class="line">        Switch: LabySwitchs,</span><br><span class="line">        Table: LabyTables,</span><br><span class="line">        Tabs: LabyTabss,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    export default &#123;</span><br><span class="line">        props: &#123;</span><br><span class="line">            name: &#123;</span><br><span class="line">                type: String,</span><br><span class="line">                required: true,</span><br><span class="line">            &#125;,</span><br><span class="line">            title: &#123;</span><br><span class="line">                type: String,</span><br><span class="line">                required: true,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        components: &#123;</span><br><span class="line">            LabyCard,</span><br><span class="line">            LabyTable,</span><br><span class="line">        &#125;,</span><br><span class="line">        setup(props) &#123;</span><br><span class="line">            const &#123; name, title &#125; = props;</span><br><span class="line">            const heads = [</span><br><span class="line">                &#123; name: &quot;参数&quot;, identifier: &quot;attr&quot; &#125;,</span><br><span class="line">                &#123; name: &quot;含义&quot;, identifier: &quot;desp&quot; &#125;,</span><br><span class="line">                &#123; name: &quot;类型&quot;, identifier: &quot;type&quot; &#125;,</span><br><span class="line">                &#123; name: &quot;可选值&quot;, identifier: &quot;values&quot; &#125;,</span><br><span class="line">                &#123; name: &quot;默认值&quot;, identifier: &quot;default&quot; &#125;,</span><br><span class="line">            ];</span><br><span class="line">            const keys = heads.map((item: any) =&gt; item.identifier);</span><br><span class="line"></span><br><span class="line">            const &#123; components, attributes &#125; = LabyMap[name];</span><br><span class="line">            const visibility = ref(components.map((item) =&gt; false));</span><br><span class="line">            const toggle = (index) =&gt; &#123;</span><br><span class="line">                visibility.value[index] = !visibility.value[index];</span><br><span class="line">            &#125;;</span><br><span class="line">            return &#123;</span><br><span class="line">                title,</span><br><span class="line">                Prism,</span><br><span class="line">                heads,</span><br><span class="line">                keys,</span><br><span class="line">                components,</span><br><span class="line">                attributes,</span><br><span class="line">                visibility,</span><br><span class="line">                toggle,</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line">    $theme-color: #f3678e;</span><br><span class="line">    .container &#123;</span><br><span class="line">        &amp;:hover &#123;</span><br><span class="line">            &gt; .example &gt; .toggle &gt; * &gt; .desp &#123;</span><br><span class="line">                display: inline;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &gt; .example &#123;</span><br><span class="line">            &gt; .toggle &#123;</span><br><span class="line">                display: block;</span><br><span class="line">                width: 100%;</span><br><span class="line">                height: 32px;</span><br><span class="line">                border: none;</span><br><span class="line">                transition: background-color 250ms;</span><br><span class="line">                outline: none;</span><br><span class="line">                &amp;:focus &#123;</span><br><span class="line">                    outline: none;</span><br><span class="line">                &#125;</span><br><span class="line">                background: white;</span><br><span class="line">                cursor: pointer;</span><br><span class="line">                &amp;:hover &#123;</span><br><span class="line">                    background: fade-out($theme-color, 0.95);</span><br><span class="line">                &#125;</span><br><span class="line">                &gt; * &gt; .desp &#123;</span><br><span class="line">                    display: none;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>同理可以抽取指南文档页的结构到 <code>src/views/Guidance.vue</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// Guidance.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">&lt;article class=&quot;markdown-body&quot; v-html=&quot;md&quot;&gt;&lt;/article&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    import &#123; ref &#125; from &quot;vue&quot;;</span><br><span class="line">    export default &#123;</span><br><span class="line">        props: &#123;</span><br><span class="line">            path: &#123;</span><br><span class="line">                type: String,</span><br><span class="line">                required: true,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        setup(props) &#123;</span><br><span class="line">            const md = ref(null);</span><br><span class="line">            import(`../markdown/$&#123;props.path&#125;.md`).then(</span><br><span class="line">                (res) =&gt; (md.value = res.default)</span><br><span class="line">            );</span><br><span class="line">            return &#123; md &#125;;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>然后修改 <code>router.ts</code>，通过路由来传递参数</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// router.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; createWebHistory, createRouter &#125; <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./views/Home.vue'</span></span><br><span class="line"><span class="keyword">import</span> Document <span class="keyword">from</span> <span class="string">'./views/Document.vue'</span></span><br><span class="line"><span class="keyword">import</span> Content <span class="keyword">from</span> <span class="string">'./views/Content.vue'</span></span><br><span class="line"><span class="keyword">import</span> Guidance <span class="keyword">from</span> <span class="string">'./views/Guidance.vue'</span></span><br><span class="line"><span class="keyword">import</span> &#123; guidances, components &#125; <span class="keyword">from</span> <span class="string">'./Global'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> history = createWebHistory()</span><br><span class="line"><span class="keyword">const</span> router = createRouter(&#123;</span><br><span class="line">    history,</span><br><span class="line">    routes: [</span><br><span class="line">        &#123; path: <span class="string">'/'</span>, component: Home &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path: <span class="string">'/document'</span>, component: Document, children: [</span><br><span class="line">                &#123; path: <span class="string">''</span>, redirect: <span class="string">'/document/introduction'</span> &#125;,</span><br><span class="line">                &#123; path: <span class="string">'introduction'</span>, component: Guidance, props: guidances[<span class="string">'introduction'</span>] &#125;,</span><br><span class="line">                &#123; path: <span class="string">'install'</span>, component: Guidance, props: guidances[<span class="string">'install'</span>] &#125;,</span><br><span class="line">                &#123; path: <span class="string">'start'</span>, component: Guidance, props: guidances[<span class="string">'start'</span>] &#125;,</span><br><span class="line">                &#123; path: <span class="string">'button'</span>, component: Content, props: components[<span class="string">'Button'</span>] &#125;,</span><br><span class="line">                &#123; path: <span class="string">'card'</span>, component: Content, props: components[<span class="string">'Card'</span>] &#125;,</span><br><span class="line">                &#123; path: <span class="string">'dialog'</span>, component: Content, props: components[<span class="string">'Dialog'</span>] &#125;,</span><br><span class="line">                &#123; path: <span class="string">'switch'</span>, component: Content, props: components[<span class="string">'Switch'</span>] &#125;,</span><br><span class="line">                &#123; path: <span class="string">'table'</span>, component: Content, props: components[<span class="string">'Table'</span>] &#125;,</span><br><span class="line">                &#123; path: <span class="string">'tabs'</span>, component: Content, props: components[<span class="string">'Tabs'</span>] &#125;,</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+<p>现在，就可以删除 <code>src/component</code> 下，没有被引用的组件了</p>
+<p>如无意外，现在该目录下，应该只有</p>
+<ul>
+<li>contents，文件夹</li>
+<li>example，文件夹</li>
+<li>Topnav.vue</li>
+</ul>
+<h1 id="精简-router"><a href="#精简-router" class="headerlink" title="精简 router"></a>精简 router</h1><p>这个 <code>router.ts</code> 看起来也还是很糟心，再优化一下吧</p>
+<p>注意到重复的部分出现在 <code>children</code> 字段下，而该字段的值是个数组，每个数组项都是一个包含 3 个字段的对象</p>
+<p>那么我们可以先定义这个对象</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// router.ts</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Route</span>(<span class="params">path, component, props</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.path = path</span><br><span class="line">    <span class="keyword">this</span>.component = component</span><br><span class="line">    <span class="keyword">this</span>.props = props</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再观察指南的路由，和组件的路由，有如下规律</p>
+<ol>
+<li>指南的路由<ul>
+<li>其 <code>path</code> 值集合，与 <code>Global.ts</code> 中的 <code>guidances</code> 对象的 <code>keys</code> 是一致的</li>
+<li>其 <code>props</code> 中传入的键集合，与 <code>Global.ts</code> 中的 <code>guidances</code> 对象的 <code>keys</code> 是一致的</li>
+</ul>
+</li>
+<li>组件的路由<ul>
+<li>其 <code>path</code> 值集合，与 <code>Global.ts</code> 中的 <code>components</code> 对象的 <code>keys.toLowerCase</code> 是一致的</li>
+<li>其 <code>props</code> 中传入的键集合，与 <code>Global.ts</code> 中的 <code>components</code> 对象的 <code>keys</code> 是一致的</li>
+</ul>
+</li>
+</ol>
+<p>那么容易得到指南路由的数组和组件路由的数组</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// router.ts</span></span><br><span class="line"><span class="keyword">const</span> guidancesRoutes = <span class="built_in">Object</span>.keys(guidances).map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Route(item, Guidance, guidances[item])</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> componentsRoutes = <span class="built_in">Object</span>.keys(components).map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Route(item.toLowerCase(), Content, components[item])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>然后在路由配置的 <code>children</code> 字段下，使用 spread 语法展开这两个数组即可</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// router.ts</span></span><br><span class="line"><span class="keyword">const</span> router = createRouter(&#123;</span><br><span class="line">    history,</span><br><span class="line">    routes: [</span><br><span class="line">        &#123; path: <span class="string">'/'</span>, component: Home &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path: <span class="string">'/document'</span>, component: Document, children: [</span><br><span class="line">                &#123; path: <span class="string">''</span>, redirect: <span class="string">'/document/introduction'</span> &#125;,</span><br><span class="line">                ...guidancesRoutes,</span><br><span class="line">                ...componentsRoutes</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>好了，现在的代码，就几乎没有冗余，非常漂亮了</p>
+<hr>
+<p>感谢阅读</p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--It's the end.<i class="fa fa-life-ring"></i>Thanks for your read.--</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ui-framework/" rel="tag"># ui-framework</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/project/ui-framework-improve/" rel="next" title="UI 框架-完善官网">
+                <i class="fa fa-chevron-left"></i> UI 框架-完善官网
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/project/ui-framework-deploy/" rel="prev" title="UI 框架-完工部署">
+                UI 框架-完工部署 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg" alt="Ringoer">
+            
+              <p class="site-author-name" itemprop="name">Ringoer</p>
+              <p class="site-description motion-element" itemprop="description">随处可见的一般社畜</p>
+          </div>
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">150</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#汇总全局设定"><span class="nav-number">1.</span> <span class="nav-text">汇总全局设定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#化简样例"><span class="nav-number">2.</span> <span class="nav-text">化简样例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#抽取公用显示"><span class="nav-number">3.</span> <span class="nav-text">抽取公用显示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#精简-router"><span class="nav-number">4.</span> <span class="nav-text">精简 router</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ringoer.com 版权所有 ICP证：<a href="https://beian.miit.gov.cn/">闽ICP备17033389号</a></span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

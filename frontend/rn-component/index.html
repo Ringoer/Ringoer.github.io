@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react native,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="布局那些属实没什么好说的嗷，直接写组件吧 当然你也可以选择用 antd">
+<meta name="keywords" content="react native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RN-组件">
+<meta property="og:url" content="https://ringoer.com/frontend/rn-component/index.html">
+<meta property="og:site_name" content="Ringo&#39;s Coding Life">
+<meta property="og:description" content="布局那些属实没什么好说的嗷，直接写组件吧 当然你也可以选择用 antd">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-09-05T02:13:36.729Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RN-组件">
+<meta name="twitter:description" content="布局那些属实没什么好说的嗷，直接写组件吧 当然你也可以选择用 antd">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ringoer.com/frontend/rn-component/">
+
+
+
+
+
+  <title>RN-组件 | Ringo's Coding Life</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ringo's Coding Life</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI to ACM</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            元初之地
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-blog">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-text-o"></i> <br>
+            
+            文章相关
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            自己绍介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-contact">
+          <a href="/contact/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-envelope-o"></i> <br>
+            
+            联系方式
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br>
+            
+            友情链接
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            站内搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ringoer.com/frontend/rn-component/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ringoer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ringo's Coding Life">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RN-组件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-02T13:18:00+08:00">
+                2021-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/frontend/" itemprop="url" rel="index">
+                    <span itemprop="name">frontend</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>布局那些属实没什么好说的嗷，直接写组件吧</p>
+<p>当然你也可以选择用 antd</p>
+<a id="more"></a>
+<h1 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h1><p>超常用组件 Button（其实是原生的和 antd 的都太难用了）</p>
+<p>思考作为 button，我们需要什么属性</p>
+<p>显然有颜色定制、点击事件定制、样式定制、文本定制等 4 个主要需求</p>
+<p>同时我自己有一个彩色和黑白转换的需求</p>
+<p>那么容易得到以下类型定义</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> ButtonProps &#123;</span><br><span class="line">  backgroundColor?: <span class="built_in">string</span>;</span><br><span class="line">  color?: <span class="built_in">string</span>;</span><br><span class="line">  plain?: <span class="built_in">boolean</span>;</span><br><span class="line">  onPress?: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">  children: React.ReactElement | <span class="built_in">string</span>;</span><br><span class="line">  style?: <span class="built_in">any</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来写组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const Button = (props: ButtonProps) =&gt; &#123;</span><br><span class="line">  const &#123;plain = false, onPress = () =&gt; &#123;&#125;, children, style = &#123;&#125;&#125; = props;</span><br><span class="line"></span><br><span class="line">  const &#123;</span><br><span class="line">    backgroundColor = plain ? &apos;white&apos; : &apos;#5cd1f0&apos;,</span><br><span class="line">    color = plain ? &apos;black&apos; : &apos;white&apos;,</span><br><span class="line">  &#125; = props;</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;TouchableOpacity</span><br><span class="line">      style=&#123;&#123;...styles.buttonWrapper, ...style, backgroundColor&#125;&#125;</span><br><span class="line">      onPress=&#123;onPress&#125;&gt;</span><br><span class="line">      &lt;Text style=&#123;&#123;...styles.button, color&#125;&#125;&gt;&#123;children&#125;&lt;/Text&gt;</span><br><span class="line">    &lt;/TouchableOpacity&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>颜色我随便选的，看官请自便</p>
+<p>先取除颜色外的值，并提供默认值，然后根据是否 <code>plain</code> 而取颜色，并设置不同的默认值</p>
+<p>然后返回一个由 <code>TouchableOpacity</code> 构成的可点击组件，并注入样式和内容</p>
+<p>最后写样式表</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.buttonWrapper</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">8px</span> <span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ececec</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.button</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import Button from &apos;./src/component/Button&apos;</span><br><span class="line"></span><br><span class="line">export default () =&gt; &#123;</span><br><span class="line">    return (</span><br><span class="line">    	&lt;View&gt;</span><br><span class="line">        	&lt;Button onPress=&#123;() =&gt; &#123;console.log(&apos;hello world&apos;)&#125;&#125;&gt;点我&lt;/Button&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此处选用 <code>TouchableOpacity</code>，是因为我反复验证后，觉得这个表现最好</p>
+<p>详情可以参考文档：<a href="https://reactnative.cn/docs/touchableopacity" target="_blank" rel="noopener">https://reactnative.cn/docs/touchableopacity</a></p>
+<h1 id="Tabs"><a href="#Tabs" class="headerlink" title="Tabs"></a>Tabs</h1><p>对于 <code>Tabs</code> 组件，我们显然需要标签名、内容和 <code>onChange</code> 事件</p>
+<p>所以容易得到如下类型定义</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> TabsProps &#123;</span><br><span class="line">  children: React.ReactElement[];</span><br><span class="line">  onChange?: <span class="function">(<span class="params">selected: <span class="built_in">string</span></span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是我们如何在用户变更选择的时候，切换渲染的内容呢？</p>
+<p>所以我们容易得到一个 <code>Tab</code> 组件，该组件要求用户传入 <code>name</code> 属性，然后根据 <code>name</code> 来选择内容；同时要求 <code>Tabs</code> 组件只接受 <code>Tab</code> 作为直接子级</p>
+<p>那么容易得到 <code>Tab</code> 组件代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123;View&#125; from &apos;react-native&apos;;</span><br><span class="line"></span><br><span class="line">interface TabProps &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  children?: React.ReactElement;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Tab = (props: TabProps) =&gt; &#123;</span><br><span class="line">  const &#123;children&#125; = props;</span><br><span class="line">  return &lt;View&gt;&#123;children&#125;&lt;/View&gt;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Tab;</span><br></pre></td></tr></table></figure>
+<p>进而可以得到 <code>Tabs</code> 组件代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">const Tabs = (props: TabsProps) =&gt; &#123;</span><br><span class="line">  const &#123;children, onChange = () =&gt; &#123;&#125;&#125; = props;</span><br><span class="line">  const [titles, setTitles] = useState&lt;string[]&gt;([]);</span><br><span class="line">  const [selected, setSelected] = useState&lt;string&gt;(titles[0]);</span><br><span class="line"></span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    const names: string[] = [];</span><br><span class="line">    for (const el of children) &#123;</span><br><span class="line">      if (el.type !== Tab || !(&apos;name&apos; in el.props)) &#123;</span><br><span class="line">        console.error(&apos;仅接受Tab标签作为Tabs的直接子级&apos;);</span><br><span class="line">        return;</span><br><span class="line">      &#125;</span><br><span class="line">      if (names.includes(el.props.name)) &#123;</span><br><span class="line">        console.error(&apos;name 重复&apos;);</span><br><span class="line">        return;</span><br><span class="line">      &#125;</span><br><span class="line">      names.push(el.props.name);</span><br><span class="line">    &#125;</span><br><span class="line">    setTitles(names);</span><br><span class="line">    setSelected(names[0]);</span><br><span class="line">  &#125;, [children]);</span><br><span class="line"></span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    if (selected) &#123;</span><br><span class="line">      onChange(selected);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, [onChange, selected]);</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;View&gt;</span><br><span class="line">      &lt;View style=&#123;styles.tabs&#125;&gt;</span><br><span class="line">        &#123;titles.map(title =&gt; (</span><br><span class="line">          &lt;TouchableOpacity</span><br><span class="line">            key=&#123;title&#125;</span><br><span class="line">            style=&#123;styles.tab&#125;</span><br><span class="line">            onPress=&#123;() =&gt; setSelected(title)&#125;&gt;</span><br><span class="line">            &lt;Text&gt;&#123;title&#125;&lt;/Text&gt;</span><br><span class="line">            &lt;View style=&#123;&#123;...(title === selected ? styles.selected : &#123;&#125;)&#125;&#125; /&gt;</span><br><span class="line">          &lt;/TouchableOpacity&gt;</span><br><span class="line">        ))&#125;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">      &#123;children.find(el =&gt; el.props.name === selected)&#125;</span><br><span class="line">    &lt;/View&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>通过 <code>useEffect</code> 在初始化时检查直接子级是否符合要求</p>
+<p>最后是样式表</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.tabs</span> &#123;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.tab</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">flex-shrink</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.selected</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#5cd1f0</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">4px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">8px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Loading"><a href="#Loading" class="headerlink" title="Loading"></a>Loading</h1><p>要制作 Loading 动画，我们了解 rn 原生的动画机制</p>
+<p>文档：<a href="https://reactnative.cn/docs/animated" target="_blank" rel="noopener">https://reactnative.cn/docs/animated</a></p>
+<p>我们首先要从 <code>react-native</code> 中引入 <code>Animated</code> 和 <code>Easing</code></p>
+<p>然后声明一个 value，用于在动画进程中作为变化值</p>
+<p>类似于 css 原生动画中指示某个属性的变化，value 需要声明起点、终点和过度时间、过度函数</p>
+<p>首先创建 value</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const value = useRef(new Animated.Value(0)).current;</span><br></pre></td></tr></table></figure>
+<p>此处必须是通过 <code>useRef</code> 创建的一个引用，否则 value 就是常量，无法变化了</p>
+<p>然后定义一个动画变化函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const startAnime = () =&gt; &#123;</span><br><span class="line">    value.setValue(0);</span><br><span class="line">    Animated.timing(value, &#123;</span><br><span class="line">      toValue: 1,</span><br><span class="line">      duration: 2000,</span><br><span class="line">      easing: Easing.linear,</span><br><span class="line">      useNativeDriver: true,</span><br><span class="line">    &#125;).start();</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<p>该函数声明了动画的起点：<code>setValue(0)</code>，以及动画的依赖</p>
+<p><code>Animated.timing</code> 用于创建一个动画，第一个参数是依赖的值，第二个参数是 <code>options</code>，包括以下参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>toValue</td>
+<td>动画变化值的终点值</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>变化的时长，单位 ms</td>
+</tr>
+<tr>
+<td>easing</td>
+<td>动画的变化函数</td>
+</tr>
+<tr>
+<td>useNativeDriver</td>
+<td>是否启用原生动画</td>
+</tr>
+</tbody>
+</table>
+<p>如果使用原生动画，则 rn 会在动画开始前将动画信息发送到原生代码，从而使得动画在原生平台的<br>UI 线程上执行，js 就可以去执行其它任务了</p>
+<p>如果不启用，则动画是 js 对每一帧的桥接</p>
+<p>特别的，如果启用原生动画，则所有依赖相同动画值的动画都要启用原生动画</p>
+<p>动画创建完成后，通过 <code>start</code> 方法启动动画，默认只执行一次。动画可以通过 <code>stop</code> 方法手动中断，并且其它中断也都是调用了 <code>stop</code> 方法</p>
+<p><code>start</code> 方法可以接受一个函数作为参数，该函数接受一个包含 <code>finished</code> 属性的对象作为参数，表示动画结束后要执行的动作</p>
+<p>当动画正常结束时，<code>finished</code> 会被置为 <code>true</code>，否则为 <code>false</code></p>
+<p>我们可以通过该函数来实现动画的无限循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const startAnime = () =&gt; &#123;</span><br><span class="line">    value.setValue(0);</span><br><span class="line">    Animated.timing(value, &#123;</span><br><span class="line">      ...options</span><br><span class="line">    &#125;).start((&#123;finished&#125;) =&gt; &#123;startAnime()&#125;;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<p>到现在，我们已经创建了一个动画的变化，现在要渲染到视图上</p>
+<p>我选用 <code>&lt;Icon name=&quot;loading&quot; size={100} /&gt;</code> 作为动画的内容，并且让其旋转</p>
+<p>旋转功能通过 css 的 transform rotate 来实现</p>
+<p>则有如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;Animated.View</span><br><span class="line">    style=&#123;&#123;</span><br><span class="line">        ...styles.loading,</span><br><span class="line">            transform: [</span><br><span class="line">                &#123;</span><br><span class="line">                    // 因为 typeof Animated.Value === &apos;object&apos;，所以必须要转换一次</span><br><span class="line">                    rotate: value.interpolate(&#123;</span><br><span class="line">                        inputRange: [0, 1],</span><br><span class="line">                        outputRange: [&apos;0deg&apos;, &apos;360deg&apos;],</span><br><span class="line">                    &#125;),</span><br><span class="line">                &#125;,</span><br><span class="line">            ],</span><br><span class="line">    &#125;&#125;&gt;</span><br><span class="line">    &lt;Icon name=&quot;loading&quot; size=&#123;100&#125; /&gt;</span><br><span class="line">&lt;/Animated.View&gt;</span><br></pre></td></tr></table></figure>
+<p>首先，根据动画值来设定样式的代码，必须在 <code>Animated.View</code> 上才会生效</p>
+<p>然后，<code>transform</code> 接受一个数组，每个数组单位为一个对象，该对象描述了 <code>transform</code> 要执行的动作</p>
+<p>此处我通过 <code>interpolate</code> 方法，创建了一个映射，将 <code>value</code> 的值范围映射到一个带有单位的范围上，以满足 <code>rotate</code> 的参数要求</p>
+<p><code>interpolate</code> 方法会自动识别单位，所以尽管写，它自己会适配</p>
+<p>那么，一个旋转等待的动画就完成了</p>
+<h1 id="Html"><a href="#Html" class="headerlink" title="Html"></a>Html</h1><p>rn 不支持直接嵌入 hmtl 片段，那我们总要想个办法支持一下</p>
+<h2 id="react-native-render-html"><a href="#react-native-render-html" class="headerlink" title="react-native-render-html"></a>react-native-render-html</h2><p>推荐通过 <code>react-native-render-html</code> 来实现这个需求</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-native-render-html</span><br></pre></td></tr></table></figure>
+<p>然后引入该库的默认导出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import RenderHtml from &apos;react-native-render-html&apos;;</span><br></pre></td></tr></table></figure>
+<p>该组件的使用方式如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;RenderHtml source=&#123;&#123;html&#125;&#125; contentWidth=&#123;width&#125; /&gt;</span><br></pre></td></tr></table></figure>
+<p>如果你不提供 <code>contentWidth</code> 属性，则会触发警告，所以一般是提供</p>
+<p>此处使用的 <code>width</code> 一般推荐用如下方式取得</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123;useWindowDimensions&#125; from &apos;react-native&apos;;</span><br><span class="line"></span><br><span class="line">const &#123;width&#125; = useWindowDimensions();</span><br></pre></td></tr></table></figure>
+<p>那么易得组件代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123;View, useWindowDimensions&#125; from &apos;react-native&apos;;</span><br><span class="line">import RenderHtml from &apos;react-native-render-html&apos;;</span><br><span class="line"></span><br><span class="line">import styles from &apos;./index.less&apos;;</span><br><span class="line"></span><br><span class="line">interface HtmlProps &#123;</span><br><span class="line">  html: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Html = (props: HtmlProps) =&gt; &#123;</span><br><span class="line">  const &#123;html&#125; = props;</span><br><span class="line">  const &#123;width&#125; = useWindowDimensions();</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;View style=&#123;styles.html&#125;&gt;</span><br><span class="line">      &lt;RenderHtml source=&#123;&#123;html&#125;&#125; contentWidth=&#123;width&#125; /&gt;</span><br><span class="line">    &lt;/View&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Html;</span><br></pre></td></tr></table></figure>
+<p>为了满足 <code>/forum/[id]</code> 的预览需求，易得样式表如下</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.html</span> &#123;</span><br><span class="line">  <span class="attribute">max-height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>唯一的缺点就是在 <code>RenderHtml</code> 内部引入 css 很麻烦，不过它已经是最好用的了，总不能用 WebView 吧</p>
+<h2 id="WebView"><a href="#WebView" class="headerlink" title="WebView"></a>WebView</h2><p>说到 WebView，顺便介绍一下 WebView 的实现</p>
+<p>通过 <code>react-native-webview</code> 来实现这个需求</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-native-webview</span><br></pre></td></tr></table></figure>
+<p>然后引入该库的默认导出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import WebView from &apos;react-native-webview&apos;;</span><br></pre></td></tr></table></figure>
+<p>该组件的使用方式如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;&#123;...styles.html, height&#125;&#125;&gt;</span><br><span class="line">    &lt;WebView</span><br><span class="line">        source=&#123;&#123;html&#125;&#125;</span><br><span class="line">        injectedJavaScript=&quot;window.ReactNativeWebView.postMessage(document.documentElement.scrollHeight)&quot;</span><br><span class="line">        onMessage=&#123;event =&gt; &#123;</span><br><span class="line">            setHeight(+event.nativeEvent.data);</span><br><span class="line">            onInit(+event.nativeEvent.data);</span><br><span class="line">        &#125;&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<p>通过 <code>injectedJavaScript</code> 以在 WebView 的内容初始化完成时，向父组件提交事件，可以类比于 html 的 iframe</p>
+<p>通过 <code>onMessage</code> 来接收参数，并处理</p>
+<p>同时，WebView 默认是 0 高度的，所以必须在初始化完成后，获取内部高度，然后设置到父组件上</p>
+<p>也可以大量插入片段，并通过 <code>link</code> 来引入外源 css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;&#123;...styles.html, height&#125;&#125;&gt;</span><br><span class="line">    &lt;WebView</span><br><span class="line">        source=&#123;&#123;</span><br><span class="line">            html: `&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;https://webfiles.ringoer.com/github-markdown.css&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;article class=&quot;markdown-body&quot;&gt;</span><br><span class="line">$&#123;html&#125;</span><br><span class="line">&lt;/article&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;`,</span><br><span class="line">        &#125;&#125;</span><br><span class="line">        injectedJavaScript=&quot;window.ReactNativeWebView.postMessage(document.documentElement.scrollHeight)&quot;</span><br><span class="line">        onMessage=&#123;event =&gt; &#123;</span><br><span class="line">            setHeight(+event.nativeEvent.data);</span><br><span class="line">            onInit(+event.nativeEvent.data);</span><br><span class="line">        &#125;&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<p>缺点是，当一个页面有大量 WebView 的时候，会重复引入很多次 <code>link</code> 内容，同时造成进程负担极重，无法正常卸载组件，导致应用崩溃闪退</p>
+<p>所以我不建议用 WebView（</p>
+<h1 id="Editor"><a href="#Editor" class="headerlink" title="Editor"></a>Editor</h1><p>caho 是有 markdown 编辑需求的，所以需要一个 markdown Editor</p>
+<p>其实就是缝合怪（？</p>
+<p>容易得到需求</p>
+<ol>
+<li>无权限禁用</li>
+<li>标题</li>
+<li>提交动作</li>
+<li>默认值</li>
+<li>最大长度限制</li>
+<li>附加插入内容</li>
+</ol>
+<p>那么可得类型定义</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> EditorProps &#123;</span><br><span class="line">  disabled?: <span class="built_in">boolean</span>;</span><br><span class="line">  hasTitle?: <span class="built_in">boolean</span>;</span><br><span class="line">  onSubmit?: <span class="function">(<span class="params">text: <span class="built_in">string</span>, title: <span class="built_in">string</span></span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">  defaultValue?: <span class="built_in">string</span>;</span><br><span class="line">  wordsLimit?: <span class="built_in">number</span>;</span><br><span class="line">  insertValue?: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为标题不一定存在，所以提交动作的第一个值是正文，第二个才是标题</p>
+<p>容易得到组件代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">const Editor = (props: EditorProps) =&gt; &#123;</span><br><span class="line">  const &#123;</span><br><span class="line">    disabled = false,</span><br><span class="line">    hasTitle = false,</span><br><span class="line">    onSubmit = () =&gt; &#123;&#125;,</span><br><span class="line">    defaultValue = &apos;&apos;,</span><br><span class="line">    wordsLimit = 4095,</span><br><span class="line">    insertValue,</span><br><span class="line">  &#125; = props;</span><br><span class="line">  const [title, setTitle] = useState(&apos;&apos;);</span><br><span class="line">  const [text, setText] = useState&lt;string&gt;(defaultValue);</span><br><span class="line"></span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    if (insertValue) &#123;</span><br><span class="line">      setText(`$&#123;text&#125;$&#123;insertValue&#125;`);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, [text, insertValue]);</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;View style=&#123;styles.editorWrapper&#125;&gt;</span><br><span class="line">      &lt;View style=&#123;styles.editor&#125;&gt;</span><br><span class="line">        &#123;hasTitle ? (</span><br><span class="line">          &lt;View style=&#123;styles.title&#125;&gt;</span><br><span class="line">            &lt;Text&gt;标题&lt;/Text&gt;</span><br><span class="line">            &lt;InputItem</span><br><span class="line">              style=&#123;styles.input&#125;</span><br><span class="line">              value=&#123;title&#125;</span><br><span class="line">              onChange=&#123;value =&gt; setTitle(value)&#125;</span><br><span class="line">            /&gt;</span><br><span class="line">          &lt;/View&gt;</span><br><span class="line">        ) : undefined&#125;</span><br><span class="line">        &lt;View style=&#123;styles.description&#125;&gt;</span><br><span class="line">          &lt;Text&gt;正文&lt;/Text&gt;</span><br><span class="line">          &lt;Text style=&#123;styles.support&#125;&gt;支持Markdown文本&lt;/Text&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">        &lt;Tabs&gt;</span><br><span class="line">          &lt;Tab name=&quot;编辑&quot;&gt;</span><br><span class="line">            &lt;TextareaItem</span><br><span class="line">              style=&#123;styles.textarea&#125;</span><br><span class="line">              rows=&#123;8&#125;</span><br><span class="line">              count=&#123;wordsLimit&#125;</span><br><span class="line">              defaultValue=&#123;disabled ? &apos;&apos; : text&#125;</span><br><span class="line">              onChange=&#123;value =&gt; setText(value || &apos;&apos;)&#125;</span><br><span class="line">            /&gt;</span><br><span class="line">          &lt;/Tab&gt;</span><br><span class="line">          &lt;Tab name=&quot;预览&quot;&gt;</span><br><span class="line">            &lt;Html html=&#123;marked(text)&#125; /&gt;</span><br><span class="line">          &lt;/Tab&gt;</span><br><span class="line">        &lt;/Tabs&gt;</span><br><span class="line">        &lt;View style=&#123;styles.actions&#125;&gt;</span><br><span class="line">          &lt;Button</span><br><span class="line">            plain</span><br><span class="line">            onPress=&#123;() =&gt; &#123;</span><br><span class="line">              Swal.confirm(</span><br><span class="line">                &apos;即将对每个换行进行扩增，每 1 个扩增为 2 个\n您确定要这样做吗？&apos;,</span><br><span class="line">              ).then(() =&gt; &#123;</span><br><span class="line">                const value = text.split(&apos;\n&apos;).join(&apos;\n\n&apos;);</span><br><span class="line">                setText(value);</span><br><span class="line">              &#125;);</span><br><span class="line">            &#125;&#125;&gt;</span><br><span class="line">            换行</span><br><span class="line">          &lt;/Button&gt;</span><br><span class="line">          &lt;Button</span><br><span class="line">            plain</span><br><span class="line">            onPress=&#123;() =&gt; &#123;</span><br><span class="line">              setText(&apos;&apos;);</span><br><span class="line">            &#125;&#125;&gt;</span><br><span class="line">            重置</span><br><span class="line">          &lt;/Button&gt;</span><br><span class="line">          &lt;Button</span><br><span class="line">            onPress=&#123;() =&gt; &#123;</span><br><span class="line">              if (disabled) &#123;</span><br><span class="line">                console.error(&apos;您在当前环境下没有权限进行编辑&apos;);</span><br><span class="line">                return;</span><br><span class="line">              &#125; else if (!(onSubmit instanceof Function)) &#123;</span><br><span class="line">                console.error(&apos;传入的提交函数非法&apos;);</span><br><span class="line">                return;</span><br><span class="line">              &#125; else if (text.length &gt; wordsLimit) &#123;</span><br><span class="line">                console.error(&apos;正文长度超出限制&apos;);</span><br><span class="line">                return;</span><br><span class="line">              &#125;</span><br><span class="line">              onSubmit(text, title);</span><br><span class="line">            &#125;&#125;&gt;</span><br><span class="line">            提交</span><br><span class="line">          &lt;/Button&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">      &#123;disabled ? (</span><br><span class="line">        &lt;View style=&#123;styles.forbidden&#125;&gt;</span><br><span class="line">          &lt;Text&gt;您在当前环境下没有权限进行编辑&lt;/Text&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">      ) : undefined&#125;</span><br><span class="line">    &lt;/View&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>扩增功能是因为其实并不是所有用户都会写 markdown，而 markdown 在写错换行符的时候是很烦的，所以要方便普通用户</p>
+<p>然后是 forbidden 功能，鉴于 rn 的所有组件都是 <code>box-sizing: content-box</code>，所以要修改层级以使得阻止视图完整覆盖编辑器</p>
+<p>所以可得样式表</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.editor</span> &#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.title</span> &#123;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">16px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.input</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#acacac</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.description</span> &#123;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.support</span> &#123;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">4px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#acacac</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.actions</span> &#123;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-end;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.forbidden</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>感谢阅读</p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--It's the end.<i class="fa fa-life-ring"></i>Thanks for your read.--</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react-native/" rel="tag"># react native</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/frontend/rn-start/" rel="next" title="RN-起步">
+                <i class="fa fa-chevron-left"></i> RN-起步
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/frontend/mobx-custom-types/" rel="prev" title="mobx 自定义类型">
+                mobx 自定义类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg" alt="Ringoer">
+            
+              <p class="site-author-name" itemprop="name">Ringoer</p>
+              <p class="site-description motion-element" itemprop="description">随处可见的一般社畜</p>
+          </div>
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">150</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Button"><span class="nav-number">1.</span> <span class="nav-text">Button</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tabs"><span class="nav-number">2.</span> <span class="nav-text">Tabs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Loading"><span class="nav-number">3.</span> <span class="nav-text">Loading</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Html"><span class="nav-number">4.</span> <span class="nav-text">Html</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#react-native-render-html"><span class="nav-number">4.1.</span> <span class="nav-text">react-native-render-html</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebView"><span class="nav-number">4.2.</span> <span class="nav-text">WebView</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Editor"><span class="nav-number">5.</span> <span class="nav-text">Editor</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ringoer.com 版权所有 ICP证：<a href="https://beian.miit.gov.cn/">闽ICP备17033389号</a></span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

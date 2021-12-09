@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="命令行,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="20201113命令行总结">
+<meta name="keywords" content="命令行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用命令行合集">
+<meta property="og:url" content="https://ringoer.com/programing/command-line/index.html">
+<meta property="og:site_name" content="Ringo&#39;s Coding Life">
+<meta property="og:description" content="20201113命令行总结">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-12-14T13:40:47.597Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用命令行合集">
+<meta name="twitter:description" content="20201113命令行总结">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ringoer.com/programing/command-line/">
+
+
+
+
+
+  <title>常用命令行合集 | Ringo's Coding Life</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ringo's Coding Life</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI to ACM</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            元初之地
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-blog">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-text-o"></i> <br>
+            
+            文章相关
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            自己绍介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-contact">
+          <a href="/contact/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-envelope-o"></i> <br>
+            
+            联系方式
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br>
+            
+            友情链接
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            站内搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ringoer.com/programing/command-line/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ringoer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ringo's Coding Life">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">常用命令行合集</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-13T18:49:00+08:00">
+                2020-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/programing/" itemprop="url" rel="index">
+                    <span itemprop="name">programing</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>20201113命令行总结</p>
+<a id="more"></a>
+<hr>
+<p>首先我们要打开命令行，应该使用 <code>git bash</code> 而不是 Windows cmd，因为命令行实际上就是 bash 脚本语言</p>
+<p>关于安装命令行，可以参考 <a href="https://ringoer.com/others/MyWebsiteGuide/">本站建站指导</a></p>
+<p>命令行的默认目录一般是形如 <code>C:\Users\Ringoer</code> ，这里被称之为用户目录，可以缩写为英文波浪线 <code>~</code></p>
+<p>然后我们可能要先切换目录到达目标目录</p>
+<h1 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h1><p>要切换到根目录（盘符的上级目录）的话，非常容易，只需要 <code>cd /</code> 就行了，此处 <code>/</code> 表示系统根目录</p>
+<p>切换盘符的话，也挺简单的，直接在命令行输入盘符+冒号即可。例如 <code>D:</code> 可以切换到 D 盘</p>
+<p>切换目录使用命令 <code>cd</code> ，是 <code>change directory</code> 的缩写。使用方法一般有两种</p>
+<ul>
+<li>绝对目录</li>
+<li>相对目录</li>
+</ul>
+<h2 id="绝对目录"><a href="#绝对目录" class="headerlink" title="绝对目录"></a>绝对目录</h2><p>一般指从盘符开始的目录描述，比如 <code>C:\Users\Ringoer</code> 就是一个标准的绝对目录</p>
+<p>需要注意，上面说到用户目录缩写是 <code>~</code> ，所以 <code>~</code> 也是一个绝对目录</p>
+<h2 id="相对目录"><a href="#相对目录" class="headerlink" title="相对目录"></a>相对目录</h2><p>相对目录的写法一般根据当前目录决定。</p>
+<p>首先我们可以在命令行上看到自己当前所在的目录，也可以使用命令 <code>pwd</code> 来显示当前目录</p>
+<p>然后，我们可以选择前往上一级目录，此时可以使用命令 <code>cd ..</code> ，注意一定是两个点表示上级目录，如果是一个点则表示当前目录</p>
+<p>不知道要去哪个目录怎么办？没关系，可以使用命令 <code>ls</code> （注意是字母 L 的小写）来查看当前目录下的所有子目录或文件，然后 <code>cd 子目录名称</code> 或 <code>cd ./子目录名称</code> 即可进入目标子目录</p>
+<p>说到命令行，那最大的用处，肯定是对文件 CRUD 啦</p>
+<h1 id="Create-新增"><a href="#Create-新增" class="headerlink" title="Create-新增"></a>Create-新增</h1><p>创建一个新文件，一般有两种类型</p>
+<ul>
+<li>从零创建</li>
+<li>从已有创建</li>
+</ul>
+<h2 id="从零创建"><a href="#从零创建" class="headerlink" title="从零创建"></a>从零创建</h2><p>一般使用 <code>touch [...filename]</code> 来创建文件</p>
+<p>其中 <code>...</code> 是 spread 语法，表示不定长参数列表，下同</p>
+<p>若目标文件不存在，则在当前目录创建这个文件</p>
+<p>若目标文件已经存在，则更新最后更新时间</p>
+<h2 id="从已有创建"><a href="#从已有创建" class="headerlink" title="从已有创建"></a>从已有创建</h2><p>一般使用 <code>cp [filename1] [filename2]</code> 来复制文件</p>
+<p>将 文件1 的内容全数复制到 文件2 中</p>
+<h2 id="文件夹"><a href="#文件夹" class="headerlink" title="文件夹"></a>文件夹</h2><p>文件夹也有如上两种情况，分别采用</p>
+<ul>
+<li><code>mkdir [...directoryName]</code></li>
+<li><code>cp -r [directoryName1] [directoryName2]</code></li>
+</ul>
+<p>来创建文件夹</p>
+<p>其中参数 -r 表示 递归地复制，概念与 js 中的深度拷贝相同</p>
+<h1 id="Retrieve-查询"><a href="#Retrieve-查询" class="headerlink" title="Retrieve-查询"></a>Retrieve-查询</h1><p>一般有 4 种查询语句</p>
+<table>
+<thead>
+<tr>
+<th>语句</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cat […filename]</td>
+<td>全量查看文件</td>
+</tr>
+<tr>
+<td>head -n [line] […filename]</td>
+<td>查看文件前 n 行</td>
+</tr>
+<tr>
+<td>tail -n [line] […filename]</td>
+<td>查看文件后 n 行</td>
+</tr>
+<tr>
+<td>less [filename]</td>
+<td>分页查看文件</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Update-修改"><a href="#Update-修改" class="headerlink" title="Update-修改"></a>Update-修改</h1><p>显然修改文件和文件夹是不一样的</p>
+<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><p>查询中前三种语句，都是有确定的返回内容的，此时可以通过 <code>&gt; [filename]</code> 将返回内容导入到新的文件中。该命令会覆盖目标文件原有内容</p>
+<p>例如，<code>cat 1.txt 2.txt &gt; 3.txt</code> ，将 1.txt 和 2.txt 的内容都全量导出，然后拼接在一起，之后保存到 3.txt 中</p>
+<p>也可以通过 <code>&gt;&gt; [filename]</code> 将返回内容导入到新的文件中。该命令会将新内容拼接到目标文件原有内容末尾</p>
+<p>例如，<code>cat 1.txt 2.txt &gt;&gt; 3.txt</code> ，将 1.txt 和 2.txt 的内容都全量导出，然后拼接在一起，之后拼接到 3.txt 的末尾</p>
+<p>刚才说到”确定的返回内容”，就不得不说说回显命令 <code>echo [body]</code> ，用于将参数体的内容原封不动回显到标准输出中。显然，echo 命令也可以通过 <code>&gt; [filename]</code> 和 <code>&gt;&gt; [filename]</code> 重定向到文件中</p>
+<p>echo 还可以输出 bash 脚本代码，实际上就是输出字符串，需要双引号</p>
+<p>例如 <code>echo &quot;hello world&quot;</code> ，英文引号，懂得都懂</p>
+<h2 id="文件夹-1"><a href="#文件夹-1" class="headerlink" title="文件夹"></a>文件夹</h2><p>修改文件夹是什么意思呢？对比修改文件是指修改其中保存的内容，那修改文件夹显然就是修改文件夹中保存的文件列表</p>
+<p>我们可以通过 <code>mv [...filename] [directoryName]</code> 命令来将文件移动到目标文件夹中</p>
+<p>其中文件可以指定不少于 1 的任意多个，但目标文件夹只能有一个</p>
+<p>mv，实际上是 <code>move</code> 的缩写。</p>
+<h2 id="重命名"><a href="#重命名" class="headerlink" title="重命名"></a>重命名</h2><p>说到这里，肯定会有同学想问，如何重命名呢？这就需要我们刚刚说的 <code>mv</code> 命令了</p>
+<p><code>mv [file1] [file2]</code> 可以实现将文件1重命名为文件2</p>
+<p><code>mv [directory1] [directory2]</code> 可以实现将文件夹1重命名为文件夹2</p>
+<p>如果文件2已经存在会怎么样呢？</p>
+<p>那么文件1会改名为文件2，而文件2会被删除</p>
+<h1 id="Delete-删除"><a href="#Delete-删除" class="headerlink" title="Delete-删除"></a>Delete-删除</h1><p>删除一个文件，一般使用 <code>rm [filename]</code> 来删除，其中 <code>rm</code> 是 <code>remove</code> 的缩写</p>
+<p>如果删除目标是一个文件夹，一般使用 <code>rm -r [directoryName]</code> 来删除，其中参数 -r 同上</p>
+<p>有时候要删除某个文件或文件夹的时候，会触发警告，此时可以通过 <code>-f</code> 来强制删除文件或 <code>-rf</code> 来强制删除文件夹，这也是 <code>rm -rf /</code> 删库跑路的来源。但此举非常不推荐，否则很容易就把重要文件删了导致系统崩溃</p>
+<p>但是测试 CRUD 的时候，总是要重复运行很多代码，好烦啊，有没有方便的办法呢？</p>
+<h1 id="脚手架"><a href="#脚手架" class="headerlink" title="脚手架"></a>脚手架</h1><p>显然我们在上面测试的时候，经常会重复运行代码，输入内容等等。比如下方代码就是一个可能的情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"Waiting..."</span> &gt; 1.txt</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"hello world"</span> &gt;&gt; 1.txt</span><br><span class="line"></span><br><span class="line">cp 1.txt 2.txt</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"success"</span> &gt;&gt; 2.txt</span><br><span class="line"></span><br><span class="line">cat 1.txt 2.txt &gt; 3.txt</span><br><span class="line"></span><br><span class="line">mkdir <span class="built_in">test</span></span><br><span class="line">mv 1.txt 2.txt 3.txt <span class="built_in">test</span></span><br><span class="line"><span class="built_in">cd</span> <span class="built_in">test</span></span><br><span class="line">tail -n 4 3.txt &gt; 4.txt</span><br><span class="line"></span><br><span class="line">less 4.txt</span><br></pre></td></tr></table></figure>
+<p>但是我们总不能每一次测试都手打一遍？所以我们要将它保存为一个单独的 bash 代码文件，称之为 bash 脚本，它一旦运行起来，就可以帮助我们运行设定好的代码。</p>
+<p>假设我们把它保存为 <code>node.exe</code>，或者干脆不要 exe，直接叫做 <code>node</code> </p>
+<p>实际上，对于系统来说，文件后缀是不是 exe 并不是很重要，只要是机器能读懂的语言，都是可执行文件</p>
+<p>如果你不是 windows 系统，需要先执行 <code>chmod +x [filename]</code> 命令，来赋予文件执行的权能</p>
+<p>然后一般有三种方法运行你的可执行文件。假设此处运行当前目录下的 <code>node</code>，它是一个删除了 exe 后缀的原 exe 文件</p>
+<ol>
+<li><code>./node</code>，其中单个 <code>.</code> 表示当前目录</li>
+<li><code>sh node</code>，其中 <code>sh</code> 表示将其当作 bash 脚本启动</li>
+<li><code>node</code></li>
+</ol>
+<p>第一种和第二种没有什么区别，主要是第三种</p>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p>前面我们讲过可以通过 <code>ls</code> 查看当前目录下的文件列表，那系统怎么知道 ls 是什么命令呢？答案就在系统环境变量 PATH 中</p>
+<p>因为 PATH 中登记了 ls 所在的目录，所以系统能找到 ls 的指向</p>
+<p>那么答案就很明确了，我们可以把我们现在的运行目录也登记到 PATH 中，就可以通过 <code>node</code> 直接运行我们的可执行文件了</p>
+<h2 id="命名冲突"><a href="#命名冲突" class="headerlink" title="命名冲突"></a>命名冲突</h2><p>但是大家电脑上都已经安装了 nodejs 了吧？这时如果直接在命令行中执行 <code>node</code> 命令，往往会启动了 nodejs 的 node.exe 。那怎么让我们的 node 文件更优先呢？</p>
+<p>答案还是在 PATH 身上</p>
+<p>刚才设置 PATH 的时候，可以注意到，PATH 列表右侧有”上移””下移”按钮，可以推测目录在 PATH 中的注册顺序是影响调用决策的重要条件。那么我们把我们的工作目录上移到比 nodejs 目录更上方的位置</p>
+<p>此时如果你不是 windows 环境，应该可以看到命令行正常输出了你的 node 文件的内容了。但如果是 windows 环境……还有一个坑点，那就是 windows 环境在决策时 exe 后缀的文件优先级更高。那么把你的 node 文件改名为 node.exe，ok，大功告成！</p>
+<p>好了，关于命令行，我暂且只有这些想说的，谢谢你看到这里，快回去自己动手试验一下吧！</p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--It's the end.<i class="fa fa-life-ring"></i>Thanks for your read.--</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/命令行/" rel="tag"># 命令行</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/https/https/" rel="next" title="配置HTTPS方案">
+                <i class="fa fa-chevron-left"></i> 配置HTTPS方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/programing/localGit/" rel="prev" title="Git本地操作">
+                Git本地操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://pic.ringoer.com/__add_elsword_drawn_by_hwansang__sample-0459dceea247bc1e9c4ded245532b1b7.jpg" alt="Ringoer">
+            
+              <p class="site-author-name" itemprop="name">Ringoer</p>
+              <p class="site-description motion-element" itemprop="description">随处可见的一般社畜</p>
+          </div>
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">150</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#切换目录"><span class="nav-number">1.</span> <span class="nav-text">切换目录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#绝对目录"><span class="nav-number">1.1.</span> <span class="nav-text">绝对目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相对目录"><span class="nav-number">1.2.</span> <span class="nav-text">相对目录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Create-新增"><span class="nav-number">2.</span> <span class="nav-text">Create-新增</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从零创建"><span class="nav-number">2.1.</span> <span class="nav-text">从零创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从已有创建"><span class="nav-number">2.2.</span> <span class="nav-text">从已有创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件夹"><span class="nav-number">2.3.</span> <span class="nav-text">文件夹</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Retrieve-查询"><span class="nav-number">3.</span> <span class="nav-text">Retrieve-查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Update-修改"><span class="nav-number">4.</span> <span class="nav-text">Update-修改</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件"><span class="nav-number">4.1.</span> <span class="nav-text">文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件夹-1"><span class="nav-number">4.2.</span> <span class="nav-text">文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重命名"><span class="nav-number">4.3.</span> <span class="nav-text">重命名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Delete-删除"><span class="nav-number">5.</span> <span class="nav-text">Delete-删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#脚手架"><span class="nav-number">6.</span> <span class="nav-text">脚手架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量"><span class="nav-number">6.1.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名冲突"><span class="nav-number">6.2.</span> <span class="nav-text">命名冲突</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ringoer.com 版权所有 ICP证：<a href="https://beian.miit.gov.cn/">闽ICP备17033389号</a></span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
